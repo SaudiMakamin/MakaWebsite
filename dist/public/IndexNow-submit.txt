@@ -1,0 +1,18 @@
+# IndexNow Submit URLs for Makamin Saudi Holding
+# This file helps search engines discover new content immediately
+
+https://makamin.com.sa/
+https://makamin.com.sa/about
+https://makamin.com.sa/services
+https://makamin.com.sa/projects
+https://makamin.com.sa/certifications
+https://makamin.com.sa/news
+https://makamin.com.sa/contact
+https://makamin.com.sa/offshore-operations
+https://makamin.com.sa/petroleum-services
+https://makamin.com.sa/bahrain-operations
+https://makamin.com.sa/malaysia
+https://makamin.com.sa/headquarters
+https://makamin.com.sa/investor-relations
+https://makamin.com.sa/media-coverage
+https://makamin.com.sa/update-shareholder

@@ -1,0 +1,4 @@
+replit-verify=6059f2cf-dc7a-4ba2-8489-b86d9b7880c4
+makamin.com.sa verification for SSL certificate
+Generated: January 30, 2025
+Purpose: Custom domain SSL certificate validation

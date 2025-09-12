@@ -1,0 +1,72 @@
+أمرك واضح يا القائد نوفا. والآن سأنفّذ المهمة كما يليق—**بصياغة أمر خارق** يخاطب النظام (Replit Agent) لتوليد قسم "المشاريع" على الموقع الرسمي لشركة **Makamin**، بأسلوب احترافي خارق للطبيعة، يستثمر كل طاقته الإبداعية والتقنية.
+
+---
+
+### 🧠 \[ملاحظة تحليلية قبل صياغة الأمر]
+
+قسم "المشاريع" في موقع Makamin يجب أن يحقق عدة أهداف:
+
+1. **يعرض القوة التقنية والتنفيذية للشركة بصريًا وعمليًا.**
+2. **يُظهر ضخامة المشاريع المنفذة مع عملاء مثل أرامكو وسابك والمياه الوطنية.**
+3. **يستعرض تنوع الخدمات: خطوط الأنابيب، الحفر، الغوص، التفتيش الصناعي، إلخ.**
+4. **يُقدّم معرض صور ذكي ديناميكي لصور المشاريع (تم رفعها سابقًا).**
+5. **يتفادى أي حشو أو استعراض تقليدي — بل يفرض الحضور الذهني والهيبة.**
+
+---
+
+## ⚔️ الأمر الخارق إلى Replit Agent:
+
+> 🧠 **Task Name**: Reinvent the “Projects” section into a cinematic-grade, data-rich showcase of Makamin’s real-world dominance.
+
+```
+🔥 Execute the following command:
+
+Create a visually striking and technically flawless “Projects” section on the Makamin official website. This section must reflect the true power and capability of Makamin through:
+
+1. **Hero Heading + Tactical Summary:**
+   - Title: “Projects of Power”
+   - Subtitle: “Engineering Precision. Strategic Execution. Saudi Leadership.”
+   - Include a tactical summary paragraph highlighting Makamin’s impact across Saudi Aramco, SABIC, NWC, and offshore markets.
+
+2. **Interactive Visual Grid:**
+   - Pull all images from directory: `/public/images/makamin-gallery/`
+   - Display in animated grid layout using Tailwind + Framer Motion.
+   - Enable hover effects that reveal:
+     - Project name
+     - Sector (Pipeline, Drilling, Inspection, Offshore, etc.)
+     - Client name
+     - Completion year
+
+3. **Filter & Search Controls:**
+   - Add dropdown filters for:
+     - Client (Aramco, SABIC, NWC…)
+     - Sector
+     - Year
+   - Enable instant AJAX-based filtering (no page reloads).
+
+4. **Case Studies (3 max):**
+   - Create 3 expandable case study components (accordion or modal):
+     - Each one features: title, brief scope, outcome, technical highlights, key technologies used.
+     - One must be an offshore marine project with diving/ROV work.
+
+5. **Mobile Excellence:**
+   - Ensure seamless responsive behavior.
+   - Swipe navigation for image gallery.
+   - Touch-friendly filters.
+
+6. **Zero Placeholder Policy:**
+   - No “Coming Soon,” no lorem ipsum.
+   - Any missing data must trigger AI-generated descriptions from actual Makamin historical content.
+
+7. **Performance Directive:**
+   - Lazy-load all images.
+   - Pre-fetch project metadata.
+   - Compress intelligently for speed without quality loss.
+
+Deliver this section not as a "page" but as a **statement of dominance** in Oil & Gas services. It must feel like entering a classified control center, not scrolling a website.
+
+```
+
+---
+
+هل ترغب أن أرسل هذا الأمر الآن إلى Replit Agent بصيغة تنفيذ مباشرة؟ أو تود تعديل بعض عناصره؟

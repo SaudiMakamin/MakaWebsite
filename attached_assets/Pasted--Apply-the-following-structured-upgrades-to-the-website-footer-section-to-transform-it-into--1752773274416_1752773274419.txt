@@ -1,0 +1,85 @@
+
+
+
+🔥 Apply the following structured upgrades to the website footer section to transform it into a credible, interactive, and visually balanced closing element.
+
+---
+
+🟥 1. [Layout Optimization]
+- حافظ على تنسيق الأعمدة الثلاثة الحالية (Logo + Quick Links + Services + Contact)
+- أضف تباعد داخلي مريح (`px-6 py-10`)
+- استخدم خلفية داكنة صافية: `#1b1f26`
+- لون النص: `#f1f1f1` مع hover color `#c5a66e`
+- أضف ظل خفيف علوي للفوتر (border-top glow أو subtle gradient)
+
+---
+
+🟥 2. [Company Identity Block — Arabic + English]
+
+أسفل شعار مكامن مباشرة، أضف وصفًا ثنائي اللغة:
+
+شركة مكامن القابضة لحلول النفط والغاز
+الريادة في الخدمات المتكاملة منذ 2008
+
+Saudi Makamin Holding Company for Oil & Gas Services
+Leading integrated energy solutions since 2008
+
+yaml
+نسخ
+تحرير
+
+تنسيق النص: محاذاة وسط، حجم خط `sm`, line-height مريح
+
+---
+
+🟥 3. [Reformat Services Section]
+
+استبدل العبارات الحالية بـ:
+
+- Drilling Services  
+- Offshore Operations  
+- Pipeline Services  
+- Inspection Services  
+- Geoscience Services
+
+اجعل كل عنصر رابطًا فعليًا للصفحات ذات الصلة إن توفرت.
+
+---
+
+🟥 4. [Departmental Contact Matrix]
+
+في عمود Contact Info، أضف قائمة الإيميلات الرسمية المقسّمة وظيفيًا:
+
+| الإدارة / القسم            | البريد الإلكتروني                          |
+|----------------------------|--------------------------------------------|
+| الإدارة العامة              | info@makamin.com.sa                       |
+
+
+
+---
+
+🟥 5. [Social Media Activation]
+
+فعّل الرموز الاجتماعية (أو أضفها) أسفل الشعار مباشرة:
+
+- 🔗 LinkedIn:  
+  `https://www.linkedin.com/company/makamin`
+- 🐦 Twitter:  
+  `https://twitter.com/SaudiMakamin_sa`
+
+الخصائص:
+- أيقونات SVG بيضاء
+- حجم `w-6 h-6` مع hover: `scale-110` + soft glow
+- محاذاة أفقية أنيقة أسفل النص
+
+---
+
+🛑 6. [DO NOT]
+- لا تغيّر عدد الأعمدة أو هيكلها
+- لا تستخدم تأثيرات مبالغ بها
+- لا تحذف أي عنصر موافق عليه سابقًا
+
+---
+
+🎯 Final Outcome:
+This footer must reflect Makamin’s executive presence — a digital signature block of credibility, clarity, and smart accessibility. A visitor must feel he’s reached the bottom of a sovereign, world-class energy company website.

@@ -1,0 +1,122 @@
+⚠️ Understood, Supreme Commander NOVA. No room for delay, interpretation, or fallback.
+
+Now executing:
+
+---
+
+## 🧠🔥 Supreme Execution Order 004 – "Site-Wide Strategic Repairs Bundle"
+
+> **This is a multi-section critical repair pack** issued directly by Commander NOVA. No deviation is tolerated. Every point below is binding. Do not alter anything else outside these exact instructions.
+
+---
+
+### 🔧 SECTION 1: News Center Page Fixes
+
+#### 🔁 Fix: Broken Images
+
+* **Fix all broken images** on the News Center page. Every image slot across all news sections must be inspected and restored with valid image paths or placeholders if not available.
+
+#### ➕ Add News Article: Makamin Board Announcement
+
+* **Title:** "دعوة الجمعية العمومية غير العادية"
+* **Date:** July 1, 2025
+* **Image:** Use Makamin official logo
+* **Content:**
+
+  > "أعلن مجلس إدارة مكامن عن موعد الجمعية العمومية غير العادية بعد 21 يومًا من تاريخ الإعلان. سيتم إرفاق التفاصيل الكاملة لاحقًا عبر القنوات الرسمية."
+* **Placement:** This article must appear **first** (top) in the news list.
+
+#### ➕ Add External Article from Okaz
+
+* **Source:** [https://www.okaz.com.sa/news/local/2179775](https://www.okaz.com.sa/news/local/2179775)
+* **Title/Image/Content:** Extract exactly from the source without altering.
+* **Placement:** This article must be **highlighted/prominent** in the list.
+* **Do not remove or modify** any other news content.
+
+---
+
+### 🔧 SECTION 2: About Page Repairs
+
+#### ❌ Fix: Broken Executive Photos
+
+* Reconnect or re-import the provided executive images.
+* Each executive photo must match their name exactly.
+* No placeholder silhouettes allowed.
+
+#### ➕ Add New Section Under Committees:
+
+* **Title:** "اللجان الرئيسية"
+
+* **Structure:** Horizontal or grid layout (4 boxes/cards)
+
+* **Content (No member names):**
+
+  1. **اللجنة التنفيذية**
+
+     > تُعنى بمتابعة الأداء العام والإشراف المباشر على تنفيذ الخطط الاستراتيجية المعتمدة للشركة.
+
+  2. **لجنة التدقيق**
+
+     > تراقب الالتزام المالي والرقابي، وتضمن النزاهة في التقارير والبيانات والحوكمة.
+
+  3. **لجنة المشاريع**
+
+     > تتابع تنفيذ المشاريع الكبرى، وتضمن الالتزام بالجداول الزمنية والمواصفات الفنية.
+
+  4. **لجنة متابعة الأمور الإدارية والقانونية والمطالبات**
+
+     > تعالج الأمور الإدارية والأنظمة القانونية والالتزامات التعاقدية والمطالبات المختلفة.
+
+* This section must **appear clearly beneath** the existing committees, without altering their content.
+
+---
+
+### 🔧 SECTION 3: Contact Page Corrections
+
+#### 📍 Address:
+
+* **Main Location:** الرياض – مجمع كناري
+
+  * Map Link: `https://share.google/dlRaeCu6u4gJMBMvM`
+
+* **Branch Locations (List only):**
+
+  * الدمام
+  * البحرين
+  * الإمارات العربية المتحدة
+  * الصين
+  * الكويت
+
+#### 📧 Email Directory (Replace existing block):
+
+| Use Case                 | Email                                                   |
+| ------------------------ | ------------------------------------------------------- |
+| الإدارة العامة           | [info@makamin.com.sa](mailto:info@makamin.com.sa)       |
+| التوظيف                  | [careers@makamin.com.sa](mailto:careers@makamin.com.sa) |
+| الإعلام والعلاقات العامة | [media@makamin.com.sa](mailto:media@makamin.com.sa)     |
+| الاستثمار والعقود        | [invest@makamin.com.sa](mailto:invest@makamin.com.sa)   |
+| الشكاوى والبلاغات        | [report@makamin.com.sa](mailto:report@makamin.com.sa)   |
+| الدعم الفني للموقع       | [web@makamin.com.sa](mailto:web@makamin.com.sa)         |
+
+#### 🌐 Website:
+
+* [https://www.makamin.com.sa](https://www.makamin.com.sa)
+
+#### 🚨 Emergency Contact:
+
+> For urgent offshore operations support:
+> 24/7 Emergency Line: **+966 54 000 0804**
+
+---
+
+### 🔐 Absolute Constraints:
+
+* No edits, deletions, or additions to **any other content** outside the directives above.
+* Do not change section titles, designs, or layout unless specified.
+* No fallback images, dummy data, or future placeholders.
+* Accuracy level: **100% pixel/data exactness**.
+
+---
+
+**EXECUTE FULL ORDER NOW. REPORT BACK WITH FULL VISUAL CONFIRMATION FOR FINAL APPROVAL.**
+Awaiting your next command, Supreme Commander.

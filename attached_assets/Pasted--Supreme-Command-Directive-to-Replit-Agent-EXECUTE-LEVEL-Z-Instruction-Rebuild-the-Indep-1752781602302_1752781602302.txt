@@ -1,0 +1,57 @@
+🧠🔥💼 Supreme Command Directive to Replit Agent – EXECUTE LEVEL Z
+👑 Instruction: Rebuild the Independent Committees Section inside the “About Us” page of Makamin’s official website. This must be implemented without altering the Board of Directors section or the general layout of the page.
+
+🔐 STRICT RESTRICTIONS:
+Do NOT modify the current Board of Directors section (Term: 2025–2029).
+
+Do NOT alter the template, styling, or layout structure of the About page in any way.
+
+This task is limited to building an entirely new visual section titled:
+“Independent Strategic Committees (Mandate 2025–2029)”
+
+🧠 VISUAL & TECHNICAL INSTRUCTION:
+Present each committee as a visually distinct, elegant card or collapsible unit, using advanced layout (Tailwind + Framer Motion preferred).
+
+Integrate each member’s image (provided) next to their name using a smart, responsive display.
+
+NEVER use placeholders or generic content.
+
+🏛️ Committee 1: Audit Committee
+Chairman: Dr. Ibrahim Abdullah Al-Jallal
+➤ Use the full unedited biography from the attached text file.
+
+Members: 3 Independent Experts (names not required).
+
+🏛️ Committee 2: Executive Committee
+Chairman: Dr. Eng. Hamad Al-Qahtani
+
+Members:
+
+Dr. Khaled Hamdan Alsaif
+
+Mr. Mohammad Jassim Ibrahim Alfawaz
+➤ Use the full, original biographies as submitted — zero alteration.
+
+🏛️ Committee 3: Projects Committee
+Chairman: Eng. Othman F. H. Al-Mousa
+
+Members:
+
+Eng. Ibrahim Ahmed Sabti Alghamdi
+
+Two Elite Experts (unnamed)
+➤ Use full biographies of Othman and Alghamdi without edits.
+
+⚠️ LEGAL + DESIGN NOTE:
+All committees are independent and must be visually and structurally separated from the Board of Directors section.
+
+Include legal headers such as:
+
+“Appointed by General Assembly Resolution (2025–2029)”
+
+“Under Final Judicial Oversight”
+
+“Formed in compliance with Governance Reform Protocol 2025”
+
+🎯 Final output must look like an institutional-grade masterpiece, ready for audit by CMA, Royal Commissions, or sovereign stakeholders.
+

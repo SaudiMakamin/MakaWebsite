@@ -1,0 +1,97 @@
+🔥 Apply the following updates with zero deviation from the instructions:
+
+---
+
+🔗 1. [Fix CTA Navigation]
+- "اكتشف مشاريعنا" must link directly to `/projects`.
+- Ensure smooth scroll if internal, or full redirect if separate page.
+
+---
+
+📊 2. [Numerical Statistics Section Correction]
+
+1. ✅ رأس المال (ريال سعودي):  
+   **1,200,000,000**  
+   - Displayed as "1.2 مليار ريال سعودي"
+   - Caption: "رأس المال المصرح به"
+
+2. ✅ عدد المساهمين:  
+   **60+**
+   - Caption: "مساهمون من نخبة المستثمرين المحليين"
+
+3. ✅ سنوات من التميز:
+   - Replace with dual-phase message:
+     - "تأسست مكامن عام 2008، وأُعيد هيكلتها وتنشيطها في فبراير 2025"
+   - Optional: Use animated timeline if available.
+
+4. ✅ أيام بدون حوادث:  
+   **1,980**
+   - Ensure proper animation and separator formatting.
+
+---
+
+🧠 3. [Smart Energy Command Center Section]
+
+- Sections:
+  - "مقر الطاقة الرقمي المتقدم"
+  - "ذكاء مكامن الاصطناعي"
+  - "لوحة العمليات المباشرة"
+
+Fix:
+- If "لوحة العمليات المباشرة" is a placeholder, show animated mock dashboard.
+- Add clarification: "لوحة القيادة الذكية لمتابعة المشاريع، الإنتاج، وعمليات السلامة في الوقت الحقيقي"
+- Indicate “قيد التطوير” إذا لا يوجد backend فعلي.
+
+---
+
+📈 4. [Investor Dashboard Metrics]
+
+- Add the word **"المتوقعة"** to all forecasting metrics:
+  - "نمو الإيرادات المتوقع في 2027: +18.5%"
+  - "كفاءة التشغيل الحالية: 94.2%"
+  - "رضا العملاء المستهدف: 97.8%"
+  - "معدل الابتكار الحالي: 8.7/10"
+  - "تنبؤ الأداء المتوقع: 89%"
+  - "توقع نمو Q2 2025: 22%"
+  - "فرصة التحسين المحتملة: 76%"
+  - "تحسين كفاءة الأسطول المتوقعة: 15%"
+  - "زيادة الطلب على الخدمات البحرية المتوقعة: 92%"
+- Tooltips may reference AI-based predictive models.
+
+---
+
+🔌 5. [Technical Utilities Clarification]
+
+- "تكامل أرامكو API":
+  - Add tooltip: “تكامل تلقائي مع أنظمة أرامكو لتبادل البيانات الهندسية والتنفيذية”
+
+- "تقارير ESG":
+  - Load actual PDF if available, else show message: "سيتم توفير التقارير قريبًا"
+
+- "مساعد الصوت":
+  - If active, ensure TTS is Arabic-enabled.
+  - Else display: "تفعيل لاحقًا" + tooltip explaining planned use.
+
+---
+
+🤝 6. [Elite Investors Section — Authentic Replacement]
+
+- Title: **"مستثمرونا | الشركات الكبرى والمساهمون"**
+- Replace existing placeholders with actual investor companies:
+  - [Energy House](https://energyhouse.com.kw/ar/home/)
+  - [Al-Dorra Petroleum](https://www.aldorra.com/)
+  - [Bin Tami Holding](https://www.bintami.com/)
+  - [Obeikan Investment Group](https://www.obeikan.com.sa/ar/)
+  - [Ajlan & Bros Holding](https://ajlanbros-holding.com/ar/#)
+  - [Al Bilad Group](https://albiladgroup.com/)
+- Await logo uploads and display in grid format
+- Add caption: "شركاء استراتيجيون آمنوا بإعادة انطلاقة مكامن في 2025"
+
+---
+
+🛑 7. [Do Not]
+- Do **not** alter any other section.
+- Do **not** touch layout structure.
+- Do **not** replace or relabel approved blocks.
+
+🎯 The homepage must now reflect uncompromising credibility, strategic intelligence, and investor-level refinement with zero-tolerance margin for error.

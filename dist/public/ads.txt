@@ -1,0 +1,6 @@
+# ads.txt file for makamin.com.sa
+# Saudi Makamin Holding Company
+# مكامن السعودية القابضة
+
+# This website does not currently run advertisements
+# Contact: media@makamin.com.sa for advertising inquiries

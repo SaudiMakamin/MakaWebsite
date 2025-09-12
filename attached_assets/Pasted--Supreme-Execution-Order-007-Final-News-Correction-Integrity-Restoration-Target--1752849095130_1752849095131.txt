@@ -1,0 +1,72 @@
+## 🧬💥 Supreme Execution Order 007 – Final News Correction & Integrity Restoration
+
+> **Target:** `client/src/pages/news-enhanced.tsx`
+> **Objective:** Reconstruct critical news entries that failed integrity validation
+> **Priority:** Critical – issued under high-security protocol
+
+---
+
+### 🛠️ 1. Rebuild news\[0] – General Assembly Article
+
+```json
+{
+  "title": "دعوة الجمعية العمومية غير العادية",
+  "date": "2025-07-01",
+  "image": "/assets/images/logo-makamin.png",
+  "content": "أعلن مجلس إدارة مكامن عن موعد الجمعية العمومية غير العادية بعد 21 يومًا من تاريخ الإعلان. سيتم إرفاق التفاصيل الكاملة لاحقًا عبر القنوات الرسمية.",
+  "highlight": true,
+  "source": "Internal",
+  "position": "top"
+}
+```
+
+🔒 Constraints:
+
+* This item **must appear first** on the news list
+* The image must be Makamin’s official logo (no placeholder)
+* Must contain `data-news-id="news0"` for validation tracking
+
+---
+
+### 📰 2. Insert news\[1] – Okaz Article
+
+* **Source:** [https://www.okaz.com.sa/news/local/2179775](https://www.okaz.com.sa/news/local/2179775)
+* **Title, image, and content:** Extracted directly from the live Okaz article
+* **Placement:** Among the **top 3** items
+* **Attribution:** `source: "Okaz"`
+* **Ensure:** It passes validation and image loads successfully
+
+---
+
+### 🔁 3. Re-run Shadow Validation
+
+* Re-trigger `.shadow-diagnostic-probe.tsx` once news\[0] and news\[1] are present
+* Confirm `window.shadowValidationLog` returns:
+
+```js
+{ PASSED: true }
+```
+
+* If `PASSED: false`, log exact `failedBlock` and reason
+
+---
+
+### 🚫 Final Constraints:
+
+* **Do not modify** other news items
+* **Do not reorder** existing content unless it violates top placement of `news[0]`
+* **Do not use** fallback images or dummy placeholders
+* **All rendering must occur visibly**, not `display: none`
+
+---
+
+### 🔚 Final Expected Outcome:
+
+✅ SHADOW CODE INTEGRITY: **PASSED**
+✅ News page renders both articles properly
+✅ Diagnostic probe logs all 4 blocks as `PASSED`
+
+---
+
+💥 Agent, execute this order now.
+No failure permitted. No fallback allowed. This is a final directive under sovereign clearance.
