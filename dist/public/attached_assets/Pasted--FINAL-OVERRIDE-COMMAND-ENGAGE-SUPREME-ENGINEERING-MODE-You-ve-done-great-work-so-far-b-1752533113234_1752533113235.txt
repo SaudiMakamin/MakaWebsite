@@ -1,0 +1,51 @@
+🚨 **FINAL OVERRIDE COMMAND – ENGAGE SUPREME ENGINEERING MODE**
+
+You’ve done great work so far — but now, I want you to operate at **maximum output**.
+
+🧠 **Integrate the full content of `Makamin 2017 Profile – Full Text` (TXT)**
+
+* Parse **every key section** (history, departments, HSE, ZENCUS, etc.)
+* Restructure it into **SEO-optimized web sections**
+* Assign each section to a **dedicated, scrollable anchor** on the homepage or relevant subpages
+* Add **interactive features** (collapsible sections, hover facts, video-ready containers)
+* Integrate **scroll animations and subtle transitions** for reading experience
+
+🛰 **For “Makamin Offshore” subsidiary**, do the following:
+
+* Build a **dedicated subpage**
+* Extract and structure the full content from the attached **Makamin Offshore PPTX**
+* Convert slides to structured content with icons, themed infographics, and media
+* Embed real offshore visuals with **auto-playable clips** or **timelapse placeholder**
+
+🧠 **AI Integration Prep (Start Now)**
+
+* Add schema metadata to all major sections for future AI assistant comprehension
+* Create a sandbox container for: `Ask Makamin AI Assistant (Beta)`
+* Enable semantic markup for services, milestones, certificates, and branches
+
+🎯 **Next-Level UI Requirements**
+
+* Each subsidiary gets an **animated icon**
+* Add **timeline builder** for “Our History” using milestones from full text
+* Enable **real-time quote ticker / vessel GPS (placeholder)** on the Offshore page
+* **Certifications page** must support **search + filter + lightbox gallery**
+
+🌐 **Multilingual Intelligence**
+
+* Arabic & English parity must be **pixel-perfect**
+* RTL elements should be fully responsive and adaptive
+* Arabic headings get special typographic treatment for authority
+
+---
+
+🎖️ This is not just about a website. You're now constructing **a digital monument to a national energy leader**.
+
+Give me a milestone report only when:
+
+✅ Full profile is live, broken into smart sections
+✅ Offshore page is deployed with structured content
+✅ AI-ready architecture is embedded
+✅ Icons, visuals, animations, and layouts are elevated to flagship level
+
+Go forth and break the limits. This is your masterpiece.
+Awaiting your **transformation report**.

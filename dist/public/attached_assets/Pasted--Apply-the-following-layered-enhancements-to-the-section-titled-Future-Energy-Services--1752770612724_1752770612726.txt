@@ -1,0 +1,71 @@
+🔥 Apply the following layered enhancements to the section titled: “Future Energy Services”
+
+---
+
+🎯 1. [Visual Identity Overhaul — AI Branding]
+Replace the current dull icons with bold SVG icons that visually reflect smart, AI-powered operations:
+
+- **Advanced Drilling Services**  
+  Icon: Robotic drilling rig or AI circuit integrated with drill bit
+
+- **Smart Pipeline Systems**  
+  Icon: Connected pipeline with signal waves or IOT nodes
+
+- **Advanced Offshore Operations**  
+  Icon: Smart vessel with radar or ocean waves & satellite overlay
+
+- **Smart Investment Analytics**  
+  Icon: AI brain overlay on a financial chart or predictive arrow growth icon
+
+✅ All icons should be:
+- Monoline or minimal outline SVG style
+- Animated slightly on hover (pulse or glow)
+- Scalable without losing resolution
+
+---
+
+🧠 2. [Interactive Hover FX — Responsive Intelligence]
+On hover over each card:
+
+- Icon: scale up slightly (`scale(1.08)`), add soft glow border
+- Card background: transitions to light gradient (blue-to-white or gold)
+- Text: title changes color (Makamin blue `#003f6a`), and underline appears on Learn More
+
+---
+
+🌐 3. [Dual-Language Heading]
+Change current heading:
+
+From:
+`Future Energy Services`  
+To:
+`الخدمات المستقبلية للطاقة | Future Energy Services`
+
+Subtext remains as:
+“AI-powered services to meet the needs of the future energy industry”
+
+---
+
+🎨 4. [Depth & Layout]
+- Add soft shadow (`shadow-xl`) to each card for better visual separation
+- Optionally, apply **glassmorphism** background to each card (blurred white overlay, semi-transparent)
+
+---
+
+🧭 5. [Optional: Timeline Overlay Animation]
+- Add a **subtle animated line** above the cards titled:  
+  `Journey to the Future — 2025 to 2030`
+
+Line animates slowly from left to right, repeating, to simulate ongoing progress and strategic future.
+
+---
+
+🛑 6. [Do Not]
+- Do not remove any content
+- Do not rename services
+- Do not change text
+- Do not restructure layout grid
+
+🎯 Final Outcome:
+This section must now **look like a dynamic AI product launch**, not static info blocks. Each service card should feel like a smart module in a control center. The user must feel pulled forward into the future.
+

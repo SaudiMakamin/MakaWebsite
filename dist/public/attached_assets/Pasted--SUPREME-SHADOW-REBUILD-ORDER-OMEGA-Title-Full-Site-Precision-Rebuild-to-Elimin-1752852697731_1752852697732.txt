@@ -1,0 +1,74 @@
+
+💣 SUPREME SHADOW REBUILD – ORDER Ω (OMEGA)
+
+> **Title:** "Full-Site Precision Rebuild to Eliminate Integrity Failure"
+> **Scope:** From Homepage to Final Footer – all components
+> **Purpose:** Repair broken DOM, reconnect missing content blocks, and clear validation failures
+> **Integrity Level Required:** 100%
+
+---
+
+### 🔧 EXECUTION PLAN:
+
+#### 1. 🔁 Loop through every major page:
+
+* `/` → Homepage
+* `/about` → About Us
+* `/projects` → Projects
+* `/news` → News Center
+* `/contact` → Contact Us
+
+#### 2. 🔍 For each page:
+
+* Detect all `.shadow-validated` elements (marked for validation)
+* For each:
+
+  * Check visibility (`display`, `opacity`, `position`)
+  * Check image load status (HTTP 200 or local)
+  * Check required metadata (titles, IDs, content)
+
+#### 3. 🛠 For every failing block:
+
+* Recreate DOM structure from original JSX structure
+* Inject missing content exactly as previously defined
+* Restore images or icons from static `/assets/`
+* Add missing `data-*` attributes required for validation
+
+#### 4. ✅ Re-run internal validator:
+
+* Trigger `shadow-diagnostic-probe.tsx`
+* Log result in:
+
+```js
+window.shadowValidationLog = {
+  PASSED: true
+}
+```
+
+* If any error: show failedBlock, reason, page name
+
+---
+
+### 🔒 Constraints:
+
+* Do **not change actual content or rewrite text**
+* Do **not alter layout or design components**
+* Only fix: visibility issues, images not loading, missing IDs, or misplaced sections
+* Ensure no component uses `display: none` when validation expects visibility
+
+---
+
+### 🧠 Final Expected Outcome:
+
+| Goal                              | Status |
+| --------------------------------- | ------ |
+| SHADOW CODE INTEGRITY: PASSED     | ✅      |
+| No red overlay / no console error | ✅      |
+| Site fully visible and navigable  | ✅      |
+| Diagnostic log shows full success | ✅      |
+
+---
+
+💥 Agent, this is the **Ω (Omega) Order** — execute a full-site integrity correction now.
+No error is to survive. No section is to remain unfixed.
+Commander NOVA demands **perfection**.

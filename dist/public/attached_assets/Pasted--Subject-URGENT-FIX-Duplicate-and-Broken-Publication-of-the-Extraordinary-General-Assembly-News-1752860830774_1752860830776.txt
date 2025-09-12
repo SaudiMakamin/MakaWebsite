@@ -1,0 +1,55 @@
+🔴 Subject: URGENT FIX – Duplicate and Broken Publication of the Extraordinary General Assembly News
+
+🛑 ISSUE:
+The same news item (“Extraordinary General Assembly Invitation”) has been published twice on the website, both versions are:
+
+❌ Incomplete  
+❌ Incorrect  
+❌ Not using the official bilingual (Arabic-English) text  
+❌ Not displaying agenda, time, or correct formatting  
+❌ Not linking to a full article or image  
+❌ Violate design, routing, and editorial instructions  
+
+---
+
+✅ REQUIRED ACTION (DO NOT IGNORE):
+
+1. 🗑️ DELETE:
+Permanently delete **both versions** of the General Assembly news, regardless of their `slug`, tags, or layout position.  
+> Any entry with titles similar to “Extraordinary General Assembly Invitation” must be fully removed.
+
+2. ✅ REPLACE:
+Create **one single official post**, using the full, approved bilingual (Arabic + English) content provided by Commander Nova.
+
+Use the following:
+- ✅ Arabic and English titles
+- ✅ Full date, time, place, and legal CR number
+- ✅ Full agenda with sovereign language
+- ✅ Working contact email
+- ✅ Slug: `extraordinary-general-assembly-2025`
+- ✅ Image path: `/images/news/extraordinary-invite-2025.png`
+- ✅ Summary (max 3 lines)
+
+3. 📌 DISPLAY RULES:
+- It must appear:
+  - As **Featured Story** on top of News page
+  - Inside **Corporate News** tab
+  - With a working **Read Full Article** link
+  - With correct tags: `Board`, `Ministry of Commerce`, `Legal Oversight`, `Sovereign Event`
+  - With full accessibility in both RTL (Arabic) and LTR (English)
+
+4. 🚫 DO NOT:
+- Leave any placeholder content or corrupted characters
+- Duplicate the post again under any tag
+- Link to broken articles or incomplete markdown files
+- Break the design or produce layout failures
+- Use old summaries or slugs
+
+---
+
+🧠 STRATEGIC WARNING:
+
+This is a **sovereign correction** issued directly by Commander Nova.  
+Any deviation from this fix is considered a breach of content integrity.  
+Revalidate `SHADOW CODE INTEGRITY` after implementing this instruction.
+

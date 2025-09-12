@@ -1,0 +1,78 @@
+🛠 Activate Specialized Subpage Creation – Makamin Offshore Saudi Ltd (MOS)
+
+📌 Directive:
+The attached PowerPoint file is an official profile dedicated exclusively to Makamin Offshore Saudi Ltd. (MOS) — our specialized offshore and marine services subsidiary. This is not a generic content asset. It contains core market data, technical differentiators, project scope, Aramco credentials, and strategic insights.
+
+🚨 Build a dedicated MOS page under the "Subsidiaries" or "Services" section — when clicked, the user should be taken to a fully immersive subpage that includes:
+
+🧠 What to Build:
+Dedicated Hero Section
+
+Use strong visuals from the PPT or placeholders for marine operations
+
+Title: “Makamin Offshore Saudi Ltd.”
+
+Subheading: “Aramco-Qualified Marine Partner | Diving | Chartering | ROV | Subsea IRM”
+
+Company Overview
+
+Use content from the intro/background slides
+
+Emphasize strategic market entry, niche specialization, and Aramco qualification journey
+
+Services Offered
+
+Chartering
+
+Diving (SAT, ROV, Air, DPII)
+
+Subsea Inspection, Repair & Maintenance
+
+Vessel Operations (AHTSS, PSV, MSV, etc.)
+
+Vessels & Technology
+
+List vessel types
+
+Future-ready vessel demand
+
+Use diagrams/photos where possible
+
+Market Positioning & Forecast
+
+Add graphs/stats from the file
+
+Use animated counters or bar charts
+
+Competitive Advantage
+
+Show the edge over Zamil, ATCO, Rawabi, etc. (content already provided in file)
+
+Contract Wins
+
+USD 400M+ already awarded
+
+USD 1.5B currently in tendering
+
+Highlight this as validation
+
+Risk Management & Strategy
+
+Bullet points from “Keys to Success” slide
+
+Call-to-Action Section
+
+“Partner With Us on the Next Wave of Marine Innovation”
+
+🔧 Design Requirements:
+
+Use sub-brand color (suggested dark navy or teal for offshore)
+
+Build this page with micro-interactions, iconography, and layout that screams marine tech & capability
+
+Add flags/visuals for international JV and offshore partners
+
+Ensure the content is bilingual, precise, and mobile-optimized
+
+🎯 Objective:
+This page must dominate search, impress investors, and position Makamin Offshore as a Tier-1 offshore contractor in Saudi Arabia.

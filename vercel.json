@@ -1,18 +1,12 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "npm run build && mkdir -p dist/public/attached_assets && cp -R attached_assets/* dist/public/attached_assets/ 2>/dev/null || true",
+  "outputDirectory": "dist/public",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/client/dist/$1"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

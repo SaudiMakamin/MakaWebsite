@@ -1,0 +1,75 @@
+### Makamin Saudi Holding Company – Full Website Brief for Replit Agent
+
+#### 1. Company Profile
+
+* **Name:** Makamin Saudi Holding Company for Oil & Gas Services
+* **Mission:** To deliver integrated, reliable, and innovative oil & gas services that empower national capabilities and energy sustainability.
+* **Vision:** To be the leading Saudi integrated oil & gas services group and a regional pioneer in technological advancement.
+* **History:** Established in 2008 with SAR 1.2 billion capital. Since inception, Makamin has been involved in major upstream projects, investment in technology, and partnerships.
+* **Key Areas:** Drilling, Inspection, Geoscience, Pipeline Services, Well Services, Turnkey Projects.
+
+#### 2. Subsidiaries
+
+1. **Makamin Petroleum Services**
+
+   * Focused on core oilfield services (drilling, cementing, well intervention).
+   * Operates as the execution arm for upstream contracts.
+
+2. **Makamin Bahrain**
+
+   * Offshore commercial and investment arm.
+   * Manages international contracts and partnerships.
+
+3. **Makamin Offshore Saudi Ltd (MOS)**
+
+   * Handles offshore rigs, marine support, and logistics.
+   * Registered as a local JV company.
+
+4. **Saudi Makamin – Dammam Branch**
+
+   * Regional operations office for the Eastern Province.
+   * Manages client relations and service delivery on ground.
+
+5. **Makamin Offshore Saudi Navigation Company**
+
+   * Specializes in offshore transportation, vessel operations, and maritime logistics.
+   * Serves both local and regional offshore projects with a dedicated fleet.
+
+#### 3. Branding Colors (From Logo)
+
+* **Primary Blue:** `#3B84C4`
+* **Secondary Gray:** `#58595B`
+* **Accent White/Light Backgrounds**
+* **Sub-branding Colors:** Each subsidiary can have its own secondary tone (suggested: teal, orange, green, dark blue)
+
+#### 4. Company Structure
+
+* **Parent Holding:** Makamin Saudi Holding Company
+* **Direct Oversight of Subsidiaries** with semi-autonomous operational authority
+* **Divisions:**
+
+  * Operations
+  * Technology & R\&D
+  * Legal & Compliance
+  * Strategic Partnerships
+  * Corporate Affairs
+
+#### 5. Brand Guidelines
+
+* **Logo:** Provided as `logo mkamin.png`
+* **Font Preference:** Open Sans or similar modern corporate sans-serif
+* **Tone:** Formal, technically sound, with regional (Saudi/international) professionalism
+* **Language:** Site must be bilingual (Arabic RTL, English LTR)
+* **Layout:** Responsive, accessible, clean. Use whitespace generously.
+* **Homepage Behavior:** Splash screen with animated logo, then navigation to main content.
+
+---
+
+Please use this as your foundational reference.
+We will later provide:
+
+* Detailed content per page
+* Subsidiary color schemes
+* Actual service descriptions and project data
+
+Awaiting next steps after you confirm receipt and understanding of this briefing.
