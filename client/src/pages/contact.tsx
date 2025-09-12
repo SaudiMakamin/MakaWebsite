@@ -30,8 +30,13 @@ export default function Contact() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const response = await apiRequest('POST', '/api/contact', data);
-      return response.json();
+      // Simulate successful form submission for static deployment
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('📧 Contact form data:', data);
+          resolve({ success: true });
+        }, 1000);
+      });
     },
     onSuccess: () => {
       toast({
