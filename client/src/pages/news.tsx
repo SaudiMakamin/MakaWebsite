@@ -56,17 +56,17 @@ export default function News() {
 
   const additionalNews = [
     {
-      title: "Rescheduled Extraordinary General Assembly - September 30, 2025",
-      titleAr: "إعادة تحديد موعد الجمعية العمومية غير العادية - 30 سبتمبر 2025",
-      content: "Board of Directors announces rescheduling of Extraordinary General Assembly to Tuesday, September 30, 2025, with comprehensive agenda for corporate governance reforms and operational restoration.",
-      contentAr: "مجلس الإدارة يعلن إعادة تحديد موعد الجمعية العمومية غير العادية إلى الثلاثاء 30 سبتمبر 2025، مع جدول أعمال شامل لإصلاحات الحوكمة المؤسسية والاستعادة التشغيلية.",
-      date: "January 9, 2025",
-      dateAr: "9 يناير 2025",
+      title: "Successful Extraordinary General Assembly with Major Shareholders",
+      titleAr: "نجاح الجمعية العمومية غير العادية لشركة مكامن بحضور كبار المساهمين",
+      content: "Makamin successfully held its Extraordinary General Assembly with attendance from major shareholders including Al-Durra Petroleum Services, Bait Al-Taqa, Bin Tami, and Ajlan & Ajlan Companies, along with other shareholders.",
+      contentAr: "عقدت شركة مكامن جمعيتها العمومية غير العادية اليوم بنجاح، بحضور كبار المساهمين، من ضمنهم: شركة الدرة للخدمات البترولية، شركة بيت الطاقة، شركة بن طامي، وشركة عجلان العجلان، إضافة إلى عدد من المساهمين.",
+      date: "September 30, 2025",
+      dateAr: "30 سبتمبر 2025",
       category: "Corporate Governance",
       categoryAr: "الحوكمة المؤسسية",
       icon: Star,
       priority: "urgent",
-      link: "/news/extraordinary-general-assembly-rescheduled-2025"
+      link: "/news/general-assembly-success-september-2025"
     },
     {
       title: "Zero LTA Safety Excellence Achievement",

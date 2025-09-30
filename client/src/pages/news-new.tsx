@@ -9,18 +9,18 @@ export default function NewsCenter() {
   const { language } = useLanguageContext();
 
   const featuredNews = {
-    title: "Rescheduled Extraordinary General Assembly - September 30, 2025",
-    titleAr: "إعادة تحديد موعد الجمعية العمومية غير العادية - 30 سبتمبر 2025",
-    content: "Saudi Makamin Holding Company announces the rescheduling of the Extraordinary General Assembly Meeting to Tuesday, September 30, 2025, at 12:00 PM in Riyadh - Sulaimaniyah District, Canary Complex.",
-    contentAr: "شركة مكامن السعودية القابضة لخدمات النفط والغاز تعلن إعادة تحديد موعد اجتماع الجمعية العمومية غير العادية إلى يوم الثلاثاء الموافق 30/09/2025م في تمام الساعة 12:00 ظهرًا بمدينة الرياض - حي السليمانية - مجمع الكناري.",
+    title: "Successful Extraordinary General Assembly with Major Shareholders",
+    titleAr: "نجاح الجمعية العمومية غير العادية لشركة مكامن بحضور كبار المساهمين",
+    content: "Makamin successfully held its Extraordinary General Assembly with attendance from major shareholders including Al-Durra Petroleum Services, Bait Al-Taqa, Bin Tami, and Ajlan & Ajlan Companies. The assembly took place from 12:00 PM to 4:30 PM with distinguished attendance from within the Kingdom and abroad.",
+    contentAr: "عقدت شركة مكامن جمعيتها العمومية غير العادية اليوم بنجاح، بحضور كبار المساهمين، من ضمنهم: شركة الدرة للخدمات البترولية، شركة بيت الطاقة، شركة بن طامي، وشركة عجلان العجلان، إضافة إلى عدد من المساهمين. الجمعية التي انطلقت عند الساعة 12 ظهرًا واستمرت حتى 4:30 عصرًا، شهدت حضورًا مميزًا من داخل المملكة وخارجها.",
     image: "/attached_assets/لقطة الشاشة 2025-07-21 172931_1754473884923.jpg",
-    category: "Corporate Governance Announcement",
-    categoryAr: "إعلان حوكمة مؤسسية",
-    date: "January 09, 2025",
-    dateAr: "9 يناير 2025",
+    category: "Corporate Governance Achievement",
+    categoryAr: "إنجاز الحوكمة المؤسسية",
+    date: "September 30, 2025",
+    dateAr: "30 سبتمبر 2025",
     priority: "urgent",
-    readTime: "10 min read",
-    readTimeAr: "10 دقائق قراءة"
+    readTime: "5 min read",
+    readTimeAr: "5 دقائق قراءة"
   };
 
   const liveUpdates = [
@@ -257,8 +257,8 @@ export default function NewsCenter() {
                   {language === 'ar' ? featuredNews.contentAr : featuredNews.content}
                 </p>
 
-                <a href="/news/extraordinary-general-assembly-rescheduled-2025" className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center group">
-                  {language === 'ar' ? 'قراءة النص الكامل للدعوة الجديدة' : 'Read Full Updated Invitation'}
+                <a href="/news/general-assembly-success-september-2025" className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center group">
+                  {language === 'ar' ? 'قراءة التفاصيل الكاملة' : 'Read Full Details'}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </CardContent>

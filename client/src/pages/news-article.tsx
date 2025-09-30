@@ -379,13 +379,13 @@ export default function NewsArticle() {
             </Link>
 
             <div className="flex items-center gap-4 mb-6 flex-wrap">
-              {articleId === 'extraordinary-general-assembly-rescheduled-2025' && (
+              {articleId === 'general-assembly-success-september-2025' && (
                 <div className="flex items-center gap-2">
                   <Badge className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white px-6 py-3 text-lg font-bold animate-pulse border-4 border-emerald-400 shadow-2xl shadow-emerald-500/50">
-                    🆕 {language === 'ar' ? 'جديد' : 'NEW'}
+                    ✅ {language === 'ar' ? 'نجاح' : 'SUCCESS'}
                   </Badge>
                   <Badge className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-4 py-2 animate-bounce border-2 border-blue-400">
-                    📅 {language === 'ar' ? 'محدث' : 'UPDATED'}
+                    📅 {language === 'ar' ? 'اليوم' : 'TODAY'}
                   </Badge>
                 </div>
               )}
@@ -422,11 +422,11 @@ export default function NewsArticle() {
             </div>
 
             <div className="relative">
-              {articleId === 'extraordinary-general-assembly-rescheduled-2025' && (
+              {articleId === 'general-assembly-success-september-2025' && (
                 <div className="absolute top-0 right-0 z-10">
                   <div className="bg-emerald-600/20 backdrop-blur rounded-lg p-4 border-4 border-emerald-500 shadow-2xl shadow-emerald-500/50 animate-pulse">
                     <div className="text-center text-2xl font-black text-emerald-400 transform -rotate-12">
-                      {language === 'ar' ? 'جديد' : 'NEW'}
+                      {language === 'ar' ? '✅ نجاح' : '✅ SUCCESS'}
                     </div>
                     <div className="text-center mt-1 text-sm text-emerald-300">
                       {language === 'ar' ? 'اليوم' : 'Today'}
