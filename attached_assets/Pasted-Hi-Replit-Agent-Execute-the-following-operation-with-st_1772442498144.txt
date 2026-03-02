@@ -1,0 +1,309 @@
+Hi Replit Agent,
+
+Execute the following operation with strict precision and zero deviation.
+
+This task includes:
+
+Uploading 5 image files with a fixed naming system.
+
+Inserting one new news item into BOTH JSON files.
+
+Verifying routing, images, and sitemap.
+
+Publishing only after validation.
+
+Do NOT refactor code.
+Do NOT modify routing.
+Do NOT change sorting logic.
+Do NOT rename slug.
+Do NOT modify any other news entries.
+
+PHASE 1 — IMAGE UPLOAD (STRICT NAMING SYSTEM)
+
+The user will upload 5 image files that are already correctly named.
+
+Slug:
+first-board-meeting-2026-02-12
+
+Required filenames (exact match):
+
+Hero image:
+first-board-meeting-2026-02-12-hero.jpg
+
+Internal images:
+first-board-meeting-2026-02-12-01.jpg
+first-board-meeting-2026-02-12-02.jpg
+first-board-meeting-2026-02-12-03.jpg
+first-board-meeting-2026-02-12-04.jpg
+
+Rules:
+
+lowercase only
+
+numbers allowed
+
+hyphen (-) allowed
+
+no spaces
+
+no Arabic characters
+
+extension must be .jpg
+
+Upload location (must be exactly):
+
+client/public/images/news/
+
+Steps:
+
+Open Files panel.
+
+Navigate to client/public/images/news/
+
+If "news" folder does not exist → create it.
+
+Upload the 5 images.
+
+Ensure filenames match EXACTLY as listed above.
+
+Do not rename anything differently.
+
+PHASE 2 — DIRECT IMAGE ACCESS VALIDATION
+
+Before modifying JSON, verify each image loads directly:
+
+/images/news/first-board-meeting-2026-02-12-hero.jpg
+/images/news/first-board-meeting-2026-02-12-01.jpg
+/images/news/first-board-meeting-2026-02-12-02.jpg
+/images/news/first-board-meeting-2026-02-12-03.jpg
+/images/news/first-board-meeting-2026-02-12-04.jpg
+
+All must return HTTP 200 and display correctly.
+
+If any image fails → fix path before continuing.
+
+PHASE 3 — INSERT NEWS ITEM INTO BOTH JSON FILES
+
+Add the following JSON object as ONE new element inside the array in BOTH:
+
+content/news.json
+
+client/src/content/news.json
+
+Rules:
+
+Insert exactly once.
+
+No duplicates.
+
+Keep valid JSON.
+
+Do not modify existing items.
+
+Ensure both files are 100% identical after insertion.
+
+Keep slug unchanged.
+
+Do not alter array structure.
+
+Sorting handled by frontend.
+
+[PASTE THE FULL JSON OBJECT HERE — AS PROVIDED BY USER — WITHOUT MODIFICATION]
+
+PHASE 4 — ROUTE & RENDER VALIDATION
+
+After insertion, verify:
+
+Open:
+/news
+→ Article appears
+→ Date displays as February 12, 2026
+→ Sorting remains newest-first
+
+Open:
+/news/first-board-meeting-2026-02-12
+→ Returns HTTP 200
+→ Hero image renders
+→ All 4 internal images render
+→ Arabic + English content fully visible
+→ No console errors
+
+Open:
+/sitemap.xml
+→ URL exists:
+/news/first-board-meeting-2026-02-12
+
+Confirm:
+
+No duplicate slug
+
+No JSON formatting errors
+
+No missing images
+
+No console warnings
+
+PHASE 5 — DEPLOY
+
+Only after ALL validation checks pass → Publish once.
+
+IMPORTANT ARCHITECTURE NOTE
+
+No code changes are required because internal images render via contentHtml using direct <img> paths.
+
+Hero image layout depends on existing NewsArticle component.
+If no styling change is requested → do not modify layout.
+
+Confirm completion with:
+
+Image validation confirmation
+
+JSON integrity confirmation
+
+Route test confirmation
+
+Sitemap confirmation
+
+Hi Replit Agent,
+
+Execute the following task with strict precision.
+
+This is a controlled content replacement operation.
+
+Do NOT:
+
+Modify slug
+
+Modify title
+
+Modify date
+
+Modify image path
+
+Modify sorting logic
+
+Modify routes
+
+Modify any other news item
+
+Only replace the contentHtml of the specified news item.
+
+TARGET ARTICLE
+
+Slug:
+first-board-meeting-2026-02-12
+
+TASK
+
+Open BOTH files:
+
+content/news.json
+
+client/src/content/news.json
+
+Locate the object where:
+
+"slug": "first-board-meeting-2026-02-12"
+
+Replace the ENTIRE value of:
+
+"contentHtml"
+
+with the HTML-formatted version of the text provided below.
+
+Do NOT modify any other field.
+
+Ensure both JSON files remain 100% identical after modification.
+
+REPLACEMENT contentHtml (HTML formatted)
+
+Use EXACTLY this HTML:
+
+<h2 style="margin-top:0">مكامن تعقد أول اجتماع لمجلس إدارتها لعام 2026 بحضور ممثلي كبرى الشركات الكويتية</h2>
+
+<p>عقدت شركة مكامن السعودية القابضة لخدمات النفط والغاز (مساهمة مقفلة) اجتماع مجلس الإدارة الأول لعام 2026 في فندق ورويك بمدينة الخبر، بحضور أغلبية الأعضاء واكتمال النصاب النظامي، إلى جانب مشاركة ممثلي شركات كويتية كبرى في قطاع الطاقة.</p>
+
+<h3>وشهد الاجتماع حضور:</h3>
+<ul>
+<li>الأستاذ عادل عايض النوب – رئيس مجلس الإدارة والرئيس التنفيذي</li>
+<li>المهندس الدكتور إبراهيم أحمد السبتي الغامدي – نائب رئيس مجلس الإدارة</li>
+<li>الدكتور المهندس حمد علي القحطاني – ممثل شركة بيت الطاقة القابضة (الكويت)</li>
+<li>الدكتور المهندس خالد حمدان السيف – ممثل شركة الدرة لخدمات النفط والغاز (الكويت)</li>
+</ul>
+
+<p>ويعكس هذا الحضور الخليجي الرفيع عمق الشراكات الاستراتيجية بين المملكة العربية السعودية ودولة الكويت في قطاع النفط والغاز، ويؤكد المكانة الإقليمية المتنامية لشركة مكامن.</p>
+
+<h3>قرارات استراتيجية لتعزيز الحوكمة والتنفيذ</h3>
+<p>ناقش المجلس عددًا من الملفات المحورية، أبرزها:</p>
+<ul>
+<li>الاعتماد النهائي لقرارات سابقة ذات طابع تنظيمي وتنفيذي</li>
+<li>تفويض صلاحيات تنفيذية لضمان سرعة التطبيق والامتثال الكامل للأنظمة</li>
+<li>تعزيز منظومة الحوكمة والرقابة الداخلية</li>
+<li>تعيين أمين سر لمجلس الإدارة واللجان المنبثقة عنه</li>
+<li>بحث فرص التعاون الإقليمي في أسواق الخليج</li>
+</ul>
+
+<p>كما تم التأكيد على ضرورة رفع مستوى الانضباط المؤسسي وتقديم تقارير دورية تعكس الأداء التنفيذي، بما يعزز الشفافية والمسؤولية.</p>
+
+<h3>توجه إقليمي مدروس</h3>
+<p>وتضمن الاجتماع مناقشة فرص تعاون إقليمي، حيث تم عقد لقاء مرئي تعريفي مع إحدى الشركات العمانية المتخصصة، وقرر المجلس تأجيل أي التزامات رسمية لحين استكمال التقارير الفنية والمالية اللازمة.</p>
+
+<h3>دعم الأداء التنفيذي وتحقيق النتائج</h3>
+<p>أكد مجلس الإدارة دعمه الكامل للإدارة التنفيذية في جهودها الرامية إلى تعزيز التحصيل واسترداد أصول ومستحقات الشركة، مشددًا على ربط أي مزايا تحفيزية بنتائج مالية فعلية وملموسة.</p>
+
+<h3>انطلاقة 2026</h3>
+<p>يمثل هذا الاجتماع بداية مرحلة جديدة من العمل المؤسسي المنظم، وترسيخ الشراكات الخليجية، وتعزيز الحوكمة والانضباط المالي.</p>
+
+<hr/>
+
+<h2>Makamin Holds Its First Board Meeting of 2026 with the Presence of Leading Kuwaiti Energy Representatives</h2>
+
+<p>Makamin Saudi Holding Company for Oil &amp; Gas Services convened its first Board of Directors meeting for the year 2026 at the Warwick Hotel in Al Khobar, with quorum duly met and the attendance of prominent representatives from major Kuwaiti energy companies.</p>
+
+<h3>The meeting was chaired by:</h3>
+<ul>
+<li>Mr. Adel Ayed Al-Noub – Chairman of the Board &amp; Chief Executive Officer</li>
+<li>Eng. Dr. Ibrahim Ahmed Al-Subaiti Al-Ghamdi – Vice Chairman</li>
+<li>Eng. Dr. Hamad Ali Al-Qahtani – Representative of Bait Al-Taqa Holding (Kuwait)</li>
+<li>Eng. Dr. Khaled Hamdan Al-Saif – Representative of Al-Durra Oil &amp; Gas Services (Kuwait)</li>
+</ul>
+
+<p>The distinguished Kuwaiti participation underscores the depth of Saudi–Kuwaiti strategic cooperation in the energy sector.</p>
+
+<h3>Strategic Governance and Executive Reinforcement</h3>
+<p>The Board reviewed and formally ratified prior regulatory and executive resolutions.</p>
+
+<ul>
+<li>Delegate executive authorities within defined governance controls</li>
+<li>Strengthen internal oversight and compliance mechanisms</li>
+<li>Appoint a Board Secretary</li>
+<li>Advance structured evaluation of regional expansion opportunities</li>
+</ul>
+
+<h3>Prudent Regional Engagement</h3>
+<p>The Board conducted a virtual introductory meeting with an Omani offshore services company and deferred formal commitment pending detailed assessments.</p>
+
+<h3>Performance-Linked Executive Support</h3>
+<p>Executive incentives remain strictly performance-based and tied to tangible financial outcomes.</p>
+
+<h3>A Structured Start to 2026</h3>
+<p>This meeting marks the beginning of a disciplined year focused on governance excellence and sustainable regional growth.</p>
+
+<p><strong>— Company Management</strong></p>
+VALIDATION BEFORE PUBLISH
+
+Open:
+/news/first-board-meeting-2026-02-12
+
+→ Full Arabic section visible
+→ English section visible
+→ Lists formatted correctly
+→ No broken HTML
+
+Check console → no errors
+
+Confirm both JSON files are identical
+
+Only after validation → Publish once.
+
+Confirm completion.
