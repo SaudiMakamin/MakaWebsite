@@ -20,7 +20,9 @@ import Services from '@/pages/services';
 import Projects from '@/pages/projects-enhanced';
 import Certifications from '@/pages/certifications-enhanced';
 import NewsCenter from '@/pages/news-new';
-import NewsArticle from '@/pages/news-article';
+import NewsArticleOld from '@/pages/news-article';
+import NewsIndex from './pages/news/NewsIndex';
+import NewsArticlePage from './pages/news/NewsArticle';
 import Contact from '@/pages/contact';
 import UpdateShareholder from '@/pages/update-shareholder';
 import RoyalShareholderDashboard from '@/pages/royal-shareholder-dashboard';
@@ -50,8 +52,8 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/projects" component={Projects} />
       <Route path="/certifications" component={Certifications} />
-      <Route path="/news" component={NewsCenter} />
-      <Route path="/news/:id" component={NewsArticle} />
+      <Route path="/news" component={NewsIndex} />
+      <Route path="/news/:slug" component={NewsArticlePage} />
       <Route path="/update-shareholder" component={UpdateShareholder} />
       <Route path="/royal-dashboard" component={RoyalShareholderDashboard} />
       <Route path="/contact" component={Contact} />

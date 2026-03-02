@@ -111,3 +111,15 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 - **لا توجد مشاكل تقنية** متبقية في الكود
 
 **PROJECT STATE**: مُحل تقنياً ومحفوظ بدقة - جاهز للنشر النهائي غداً.
+
+## Recent Changes - March 2, 2026
+
+### JSON-Driven News System
+- **Static JSON news source**: `content/news.json` (server) and `client/src/content/news.json` (frontend mirror)
+- **New pages**: `client/src/pages/news/NewsIndex.tsx` (list), `client/src/pages/news/NewsArticle.tsx` (detail)
+- **Data layer**: `client/src/pages/news/newsData.ts` - typed NewsItem with bilingual support
+- **Routes**: `/news` → NewsIndex, `/news/:slug` → NewsArticle (wouter)
+- **Server endpoints**: `GET /api/news-json` (JSON API), `GET /sitemap.xml` (SEO sitemap)
+- **TypeScript**: Added `client/src/vite-env.d.ts` for JSON module declarations
+- **10 articles total**: All existing news migrated to JSON with bilingual HTML content (contentHtml + contentHtmlAr)
+- **Old pages preserved**: `news-new.tsx`, `news-article.tsx` still exist but routes point to new system

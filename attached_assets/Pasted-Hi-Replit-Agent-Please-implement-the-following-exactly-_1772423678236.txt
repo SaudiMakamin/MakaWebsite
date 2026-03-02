@@ -1,0 +1,170 @@
+Hi Replit Agent,
+Please implement the following exactly as specified. Do not refactor unrelated parts of the project. Only add the required files and minimal route wiring.
+
+1) Create a static news source inside the project
+
+Create a new folder at the project root:
+
+content/
+
+Create a file:
+
+content/news.json
+
+IMPORTANT (Vite constraint): also create a mirrored copy for the frontend:
+
+client/src/content/news.json
+
+Both JSON files must have identical content (same array structure).
+
+Put all existing old news + the 4 new items inside this JSON array (same structure). Example:
+
+[
+  {
+    "slug": "successful-ega-major-shareholders",
+    "title": "Successful Extraordinary General Assembly with Major Shareholders",
+    "date": "2025-09-30",
+    "category": "Corporate News",
+    "excerpt": "Makamin successfully held its Extraordinary General Assembly with attendance from major shareholders.",
+    "image": "/images/news/ega.jpg",
+    "contentHtml": "<p>Makamin successfully held its Extraordinary General Assembly ...</p><p>Details ...</p>"
+  }
+]
+
+Critical requirements:
+
+slug must be unique for each news item
+
+date must be in YYYY-MM-DD
+
+images must exist under client/public/images/news/... and be referenced as /images/news/...
+
+2) Frontend: make /news a list + /news/:slug an article page
+
+Add these pages in the client, without changing other pages.
+
+(A) Create:
+
+client/src/pages/news/newsData.ts
+
+import news from "../../content/news.json";
+
+export type NewsItem = {
+  slug: string;
+  title: string;
+  date: string; // YYYY-MM-DD
+  category?: string;
+  excerpt?: string;
+  image?: string;
+  contentHtml?: string;
+};
+
+export const allNews = (news as NewsItem[])
+  .slice()
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+export function getNewsBySlug(slug: string) {
+  return allNews.find(n => n.slug === slug);
+}
+
+(B) Create:
+
+client/src/pages/news/NewsIndex.tsx
+
+(keep your provided component exactly)
+
+(C) Create:
+
+client/src/pages/news/NewsArticle.tsx
+
+(keep your provided component exactly)
+
+3) Wire routes only in client/src/App.tsx
+
+In client/src/App.tsx, locate the Wouter routing section (<Switch> / <Route>). Add:
+
+import { Route, Switch } from "wouter";
+import NewsIndex from "./pages/news/NewsIndex";
+import NewsArticle from "./pages/news/NewsArticle";
+
+Inside JSX <Switch> add:
+
+<Route path="/news" component={NewsIndex} />
+<Route path="/news/:slug" component={NewsArticle} />
+
+Do not change other routes.
+
+4) Server routing: ensure direct open of /news/:slug does NOT return 404
+
+In server/routes.ts:
+
+(A) Add a function to read content/news.json:
+
+import fs from "node:fs";
+import path from "node:path";
+
+function readNews() {
+  const p = path.join(process.cwd(), "content", "news.json");
+  const raw = fs.readFileSync(p, "utf-8");
+  const list = JSON.parse(raw);
+  return Array.isArray(list) ? list : [];
+}
+
+(B) Optional API endpoint:
+
+app.get("/api/news", (_req, res) => {
+  res.json(readNews());
+});
+
+(C) Ensure the server fallback returns the SPA index.html for ALL paths (including /news and /news/:slug).
+If there is already a global fallback like:
+
+app.get("*", (req, res) => res.sendFile(...index.html))
+
+then no extra route is needed. Just ensure there is no earlier static rule that blocks /news/:slug and returns 404.
+
+5) Minimal SEO: sitemap (must be BEFORE the "*" fallback)
+
+Add this in server/routes.ts before the catch-all fallback:
+
+app.get("/sitemap.xml", (req, res) => {
+  const base = `${req.protocol}://${req.get("host")}`;
+  const news = readNews();
+
+  const urls = [
+    `${base}/`,
+    `${base}/news`,
+    ...news.map((n: any) => `${base}/news/${n.slug}`)
+  ];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((u) => `<url><loc>${u}</loc></url>`).join("\n")}
+</urlset>`;
+
+  res.setHeader("Content-Type", "application/xml");
+  res.send(xml);
+});
+6) If TypeScript errors on JSON import
+
+Add or edit client/src/vite-env.d.ts (or any existing .d.ts) and include:
+
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
+7) Final verification checklist (must pass)
+
+Open /news → shows list of all news items sorted newest first
+
+Open /news/<slug> directly in browser (hard refresh) → does NOT 404
+
+Images display correctly from /images/news/...
+
+No console errors
+
+Publish only once after verifying preview
+
+If anything conflicts with the existing server fallback, please show the last ~60 lines of server/routes.ts so we can place /sitemap.xml and /api/news safely without breaking routing.
+
+Thank you.

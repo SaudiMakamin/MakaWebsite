@@ -1,9 +1,18 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
+import fs from "node:fs";
+import path from "node:path";
 import { storage } from "./storage";
 import { insertContactMessageSchema, insertShareholderSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
+
+function readNews() {
+  const p = path.join(process.cwd(), "content", "news.json");
+  const raw = fs.readFileSync(p, "utf-8");
+  const list = JSON.parse(raw);
+  return Array.isArray(list) ? list : [];
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Domain middleware for custom domain handling
@@ -212,6 +221,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         error: error instanceof Error ? error.message : String(error)
       });
     }
+  });
+
+  app.get("/api/news-json", (_req, res) => {
+    res.json(readNews());
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    const base = `${req.protocol}://${req.get("host")}`;
+    const news = readNews();
+
+    const urls = [
+      `${base}/`,
+      `${base}/about`,
+      `${base}/services`,
+      `${base}/projects`,
+      `${base}/certifications`,
+      `${base}/contact`,
+      `${base}/news`,
+      ...news.map((n: any) => `${base}/news/${n.slug}`)
+    ];
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((u) => `<url><loc>${u}</loc></url>`).join("\n")}
+</urlset>`;
+
+    res.setHeader("Content-Type", "application/xml");
+    res.send(xml);
   });
 
   const httpServer = createServer(app);
