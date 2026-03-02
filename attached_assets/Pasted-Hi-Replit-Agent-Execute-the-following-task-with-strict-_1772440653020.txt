@@ -1,0 +1,100 @@
+Hi Replit Agent,
+
+Execute the following task with strict precision and zero deviation.
+Do NOT refactor any code.
+Do NOT modify routing.
+Do NOT change sorting logic.
+Do NOT add an image field.
+Do NOT touch any other news items.
+
+This is a controlled JSON insertion only.
+
+PHASE 1 — INSERT NEW NEWS ITEM (NO IMAGE FIELD)
+
+Add the following JSON object as ONE new element inside the existing news array in BOTH files:
+
+content/news.json
+
+client/src/content/news.json
+
+CRITICAL RULES:
+
+Insert exactly ONE object.
+
+Do NOT duplicate.
+
+Do NOT modify existing entries.
+
+Do NOT add an "image" property.
+
+Keep valid JSON formatting.
+
+Ensure both files are 100% identical after insertion.
+
+Preserve array structure (sorting handled by frontend).
+
+Slug must remain exactly as provided.
+
+Insert EXACTLY this object:
+
+{
+"slug": "second-notice-shareholder-update-2025-12-03",
+"title": "Second Notice – Urgent Requirement to Update Shareholder Information and Ensure Governance Compliance",
+"date": "2025-12-03",
+"category": "Corporate Governance",
+"excerpt": "Makamin issues a second notice emphasizing that shareholder information updates are now mandatory to ensure governance compliance and the accuracy of the shareholder register.",
+"contentHtml": "<h2 style="margin-top:0">التنبيه الثاني</h2><h3>ضرورة عاجلة لتحديث بيانات المساهمين والامتثال لمتطلبات الحوكمة</h3><p>إشارةً إلى إطلاق صفحة تحديث بيانات المساهمين بتاريخ <strong>21 يوليو 2025</strong>، تود شركة مكامن السعودية لخدمات النفط والغاز التنبيه بأنه حتى تاريخه لم يتم استلام أي تحديثات معتمدة عبر البوابة المخصصة لذلك.</p><p>إن استمرار الاعتماد على سجلات وبيانات قديمة في سجل المساهمين لا يتماشى مع متطلبات الالتزام والحوكمة، لا سيما في ظل وجود تباينات ملحوظة في بعض كشوفات الملكية والحضور، مما يستوجب استكمال إجراءات التحديث والتحقق النظامي بصورة عاجلة.</p><p><strong>وعليه، تؤكد الشركة أن تحديث البيانات أصبح التزامًا ضروريًا لضمان:</strong></p><ul><li>دقة سجل المساهمين</li><li>سلامة إجراءات التصويت والتمثيل</li><li>الامتثال لمتطلبات الحوكمة والتنظيم</li><li>حماية حقوق المساهمين النظاميين</li></ul><p>وتوضح الشركة أن أي تعاملات أو مطالبات بالملكية لا تستند إلى سجلات مكتملة ومحدثة قد لا يُعتد بها إلى حين استكمال إجراءات التحقق المعتمدة.</p><p>لذا، يُطلب من جميع المساهمين سرعة الدخول إلى صفحة تحديث البيانات ورفع المعلومات والوثائق المطلوبة دون تأخير عبر الرابط التالي:<br/><strong>www.makamin.com.sa/update-shareholder
+</strong></p><p>للاستفسارات أو الدعم الفني:<br/>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p><p>وتؤكد الشركة أن الالتزام بتحديث البيانات مسؤولية مباشرة على كل مساهم، ويُعد جزءًا من متطلبات الامتثال والحوكمة المعتمدة.</p><p><strong>— إدارة الشركة</strong></p><hr/><h2>Second Notice</h2><h3>Urgent Requirement to Update Shareholder Information and Ensure Governance Compliance</h3><p>With reference to the launch of the Shareholder Information Update page on <strong>21 July 2025</strong>, Makamin Saudi Oil & Gas Services Company hereby informs all shareholders that, to date, no approved updates have been received through the designated portal.</p><p>Continued reliance on outdated shareholder records does not align with compliance and governance standards, particularly in light of observable discrepancies in certain ownership and attendance records. This necessitates the immediate completion of data updates and formal verification procedures.</p><p><strong>Accordingly, updating shareholder information is now mandatory to ensure:</strong></p><ul><li>Accuracy of the shareholder register</li><li>Integrity of voting and representation procedures</li><li>Compliance with governance and regulatory obligations</li><li>Protection of lawful shareholder rights</li></ul><p>The Company further clarifies that any ownership claims or transactions not supported by complete and updated records may not be recognized until formal verification procedures are finalized.</p><p>All shareholders are required to promptly access the Shareholder Update portal and submit the required information and supporting documents without delay at:<br/><strong>www.makamin.com.sa/update-shareholder
+</strong></p><p>For assistance:<br/>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p><p><strong>— Company Management</strong></p>"
+}
+
+PHASE 2 — VALIDATION (MANDATORY BEFORE PUBLISH)
+
+After insertion, verify:
+
+Open:
+/news
+→ The article appears
+→ Date displays as: December 3, 2025
+→ NOT today’s date
+→ Appears sorted correctly (newest first)
+
+Open directly:
+/news/second-notice-shareholder-update-2025-12-03
+→ Must return HTTP 200
+→ No 404
+
+Open:
+/sitemap.xml
+→ URL must exist:
+/news/second-notice-shareholder-update-2025-12-03
+
+Open browser console:
+→ No errors
+→ No undefined contentHtml
+
+Confirm:
+
+No duplicate slug exists
+
+No image field was added
+
+Both JSON files are identical
+
+PHASE 3 — DEPLOY
+
+Only after ALL validation checks pass → Publish once.
+
+Confirm completion with:
+
+JSON integrity confirmation
+
+Route test confirmation
+
+Sitemap confirmation
+
+End of instruction.
