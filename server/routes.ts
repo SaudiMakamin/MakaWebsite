@@ -37,18 +37,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get news articles
-  app.get("/api/news", async (req, res) => {
-    try {
-      const articles = await storage.getNewsArticles();
-      res.json(articles);
-    } catch (error) {
-      console.error("Error fetching news:", error);
-      res.status(500).json({ 
-        success: false, 
-        message: "Failed to fetch news" 
-      });
-    }
+  app.get("/api/news", (_req, res) => {
+    res.json(readNews());
   });
 
   // Get featured news article
@@ -221,10 +211,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         error: error instanceof Error ? error.message : String(error)
       });
     }
-  });
-
-  app.get("/api/news-json", (_req, res) => {
-    res.json(readNews());
   });
 
   app.get("/sitemap.xml", (req, res) => {
