@@ -1,0 +1,134 @@
+Hi Replit Agent,
+
+Execute the following instructions with absolute precision.
+Do NOT refactor anything.
+Do NOT rename unrelated files.
+Do NOT modify routing logic.
+Do NOT change sorting logic.
+Only perform the exact tasks below.
+
+PHASE 1 — IMAGE UPLOAD (STRICT PATH CONTROL)
+
+The image MUST be located at:
+
+client/public/images/news/
+
+Steps inside Replit:
+
+Open the file panel (left sidebar).
+
+Navigate to:
+
+client
+└── public
+  └── images
+    └── news
+
+If the news folder does NOT exist → create it.
+
+Upload the image file from local machine into the news folder.
+
+Rename the image EXACTLY to:
+
+shareholder-update-portal.jpg
+
+Requirements:
+
+all lowercase
+
+no spaces
+
+no Arabic characters
+
+no special characters
+
+extension must be .jpg
+
+After upload, verify the image is accessible directly via browser:
+
+https://www.makamin.com.sa/images/news/shareholder-update-portal.jpg
+
+If the image loads successfully → proceed.
+If not → fix path before continuing.
+
+PHASE 2 — INSERT NEWS ITEM INTO JSON (BOTH FILES)
+
+Add the following JSON object as ONE new element in the array inside BOTH files:
+
+content/news.json
+
+client/src/content/news.json
+
+Rules:
+
+Do not duplicate.
+
+Do not modify existing items.
+
+Keep valid JSON formatting.
+
+Ensure both files are 100% identical after insertion.
+
+Do not change array structure.
+
+Do not alter sorting logic (sorting is handled in frontend).
+
+Insert EXACTLY this object:
+
+{
+"slug": "shareholder-update-portal-launch",
+"title": "Launch of the Shareholder Information Update Portal – Mandatory Update of Contact and Ownership Information",
+"date": "2025-07-21",
+"category": "Corporate Governance",
+"excerpt": "Makamin announces the launch of a dedicated Shareholder Information Update page to enhance governance, protect shareholder rights, and ensure accurate ownership records.",
+"image": "/images/news/shareholder-update-portal.jpg",
+"contentHtml": "<h2 style="margin-top:0">إشعار هام إلى جميع المساهمين</h2><h3>إطلاق بوابة تحديث بيانات المساهمين – تحديث إلزامي لبيانات الاتصال والملكية</h3><p>تعلن شركة مكامن السعودية لخدمات النفط والغاز عن إنشاء صفحة مخصصة عبر موقعها الإلكتروني الرسمي لتحديث بيانات المساهمين، وذلك في إطار تعزيز دقة السجلات وحماية حقوق المساهمين وضمان كفاءة التواصل المؤسسي.</p><p>وتدعو الشركة جميع مساهميها إلى المبادرة فورًا بمراجعة وتحديث بيانات الاتصال ومعلومات الملكية الخاصة بهم من خلال بوابة تحديث بيانات المساهمين.</p><ul><li>المشاركة في اجتماعات الجمعية العامة</li><li>استلام الإشعارات الرسمية في الوقت المناسب</li><li>أهلية التصويت</li><li>استلام المراسلات والإعلانات المستقبلية</li></ul><p>يمكنكم الدخول إلى بوابة تحديث بيانات المساهمين عبر الرابط التالي:<br/><strong>www.makamin.com.sa/update-shareholder
+</strong></p><p>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p><hr/><h2>Important Notice to All Shareholders</h2><h3>Launch of the Shareholder Information Update Portal – Mandatory Update of Contact and Ownership Information</h3><p>Makamin Saudi Oil & Gas Services Company announces the launch of a dedicated Shareholder Information Update page on its official website.</p><p>Accurate and up-to-date records are essential to ensure proper shareholder rights, including participation in General Assembly meetings, timely receipt of notices, voting eligibility, and access to corporate communications.</p><p>The Shareholder Update portal is available at:<br/><strong>www.makamin.com.sa/update-shareholder
+</strong></p><p>For assistance:<br/>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p><p><strong>— Company Management</strong></p>"
+}
+
+PHASE 3 — VALIDATION (MUST PASS BEFORE PUBLISH)
+
+After implementation, verify:
+
+Open:
+/news
+→ The new article appears
+→ Date must display as: July 21, 2025
+→ NOT today’s date
+
+Open directly:
+/news/shareholder-update-portal-launch
+→ Must return 200
+→ No 404
+
+Open:
+/sitemap.xml
+→ The URL must exist:
+/news/shareholder-update-portal-launch
+
+No console errors
+
+No duplicate slugs
+
+JSON files are identical
+
+PHASE 4 — PUBLISH
+
+Only after ALL validation checks pass → Publish once.
+
+Do not perform any other changes outside this scope.
+
+Confirm completion with:
+
+Confirmation both JSON files are identical
+
+Confirmation image path works
+
+Confirmation route test passed
+
+End of instruction.
