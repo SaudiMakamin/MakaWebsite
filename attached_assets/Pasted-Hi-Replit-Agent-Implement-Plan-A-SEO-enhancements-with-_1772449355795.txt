@@ -1,0 +1,249 @@
+Hi Replit Agent,
+
+Implement Plan A SEO enhancements with strict precision.
+
+Goal:
+
+Dynamic <title>
+
+Dynamic <meta name="description">
+
+Dynamic Open Graph + Twitter tags
+
+Dynamic canonical URL
+
+JSON-LD structured data (Article / NewsArticle)
+
+Constraints:
+
+Do NOT refactor unrelated code
+
+Do NOT change routing
+
+Do NOT introduce SSR
+
+Only touch:
+
+client/src/pages/news/NewsArticle.tsx
+
+client/src/pages/news/NewsIndex.tsx
+
+Add only one minimal helper file:
+
+client/src/lib/seo.ts
+
+Assume production domain:
+https://www.makamin.com.sa
+
+1) Add SEO helper
+
+Create:
+client/src/lib/seo.ts
+
+Paste exactly:
+
+export function upsertMetaTag(selector: string, attrs: Record<string, string>) {
+  let el = document.head.querySelector(selector) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement("meta");
+    Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+    document.head.appendChild(el);
+  } else {
+    Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+  }
+}
+
+export function upsertLinkTag(selector: string, attrs: Record<string, string>) {
+  let el = document.head.querySelector(selector) as HTMLLinkElement | null;
+  if (!el) {
+    el = document.createElement("link");
+    Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+    document.head.appendChild(el);
+  } else {
+    Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+  }
+}
+
+export function upsertJsonLd(id: string, json: any) {
+  const selector = `script[type="application/ld+json"][data-id="${id}"]`;
+  let el = document.head.querySelector(selector) as HTMLScriptElement | null;
+  if (!el) {
+    el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.setAttribute("data-id", id);
+    document.head.appendChild(el);
+  }
+  el.textContent = JSON.stringify(json);
+}
+
+export function removeTag(selector: string) {
+  const el = document.head.querySelector(selector);
+  if (el) el.remove();
+}
+2) Update NewsIndex.tsx (SEO for /news)
+
+Open:
+client/src/pages/news/NewsIndex.tsx
+
+Add imports:
+
+import { useEffect } from "react";
+import { upsertLinkTag, upsertMetaTag, upsertJsonLd } from "../../lib/seo";
+
+Inside NewsIndex() add a useEffect BEFORE return:
+
+useEffect(() => {
+  const base = "https://www.makamin.com.sa";
+  const url = `${base}/news`;
+
+  document.title = "Makamin News | Makamin Saudi Holding";
+
+  upsertMetaTag('meta[name="description"]', {
+    name: "description",
+    content: "Latest news and corporate governance announcements from Makamin Saudi Holding Company for Oil & Gas Services."
+  });
+
+  upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
+
+  // Open Graph
+  upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "website" });
+  upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: "Makamin News" });
+  upsertMetaTag('meta[property="og:description"]', {
+    property: "og:description",
+    content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
+  });
+  upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
+
+  // Twitter
+  upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+  upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: "Makamin News" });
+  upsertMetaTag('meta[name="twitter:description"]', {
+    name: "twitter:description",
+    content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
+  });
+
+  // JSON-LD (CollectionPage) - use a stable id
+  upsertJsonLd("news-index", {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Makamin News",
+    url
+  });
+}, []);
+
+Do not change the page layout.
+
+3) Update NewsArticle.tsx (SEO per article)
+
+Open:
+client/src/pages/news/NewsArticle.tsx
+
+Add imports:
+
+import { useEffect } from "react";
+import { upsertLinkTag, upsertMetaTag, upsertJsonLd, removeTag } from "../../lib/seo";
+
+Inside component, AFTER:
+const n = getNewsBySlug(slug);
+
+Add:
+
+useEffect(() => {
+  if (!n) return;
+
+  const base = "https://www.makamin.com.sa";
+  const url = `${base}/news/${n.slug}`;
+
+  const title = `${n.title} | Makamin News`;
+  const description = (n.excerpt || "Makamin News update.").slice(0, 180);
+
+  document.title = title;
+
+  upsertMetaTag('meta[name="description"]', {
+    name: "description",
+    content: description
+  });
+
+  upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
+
+  // Open Graph
+  upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "article" });
+  upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: title });
+  upsertMetaTag('meta[property="og:description"]', { property: "og:description", content: description });
+  upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
+
+  // Twitter
+  upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+  upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: title });
+  upsertMetaTag('meta[name="twitter:description"]', { name: "twitter:description", content: description });
+
+  // Images: ensure we remove stale tags when n.image is missing
+  if (n.image) {
+    upsertMetaTag('meta[property="og:image"]', { property: "og:image", content: `${base}${n.image}` });
+    upsertMetaTag('meta[name="twitter:image"]', { name: "twitter:image", content: `${base}${n.image}` });
+  } else {
+    removeTag('meta[property="og:image"]');
+    removeTag('meta[name="twitter:image"]');
+  }
+
+  // JSON-LD (NewsArticle) - use a stable id so it updates (no duplicates)
+  upsertJsonLd("news-article", {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: n.title,
+    datePublished: n.date,
+    dateModified: n.date,
+    mainEntityOfPage: url,
+    url,
+    publisher: {
+      "@type": "Organization",
+      name: "Makamin Saudi Holding Company for Oil & Gas Services"
+    },
+    ...(n.image ? { image: [`${base}${n.image}`] } : {})
+  });
+}, [n]);
+
+IMPORTANT:
+
+Do not break rendering if n.image is missing.
+
+Keep the existing article UI intact.
+
+Validation checklist (must pass before publish)
+
+In preview:
+
+Open /news
+
+tab title: "Makamin News | Makamin Saudi Holding"
+
+document.querySelector('meta[name="description"]')?.getAttribute('content') returns the /news description
+
+canonical:
+document.querySelector('link[rel="canonical"]')?.getAttribute('href') is https://www.makamin.com.sa/news
+
+Open /news/first-board-meeting-2026-02-12
+
+title updates
+
+og:type = article
+
+og:image exists
+
+JSON-LD exists:
+document.querySelector('script[type="application/ld+json"][data-id="news-article"]')
+
+Open an article WITHOUT image (e.g. Dec 3, 2025 notice)
+
+must not crash
+
+og:image + twitter:image must be absent
+
+no console errors
+
+Publish once only after validation passes.
+
+Notes:
+This is SPA-only. Some social platforms may not read OG tags without SSR/prerender. We accept that limitation in Plan A.
+
+End of instruction.

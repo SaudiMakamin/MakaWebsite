@@ -7,11 +7,48 @@ import { Input } from "@/components/ui/input";
 import { useLanguageContext } from "@/components/language-provider";
 import { allNews } from "./newsData";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { upsertLinkTag, upsertMetaTag, upsertJsonLd } from "../../lib/seo";
 
 export default function NewsIndex() {
   const { language } = useLanguageContext();
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const base = "https://www.makamin.com.sa";
+    const url = `${base}/news`;
+
+    document.title = "Makamin News | Makamin Saudi Holding";
+
+    upsertMetaTag('meta[name="description"]', {
+      name: "description",
+      content: "Latest news and corporate governance announcements from Makamin Saudi Holding Company for Oil & Gas Services."
+    });
+
+    upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
+
+    upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "website" });
+    upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: "Makamin News" });
+    upsertMetaTag('meta[property="og:description"]', {
+      property: "og:description",
+      content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
+    });
+    upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
+
+    upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+    upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: "Makamin News" });
+    upsertMetaTag('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
+    });
+
+    upsertJsonLd("news-index", {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Makamin News",
+      url
+    });
+  }, []);
 
   const filtered = allNews.filter((n) => {
     if (!search) return true;

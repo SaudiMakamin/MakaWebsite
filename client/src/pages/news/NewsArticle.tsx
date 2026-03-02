@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, User, Clock, Share2, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,11 +7,63 @@ import { Button } from "@/components/ui/button";
 import { useLanguageContext } from "@/components/language-provider";
 import { getNewsBySlug, allNews } from "./newsData";
 import { Link, useParams } from "wouter";
+import { upsertLinkTag, upsertMetaTag, upsertJsonLd, removeTag } from "../../lib/seo";
 
 export default function NewsArticlePage() {
   const { language } = useLanguageContext();
   const params = useParams<{ slug: string }>();
   const article = getNewsBySlug(params.slug || "");
+
+  useEffect(() => {
+    if (!article) return;
+
+    const base = "https://www.makamin.com.sa";
+    const url = `${base}/news/${article.slug}`;
+
+    const title = `${article.title} | Makamin News`;
+    const description = (article.excerpt || "Makamin News update.").slice(0, 180);
+
+    document.title = title;
+
+    upsertMetaTag('meta[name="description"]', {
+      name: "description",
+      content: description
+    });
+
+    upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
+
+    upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "article" });
+    upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: title });
+    upsertMetaTag('meta[property="og:description"]', { property: "og:description", content: description });
+    upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
+
+    upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+    upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: title });
+    upsertMetaTag('meta[name="twitter:description"]', { name: "twitter:description", content: description });
+
+    if (article.image) {
+      upsertMetaTag('meta[property="og:image"]', { property: "og:image", content: `${base}${article.image}` });
+      upsertMetaTag('meta[name="twitter:image"]', { name: "twitter:image", content: `${base}${article.image}` });
+    } else {
+      removeTag('meta[property="og:image"]');
+      removeTag('meta[name="twitter:image"]');
+    }
+
+    upsertJsonLd("news-article", {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: article.title,
+      datePublished: article.date,
+      dateModified: article.date,
+      mainEntityOfPage: url,
+      url,
+      publisher: {
+        "@type": "Organization",
+        name: "Makamin Saudi Holding Company for Oil & Gas Services"
+      },
+      ...(article.image ? { image: [`${base}${article.image}`] } : {})
+    });
+  }, [article]);
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
