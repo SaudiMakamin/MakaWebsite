@@ -213,6 +213,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/news-json", (_req, res) => {
+    res.status(410).json({ success: false, message: "Gone. Use /api/news instead." });
+  });
+
   app.get("/sitemap.xml", (req, res) => {
     const base = `${req.protocol}://${req.get("host")}`;
     const news = readNews();
