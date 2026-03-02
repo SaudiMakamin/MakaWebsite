@@ -1,0 +1,87 @@
+Hi Replit Agent,
+
+The hero image works, but the 4 internal images are NOT appearing in the article.
+
+Fix this with strict precision. Do NOT refactor code. Do NOT change routes. Do NOT change slug/date/title. Only ensure the 4 internal images exist and render.
+
+PHASE 1 — VERIFY THE IMAGE FILES EXIST (PATH + NAME)
+
+In Replit Files, go to:
+client/public/images/news/
+
+Confirm these 4 files exist EXACTLY with these names (case-sensitive):
+
+first-board-meeting-2026-02-12-01.jpg
+
+first-board-meeting-2026-02-12-02.jpg
+
+first-board-meeting-2026-02-12-03.jpg
+
+first-board-meeting-2026-02-12-04.jpg
+
+If any file is missing:
+
+Upload it from the user’s local files into the same folder.
+
+Rename it EXACTLY as above.
+No spaces. Lowercase only. Extension must be .jpg.
+
+PHASE 2 — VERIFY DIRECT URL ACCESS (MANDATORY)
+
+Before touching JSON, open each of these URLs in the preview/browser and confirm they load (HTTP 200):
+
+/images/news/first-board-meeting-2026-02-12-01.jpg
+/images/news/first-board-meeting-2026-02-12-02.jpg
+/images/news/first-board-meeting-2026-02-12-03.jpg
+/images/news/first-board-meeting-2026-02-12-04.jpg
+
+If any returns 404:
+
+The file is not in the correct folder OR the filename is wrong.
+Fix until all return 200.
+
+PHASE 3 — ENSURE contentHtml CONTAINS THE 4 <img> TAGS
+
+Open BOTH JSON files:
+
+content/news.json
+
+client/src/content/news.json
+
+Locate:
+"slug": "first-board-meeting-2026-02-12"
+
+Inside that object, ensure contentHtml includes these EXACT <img> tags (paths must match exactly):
+
+<img src="/images/news/first-board-meeting-2026-02-12-01.jpg" alt="Board meeting photo 1" style="width:100%;height:auto;border-radius:12px" /> <img src="/images/news/first-board-meeting-2026-02-12-02.jpg" alt="Board meeting photo 2" style="width:100%;height:auto;border-radius:12px" /> <img src="/images/news/first-board-meeting-2026-02-12-03.jpg" alt="Board meeting photo 3" style="width:100%;height:auto;border-radius:12px" /> <img src="/images/news/first-board-meeting-2026-02-12-04.jpg" alt="Board meeting photo 4" style="width:100%;height:auto;border-radius:12px" />
+
+If missing, append this exact block at the END of contentHtml:
+
+<hr/> <h3>صور من الاجتماع</h3> <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px"> <figure><img src="/images/news/first-board-meeting-2026-02-12-01.jpg" alt="Board meeting photo 1" style="width:100%;height:auto;border-radius:12px"/></figure> <figure><img src="/images/news/first-board-meeting-2026-02-12-02.jpg" alt="Board meeting photo 2" style="width:100%;height:auto;border-radius:12px"/></figure> <figure><img src="/images/news/first-board-meeting-2026-02-12-03.jpg" alt="Board meeting photo 3" style="width:100%;height:auto;border-radius:12px"/></figure> <figure><img src="/images/news/first-board-meeting-2026-02-12-04.jpg" alt="Board meeting photo 4" style="width:100%;height:auto;border-radius:12px"/></figure> </div>
+
+IMPORTANT:
+
+Keep JSON valid (escape quotes as needed).
+
+Ensure BOTH JSON files remain identical.
+
+PHASE 4 — FINAL VALIDATION (BEFORE PUBLISH)
+
+Open:
+/news/first-board-meeting-2026-02-12
+
+Confirm:
+
+The 4 images display inside the article (not only the hero).
+
+No broken image icons.
+
+Open DevTools Console:
+
+No errors.
+
+Hard refresh the page (Ctrl+Shift+R) to bypass cache.
+
+Only after all checks pass → Publish once.
+
+Confirm completion.
