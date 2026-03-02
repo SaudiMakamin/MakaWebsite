@@ -1,0 +1,174 @@
+Hi Replit Agent,
+
+Implement “Indexing & Discovery” SEO improvements with strict precision (Vercel-safe, SPA-friendly).
+
+Goal:
+Help Google discover and index all Makamin pages + all /news articles reliably, without changing routing behavior or introducing SSR/prerender.
+
+Constraints:
+
+Do NOT refactor unrelated code
+
+Do NOT change routing behavior
+
+Do NOT introduce SSR/prerender
+
+Keep changes minimal and safe
+
+Do NOT change the news data format
+
+Production domain: https://www.makamin.com.sa
+
+Allowed changes:
+
+Add static public files (preferred on Vercel)
+
+server/routes.ts only for sitemap/rss if they already exist there
+
+Add robots.txt as a STATIC FILE (preferred for Vercel)
+
+Create this file (static):
+
+public/robots.txt
+
+Exact content:
+
+User-agent: *
+Allow: /
+Sitemap: https://www.makamin.com.sa/sitemap.xml
+
+Notes:
+
+Must be served at /robots.txt
+
+Do NOT generate robots.txt dynamically in server/routes.ts unless static serving is impossible.
+
+Verify:
+GET /robots.txt → 200 and includes the Sitemap line.
+
+Update /sitemap.xml — lastmod ONLY for news articles
+
+We already have /sitemap.xml. Update it to:
+
+Always include:
+
+https://www.makamin.com.sa/
+
+https://www.makamin.com.sa/news
+
+https://www.makamin.com.sa/news/
+<slug> for each news item
+
+Add <lastmod> ONLY for /news/<slug> URLs:
+
+Use n.date from content/news.json exactly (YYYY-MM-DD)
+
+Do NOT set lastmod for / or /news (omit lastmod for those)
+
+Ensure:
+
+XML remains valid
+
+Content-Type: application/xml
+
+Endpoint is registered BEFORE any SPA catch-all fallback
+
+Base URL hardcoded to https://www.makamin.com.sa
+ (do not rely on req.host)
+
+Example URL entry for an article:
+
+<url> <loc>https://www.makamin.com.sa/news/some-slug</loc> <lastmod>2025-12-03</lastmod> </url>
+
+Add /rss.xml — RSS 2.0 feed for News (timezone-safe)
+
+Add a new endpoint (before SPA fallback):
+GET /rss.xml
+
+Rules:
+
+Read from content/news.json (same function used by sitemap)
+
+Sort newest first (by n.date descending)
+
+Output RSS 2.0 with:
+
+Content-Type: application/rss+xml
+
+Channel fields:
+
+<title>Makamin News</title>
+<link>https://www.makamin.com.sa/news</link>
+
+<description>Latest news and corporate governance announcements from Makamin Saudi Holding.</description>
+
+For each RSS item:
+
+<title>n.title</title>
+<link>https://www.makamin.com.sa/news/n.slug</link>
+
+<guid>same as link</guid>
+
+<pubDate>RFC-822 UTC string derived safely from n.date</pubDate>
+IMPORTANT: use UTC-safe conversion:
+const d = new Date(n.date + "T00:00:00Z");
+d.toUTCString();
+
+<description>Use n.excerpt if present, otherwise a short plain-text fallback</description>
+
+Also ensure:
+
+XML special characters are escaped properly in title/description (at minimum & < > and quotes)
+
+Keep it minimal and safe.
+
+Ensure there is at least one visible internal link to /news
+
+If the site header/footer already links to /news → do nothing.
+If not, add ONE minimal visible link (header or footer) pointing to /news.
+Do NOT change layout significantly.
+
+Validation checklist (must pass before publish)
+
+In preview, confirm:
+
+GET /robots.txt
+
+200
+
+Content shows Sitemap line
+
+GET /sitemap.xml
+
+Contains:
+
+https://www.makamin.com.sa/
+
+https://www.makamin.com.sa/news
+
+all https://www.makamin.com.sa/news/
+<slug>
+
+Only /news/<slug> entries have <lastmod> using that item’s n.date
+
+GET /rss.xml
+
+200
+
+Content-Type application/rss+xml
+
+Items exist
+
+pubDate is valid RFC-822 UTC (e.g., "Thu, 12 Feb 2026 00:00:00 GMT")
+
+Hard refresh:
+
+/news/<slug> returns 200 (SPA fallback still intact)
+
+No console errors
+
+Publish once only after validation.
+
+If there is any risk of conflict with SPA fallback, paste the last ~80 lines of server/routes.ts so routes can be placed safely before the catch-all.
+
+End of instruction.

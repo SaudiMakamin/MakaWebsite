@@ -217,28 +217,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.status(410).json({ success: false, message: "Gone. Use /api/news instead." });
   });
 
-  app.get("/sitemap.xml", (req, res) => {
-    const base = `${req.protocol}://${req.get("host")}`;
+  app.get("/sitemap.xml", (_req, res) => {
+    const base = "https://www.makamin.com.sa";
     const news = readNews();
 
-    const urls = [
+    const staticPages = [
       `${base}/`,
       `${base}/about`,
       `${base}/services`,
       `${base}/projects`,
       `${base}/certifications`,
       `${base}/contact`,
-      `${base}/news`,
-      ...news.map((n: any) => `${base}/news/${n.slug}`)
+      `${base}/news`
     ];
+
+    const staticXml = staticPages.map((u) => `<url><loc>${u}</loc></url>`).join("\n");
+    const newsXml = news.map((n: any) => `<url><loc>${base}/news/${n.slug}</loc><lastmod>${n.date}</lastmod></url>`).join("\n");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `<url><loc>${u}</loc></url>`).join("\n")}
+${staticXml}
+${newsXml}
 </urlset>`;
 
     res.setHeader("Content-Type", "application/xml");
     res.send(xml);
+  });
+
+  app.get("/rss.xml", (_req, res) => {
+    const base = "https://www.makamin.com.sa";
+    const news = readNews();
+
+    const sorted = [...news].sort((a: any, b: any) => b.date.localeCompare(a.date));
+
+    const escXml = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+    const items = sorted.map((n: any) => {
+      const d = new Date(n.date + "T00:00:00Z");
+      const pubDate = d.toUTCString();
+      const desc = n.excerpt || "Makamin News update.";
+      return `<item><title>${escXml(n.title)}</title><link>${base}/news/${n.slug}</link><guid>${base}/news/${n.slug}</guid><pubDate>${pubDate}</pubDate><description>${escXml(desc)}</description></item>`;
+    }).join("\n");
+
+    const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>Makamin News</title>
+<link>${base}/news</link>
+<description>Latest news and corporate governance announcements from Makamin Saudi Holding.</description>
+${items}
+</channel>
+</rss>`;
+
+    res.setHeader("Content-Type", "application/rss+xml");
+    res.send(rss);
   });
 
   const httpServer = createServer(app);
