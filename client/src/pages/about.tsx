@@ -152,7 +152,6 @@ export default function About() {
       members: [
         { name: language === 'ar' ? 'أ. عادل عايض النوب' : 'Mr. Adel Ayed ALNOOB', role: language === 'ar' ? 'رئيس مجلس الإدارة والرئيس التنفيذي' : 'Chairman of the Board and CEO' },
         { name: language === 'ar' ? 'م. إبراهيم أحمد الغامدي' : 'Eng. Ibrahim Ahmed Al-Ghamdi', role: language === 'ar' ? 'نائب رئيس مجلس الإدارة' : 'Vice Chairman of the Board' },
-        { name: language === 'ar' ? 'م. عثمان فاضل الموسى' : 'Eng. Othman Fadel Al-Mousa', role: language === 'ar' ? 'عضو مجلس الإدارة' : 'Board Member' },
         { name: language === 'ar' ? 'م. خالد حمدان السيف' : 'Eng. Khalid Hamdan Al-Saif', role: language === 'ar' ? 'عضو مجلس الإدارة' : 'Board Member' },
         { name: language === 'ar' ? 'م. حمد علي القحطاني' : 'Eng. Hamad Ali Al-Qahtani', role: language === 'ar' ? 'عضو مجلس الإدارة' : 'Board Member' },
         { name: language === 'ar' ? 'م. محمد جاسم الفواز' : 'Eng. Mohammed Jasim Al-Fawaz', role: language === 'ar' ? 'عضو مجلس الإدارة' : 'Board Member' }
@@ -642,19 +641,6 @@ export default function About() {
                           }}
                         />
                       )}
-                      {/* Chairman - Othman Fadel Al-Mousa */}
-                      {(member.name.includes('عثمان') || member.name.includes('Othman')) && (
-                        <img 
-                          src="/attached_assets/Othman_1752784084516.png"
-                          alt={member.name}
-                          className="w-full h-full object-cover object-center"
-                          onError={(e) => {
-                            console.log('Othman image failed to load:', e);
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                          }}
-                        />
-                      )}
                       {/* Vice Chairman - Ibrahim Ahmed Sabti Al-Ghamdi */}
                       {(member.name.includes('إبراهيم أحمد الغامدي') || member.name.includes('Ibrahim Ahmed Al-Ghamdi') || member.name.includes('Ibrahim Ahmed Sabti')) && (
                         <img 
@@ -955,52 +941,10 @@ export default function About() {
                   <h3 className="text-3xl font-bold text-white">
                     {language === 'ar' ? 'لجنة المشاريع' : 'Projects Committee'}
                   </h3>
-                  <p className="text-orange-400 font-semibold">
-                    {language === 'ar' ? 'رئيس: م. عثمان ف. ح. الموسى' : 'Chairman: Eng. Othman F. H. Al-Mousa'}
-                  </p>
                 </div>
               </div>
               
               <div className="space-y-6">
-                {/* Chairman */}
-                <div className="grid md:grid-cols-3 gap-6 bg-slate-800/30 rounded-2xl p-6">
-                  <div className="md:col-span-1">
-                    <div className="text-center">
-                      <motion.img 
-                        src="/attached_assets/Othman_1752784084516.png" 
-                        alt="Eng. Othman F. H. Al-Mousa"
-                        className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-orange-500 shadow-2xl hover:shadow-orange-500/60 transition-all duration-500"
-                        whileHover={{ scale: 1.08, rotate: 2 }}
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E";
-                        }}
-                      />
-                      <h4 className="text-lg font-bold text-white mb-2">
-                        {language === 'ar' ? 'م. عثمان ف. ح. الموسى' : 'Eng. Othman F. H. Al-Mousa'}
-                      </h4>
-                      <p className="text-orange-400 text-sm font-semibold">
-                        {language === 'ar' ? 'استراتيجي التميز التشغيلي – خبير علوم الأرض' : 'Operational Excellence Strategist – Geoscience Veteran'}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="md:col-span-2">
-                    <p className="text-slate-300 leading-relaxed text-sm mb-3">
-                      {language === 'ar' ? 
-                        'رائد في التميز التشغيلي في قطاع الطاقة، م. عثمان الموسى يجلب أكثر من 35 عاماً من القيادة المتميزة في أرامكو السعودية، حيث ارتقى ليرأس قسم التميز التشغيلي والامتثال ضمن ذراع الموارد غير التقليدية. إرثه يشمل قيادة التحول الرقمي ودعم أطر الصحة والسلامة والبيئة والإشراف على العمليات الزلزالية عبر المشهد الاستكشافي الواسع للمملكة العربية السعودية.' :
-                        'A pioneer of operational excellence in the energy sector, Eng. Othman Al-Mousa brings over 35 years of elite leadership at Saudi Aramco, where he rose to head the Operational Excellence & Compliance Division within the Unconventional Resources arm. His legacy includes driving digital transformation, championing HSE frameworks, and overseeing seismic operations across Saudi Arabia\'s vast exploration landscape.'
-                      }
-                    </p>
-                    <p className="text-slate-400 text-xs">
-                      {language === 'ar' ? 
-                        'يحمل ماجستير في علوم الأرض من جامعة هيوستن وبكالوريوس من جامعة الملك فهد للبترول والمعادن، الموسى أيضاً مدقق رئيسي معتمد في أنظمة الإدارة المتكاملة وقائد فكري في تحليل الأسباب الجذرية وإدارة المخاطر.' :
-                        'Holding an M.S. in Geosciences from the University of Houston and a B.S. from KFUPM, Al-Mousa is also a certified Lead Auditor in integrated management systems and a thought leader in root-cause analysis and risk management.'
-                      }
-                    </p>
-                  </div>
-                </div>
-
                 {/* Member */}
                 <div className="bg-slate-800/30 rounded-2xl p-6">
                   <div className="flex items-center gap-4 mb-4">
