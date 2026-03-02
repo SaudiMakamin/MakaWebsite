@@ -1,0 +1,87 @@
+Hi Replit Agent,
+
+Execute the following task with strict precision.
+Do NOT refactor, rename, reformat, or modify any unrelated code.
+Do NOT alter routing logic.
+Do NOT change sorting logic.
+Do NOT modify any other news entries.
+
+This is a controlled content insertion only.
+
+Insert EXACTLY ONE new news item
+
+Add the following JSON object as a single new element inside the existing news array in BOTH files:
+
+content/news.json
+
+client/src/content/news.json
+
+Requirements:
+
+Insert without breaking JSON structure.
+
+Do not duplicate.
+
+Ensure both files remain 100% identical after modification.
+
+Preserve existing array order (sorting is handled in frontend logic).
+
+Insert this exact object:
+
+{
+"slug": "temporary-judicial-supervisor-appointment",
+"title": "Official Announcement on the Appointment of a Temporary Judicial Supervisor and the Invitation to Shareholders to Attend the General Assembly Meeting",
+"date": "2024-11-05",
+"category": "Corporate Governance",
+"excerpt": "A Commercial Court ruling in Riyadh appointed Mr. Adel Ayed bin Dulaim Al-Noub as Temporary Supervisor to convene the General Assembly and enable shareholders to vote on forming a new Board of Directors.",
+"image": "/images/news/judicial-supervisor.jpg",
+"contentHtml": "<h2 style="margin-top:0">إعلان رسمي عن تعيين مشرف قضائي مؤقت ودعوة مساهمي شركة مكامن السعودية لخدمات النفط والغاز لاجتماع الجمعية العامة</h2><p><strong>بيان توضيحي</strong></p><p>تود شركة مكامن السعودية لخدمات النفط والغاز أن توضح لمساهميها الكرام وكافة الأطراف ذات العلاقة أنه صدر حكم من المحكمة التجارية في الرياض يقضي بتعيين الأستاذ عادل عايض بن دليم النوب مشرفًا مؤقتًا على إدارة الشركة، وذلك لغرض دعوة الجمعية العامة للمساهمين للانعقاد والتصويت على تشكيل مجلس إدارة جديد، وفقًا لأحكام نظام الشركات ولوائحه التنفيذية.</p><p>ويأتي هذا الإجراء في إطار استكمال المتطلبات النظامية المرتبطة بانتهاء دورة مجلس الإدارة السابقة والتي انتهت في عام 2019، وما استتبع ذلك من حاجة نظامية إلى تصحيح الوضع الإداري بما يضمن انتظام الحوكمة واستمرارية أعمال الشركة وفق الأطر القانونية المعتمدة.</p><p>وقد باشر المشرف المعيّن مهامه فور صدور الحكم واكتسابه الصفة القطعية، كما تم إشعار وزارة التجارة بكافة التفاصيل ذات الصلة، تأكيدًا لالتزام الشركة الكامل بالأنظمة والتعليمات ذات العلاقة.</p><p>وتستعد الشركة لعقد اجتماع الجمعية العامة العادية بتاريخ <strong>18 فبراير 2025</strong>، حيث سيتم خلاله التصويت على تشكيل مجلس إدارة جديد، بما يعزز منظومة الحوكمة ويخدم مصالح المساهمين.</p><p>وتؤكد الشركة التزامها بمبادئ الشفافية والامتثال والحوكمة الرشيدة، وستواصل تزويد مساهميها بأي مستجدات عبر قنواتها الرسمية.</p><p>والله ولي التوفيق</p><p><strong>— إدارة الشركة</strong></p><hr/><h2 style="margin-top:0">Clarification Statement</h2><p>Makamen Saudi Oil & Gas Services Company would like to inform its valued shareholders and all relevant stakeholders that a ruling has been issued by the Commercial Court in Riyadh appointing <strong>Mr. Adel Ayed bin Dulaim Al-Noub</strong> as Temporary Supervisor of the Company.</p><p>The appointment is for the purpose of convening the General Assembly Meeting of shareholders to vote on the formation of a new Board of Directors, in accordance with the provisions of the Companies Law and its implementing regulations.</p><p>This measure comes as part of completing the statutory requirements associated with the expiration of the previous Board of Directors’ term, which ended in 2019, and the consequent regulatory need to rectify the administrative status in a manner that ensures proper governance and continuity of the Company’s operations within the approved legal framework.</p><p>The appointed Supervisor commenced his duties immediately upon issuance and finalization of the court judgment. The Ministry of Commerce has also been formally notified of all relevant details, reaffirming the Company’s full commitment to applicable laws and regulations.</p><p>The Company is preparing to hold its Ordinary General Assembly Meeting on <strong>February 18, 2025</strong>, during which shareholders will vote on the formation of a new Board of Directors, further strengthening governance practices and serving the interests of shareholders.</p><p>The Company reaffirms its commitment to transparency, compliance, and sound corporate governance, and will continue to provide updates to its shareholders through its official communication channels.</p><p>Sincerely,</p><p><strong>Company Management</strong></p>"
+}
+
+Add the news image file
+
+Place the image file at:
+
+client/public/images/news/judicial-supervisor.jpg
+
+Do not rename the file.
+Do not change the path in JSON.
+
+Strict validation checklist (must pass BEFORE publish)
+
+After implementation, verify:
+
+Open /news
+→ The new article appears with date November 5, 2024
+→ Sorting remains correct (newest first)
+
+Open directly:
+/news/temporary-judicial-supervisor-appointment
+→ Must return 200 (no 404)
+
+Open:
+/sitemap.xml
+→ The new URL must exist:
+/news/temporary-judicial-supervisor-appointment
+
+No console errors
+
+JSON files are identical
+
+No duplicate slugs
+
+Publish
+
+Only after all checks pass → Publish once.
+
+Do not make any additional changes beyond this scope.
+
+Confirm when completed with:
+
+JSON diff confirmation
+
+Screenshot-level confirmation of route tests
+
+Confirmation both files are identical
+
+End of instruction.
