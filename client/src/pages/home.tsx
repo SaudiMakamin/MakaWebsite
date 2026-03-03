@@ -15,7 +15,6 @@ import EnhancedSecurity from '@/components/enhanced-security';
 import energyHouseLogo from '@assets/Energy House Holding_1752769769299.jpg';
 import alDorraLogo from '@assets/Al-Dorra Petroleum Services_1752769769298.jpg';
 import binTamiLogo from '@assets/Bin Tami Holding_1752769769299.jpg';
-import obiekanLogo from '@assets/obeikan_1752841614150.png';
 import multaqaLogo from '@assets/multaqa_1752840945634.png';
 import ajlanBrosLogo from '@assets/Ajlan & Bros Holding_1752769769297.png';
 import alBiladLogo from '@assets/Al Bilad Group_1752769769298.jpg';
@@ -390,39 +389,6 @@ export default function Home() {
                 </h4>
                 <p className="text-blue-100 text-sm">
                   {language === 'ar' ? 'مجموعة استثمارية رائدة' : 'Leading Investment Group'}
-                </p>
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-center"
-            >
-              <a 
-                href="https://www.obeikan.com.sa/ar/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                title="Diversified Investment Partner"
-                className="group block bg-white/10 rounded-2xl p-10 hover:bg-white/20 transition-all duration-300 ease-in-out h-full hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:scale-110 shadow-lg cursor-pointer border border-transparent hover:border-white/8 animate-pulse-light"
-              >
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center mx-auto mb-6 p-4 group-hover:shadow-lg group-hover:shadow-indigo-400/30 transition-all duration-300 group-hover:from-blue-100 group-hover:to-blue-200">
-                  <img 
-                    src={obiekanLogo} 
-                    alt="Obeikan Investment Group Logo" 
-                    className="max-w-[75%] max-h-[75%] object-contain filter brightness-105 contrast-110 group-hover:brightness-110 transition-all duration-300"
-                  />
-                </div>
-                <h3 className="text-lg font-bold mb-2 text-white">
-                  {language === 'ar' ? 'مجموعة العبيكان الاستثمارية' : 'Obeikan Investment Group'}
-                </h3>
-                <h4 className="text-sm font-medium mb-2 text-blue-200">
-                  {language === 'ar' ? 'Obeikan Investment Group' : 'مجموعة العبيكان الاستثمارية'}
-                </h4>
-                <p className="text-blue-100 text-sm">
-                  {language === 'ar' ? 'شريك استثماري متنوع' : 'Diversified Investment Partner'}
                 </p>
               </a>
             </motion.div>
