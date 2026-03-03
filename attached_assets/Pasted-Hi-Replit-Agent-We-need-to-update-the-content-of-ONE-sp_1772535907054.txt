@@ -1,0 +1,156 @@
+Hi Replit Agent,
+
+We need to update the content of ONE specific news item only.
+
+Do NOT modify:
+
+Any other news item
+
+Slug
+
+Date
+
+Category
+
+Routing
+
+Images
+
+Order of news
+
+Any other file structure
+
+Target news item:
+
+slug:
+second-notice-shareholder-update-2025-12-03
+
+Files to update:
+
+content/news.json
+
+client/src/content/news.json
+
+Only replace the title and contentHtml and excerpt of that specific item.
+
+Keep:
+
+slug unchanged
+
+date: "2025-12-03"
+
+category: "Corporate Governance"
+
+image field: must remain absent
+
+Replace with the following exact values:
+
+title:
+Second Notice – Urgent Requirement to Update Shareholder Information and Ensure Governance Compliance
+
+excerpt:
+Makamin issues a second governance notice pursuant to Board Resolutions (8/2025) and (9/2025) requiring mandatory shareholder data updates and formal verification procedures.
+
+contentHtml:
+
+(Use this exact HTML)
+
+<h2 style="margin-top:0">Second Notice</h2>
+<h3>Urgent Requirement to Update Shareholder Information and Ensure Governance Compliance</h3>
+<h3>التنبيه الثاني</h3>
+<h3>ضرورة عاجلة لتحديث بيانات المساهمين والامتثال لمتطلبات الحوكمة</h3>
+
+<p>
+استنادًا إلى قرار مجلس الإدارة رقم (8/2025) بشأن تفعيل وتحديث سجل المساهمين، وقرار مجلس الإدارة رقم (9/2025) المتعلق باستكمال إجراءات الحوكمة والتحقق النظامي، وإشارةً إلى إطلاق صفحة تحديث بيانات المساهمين بتاريخ 21 يوليو 2025، تود شركة مكامن السعودية القابضة لخدمات النفط والغاز التنبيه بأنه حتى تاريخه لم يتم استلام تحديثات مكتملة مستوفية للمتطلبات النظامية عبر البوابة المخصصة لذلك.
+</p>
+
+<p>
+إن استمرار الاعتماد على سجلات وبيانات قديمة في سجل المساهمين لا يتماشى مع متطلبات الالتزام والحوكمة، لا سيما في ظل وجود تباينات ملحوظة في بعض كشوفات الملكية والحضور، مما يستوجب استكمال إجراءات التحديث والتحقق النظامي بصورة عاجلة.
+</p>
+
+<p>
+وتؤكد الشركة أن عملية تحديث البيانات تهدف إلى مواءمة السجل القائم مع المتطلبات النظامية والتحقق من أي تباينات، دون المساس بالحقوق الثابتة بموجب مستندات نظامية معتمدة.
+</p>
+
+<h4>وعليه، فإن تحديث البيانات يُعد التزامًا ضروريًا لضمان:</h4>
+
+<ul>
+<li>دقة سجل المساهمين</li>
+<li>سلامة إجراءات التصويت والتمثيل</li>
+<li>الامتثال لمتطلبات الحوكمة والتنظيم</li>
+<li>حماية حقوق المساهمين النظاميين</li>
+</ul>
+
+<p>
+كما تؤكد الشركة أنه لن يُعتمد أي تعديل أو مطالبة في سجل المساهمين إلا بعد استكمال إجراءات التحقق وفق النظام الأساسي للشركة والأنظمة ذات العلاقة.
+</p>
+
+<p>
+لذا، يُطلب من جميع المساهمين سرعة الدخول إلى صفحة تحديث البيانات ورفع المعلومات والوثائق المطلوبة عبر الرابط التالي:
+<br/>
+<strong>www.makamin.com.sa/update-shareholder</strong>
+</p>
+
+<p>
+للاستفسارات أو الدعم:
+<br/>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p>
+
+<p>
+وتؤكد الشركة أن الالتزام بتحديث البيانات مسؤولية مباشرة على كل مساهم، ويُعد جزءًا من متطلبات الامتثال والحوكمة المعتمدة.
+</p>
+
+<hr/>
+
+<h2>Second Notice</h2>
+<h3>Urgent Requirement to Update Shareholder Information and Ensure Governance Compliance</h3>
+
+<p>
+Pursuant to Board Resolution No. (8/2025) concerning the activation and update of the Shareholder Register, and Board Resolution No. (9/2025) relating to governance compliance and formal verification procedures, and with reference to the launch of the Shareholder Information Update page on 21 July 2025, Makamin Saudi Holding Company for Oil &amp; Gas Services hereby informs all shareholders that, to date, no complete updates meeting regulatory requirements have been received through the designated portal.
+</p>
+
+<p>
+Continued reliance on outdated shareholder records does not align with compliance and governance standards, particularly in light of observable discrepancies in certain ownership and attendance records. This necessitates the immediate completion of data updates and formal verification procedures.
+</p>
+
+<p>
+The Company confirms that the update process is intended to align the existing shareholder register with regulatory requirements and to verify any discrepancies, without prejudice to legally established rights supported by valid documentation.
+</p>
+
+<h4>Accordingly, updating shareholder information is mandatory to ensure:</h4>
+
+<ul>
+<li>Accuracy of the shareholder register</li>
+<li>Integrity of voting and representation procedures</li>
+<li>Compliance with governance and regulatory obligations</li>
+<li>Protection of lawful shareholder rights</li>
+</ul>
+
+<p>
+No amendment or ownership claim shall be reflected in the shareholder register unless formal verification procedures are completed in accordance with the Company’s Articles of Association and applicable regulations.
+</p>
+
+<p>
+All shareholders are required to promptly access the Shareholder Update portal and submit the required information and supporting documents at:
+<br/>
+<strong>www.makamin.com.sa/update-shareholder</strong>
+</p>
+
+<p>
+For assistance:
+<br/>📧 report@makamin.com.sa
+<br/>📧 info@makamin.com.sa
+</p>
+
+<p><strong>— Company Management</strong></p>
+بعد التنفيذ تحقق من:
+
+افتح:
+/news/second-notice-shareholder-update-2025-12-03
+
+تأكد لا يوجد كسر تنسيق
+
+تأكد أن SEO (العنوان + meta description) ما زال يعمل
+
+تأكد أن باقي الأخبار لم تتغير
