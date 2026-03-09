@@ -168,7 +168,7 @@ export default function Header() {
             <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded && (
-            <div className={`${language === 'ar' ? 'pr-4' : 'pl-4'} border-${language === 'ar' ? 'r' : 'l'}-2 border-gray-200 space-y-1 pb-2`}>
+            <div className={`${language === 'ar' ? 'pr-4 border-r-2' : 'pl-4 border-l-2'} border-gray-200 space-y-1 pb-2`}>
               <Link
                 href={path}
                 className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
@@ -271,7 +271,7 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px] overflow-y-auto">
+              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px] overflow-y-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
                 <nav className="flex flex-col space-y-2 mt-8">
                   {navItems.map((item, index) => (
                     <NavLink 
