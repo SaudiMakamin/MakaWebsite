@@ -1,0 +1,57 @@
+MAKAMIN PROJECT — FUTURE SCALABILITY ASSESSMENT (READ-ONLY)
+
+Before we proceed further, I need a precise technical assessment based on the CURRENT codebase only.
+
+This is a READ-ONLY assessment.
+Do NOT implement anything.
+Do NOT modify any file.
+Do NOT change any code.
+Do NOT propose code.
+Do NOT refactor anything.
+
+I need you to assess whether the current website structure can safely support future expansion into dedicated real pages for:
+
+1. Company information sections
+2. Subsidiaries / branches
+3. Business lines / services
+4. Projects and project categories
+5. Governance / investor / shareholder sections
+
+Answer based only on the existing architecture, routing, navigation, and current code organization.
+
+Please explain clearly:
+
+A. Whether the current navigation structure can scale safely to additional pages later
+B. Whether the current routing structure can scale safely to additional pages later
+C. Whether new pages can be added later without breaking the current site
+D. Whether current dropdown items that now point to shared pages can later be reassigned safely to dedicated real pages
+E. What the safest future implementation path would be
+F. Which files would most likely need future changes
+G. Which current technical limitations or architectural weaknesses may block or complicate this expansion
+H. Whether the current system is suitable for phased expansion without a full rebuild
+
+Also assess specifically:
+
+- header.tsx navigation structure
+- App.tsx routing approach
+- i18n.ts scalability for more labels/pages
+- footer.tsx maintainability
+- whether current hardcoded arrays are sufficient for future growth
+- whether introducing more real pages later will remain manageable without moving nav config into a separate structure
+- whether there is any risk of duplication, orphan pages, or maintenance complexity increasing over time
+
+Important:
+I want a technical assessment only.
+Do NOT implement anything.
+Do NOT suggest code unless explicitly requested later.
+
+Final output format:
+
+A. Scalability of Navigation
+B. Scalability of Routing
+C. Safety of Adding New Pages
+D. Safety of Repointing Dropdown Items to Real Pages Later
+E. Likely Future Bottlenecks
+F. Safest Expansion Path
+G. Recommended Architecture Decision: keep current pattern for now, or plan future restructuring
+H. Final Verdict
