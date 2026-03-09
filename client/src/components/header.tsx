@@ -68,7 +68,7 @@ export default function Header() {
   const navItems = [
     { path: '/', label: t('home') },
     { 
-      path: '/about', 
+      path: '/about#overview', 
       label: t('about'),
       hasDropdown: true,
       overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
@@ -122,8 +122,9 @@ export default function Header() {
   ];
 
   const isActiveLink = (path: string) => {
-    if (path === '/' && location === '/') return true;
-    return path !== '/' && location.startsWith(path);
+    const basePath = path.split('#')[0] || path;
+    if (basePath === '/' && location === '/') return true;
+    return basePath !== '/' && location.startsWith(basePath);
   };
 
   const NavLink = ({ path, label, mobile = false, hasDropdown = false, dropdown, overviewLabel }: { 
@@ -145,10 +146,32 @@ export default function Header() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-56">
             <DropdownMenuItem asChild>
-              <Link href={path.split('#')[0] || path} className="w-full cursor-pointer">
-                <Globe className="mr-2 h-4 w-4" />
-                {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
-              </Link>
+              {path.includes('#') ? (
+                <a href={path} className="w-full cursor-pointer" onClick={(e) => {
+                  e.preventDefault();
+                  const [pathname, hash] = path.split('#');
+                  const basePath = pathname || '/';
+                  if (window.location.pathname !== basePath) {
+                    window.location.href = path;
+                  } else {
+                    const el = document.getElementById(hash);
+                    if (el) {
+                      const offset = 100;
+                      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                      window.history.replaceState(null, '', path);
+                    }
+                  }
+                }}>
+                  <Globe className="mr-2 h-4 w-4" />
+                  {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
+                </a>
+              ) : (
+                <Link href={path} className="w-full cursor-pointer">
+                  <Globe className="mr-2 h-4 w-4" />
+                  {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
+                </Link>
+              )}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             {dropdown?.map((item, index) => {
@@ -208,14 +231,43 @@ export default function Header() {
           </button>
           {isExpanded && (
             <div className={`${language === 'ar' ? 'pr-4 border-r-2' : 'pl-4 border-l-2'} border-gray-200 space-y-1 pb-2`}>
-              <Link
-                href={path}
-                className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Globe className="h-3.5 w-3.5 flex-shrink-0" />
-                {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
-              </Link>
+              {path.includes('#') ? (
+                <a
+                  href={path}
+                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    e.preventDefault();
+                    const [pathname, hash] = path.split('#');
+                    const basePath = pathname || '/';
+                    if (window.location.pathname !== basePath) {
+                      window.location.href = path;
+                    } else {
+                      setTimeout(() => {
+                        const el = document.getElementById(hash);
+                        if (el) {
+                          const offset = 100;
+                          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                          window.scrollTo({ top, behavior: 'smooth' });
+                          window.history.replaceState(null, '', path);
+                        }
+                      }, 300);
+                    }
+                  }}
+                >
+                  <Globe className="h-3.5 w-3.5 flex-shrink-0" />
+                  {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
+                </a>
+              ) : (
+                <Link
+                  href={path}
+                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Globe className="h-3.5 w-3.5 flex-shrink-0" />
+                  {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
+                </Link>
+              )}
               {dropdown?.map((item, index) => {
                 const hasHash = item.path.includes('#');
                 const handleMobileHashClick = (e: React.MouseEvent) => {
