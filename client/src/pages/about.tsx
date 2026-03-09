@@ -11,6 +11,7 @@ import EnhancedSecurity from '@/components/enhanced-security';
 import AnimatedCounter from '@/components/animated-counter';
 import { AnimatedDrillIcon, AnimatedShipIcon, AnimatedPipelineIcon, AnimatedOilRigIcon } from '@/components/animated-svg-icons';
 import HeroLogo from '@/components/hero-logo';
+import campLayoutPath from '@assets/makamin-oyun-camp-location-map-al-ahsa.jpg_1773067827094.jpg';
 
 export default function About() {
   const { language } = useLanguageContext();
@@ -1598,52 +1599,157 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'مواقع الورش والمعسكرات' : 'Workshop & Camp Locations'}
             </h2>
-            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-              {language === 'ar'
-                ? 'مرافق مكامن التشغيلية والمعسكرات الميدانية'
-                : 'Makamin operational facilities and field camps'}
-            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                name: language === 'ar' ? 'معسكر مكامن عيون' : 'Makamin Oyun Camp',
-                description: language === 'ar'
-                  ? 'المعسكر الرئيسي للعمليات الميدانية، يضم مرافق سكنية وتشغيلية متكاملة لدعم فرق العمل الميدانية.'
-                  : 'Main field operations camp, featuring integrated residential and operational facilities to support field crews.',
-                icon: Building
-              },
-              {
-                name: language === 'ar' ? 'ورشة التصنيع والصيانة' : 'Fabrication & Maintenance Workshop',
-                description: language === 'ar'
-                  ? 'ورشة مجهزة للتصنيع الخفيف والثقيل وصيانة المعدات والآليات.'
-                  : 'Equipped workshop for light and heavy fabrication, equipment and machinery maintenance.',
-                icon: Wrench
-              },
-              {
-                name: language === 'ar' ? 'مرافق التخزين واللوجستيات' : 'Storage & Logistics Facilities',
-                description: language === 'ar'
-                  ? 'مستودعات ومرافق لوجستية لإدارة سلسلة الإمداد ودعم العمليات.'
-                  : 'Warehouses and logistics facilities for supply chain management and operations support.',
-                icon: MapPin
-              },
-            ].map((location, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500/30 transition-all duration-300"
-              >
-                <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 mx-auto">
-                  <location.icon className="w-7 h-7 text-white" />
+          <div className="max-w-5xl mx-auto space-y-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-800/50 rounded-3xl p-8 md:p-10 border border-slate-700"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex-shrink-0">
+                  <Building className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3 text-center">{location.name}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed text-center">{location.description}</p>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">
+                    {language === 'ar' ? 'معسكر مكامن عيون' : 'Makamin Oyun Camp'}
+                  </h3>
+                  <p className="text-cyan-400 text-sm font-medium">
+                    {language === 'ar' ? 'منطقة العيون – الأحساء – المنطقة الشرقية – المملكة العربية السعودية' : 'Al-Oyun Area – Al-Ahsa – Eastern Province – Saudi Arabia'}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-slate-300 leading-relaxed mb-8">
+                {language === 'ar'
+                  ? 'يعمل معسكر مكامن عيون كمنشأة دعم تشغيلي للأنشطة الميدانية والخدمات الصناعية وأعمال التفتيش واللوجستيات المرتبطة بعمليات مكامن في قطاع النفط والغاز بالمنطقة الشرقية. يدعم المعسكر مجموعة واسعة من المتطلبات التشغيلية عبر خدمات الأنابيب ودعم الحفر والتفتيش الصناعي والهندسة الميدانية.'
+                  : 'Makamin Oyun Camp serves as an operational support facility for field activities, industrial services, inspection work, and project logistics associated with Makamin\'s oil and gas operations in the Eastern Province of Saudi Arabia. The camp supports a range of operational requirements across pipeline services, drilling support, industrial inspection, and field engineering activities.'}
+              </p>
+
+              <h4 className="text-xl font-bold text-white mb-6">
+                {language === 'ar' ? 'المرافق التشغيلية للمعسكر' : 'Camp Operational Facilities'}
+              </h4>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+                {[
+                  {
+                    category: language === 'ar' ? 'مناطق التفتيش والاختبار' : 'Inspection & Testing Areas',
+                    icon: Search,
+                    color: 'from-blue-500 to-cyan-500',
+                    items: language === 'ar'
+                      ? ['منطقة فحص الأشعة السينية', 'حفرة تخزين NDT', 'مناطق دعم معدات التفتيش']
+                      : ['X-Ray Inspection Area', 'NDT Storage Pit', 'Inspection equipment support areas']
+                  },
+                  {
+                    category: language === 'ar' ? 'ورش التصنيع والصناعة' : 'Fabrication & Industrial Workshops',
+                    icon: Wrench,
+                    color: 'from-orange-500 to-red-500',
+                    items: language === 'ar'
+                      ? ['ورشة تصنيع اللحام', 'ورشة تصنيع الطلاء']
+                      : ['Welding Fabrication Workshop', 'Coating Fabrication Workshop']
+                  },
+                  {
+                    category: language === 'ar' ? 'اللوجستيات والتخزين' : 'Logistics & Storage',
+                    icon: Package,
+                    color: 'from-green-500 to-emerald-500',
+                    items: language === 'ar'
+                      ? ['المستودع المركزي', 'منطقة معالجة المواد الخردة', 'مناطق تخزين مفتوحة']
+                      : ['Central Warehouse', 'Scrap Material Handling Area', 'Open operational storage areas']
+                  },
+                  {
+                    category: language === 'ar' ? 'العمليات والدعم الميداني' : 'Operations & Field Support',
+                    icon: Settings,
+                    color: 'from-purple-500 to-indigo-500',
+                    items: language === 'ar'
+                      ? ['الساحة المدنية', 'ساحة المركبات', 'مكتب الموقع']
+                      : ['Civil Yard', 'Motor Pool', 'Site Office']
+                  },
+                  {
+                    category: language === 'ar' ? 'مرافق الموظفين' : 'Personnel Facilities',
+                    icon: Users,
+                    color: 'from-amber-500 to-orange-500',
+                    items: language === 'ar'
+                      ? ['منطقة مرافق إقامة المعسكر', 'مناطق دعم العمليات للموظفين']
+                      : ['Camp Accommodation Facility Area', 'Staff operational support areas']
+                  },
+                  {
+                    category: language === 'ar' ? 'الوصول وحركة الموقع' : 'Access & Site Movement',
+                    icon: MapPin,
+                    color: 'from-cyan-500 to-teal-500',
+                    items: language === 'ar'
+                      ? ['المدخل الرئيسي', 'طرق الوصول التشغيلية الداخلية']
+                      : ['Main Entrance', 'Internal operational access routes']
+                  },
+                ].map((facility, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/50"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r ${facility.color} flex-shrink-0`}>
+                        <facility.icon className="w-4 h-4 text-white" />
+                      </div>
+                      <h5 className="text-sm font-bold text-white">{facility.category}</h5>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {facility.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2">
+                          <CheckCircle className="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-400 text-xs">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+
+              <h4 className="text-xl font-bold text-white mb-4">
+                {language === 'ar' ? 'مخطط المعسكر' : 'Camp Layout'}
+              </h4>
+              <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                {language === 'ar'
+                  ? 'يوضح مخطط المعسكر التوزيع التشغيلي للموقع، بما في ذلك مناطق التفتيش والتصنيع والتخزين واللوجستيات والمكاتب والإقامة التي تدعم أنشطة خدمات مكامن الميدانية.'
+                  : 'The camp layout provides a view of the site\'s operational arrangement, showing the distribution of inspection, fabrication, storage, logistics, office, and accommodation areas that support Makamin\'s field service activities.'}
+              </p>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="rounded-2xl overflow-hidden border border-slate-600 bg-white mb-8"
+              >
+                <img
+                  src={campLayoutPath}
+                  alt="Makamin Oyun Camp operational layout and facilities in Al Oyun, Al Ahsa, Saudi Arabia"
+                  className="w-full h-auto object-contain"
+                  loading="lazy"
+                />
               </motion.div>
-            ))}
+
+              <h4 className="text-xl font-bold text-white mb-4">
+                {language === 'ar' ? 'الموقع' : 'Location'}
+              </h4>
+              <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                {language === 'ar'
+                  ? 'يقع معسكر مكامن عيون في العيون، الأحساء، بالمنطقة الشرقية، المملكة العربية السعودية.'
+                  : 'Makamin Oyun Camp is located in Al-Oyun, Al-Ahsa, in the Eastern Province of Saudi Arabia.'}
+              </p>
+              <a
+                href="https://maps.google.com/?q=25.3630,49.5900"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+              >
+                <MapPin className="w-5 h-5" />
+                {language === 'ar' ? 'عرض على الخريطة' : 'View on Map'}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
