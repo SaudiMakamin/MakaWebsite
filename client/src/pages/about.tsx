@@ -73,8 +73,9 @@ export default function About() {
     {
       icon: Award,
       value: 0,
-      suffix: ' LTA',
-      label: language === 'ar' ? 'سجل السلامة' : 'Safety Record',
+      suffix: '',
+      displayText: language === 'ar' ? 'سجل أمان قوي' : 'Strong Record',
+      label: language === 'ar' ? 'أداء السلامة' : 'Safety Performance',
       color: 'text-yellow-500'
     }
   ];
@@ -190,91 +191,90 @@ export default function About() {
     }
   };
 
-  // Enhanced Timeline Data with Rich Storytelling
   const timelineStory = [
     {
       year: '2008',
-      title: language === 'ar' ? 'البداية الملحمية' : 'Epic Genesis',
-      titleAr: 'البداية الملحمية',
+      title: language === 'ar' ? 'تأسيس الشركة' : 'Company Founding',
+      titleAr: 'تأسيس الشركة',
       description: language === 'ar' ? 
-        'في قلب المنطقة الشرقية، ولدت رؤية جريئة. 59 مساهماً استراتيجياً اجتمعوا لإنشاء قوة جديدة في عالم الطاقة برأس مال 1.2 مليار ريال.' :
-        'In the heart of the Eastern Province, a bold vision was born. 59 strategic shareholders united to create a new energy powerhouse with SAR 1.2 billion capital.',
-      descriptionAr: 'في قلب المنطقة الشرقية، ولدت رؤية جريئة. 59 مساهماً استراتيجياً اجتمعوا لإنشاء قوة جديدة في عالم الطاقة برأس مال 1.2 مليار ريال.',
+        'تأسست شركة مكامن السعودية القابضة لخدمات النفط والغاز في المنطقة الشرقية. 59 مساهماً ساهموا في تأسيس الشركة برأس مال 1.2 مليار ريال سعودي.' :
+        'Saudi Makamin Holding Company for Oil & Gas Services was established in the Eastern Province. 59 shareholders contributed to founding the company with SAR 1.2 billion capital.',
+      descriptionAr: 'تأسست شركة مكامن السعودية القابضة لخدمات النفط والغاز في المنطقة الشرقية. 59 مساهماً ساهموا في تأسيس الشركة برأس مال 1.2 مليار ريال سعودي.',
       type: 'founding' as const,
       icon: Building,
       color: 'from-blue-500 to-cyan-500',
-      impact: language === 'ar' ? 'تأسيس إمبراطورية الطاقة' : 'Energy Empire Founded',
+      impact: language === 'ar' ? 'تأسيس الشركة' : 'Company Established',
       metrics: { value: '1.2B', label: language === 'ar' ? 'ريال سعودي' : 'SAR Capital' }
     },
     {
       year: '2010',
-      title: language === 'ar' ? 'أول انتصار استراتيجي' : 'First Strategic Victory',
-      titleAr: 'أول انتصار استراتيجي',
+      title: language === 'ar' ? 'أولى العقود الرئيسية' : 'First Major Contracts',
+      titleAr: 'أولى العقود الرئيسية',
       description: language === 'ar' ?
-        'عقود أرامكو الأولى تفتح أبواب المستقبل. من أنابيب الحفر إلى الأعماق، نصبح شريكاً موثوقاً للعملاق الطاقي.' :
-        'First Aramco contracts open doors to the future. From drilling pipelines to the depths, we become trusted partner to the energy giant.',
-      descriptionAr: 'عقود أرامكو الأولى تفتح أبواب المستقبل. من أنابيب الحفر إلى الأعماق، نصبح شريكاً موثوقاً للعملاق الطاقي.',
+        'حصلت الشركة على أولى عقودها مع أرامكو السعودية في مجالات خدمات الأنابيب والحفر، مما رسّخ مكانتها كمزود خدمات موثوق في القطاع.' :
+        'The company secured its first contracts with Saudi Aramco in pipeline and drilling services, establishing its position as a reliable service provider in the sector.',
+      descriptionAr: 'حصلت الشركة على أولى عقودها مع أرامكو السعودية في مجالات خدمات الأنابيب والحفر، مما رسّخ مكانتها كمزود خدمات موثوق في القطاع.',
       type: 'milestone' as const,
       icon: Award,
       color: 'from-green-500 to-emerald-500',
-      impact: language === 'ar' ? 'شراكة أرامكو المحورية' : 'Pivotal Aramco Partnership',
+      impact: language === 'ar' ? 'عقود أرامكو الأولى' : 'First Aramco Contracts',
       metrics: { value: '12+', label: language === 'ar' ? 'عقد رئيسي' : 'Major Contracts' }
     },
     {
       year: '2012',
-      title: language === 'ar' ? 'غزو أعماق المحيط' : 'Ocean Depths Conquest',
-      titleAr: 'غزو أعماق المحيط',
+      title: language === 'ar' ? 'إطلاق العمليات البحرية' : 'Offshore Operations Launch',
+      titleAr: 'إطلاق العمليات البحرية',
       description: language === 'ar' ?
-        'مكامن أوف شور تولد من أعماق الخليج. أسطول من 12 سفينة يحمل طموحاتنا البحرية إلى آفاق جديدة بقيمة 400 مليون دولار.' :
-        'Makamin Offshore emerges from Gulf depths. Fleet of 12 vessels carries our marine ambitions to new horizons worth $400M.',
-      descriptionAr: 'مكامن أوف شور تولد من أعماق الخليج. أسطول من 12 سفينة يحمل طموحاتنا البحرية إلى آفاق جديدة بقيمة 400 مليون دولار.',
+        'تأسست مكامن أوف شور لتقديم خدمات بحرية متخصصة في الخليج العربي، بأسطول من 12 سفينة وعمليات بقيمة 400 مليون دولار.' :
+        'Makamin Offshore was established to provide specialized marine services in the Arabian Gulf, with a fleet of 12 vessels and operations valued at $400M.',
+      descriptionAr: 'تأسست مكامن أوف شور لتقديم خدمات بحرية متخصصة في الخليج العربي، بأسطول من 12 سفينة وعمليات بقيمة 400 مليون دولار.',
       type: 'expansion' as const,
       icon: Ship,
       color: 'from-blue-600 to-indigo-600',
-      impact: language === 'ar' ? 'هيمنة بحرية كاملة' : 'Complete Marine Dominance',
+      impact: language === 'ar' ? 'توسع بحري' : 'Offshore Expansion',
       metrics: { value: '$400M', label: language === 'ar' ? 'قيمة العمليات' : 'Operations Value' }
     },
     {
       year: '2015',
-      title: language === 'ar' ? 'التوسع الإقليمي العظيم' : 'Great Regional Expansion',
-      titleAr: 'التوسع الإقليمي العظيم',
+      title: language === 'ar' ? 'التوسع الإقليمي' : 'Regional Expansion',
+      titleAr: 'التوسع الإقليمي',
       description: language === 'ar' ?
-        'البحرين تستقبل رؤيتنا. استثمارات إقليمية بقيمة 50 مليون دينار بحريني تؤسس لإمبراطورية خليجية.' :
-        'Bahrain embraces our vision. Regional investments worth BHD 50M establish a Gulf empire.',
-      descriptionAr: 'البحرين تستقبل رؤيتنا. استثمارات إقليمية بقيمة 50 مليون دينار بحريني تؤسس لإمبراطورية خليجية.',
+        'توسعت الشركة إلى البحرين باستثمارات إقليمية بقيمة 50 مليون دينار بحريني لتعزيز حضورها في منطقة الخليج.' :
+        'The company expanded into Bahrain with regional investments worth BHD 50M to strengthen its presence in the Gulf region.',
+      descriptionAr: 'توسعت الشركة إلى البحرين باستثمارات إقليمية بقيمة 50 مليون دينار بحريني لتعزيز حضورها في منطقة الخليج.',
       type: 'expansion' as const,
       icon: Globe,
       color: 'from-purple-500 to-pink-500',
-      impact: language === 'ar' ? 'إمبراطورية خليجية' : 'Gulf Empire',
+      impact: language === 'ar' ? 'عمليات إقليمية' : 'Regional Operations',
       metrics: { value: '50M', label: language === 'ar' ? 'دينار بحريني' : 'BHD Investment' }
     },
     {
       year: '2017',
-      title: language === 'ar' ? 'صفر حوادث - التميز المطلق' : 'Zero Incidents - Absolute Excellence',
-      titleAr: 'صفر حوادث - التميز المطلق',
+      title: language === 'ar' ? 'التميز في السلامة' : 'Safety Excellence',
+      titleAr: 'التميز في السلامة',
       description: language === 'ar' ?
-        'إنجاز أسطوري: 5840 يوماً بدون حوادث. مرتبة المقاول من الدرجة الأولى مع أرامكو تتوج مسيرة التميز.' :
-        'Legendary achievement: 5,840 days without incidents. Tier-1 contractor status with Aramco crowns excellence journey.',
-      descriptionAr: 'إنجاز أسطوري: 5840 يوماً بدون حوادث. مرتبة المقاول من الدرجة الأولى مع أرامكو تتوج مسيرة التميز.',
+        'حققت الشركة سجل أمان متميز مع تصنيف مقاول من الدرجة الأولى لدى أرامكو السعودية، مما يعكس التزامها بأعلى معايير السلامة.' :
+        'The company achieved a strong safety record with Tier-1 contractor status at Saudi Aramco, reflecting its commitment to the highest safety standards.',
+      descriptionAr: 'حققت الشركة سجل أمان متميز مع تصنيف مقاول من الدرجة الأولى لدى أرامكو السعودية، مما يعكس التزامها بأعلى معايير السلامة.',
       type: 'achievement' as const,
       icon: Shield,
       color: 'from-yellow-500 to-orange-500',
-      impact: language === 'ar' ? 'معيار أمان عالمي' : 'Global Safety Standard',
-      metrics: { value: '5840', label: language === 'ar' ? 'يوم بدون حوادث' : 'Days Without LTA' }
+      impact: language === 'ar' ? 'سجل أمان متميز' : 'Strong Safety Record',
+      metrics: { value: 'Tier-1', label: language === 'ar' ? 'تصنيف أرامكو' : 'Aramco Rating' }
     },
     {
       year: '2024',
-      title: language === 'ar' ? 'رؤية 2030 - المستقبل الآن' : 'Vision 2030 - Future Now',
-      titleAr: 'رؤية 2030 - المستقبل الآن',
+      title: language === 'ar' ? 'التوافق مع رؤية 2030' : 'Vision 2030 Alignment',
+      titleAr: 'التوافق مع رؤية 2030',
       description: language === 'ar' ?
-        'الذكاء الاصطناعي والتكنولوجيا المتقدمة تعيد تعريف مستقبل الطاقة. نحن لسنا مجرد شركة خدمات، بل مهندسو الغد.' :
-        'AI and advanced technology redefine energy future. We are not just a services company, but engineers of tomorrow.',
-      descriptionAr: 'الذكاء الاصطناعي والتكنولوجيا المتقدمة تعيد تعريف مستقبل الطاقة. نحن لسنا مجرد شركة خدمات، بل مهندسو الغد.',
+        'مواصلة تطوير القدرات التقنية والاستثمار في الكوادر الوطنية تماشياً مع رؤية المملكة 2030 للتحول في قطاع الطاقة.' :
+        'Continuing to develop technical capabilities and invest in national talent in alignment with the Kingdom\'s Vision 2030 for energy sector transformation.',
+      descriptionAr: 'مواصلة تطوير القدرات التقنية والاستثمار في الكوادر الوطنية تماشياً مع رؤية المملكة 2030 للتحول في قطاع الطاقة.',
       type: 'achievement' as const,
       icon: Zap,
       color: 'from-cyan-500 to-teal-500',
-      impact: language === 'ar' ? 'قادة التحول الرقمي' : 'Digital Transformation Leaders',
-      metrics: { value: '2030', label: language === 'ar' ? 'رؤية المستقبل' : 'Vision Future' }
+      impact: language === 'ar' ? 'التحول الرقمي' : 'Digital Transformation',
+      metrics: { value: '2030', label: language === 'ar' ? 'رؤية المملكة' : 'Saudi Vision' }
     }
   ];
 
@@ -282,30 +282,30 @@ export default function About() {
   const coreValues = [
     {
       icon: Shield,
-      title: language === 'ar' ? 'السلامة المطلقة' : 'Absolute Safety',
-      description: language === 'ar' ? 'صفر حوادث منذ 2015' : 'Zero incidents since 2015',
-      metric: { value: 5840, suffix: language === 'ar' ? ' يوم' : ' Days' },
+      title: language === 'ar' ? 'السلامة' : 'Safety',
+      description: language === 'ar' ? 'سجل أمان متميز' : 'Strong safety record',
+      metric: { value: 0, suffix: '' },
       color: 'text-green-500'
     },
     {
       icon: Award,
       title: language === 'ar' ? 'التميز التقني' : 'Technical Excellence', 
       description: language === 'ar' ? 'معايير أرامكو من الدرجة الأولى' : 'Aramco Tier-1 standards',
-      metric: { value: 100, suffix: '%' },
+      metric: { value: 0, suffix: '' },
       color: 'text-blue-500'
     },
     {
       icon: Users,
       title: language === 'ar' ? 'السعودة' : 'Saudization',
       description: language === 'ar' ? 'التوطين والتدريب المحلي' : 'Local talent development',
-      metric: { value: 85, suffix: '%' },
+      metric: { value: 0, suffix: '' },
       color: 'text-purple-500'
     },
     {
       icon: Zap,
       title: language === 'ar' ? 'الابتكار' : 'Innovation',
       description: language === 'ar' ? 'تقنيات المستقبل' : 'Future technologies',
-      metric: { value: 24, suffix: language === 'ar' ? ' براءة' : ' Patents' },
+      metric: { value: 0, suffix: '' },
       color: 'text-yellow-500'
     }
   ];
@@ -532,8 +532,6 @@ export default function About() {
                   language === 'ar' ? 'خدمات علوم الأرض' : 'Geoscience Services',
                   language === 'ar' ? 'خدمات التفتيش الصناعي' : 'Industrial Inspection Services',
                   language === 'ar' ? 'العمليات البحرية' : 'Offshore Operations',
-                  language === 'ar' ? 'خدمات سلسلة الإمداد' : 'Supply Chain Services',
-                  language === 'ar' ? 'خدمات التوظيف التقني' : 'Technical Staffing Services',
                 ].map((sector, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -543,7 +541,7 @@ export default function About() {
               </div>
               <div className="mt-6 pt-6 border-t border-slate-700/50">
                 <h4 className="text-sm font-semibold text-slate-400 mb-2">
-                  {language === 'ar' ? 'العملاء الرئيسيون' : 'Key Clients'}
+                  {language === 'ar' ? 'السجل الصناعي' : 'Industry Track Record'}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {['Saudi Aramco', 'Al-Khafji Joint Operations', 'SABIC', 'National Water Company'].map((c, i) => (
@@ -571,12 +569,12 @@ export default function About() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
-              {language === 'ar' ? 'ملحمة التميز' : 'Epic of Excellence'}
+              {language === 'ar' ? 'المحطات الرئيسية' : 'Company Milestones'}
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               {language === 'ar' ? 
-                'رحلة استثنائية عبر الزمن تحكي قصة تحول رؤية جريئة إلى قوة طاقة راسخة تشكل مستقبل الصناعة' :
-                'An extraordinary journey through time telling the story of transforming a bold vision into an established energy powerhouse shaping the industry future'
+                'محطات رئيسية في مسيرة شركة مكامن السعودية القابضة من التأسيس إلى اليوم' :
+                'Key milestones in the journey of Saudi Makamin Holding Company from founding to present'
               }
             </p>
           </motion.div>
@@ -732,8 +730,8 @@ export default function About() {
             </h2>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto">
               {language === 'ar' ? 
-                'قيادة وطنية بخبرات دولية، مدعومة بحكم قضائي ومُنتخبة من كبار المساهمين، تقود الشركة من لحظة التصفية المحتملة إلى نهضة استراتيجية متوافقة مع نظام الشركات الجديد' :
-                'National leadership with international expertise, backed by judicial decree and elected by major shareholders, leading the company from potential liquidation to strategic renaissance aligned with the new corporate law'
+                'قيادة وطنية بخبرات دولية، مُنتخبة من المساهمين وفقاً للأنظمة المعتمدة، تعمل على تحقيق الأهداف الاستراتيجية للشركة بما يتوافق مع نظام الشركات' :
+                'National leadership with international expertise, elected by shareholders in accordance with approved regulations, working to achieve the company\'s strategic objectives in compliance with corporate law'
               }
             </p>
           </motion.div>
@@ -915,8 +913,8 @@ export default function About() {
           >
             <p className="text-slate-500 text-sm leading-relaxed">
               {language === 'ar' ? 
-                'انتخاب نظامي قضائي معتمد • مزيج متوازن من الخبرات الهندسية والقانونية والمالية • تمثيل استراتيجي للمساهمين الكويتيين والسعوديين • خطة موثقة ومعتمدة لمرحلة ما بعد إعادة التفعيل' :
-                'Certified Legal-Judicial Election • Balanced Mix of Engineering, Legal, and Financial Expertise • Strategic Representation of Kuwaiti and Saudi Shareholders • Documented and Approved Plan for Post-Reactivation Phase'
+                'انتخاب نظامي معتمد • خبرات هندسية وقانونية ومالية • تمثيل للمساهمين الكويتيين والسعوديين' :
+                'Approved Regulatory Election • Engineering, Legal, and Financial Expertise • Representation of Kuwaiti and Saudi Shareholders'
               }
             </p>
           </motion.div>
@@ -933,7 +931,7 @@ export default function About() {
                 <Compass className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">
-                {language === 'ar' ? 'من التجميد إلى الريادة – قيادة تعيد الحياة لمكامن' : 'From Freeze to Leadership – Management that Revives Makamin'}
+                {language === 'ar' ? 'قيادة ملتزمة بإعادة بناء مكامن وتحقيق أهدافها الاستراتيجية' : 'Leadership Committed to Rebuilding Makamin and Achieving Its Strategic Goals'}
               </h3>
             </div>
           </motion.div>
@@ -1000,7 +998,7 @@ export default function About() {
                     {language === 'ar' ? 'اللجنة التنفيذية' : 'Executive Committee'}
                   </h3>
                   <p className="text-blue-400 font-semibold">
-                    {language === 'ar' ? 'رئيس: د. م. حمد القحطاني' : 'Chairman: Dr. Eng. Hamad Al-Qahtani'}
+                    {language === 'ar' ? 'رئيس: م. حمد القحطاني' : 'Chairman: Eng. Hamad Al-Qahtani'}
                   </p>
                 </div>
               </div>
@@ -1024,7 +1022,7 @@ export default function About() {
                         {language === 'ar' ? 'م. حمد القحطاني' : 'Eng. Hamad Al-Qahtani'}
                       </h4>
                       <p className="text-blue-400 text-sm font-semibold">
-                        {language === 'ar' ? 'الرئيس التنفيذي' : 'Chief Executive Officer'}
+                        {language === 'ar' ? 'رئيس اللجنة التنفيذية' : 'Executive Committee Chairman'}
                       </p>
                     </div>
                   </div>
@@ -1200,14 +1198,14 @@ export default function About() {
                 </p>
                 
                 <p className="text-slate-300 leading-relaxed text-sm mb-6">
-                  This powerhouse committee operates with unparalleled legal and regulatory strength, comprising:
+                  This committee comprises a comprehensive legal and regulatory team:
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">6 elite Saudi legal counsels</strong></span>
+                      <span className="text-slate-300 text-sm"><strong className="text-white">6 Saudi legal counsels</strong></span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
@@ -1240,7 +1238,7 @@ export default function About() {
                           alt="KPMG Logo"
                           className="h-5 object-contain"
                         />
-                        <span className="text-slate-300 text-sm">as strategic audit and compliance partner</span>
+                        <span className="text-slate-300 text-sm">external audit and compliance support</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -1256,7 +1254,7 @@ export default function About() {
 
                 <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
                   <p className="text-purple-200 text-sm font-semibold text-center">
-                    This committee functions as <strong className="text-white">Makamin's supreme shield</strong>, safeguarding the company's legal, regulatory, and contractual integrity across Saudi Arabia and the GCC.
+                    This committee is responsible for safeguarding Makamin's legal, regulatory, and contractual compliance across Saudi Arabia and the GCC.
                   </p>
                 </div>
               </div>

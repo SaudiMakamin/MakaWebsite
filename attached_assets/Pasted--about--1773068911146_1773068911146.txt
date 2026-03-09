@@ -1,0 +1,273 @@
+نفّذ مراجعة تصحيحية صارمة على صفحة /about فقط، بدون توسيع النطاق، وبدون أي ضرر للموقع أو التنقل أو التصميم العام.
+
+مبدأ التنفيذ:
+- minimal safe edits only
+- no redesign
+- no route changes
+- no architecture changes
+- no new libraries
+- no speculative content
+- no unsupported claims
+- preserve existing UI/UX unless explicitly required below
+
+نطاق العمل:
+- صفحة /about فقط
+- وما يلزمها من ربط داخل header إذا كان متعلقًا بروابط أقسام About فقط
+- لا تعدّل أي صفحة أخرى إلا إذا كان هناك نص مشترك ظاهر في About نفسها ويستلزم توحيدًا آمنًا
+
+الهدف:
+تصحيح أخطاء المصداقية والمحتوى في About بدقة عالية، مع الحفاظ الكامل على استقرار الموقع.
+
+========================
+1) تصحيحات إلزامية عاجلة
+========================
+
+1. رأس المال أعلى الصفحة
+إذا كان ظاهرًا في الإحصائيات أو hero أو أي stat card بصيغة:
+- SAR 0B
+فصححه إلى:
+- SAR 1.2B
+أو
+- SAR 1.2 Billion
+بحسب النمط الحالي للتصميم، مع الحفاظ على التنسيق البصري القائم.
+
+2. عدد المساهمين
+إذا كان هناك أي ظهور لـ:
+- 19 Shareholders
+فصححه إلى:
+- 59 Shareholders
+
+يجب إزالة أي تضارب بين الأعلى وCompany Information.
+الرقم المعتمد داخل About يجب أن يكون موحدًا:
+- 59 Shareholders
+
+3. السلامة / LTA
+إذا كانت الصفحة تجمع بين:
+- 0 LTA Safety Record
+و
+- 5840 Days Without LTA
+فهذا تضارب غير مقبول.
+
+نفّذ التالي:
+- لا تجمع بين الصيغتين في نفس الصفحة
+- إذا لم يوجد توثيق داخلي واضح ومحدّث للأرقام، استبدل الصياغة الرقمية الحساسة بصياغة آمنة مثل:
+  Strong Safety Performance Record
+
+طبّق هذا بحذر على جميع المواضع ذات الصلة داخل About فقط.
+
+========================
+2) تخفيف اللغة التسويقية المبالغ فيها
+========================
+
+راجع النصوص الدعائية المبالغ فيها داخل About، خاصة أي عبارات من نوع:
+- Energy Empire
+- Ocean Depths Conquest
+- Legendary achievement
+- Great Regional Expansion
+
+استبدلها بصياغات مؤسسية ومهنية ومحايدة، مثل:
+- Operational expansion
+- Regional operations
+- Strategic development
+- Offshore operations
+- Service expansion
+بحسب السياق
+
+مهم:
+- لا تعِد كتابة الصفحة بالكامل
+- عدّل فقط العبارات المبالغ فيها أو التي تضر بالمصداقية
+- حافظ على الأسلوب العام لكن اجعله أكثر احترافية وأقل مبالغة
+
+========================
+3) ادعاءات حساسة يجب تخفيفها
+========================
+
+1. Saudi Aramco claim
+إذا كان النص يقول شيئًا قريبًا من:
+- trusted partner to the energy giant
+فلا تستخدم صياغة توحي بشراكة رسمية غير موثقة.
+
+استبدلها بصياغة أكثر أمانًا مثل:
+- supporting projects with Saudi Aramco
+أو صياغة مهنية مشابهة لا تحمل ادعاء شراكة استراتيجية رسمية.
+
+2. KPMG claim
+إذا كان النص يقول:
+- KPMG as strategic audit and compliance partner
+فهذه صياغة قانونية حساسة.
+
+إذا لم يكن هناك توثيق صريح داخل المحتوى المعتمد، استبدلها بصياغة عامة آمنة مثل:
+- external audit and compliance advisors
+أو
+- external audit and compliance support
+بدون ذكر علاقة رسمية مبالغ فيها.
+
+3. Key Clients section
+إذا كان العنوان أو العرض يوحي بعلاقات مباشرة غير مؤكدة مثل:
+- Key Clients
+Saudi Aramco / SABIC / National Water Company
+
+فاستخدم عنوانًا أكثر تحفظًا مثل:
+- Major Industry Clients and Projects
+أو
+- Selected Industry Projects
+أو
+- Industry Track Record
+بحسب ما يناسب النص الحالي، بشرط ألا يبدو كادعاء تعاقد مباشر إذا لم يكن ذلك موثقًا.
+
+========================
+4) تصحيح الأخطاء الهيكلية
+========================
+
+1. تكرار اسم CEO
+إذا كان اسم:
+- Mr. Adel Ayed ALNOOB
+مكررًا مرتين متتاليتين أو بشكل غير مبرر داخل قسم القيادة، أزل التكرار.
+
+2. تضارب القيادة
+إذا كانت الصفحة تعرض أكثر من شخص بصيغة CEO أو تعرض:
+- CEO
+ثم
+- Eng. Hamad Al-Qahtani, Chief Executive Officer
+بحيث يبدو أن هناك أكثر من CEO، صحّح العرض ليكون واضحًا:
+- CEO واحد فقط
+- والبقية توضع تحت Board / Committees / Leadership roles بحسب السياق
+
+لا تخترع مناصب جديدة.
+فقط أزل الالتباس والتكرار.
+
+3. Governance / Board / Committees
+حافظ على الفصل الواضح بين:
+- Executive Management
+- Board
+- Committees
+- Governance / Legal support
+
+إذا كان هناك تكرار أو خلط، نظّمه بأقل تعديل ممكن بدون إعادة بناء الصفحة من الصفر.
+
+========================
+5) Business Divisions
+========================
+
+راجع العناصر المضافة مثل:
+- Offshore Operations
+- Supply Chain Services
+- Technical Staffing Services
+
+إذا كانت هذه العناصر غير مدعومة بوضوح داخل المحتوى المعتمد أو لا تتسق مع البروفايل الأساسي المستخدم في الصفحة:
+- احذفها أو أخفها من About فقط
+
+إذا كانت موجودة أصلًا ومدعومة بوضوح داخل نفس المحتوى:
+- أبقها
+
+مهم:
+- لا تعتمد على التخمين
+- إذا لم تكن متأكدًا، اختر الخيار الأكثر تحفظًا
+- لا تضف أي division جديد
+
+========================
+6) Organizational Chart
+========================
+
+القسم لا يُزال، لكن حسّن عرضه الهيكلي ليكون أوضح.
+
+نظّم المحتوى تحت 3 عناوين فرعية إن كان ذلك ممكنًا بنفس النمط الحالي وبدون redesign:
+- Corporate Management
+- Operational Departments
+- Technical Divisions
+
+ثم وزّع العناصر الحالية تحتها بدل عرضها كقائمة طويلة غير مصنفة.
+
+لا تغيّر المضمون الأساسي إلا بقدر التنظيم البصري/النصي الآمن.
+
+========================
+7) Workshop / Camp Locations
+========================
+
+هذا القسم جيد حاليًا.
+لا تعِد كتابته من الصفر.
+
+مسموح فقط:
+- تحسينات طفيفة في الصياغة إن لزم
+- الحفاظ على النص الواقعي والمخطط
+- الحفاظ على الصورة/المخطط والنص المساند
+- لا تحذف العناصر التشغيلية الواضحة الموجودة فيه
+When resolving factual conflicts, prioritize the values already used inside the Company Information section of the About page.
+
+Ensure the hero statistics (Capital, Shareholders, Established, Safety) remain visually consistent with the existing stat-card layout.
+Avoid rewriting large narrative sections such as the timeline unless a specific phrase is flagged for correction.
+========================
+8) توحيد المقر / الفروع
+========================
+
+إذا وُجد تضارب بين:
+- Headquarters: Riyadh
+و
+- Eastern Province
+أو ما يوحي أن المقر في مكان آخر
+
+فوحّد الصياغة داخل About/footer المرتبط بها بشكل واضح ومحايد مثل:
+- Headquarters: Riyadh
+- Operational Base: Eastern Province
+
+واستخدم صياغة الفروع الحالية إذا كانت موجودة وثابتة:
+- Branches: Dammam – Bahrain – UAE
+لكن بدون خلق أي تناقض مع النصوص أعلى الصفحة.
+
+مهم:
+- لا تغيّر بيانات تواصل مؤكدة إلا إذا كانت About نفسها تعرض تناقضًا مباشرًا
+- أصلح التناقض، لا تعِد اختراع معلومات
+
+========================
+9) روابط الأقسام والتنقل
+========================
+
+بعد هذه التصحيحات، أعد التحقق من أن أقسام About ما زالت تعمل كما هي:
+- /about#overview
+- /about#company
+- /about#vision
+- /about#goals
+- /about#management
+- /about#orgchart
+- /about#locations
+
+وتأكد من:
+- كل رابط يذهب إلى القسم الصحيح
+- لا يوجد section id مكسور
+- الـ sticky header لا يغطي العنوان
+- لا يوجد كسر في desktop أو mobile dropdown
+- Overview ما زال يظهر كأول عنصر داخل القائمة المنسدلة
+
+========================
+10) ممنوعات
+========================
+
+ممنوع:
+- إضافة مكتبات جديدة
+- تغيير App.tsx أو الراوتنج إلا إذا ظهر سبب تقني قهري متعلق فقط بـ /about anchors
+- إعادة تصميم الصفحة
+- نقل ملفات بدون حاجة
+- إدخال claims جديدة غير موثقة
+- تغيير dropdown order أو شكله
+- تعديل صفحات أخرى خارج النطاق
+Do not remove entire sections unless they are clearly duplicated or factually incorrect. Prefer correction over deletion.
+
+========================
+11) تقرير الإغلاق
+========================
+
+بعد التنفيذ، أعطني تقريرًا مختصرًا ودقيقًا جدًا بهذه الصيغة فقط:
+
+A. Files modified
+B. Exact factual corrections made
+C. Claims softened or de-risked
+D. Structural cleanup performed
+E. What remained unchanged
+F. Any risk or uncertainty
+G. Confirmation architecture preserved
+
+مهم جدًا:
+إذا كان أي بند لم يتم التأكد منه إلا من خلال قراءة الكود فقط، اكتب بوضوح:
+Verified via code inspection only
+
+ولا تذكر أن كل شيء تم اختباره بصريًا أو فعليًا إلا إذا تم ذلك فعلًا.
