@@ -126,7 +126,7 @@ export default function Header() {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-auto p-0 font-medium makamin-gray hover:makamin-blue">
+            <Button variant="ghost" className="h-auto p-0 font-medium text-base makamin-gray hover:makamin-blue">
               {label}
               <ChevronDown className="ml-1 h-4 w-4" />
             </Button>
@@ -201,7 +201,7 @@ export default function Header() {
           isActiveLink(path)
             ? 'makamin-blue border-b-2 border-makamin-blue'
             : 'makamin-gray hover:makamin-blue'
-        } ${mobile ? 'block py-2' : ''} transition-colors font-medium`}
+        } ${mobile ? 'block py-2' : 'inline-flex items-center'} transition-colors font-medium`}
         onClick={() => mobile && setMobileMenuOpen(false)}
       >
         {label}
