@@ -1,0 +1,279 @@
+MAKAMIN PROJECT — SAFE NAVIGATION RESTRUCTURE (STRICT MODE)
+
+CRITICAL EXECUTION RULES
+This task is limited to SAFE NAVIGATION RESTRUCTURE ONLY.
+
+You are NOT allowed to change the application architecture.
+
+DO NOT:
+
+* change any route path
+* change any slug
+* rename any file
+* move any file
+* delete any page
+* change backend endpoints
+* modify App.tsx routing logic
+* modify server/routes.ts
+* create redirects
+* create new pages
+* introduce new route paths
+* move navigation config to a new file
+* refactor the navigation system
+* modify vite.config.ts
+* modify server/vite.ts
+* modify package.json
+* modify drizzle.config.ts
+
+Only modify what is explicitly requested.
+
+---
+
+FILES ALLOWED TO CHANGE
+
+You may modify ONLY these files:
+
+1. client/src/components/header.tsx
+2. client/src/components/footer.tsx
+3. client/src/lib/i18n.ts
+
+No other file should be modified unless absolutely necessary to fix a text label import.
+
+---
+
+OBJECTIVE
+
+Reorganize the top navigation structure of the Makamin website to match the official Makamin corporate profile.
+
+This phase is Information Architecture Only.
+
+Important constraints:
+
+* All existing URLs must remain unchanged
+* All existing routes must remain unchanged
+* All existing pages must remain accessible
+* No page content should be moved
+
+This phase only restructures the menu labels and dropdown grouping.
+
+---
+
+CURRENT SYSTEM
+
+Navigation is centralized in:
+
+client/src/components/header.tsx
+
+Both:
+
+* Desktop navigation
+* Mobile navigation
+
+read from the same navigation arrays.
+
+Do not break this structure.
+
+If the current header.tsx already supports reusable dropdown rendering, use the existing pattern only.
+Only extend the dropdown data structure minimally if required.
+Do NOT rewrite the dropdown rendering logic unless the current structure makes the requested menu impossible.
+If any such rewrite seems necessary, stop and report before proceeding.
+
+Do NOT refactor navigation into a new system.
+
+---
+
+TARGET TOP NAV STRUCTURE
+
+Home
+About
+Services
+Projects
+Certifications & Documents
+HSE
+News
+Media Coverage
+Shareholder Information
+Contact
+العربية
+
+---
+
+ABOUT DROPDOWN
+
+Overview → /about
+Company Information → /about
+Vision, Mission & Objectives → /about
+Goals & Values → /about
+Management → /about
+Organizational Chart → /about
+Workshop / Camp Locations → /about
+
+All items must temporarily point to /about.
+
+Do NOT create new pages.
+
+---
+
+SERVICES DROPDOWN
+
+Services Overview → /services
+Pipeline & Industrial Services → /petroleum-services
+Drilling Services → /petroleum-services
+Geoscience Services → /petroleum-services
+Industrial Inspection Services → /petroleum-services
+ZENCUS Services → /petroleum-services
+Supply Chain Services → /petroleum-services
+Technical Staffing Services → /petroleum-services
+
+Do NOT create new routes.
+
+These are organizational items only.
+
+---
+
+PROJECTS DROPDOWN
+
+Major Projects → /projects
+Project Management → /projects
+
+---
+
+CERTIFICATIONS & DOCUMENTS DROPDOWN
+
+ISO Certifications → /certifications
+Legal Documents → /certifications
+Commercial Registration Certificates → /certifications
+Saudization Certificates → /certifications
+Letters of Appreciation & Completions → /certifications
+
+---
+
+HSE DROPDOWN
+
+HSE Overview → /petroleum-services
+HSE Policy Statement → /petroleum-services
+
+---
+
+SHAREHOLDER INFORMATION DROPDOWN
+
+Shareholder Information → /update-shareholder
+Investor Relations → /investor-relations
+Corporate Governance → /news
+
+IMPORTANT ACTIONS
+
+Move:
+Investor Relations
+
+from Services dropdown → to Shareholder Information dropdown.
+
+Remove from Services dropdown:
+
+* Bahrain Operations
+* Offshore Operations
+
+Do NOT delete their pages.
+
+Keep these pages accessible by direct URL:
+
+/offshore-operations
+/bahrain-operations
+/petroleum-services
+/investor-relations
+/media-coverage
+/update-shareholder
+
+---
+
+FOOTER UPDATE
+
+Update client/src/components/footer.tsx conservatively only.
+
+Keep the existing footer structure intact.
+
+Only adjust link labels, order, and grouping where needed so the footer terminology is consistent with the new top navigation terminology.
+
+Do NOT redesign the footer.
+Do NOT add new footer sections unless an equivalent section already exists.
+Do NOT add new URLs.
+Do NOT remove any existing footer link unless it is an obvious duplicate caused by renaming or regrouping.
+
+---
+
+TRANSLATION UPDATE
+
+Update client/src/lib/i18n.ts.
+
+Add or update translation keys for:
+
+Certifications & Documents
+Company Information
+Vision, Mission & Objectives
+Goals & Values
+Organizational Chart
+Workshop / Camp Locations
+Services Overview
+Pipeline & Industrial Services
+Drilling Services
+Geoscience Services
+Industrial Inspection Services
+ZENCUS Services
+Supply Chain Services
+Technical Staffing Services
+Major Projects
+Project Management
+ISO Certifications
+Legal Documents
+Commercial Registration Certificates
+Saudization Certificates
+Letters of Appreciation & Completions
+HSE Overview
+HSE Policy Statement
+Corporate Governance
+
+Do NOT remove existing keys used elsewhere.
+
+---
+
+VALIDATION BEFORE SAVING
+
+Before finalizing changes verify:
+
+* No TypeScript errors
+* No import errors
+* No duplicate key errors
+* No broken JSX
+* Desktop navigation works
+* Mobile navigation works
+* Dropdown menus open correctly
+* Language toggle still works
+* No route is broken
+* All original URLs remain valid
+
+---
+
+FINAL REPORT FORMAT
+
+After implementation provide a short report:
+
+A. Files changed
+B. Exact final menu structure
+C. Items removed from Services dropdown
+D. Confirmation that no URLs changed
+E. Confirmation that no routes were removed
+F. List of items temporarily pointing to shared pages
+
+---
+
+FINAL RULE
+
+This phase modifies navigation structure only.
+
+Do NOT:
+
+* create new pages
+* create redirects
+* change routes
+* modify backend
+* change application architecture

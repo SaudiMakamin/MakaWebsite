@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, X, ChevronDown, Drill, Ship, TrendingUp } from 'lucide-react';
+import { Globe, Menu, X, ChevronDown, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -12,27 +12,95 @@ export default function Header() {
   const { language, toggleLanguage, t } = useLanguageContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const subsidiaryItems = [
-    { path: '/petroleum-services', label: 'Petroleum Services', labelAr: 'الخدمات البترولية', icon: Drill },
-    { path: '/offshore-operations', label: 'Offshore Operations', labelAr: 'العمليات البحرية', icon: Ship },
-    { path: '/bahrain-operations', label: 'Bahrain Operations', labelAr: 'عمليات البحرين', icon: Globe },
+  const aboutDropdown = [
+    { path: '/about', label: 'Company Information', labelAr: 'معلومات الشركة', icon: Building2 },
+    { path: '/about', label: 'Vision, Mission & Objectives', labelAr: 'الرؤية والرسالة والأهداف', icon: Eye },
+    { path: '/about', label: 'Goals & Values', labelAr: 'الأهداف والقيم', icon: Target },
+    { path: '/about', label: 'Management', labelAr: 'الإدارة', icon: Users },
+    { path: '/about', label: 'Organizational Chart', labelAr: 'الهيكل التنظيمي', icon: LayoutGrid },
+    { path: '/about', label: 'Workshop / Camp Locations', labelAr: 'مواقع الورش والمعسكرات', icon: MapPin },
+  ];
+
+  const servicesDropdown = [
+    { path: '/petroleum-services', label: 'Pipeline & Industrial Services', labelAr: 'خدمات الأنابيب والصناعة', icon: Wrench },
+    { path: '/petroleum-services', label: 'Drilling Services', labelAr: 'خدمات الحفر', icon: Drill },
+    { path: '/petroleum-services', label: 'Geoscience Services', labelAr: 'خدمات علوم الأرض', icon: FlaskConical },
+    { path: '/petroleum-services', label: 'Industrial Inspection Services', labelAr: 'خدمات التفتيش الصناعي', icon: Search },
+    { path: '/petroleum-services', label: 'ZENCUS Services', labelAr: 'خدمات زينكوس', icon: Cpu },
+    { path: '/petroleum-services', label: 'Supply Chain Services', labelAr: 'خدمات سلسلة الإمداد', icon: Package },
+    { path: '/petroleum-services', label: 'Technical Staffing Services', labelAr: 'خدمات التوظيف التقني', icon: UserCheck },
+  ];
+
+  const projectsDropdown = [
+    { path: '/projects', label: 'Major Projects', labelAr: 'المشاريع الكبرى', icon: FolderKanban },
+    { path: '/projects', label: 'Project Management', labelAr: 'إدارة المشاريع', icon: ClipboardList },
+  ];
+
+  const certificationsDropdown = [
+    { path: '/certifications', label: 'ISO Certifications', labelAr: 'شهادات الأيزو', icon: Award },
+    { path: '/certifications', label: 'Legal Documents', labelAr: 'الوثائق القانونية', icon: FileText },
+    { path: '/certifications', label: 'Commercial Registration Certificates', labelAr: 'شهادات السجل التجاري', icon: BadgeCheck },
+    { path: '/certifications', label: 'Saudization Certificates', labelAr: 'شهادات السعودة', icon: Medal },
+    { path: '/certifications', label: 'Letters of Appreciation & Completions', labelAr: 'خطابات التقدير والإنجاز', icon: Heart },
+  ];
+
+  const hseDropdown = [
+    { path: '/petroleum-services', label: 'HSE Overview', labelAr: 'نظرة عامة على السلامة', icon: Shield },
+    { path: '/petroleum-services', label: 'HSE Policy Statement', labelAr: 'بيان سياسة السلامة', icon: FileCheck },
+  ];
+
+  const shareholderDropdown = [
+    { path: '/update-shareholder', label: 'Shareholder Information', labelAr: 'تحديث بيانات المساهم', icon: Users },
     { path: '/investor-relations', label: 'Investor Relations', labelAr: 'علاقات المستثمرين', icon: TrendingUp },
+    { path: '/news', label: 'Corporate Governance', labelAr: 'حوكمة الشركات', icon: Building2 },
   ];
 
   const navItems = [
     { path: '/', label: t('home') },
-    { path: '/about', label: t('about') },
+    { 
+      path: '/about', 
+      label: t('about'),
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: aboutDropdown
+    },
     { 
       path: '/services', 
       label: t('services'),
       hasDropdown: true,
-      dropdown: subsidiaryItems
+      overviewLabel: language === 'ar' ? 'نظرة عامة على الخدمات' : 'Services Overview',
+      dropdown: servicesDropdown
     },
-    { path: '/projects', label: t('projects') },
-    { path: '/certifications', label: t('certificationsTitle') },
+    { 
+      path: '/projects', 
+      label: t('projects'),
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: projectsDropdown
+    },
+    { 
+      path: '/certifications', 
+      label: language === 'ar' ? 'الشهادات والوثائق' : 'Certifications & Documents',
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: certificationsDropdown
+    },
+    { 
+      path: '/petroleum-services', 
+      label: language === 'ar' ? 'السلامة والصحة المهنية' : 'HSE',
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: hseDropdown
+    },
     { path: '/news', label: t('news') },
     { path: '/media-coverage', label: language === 'ar' ? 'صدى مكامن' : 'Media Coverage' },
-    { path: '/update-shareholder', label: language === 'ar' ? 'تحديث بيانات المساهم' : 'Shareholder Information' },
+    { 
+      path: '/update-shareholder', 
+      label: language === 'ar' ? 'معلومات المساهمين' : 'Shareholder Information',
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: shareholderDropdown
+    },
     { path: '/contact', label: t('contact') },
   ];
 
@@ -41,12 +109,13 @@ export default function Header() {
     return path !== '/' && location.startsWith(path);
   };
 
-  const NavLink = ({ path, label, mobile = false, hasDropdown = false, dropdown }: { 
+  const NavLink = ({ path, label, mobile = false, hasDropdown = false, dropdown, overviewLabel }: { 
     path: string; 
     label: string; 
     mobile?: boolean; 
     hasDropdown?: boolean;
-    dropdown?: Array<{path: string; label: string; labelAr: string; icon: any}>
+    dropdown?: Array<{path: string; label: string; labelAr: string; icon: any}>;
+    overviewLabel?: string;
   }) => {
     if (hasDropdown && !mobile) {
       return (
@@ -61,7 +130,7 @@ export default function Header() {
             <DropdownMenuItem asChild>
               <Link href={path} className="w-full cursor-pointer">
                 <Globe className="mr-2 h-4 w-4" />
-                {language === 'ar' ? 'نظرة عامة' : 'Overview'}
+                {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -97,9 +166,7 @@ export default function Header() {
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Company Logo & Brand */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group">
-            {/* شعار مكامن الرسمي - نظيف بدون دوائر */}
             <img 
               src={makaminLogoPath} 
               alt="شعار مكامن السعودية القابضة" 
@@ -126,20 +193,19 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className={`hidden md:flex ${language === 'ar' ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
-            {navItems.map(item => (
+          <nav className={`hidden md:flex ${language === 'ar' ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            {navItems.map((item, index) => (
               <NavLink 
-                key={item.path} 
+                key={`${item.path}-${index}`} 
                 path={item.path} 
                 label={item.label} 
                 hasDropdown={item.hasDropdown}
                 dropdown={item.dropdown}
+                overviewLabel={item.overviewLabel}
               />
             ))}
           </nav>
 
-          {/* Language Toggle & Mobile Menu */}
           <div className={`flex items-center ${language === 'ar' ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
             <Button
               onClick={toggleLanguage}
@@ -152,7 +218,6 @@ export default function Header() {
               <span className="sm:hidden text-xs">{language === 'ar' ? 'EN' : 'عر'}</span>
             </Button>
 
-            {/* Mobile Menu */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="sm" className="md:hidden">
@@ -161,8 +226,8 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col space-y-4 mt-8">
-                  {navItems.map(item => (
-                    <NavLink key={item.path} path={item.path} label={item.label} mobile />
+                  {navItems.map((item, index) => (
+                    <NavLink key={`mobile-${item.path}-${index}`} path={item.path} label={item.label} mobile />
                   ))}
                 </nav>
               </SheetContent>
