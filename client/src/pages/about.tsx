@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { Target, Eye, Drill, Search, Settings, Wrench, Building, Cog, Users, Globe, DollarSign, Calendar, MapPin, ChevronDown, ChevronRight, Award, Shield, Zap, TrendingUp, CheckCircle, Heart, User, Crown, Briefcase, Star, ArrowRight, ExternalLink, Phone, Mail, LinkedinIcon, Twitter, Linkedin, Ship, Compass } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { Target, Eye, Drill, Search, Settings, Wrench, Building, Cog, Users, Globe, DollarSign, Calendar, MapPin, ChevronDown, ChevronRight, Award, Shield, Zap, TrendingUp, CheckCircle, Heart, User, Crown, Briefcase, Star, ArrowRight, ExternalLink, Phone, Mail, LinkedinIcon, Twitter, Linkedin, Ship, Compass, Package } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
@@ -30,6 +30,20 @@ export default function About() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          const offset = 100;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, []);
+
   // Company Key Metrics from 2017 Profile
   const companyStats = [
     {
@@ -49,9 +63,10 @@ export default function About() {
     },
     {
       icon: Calendar,
-      value: 2008,
+      value: 0,
       suffix: '',
-      label: language === 'ar' ? 'سنة التأسيس' : 'Established',
+      displayText: language === 'ar' ? '24 مايو 2008' : 'May 24, 2008',
+      label: language === 'ar' ? 'تاريخ التأسيس' : 'Established',
       color: 'text-purple-500'
     },
     {
@@ -301,6 +316,7 @@ export default function About() {
       
       {/* Executive Hero Section */}
       <motion.section 
+        id="overview"
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ y }}
@@ -442,8 +458,8 @@ export default function About() {
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {stat.value === 5840 ? (
-                    <AnimatedCounter value={stat.value} duration={2000} />
+                  {'displayText' in stat && stat.displayText ? (
+                    <span className="text-2xl md:text-3xl">{stat.displayText}</span>
                   ) : stat.value === 1200000000 ? (
                     <><span className="text-2xl">SAR </span><AnimatedCounter value={1.2} duration={2000} suffix="B" /></>
                   ) : (
@@ -456,6 +472,88 @@ export default function About() {
           </div>
         </div>
       </motion.section>
+
+      {/* Company Information Section */}
+      <section id="company" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {language === 'ar' ? 'معلومات الشركة' : 'Company Information'}
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700"
+            >
+              <h3 className="text-xl font-bold text-cyan-400 mb-6">
+                {language === 'ar' ? 'البيانات الأساسية' : 'Key Facts'}
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { k: language === 'ar' ? 'الاسم الرسمي' : 'Official Name', v: language === 'ar' ? 'شركة مكامن السعودية القابضة لخدمات النفط والغاز' : 'Saudi Makamin Holding Company for Oil & Gas Services' },
+                  { k: language === 'ar' ? 'تاريخ التأسيس' : 'Date of Establishment', v: language === 'ar' ? '24 مايو 2008م' : 'May 24, 2008' },
+                  { k: language === 'ar' ? 'رأس المال' : 'Capital', v: language === 'ar' ? '1.2 مليار ريال سعودي' : 'SAR 1.2 Billion' },
+                  { k: language === 'ar' ? 'عدد المساهمين' : 'Shareholders', v: language === 'ar' ? '59 مساهماً' : '59 Shareholders' },
+                  { k: language === 'ar' ? 'نوع الشركة' : 'Company Type', v: language === 'ar' ? 'شركة مساهمة مقفلة' : 'Closed Joint-Stock Company' },
+                  { k: language === 'ar' ? 'المقر الرئيسي' : 'Headquarters', v: language === 'ar' ? 'المنطقة الشرقية، المملكة العربية السعودية' : 'Eastern Province, Kingdom of Saudi Arabia' },
+                ].map((row, i) => (
+                  <div key={i} className="flex flex-col sm:flex-row sm:justify-between gap-1 py-2 border-b border-slate-700/50 last:border-0">
+                    <span className="text-slate-400 text-sm font-medium">{row.k}</span>
+                    <span className="text-white text-sm font-semibold">{row.v}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700"
+            >
+              <h3 className="text-xl font-bold text-cyan-400 mb-6">
+                {language === 'ar' ? 'قطاعات العمل' : 'Business Sectors'}
+              </h3>
+              <div className="space-y-3">
+                {[
+                  language === 'ar' ? 'خدمات الأنابيب والصناعة' : 'Pipeline & Industrial Services',
+                  language === 'ar' ? 'خدمات الحفر' : 'Drilling Services',
+                  language === 'ar' ? 'خدمات علوم الأرض' : 'Geoscience Services',
+                  language === 'ar' ? 'خدمات التفتيش الصناعي' : 'Industrial Inspection Services',
+                  language === 'ar' ? 'العمليات البحرية' : 'Offshore Operations',
+                  language === 'ar' ? 'خدمات سلسلة الإمداد' : 'Supply Chain Services',
+                  language === 'ar' ? 'خدمات التوظيف التقني' : 'Technical Staffing Services',
+                ].map((sector, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                    <span className="text-slate-300 text-sm">{sector}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-6 border-t border-slate-700/50">
+                <h4 className="text-sm font-semibold text-slate-400 mb-2">
+                  {language === 'ar' ? 'العملاء الرئيسيون' : 'Key Clients'}
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Saudi Aramco', 'Al-Khafji Joint Operations', 'SABIC', 'National Water Company'].map((c, i) => (
+                    <Badge key={i} className="bg-blue-500/20 text-blue-300 border-blue-500/30 text-xs">{c}</Badge>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Animated Timeline Section */}
       <motion.section 
@@ -527,10 +625,97 @@ export default function About() {
         </div>
       </motion.section>
 
-      {/* الشعار موجود في Header - بدون تكرار */}
+      {/* Vision, Mission & Objectives */}
+      <section id="vision" className="py-24 bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-900">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {language === 'ar' ? 'الرؤية والرسالة والأهداف' : 'Vision, Mission & Objectives'}
+            </h2>
+          </motion.div>
 
-      {/* Leadership & Governance Section */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+              className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-3xl p-8 text-center"
+            >
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 mx-auto">
+                <Eye className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {language === 'ar' ? 'الرؤية' : 'Vision'}
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                {language === 'ar'
+                  ? 'أن نكون الشريك الاستراتيجي الرائد والأكثر موثوقية في خدمات النفط والغاز في المملكة العربية السعودية ومنطقة الخليج.'
+                  : 'To be the leading and most trusted strategic partner in oil & gas services in the Kingdom of Saudi Arabia and the Gulf region.'}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border border-emerald-500/30 rounded-3xl p-8 text-center"
+            >
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-6 mx-auto">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {language === 'ar' ? 'الرسالة' : 'Mission'}
+              </h3>
+              <p className="text-slate-300 leading-relaxed">
+                {language === 'ar'
+                  ? 'تقديم خدمات نفطية وغازية متكاملة بأعلى معايير الجودة والسلامة، مع الاستثمار في الكوادر الوطنية والتقنيات المتقدمة لتحقيق التنمية المستدامة.'
+                  : 'Delivering integrated oil & gas services at the highest quality and safety standards, while investing in national talent and advanced technologies to achieve sustainable development.'}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 rounded-3xl p-8 text-center"
+            >
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 mx-auto">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {language === 'ar' ? 'الأهداف' : 'Objectives'}
+              </h3>
+              <ul className="text-slate-300 space-y-2 text-sm text-left">
+                {[
+                  language === 'ar' ? 'تعزيز الشراكات الاستراتيجية مع أرامكو السعودية والعملاء الرئيسيين' : 'Strengthen strategic partnerships with Saudi Aramco and key clients',
+                  language === 'ar' ? 'التوسع الإقليمي في عمليات الخليج والبحرية' : 'Regional expansion in Gulf and offshore operations',
+                  language === 'ar' ? 'تحقيق أعلى معايير السلامة والتميز التشغيلي' : 'Achieve highest safety and operational excellence standards',
+                  language === 'ar' ? 'تطوير وتوطين الكفاءات الوطنية' : 'Develop and localize national competencies',
+                  language === 'ar' ? 'التوافق الكامل مع رؤية 2030' : 'Full alignment with Saudi Vision 2030',
+                ].map((obj, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <span>{obj}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership & Management Section */}
       <motion.section 
+        id="management"
         ref={leadershipRef}
         className="py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
       >
@@ -1211,174 +1396,257 @@ export default function About() {
         </div>
       </section>
 
-      {/* Enhanced HSE & Values Section */}
-      <motion.section 
+      {/* Goals & Values Section */}
+      <section
+        id="goals"
         ref={valuesRef}
-        className="py-32 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
+        className="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
       >
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: valuesInView ? 1 : 0, y: valuesInView ? 0 : 30 }}
             transition={{ duration: 1 }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              {language === 'ar' ? 'قيمنا الأساسية' : 'Core Values'}
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {language === 'ar' ? 'الأهداف والقيم' : 'Goals & Values'}
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              {language === 'ar' ? 
-                'المبادئ التي توجه كل قرار نتخذه وكل عمل نقوم به، راسخة في التميز والأمان والاستدامة' :
-                'The principles that guide every decision we make and every action we take, rooted in excellence, safety, and sustainability'
-              }
+              {language === 'ar'
+                ? 'القيم الأساسية التي تقود عملياتنا وتحدد هويتنا'
+                : 'The core values that drive our operations and define who we are'}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coreValues.map((value, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                icon: Award,
+                title: language === 'ar' ? 'جودة عالية' : 'High Quality',
+                description: language === 'ar' ? 'الالتزام بأعلى معايير الجودة في جميع الخدمات والعمليات' : 'Commitment to the highest quality standards across all services and operations',
+                color: 'from-blue-500 to-cyan-500',
+                border: 'border-blue-500/30'
+              },
+              {
+                icon: TrendingUp,
+                title: language === 'ar' ? 'التنمية المستدامة' : 'Sustain Development',
+                description: language === 'ar' ? 'تحقيق النمو المتوازن مع الحفاظ على البيئة والموارد للأجيال القادمة' : 'Achieving balanced growth while preserving the environment and resources for future generations',
+                color: 'from-emerald-500 to-green-500',
+                border: 'border-emerald-500/30'
+              },
+              {
+                icon: Heart,
+                title: language === 'ar' ? 'التوجه نحو العملاء' : 'Customer Oriented',
+                description: language === 'ar' ? 'العميل هو محور اهتمامنا ونسعى لتجاوز توقعاته في كل مشروع' : 'The client is at the center of our focus and we strive to exceed expectations in every project',
+                color: 'from-red-500 to-pink-500',
+                border: 'border-red-500/30'
+              },
+              {
+                icon: Globe,
+                title: language === 'ar' ? 'الالتزام الاجتماعي' : 'Social Commitment',
+                description: language === 'ar' ? 'المساهمة الفعالة في تنمية المجتمع ودعم المبادرات الاجتماعية' : 'Active contribution to community development and supporting social initiatives',
+                color: 'from-purple-500 to-indigo-500',
+                border: 'border-purple-500/30'
+              },
+              {
+                icon: Users,
+                title: language === 'ar' ? 'موظفونا' : 'Our People',
+                description: language === 'ar' ? 'الاستثمار في تطوير كوادرنا البشرية وتوفير بيئة عمل محفزة وآمنة' : 'Investing in our people\'s development and providing a motivating and safe work environment',
+                color: 'from-amber-500 to-orange-500',
+                border: 'border-amber-500/30'
+              },
+            ].map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: valuesInView ? 1 : 0, y: valuesInView ? 0 : 50 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="text-center group"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: valuesInView ? 1 : 0, y: valuesInView ? 0 : 30 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                className={`bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border ${value.border} hover:scale-105 transition-all duration-300 text-center`}
               >
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-slate-700 hover:border-cyan-500/50">
-                  <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${value.color === 'text-green-500' ? 'from-green-500 to-emerald-500' : value.color === 'text-blue-500' ? 'from-blue-500 to-cyan-500' : value.color === 'text-purple-500' ? 'from-purple-500 to-pink-500' : 'from-yellow-500 to-orange-500'} mb-6 group-hover:scale-110 transition-transform`}>
-                    <value.icon className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{value.title}</h3>
-                  <p className="text-slate-400 text-sm mb-6">{value.description}</p>
-                  <div className="text-3xl font-bold text-white">
-                    <AnimatedCounter 
-                      value={value.metric.value} 
-                      suffix={value.metric.suffix}
-                      duration={2000}
-                    />
-                  </div>
+                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r ${value.color} mb-4`}>
+                  <value.icon className="w-7 h-7 text-white" />
                 </div>
+                <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
+                <p className="text-slate-400 text-xs leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Main Committees Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="py-24 bg-gradient-to-br from-slate-950 to-slate-900"
-      >
+      {/* Organizational Chart Section */}
+      <section id="orgchart" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              {language === 'ar' ? 'اللجان الرئيسية' : 'Main Committees'}
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {language === 'ar' ? 'الهيكل التنظيمي' : 'Organizational Chart'}
             </h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              {language === 'ar' ? 
-                'هيكل حوكمة شامل يضمن الشفافية والكفاءة في جميع العمليات التشغيلية والاستراتيجية' :
-                'Comprehensive governance structure ensuring transparency and efficiency across all operational and strategic activities'
-              }
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              {language === 'ar'
+                ? 'الهيكل الإداري والتنظيمي لشركة مكامن السعودية القابضة'
+                : 'Administrative and organizational structure of Saudi Makamin Holding Company'}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Executive Committee */}
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-gradient-to-br from-blue-900/20 to-blue-800/20 border border-blue-500/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
+              className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-6 border border-blue-500/30 text-center mb-8"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6">
-                <Crown className="w-8 h-8 text-white" />
+              <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-3 mx-auto">
+                <Crown className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {language === 'ar' ? 'اللجنة التنفيذية' : 'Executive Committee'}
+              <h3 className="text-xl font-bold text-white">
+                {language === 'ar' ? 'الرئيس التنفيذي (CEO)' : 'Chief Executive Officer (CEO)'}
               </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                {language === 'ar' ? 
-                  'تُعنى بمتابعة الأداء العام والإشراف المباشر على تنفيذ الخطط الاستراتيجية المعتمدة للشركة.' :
-                  'Responsible for monitoring overall performance and direct supervision of implementing the company\'s approved strategic plans.'
-                }
-              </p>
             </motion.div>
 
-            {/* Audit Committee */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/20 border border-emerald-500/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300"
-            >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-6">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {language === 'ar' ? 'لجنة التدقيق' : 'Audit Committee'}
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                {language === 'ar' ? 
-                  'تراقب الالتزام المالي والرقابي، وتضمن النزاهة في التقارير والبيانات والحوكمة.' :
-                  'Monitors financial and regulatory compliance, ensuring integrity in reports, data, and governance.'
-                }
-              </p>
-            </motion.div>
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              {[
+                { title: language === 'ar' ? 'المدير المالي (CFO)' : 'CFO', icon: DollarSign, color: 'from-green-500 to-emerald-500' },
+                { title: language === 'ar' ? 'الشؤون القانونية' : 'Legal', icon: Shield, color: 'from-purple-500 to-indigo-500' },
+                { title: language === 'ar' ? 'تقنية المعلومات' : 'IT', icon: Cog, color: 'from-cyan-500 to-blue-500' },
+              ].map((dept, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 text-center"
+                >
+                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r ${dept.color} mb-2`}>
+                    <dept.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h4 className="text-sm font-semibold text-white">{dept.title}</h4>
+                </motion.div>
+              ))}
+            </div>
 
-            {/* Projects Committee */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-gradient-to-br from-purple-900/20 to-purple-800/20 border border-purple-500/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300"
-            >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6">
-                <Settings className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {language === 'ar' ? 'لجنة المشاريع' : 'Projects Committee'}
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                {language === 'ar' ? 
-                  'تتابع تنفيذ المشاريع الكبرى، وتضمن الالتزام بالجداول الزمنية والمواصفات الفنية.' :
-                  'Follows up on major project implementation, ensuring adherence to timelines and technical specifications.'
-                }
-              </p>
-            </motion.div>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              {[
+                { title: language === 'ar' ? 'المستودعات واللوجستيات' : 'Warehouse & Logistics', icon: Package },
+                { title: language === 'ar' ? 'المحاسبة' : 'Accounting', icon: DollarSign },
+                { title: language === 'ar' ? 'الشؤون الإدارية والموظفين' : 'Admin & Personnel', icon: Users },
+                { title: language === 'ar' ? 'العلاقات العامة' : 'Public Relations', icon: Globe },
+              ].map((dept, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 flex items-center gap-3"
+                >
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-700 flex-shrink-0">
+                    <dept.icon className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <h4 className="text-sm font-semibold text-white">{dept.title}</h4>
+                </motion.div>
+              ))}
+            </div>
 
-            {/* Administrative, Legal & Claims Committee */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-gradient-to-br from-amber-900/20 to-amber-800/20 border border-amber-500/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300"
-            >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full mb-6">
-                <Briefcase className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {language === 'ar' ? 'لجنة متابعة الأمور الإدارية والقانونية والمطالبات' : 'Administrative, Legal & Claims Committee'}
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                {language === 'ar' ? 
-                  'تعالج الأمور الإدارية والأنظمة القانونية والالتزامات التعاقدية والمطالبات المختلفة.' :
-                  'Handles administrative matters, legal systems, contractual obligations, and various claims.'
-                }
-              </p>
-            </motion.div>
+            <h3 className="text-lg font-bold text-cyan-400 mb-4 text-center">
+              {language === 'ar' ? 'الأقسام التشغيلية' : 'Operational Departments'}
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { title: language === 'ar' ? 'قسم الأنابيب' : 'Pipeline Department', icon: Settings },
+                { title: language === 'ar' ? 'قسم الحفر' : 'Drilling Department', icon: Drill },
+                { title: language === 'ar' ? 'قسم علوم الأرض' : 'Geoscience Department', icon: Compass },
+                { title: language === 'ar' ? 'قسم التفتيش' : 'Inspection Department', icon: Search },
+                { title: 'ZENCUS', icon: Cog },
+              ].map((dept, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-4 border border-cyan-500/20 flex items-center gap-3"
+                >
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex-shrink-0">
+                    <dept.icon className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <h4 className="text-sm font-semibold text-white">{dept.title}</h4>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
+
+      {/* Workshop / Camp Locations Section */}
+      <section id="locations" className="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {language === 'ar' ? 'مواقع الورش والمعسكرات' : 'Workshop & Camp Locations'}
+            </h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              {language === 'ar'
+                ? 'مرافق مكامن التشغيلية والمعسكرات الميدانية'
+                : 'Makamin operational facilities and field camps'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                name: language === 'ar' ? 'معسكر مكامن عيون' : 'Makamin Oyun Camp',
+                description: language === 'ar'
+                  ? 'المعسكر الرئيسي للعمليات الميدانية، يضم مرافق سكنية وتشغيلية متكاملة لدعم فرق العمل الميدانية.'
+                  : 'Main field operations camp, featuring integrated residential and operational facilities to support field crews.',
+                icon: Building
+              },
+              {
+                name: language === 'ar' ? 'ورشة التصنيع والصيانة' : 'Fabrication & Maintenance Workshop',
+                description: language === 'ar'
+                  ? 'ورشة مجهزة للتصنيع الخفيف والثقيل وصيانة المعدات والآليات.'
+                  : 'Equipped workshop for light and heavy fabrication, equipment and machinery maintenance.',
+                icon: Wrench
+              },
+              {
+                name: language === 'ar' ? 'مرافق التخزين واللوجستيات' : 'Storage & Logistics Facilities',
+                description: language === 'ar'
+                  ? 'مستودعات ومرافق لوجستية لإدارة سلسلة الإمداد ودعم العمليات.'
+                  : 'Warehouses and logistics facilities for supply chain management and operations support.',
+                icon: MapPin
+              },
+            ].map((location, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:border-cyan-500/30 transition-all duration-300"
+              >
+                <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 mx-auto">
+                  <location.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3 text-center">{location.name}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed text-center">{location.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

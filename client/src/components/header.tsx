@@ -18,12 +18,12 @@ export default function Header() {
   };
 
   const aboutDropdown = [
-    { path: '/about', label: 'Company Information', labelAr: 'معلومات الشركة', icon: Building2 },
-    { path: '/about', label: 'Vision, Mission & Objectives', labelAr: 'الرؤية والرسالة والأهداف', icon: Eye },
-    { path: '/about', label: 'Goals & Values', labelAr: 'الأهداف والقيم', icon: Target },
-    { path: '/about', label: 'Management', labelAr: 'الإدارة', icon: Users },
-    { path: '/about', label: 'Organizational Chart', labelAr: 'الهيكل التنظيمي', icon: LayoutGrid },
-    { path: '/about', label: 'Workshop / Camp Locations', labelAr: 'مواقع الورش والمعسكرات', icon: MapPin },
+    { path: '/about#company', label: 'Company Information', labelAr: 'معلومات الشركة', icon: Building2 },
+    { path: '/about#vision', label: 'Vision, Mission & Objectives', labelAr: 'الرؤية والرسالة والأهداف', icon: Eye },
+    { path: '/about#goals', label: 'Goals & Values', labelAr: 'الأهداف والقيم', icon: Target },
+    { path: '/about#management', label: 'Management', labelAr: 'الإدارة', icon: Users },
+    { path: '/about#orgchart', label: 'Organizational Chart', labelAr: 'الهيكل التنظيمي', icon: LayoutGrid },
+    { path: '/about#locations', label: 'Workshop / Camp Locations', labelAr: 'مواقع الورش والمعسكرات', icon: MapPin },
   ];
 
   const servicesDropdown = [
@@ -145,20 +145,47 @@ export default function Header() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-56">
             <DropdownMenuItem asChild>
-              <Link href={path} className="w-full cursor-pointer">
+              <Link href={path.split('#')[0] || path} className="w-full cursor-pointer">
                 <Globe className="mr-2 h-4 w-4" />
                 {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            {dropdown?.map((item, index) => (
-              <DropdownMenuItem key={index} asChild>
-                <Link href={item.path} className="w-full cursor-pointer">
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {language === 'ar' ? item.labelAr : item.label}
-                </Link>
-              </DropdownMenuItem>
-            ))}
+            {dropdown?.map((item, index) => {
+              const hasHash = item.path.includes('#');
+              const handleHashClick = (e: React.MouseEvent) => {
+                if (!hasHash) return;
+                e.preventDefault();
+                const [pathname, hash] = item.path.split('#');
+                const basePath = pathname || '/';
+                if (window.location.pathname !== basePath) {
+                  window.location.href = item.path;
+                } else {
+                  const el = document.getElementById(hash);
+                  if (el) {
+                    const offset = 100;
+                    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.history.replaceState(null, '', item.path);
+                  }
+                }
+              };
+              return (
+                <DropdownMenuItem key={index} asChild>
+                  {hasHash ? (
+                    <a href={item.path} className="w-full cursor-pointer" onClick={handleHashClick}>
+                      <item.icon className="mr-2 h-4 w-4" />
+                      {language === 'ar' ? item.labelAr : item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.path} className="w-full cursor-pointer">
+                      <item.icon className="mr-2 h-4 w-4" />
+                      {language === 'ar' ? item.labelAr : item.label}
+                    </Link>
+                  )}
+                </DropdownMenuItem>
+              );
+            })}
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -189,17 +216,50 @@ export default function Header() {
                 <Globe className="h-3.5 w-3.5 flex-shrink-0" />
                 {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
               </Link>
-              {dropdown?.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.path}
-                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
-                  {language === 'ar' ? item.labelAr : item.label}
-                </Link>
-              ))}
+              {dropdown?.map((item, index) => {
+                const hasHash = item.path.includes('#');
+                const handleMobileHashClick = (e: React.MouseEvent) => {
+                  setMobileMenuOpen(false);
+                  if (!hasHash) return;
+                  e.preventDefault();
+                  const [pathname, hash] = item.path.split('#');
+                  const basePath = pathname || '/';
+                  if (window.location.pathname !== basePath) {
+                    window.location.href = item.path;
+                  } else {
+                    setTimeout(() => {
+                      const el = document.getElementById(hash);
+                      if (el) {
+                        const offset = 100;
+                        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                        window.history.replaceState(null, '', item.path);
+                      }
+                    }, 300);
+                  }
+                };
+                return hasHash ? (
+                  <a
+                    key={index}
+                    href={item.path}
+                    className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                    onClick={handleMobileHashClick}
+                  >
+                    <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
+                    {language === 'ar' ? item.labelAr : item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    href={item.path}
+                    className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
+                    {language === 'ar' ? item.labelAr : item.label}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

@@ -1,0 +1,60 @@
+Update the existing /about page only.
+
+Keep the About dropdown exactly as it is now, with the same items and same order:
+Overview, Company Information, Vision Mission & Objectives, Goals & Values, Management, Organizational Chart, Workshop / Camp Locations.
+
+Do not add items, remove items, rename items, reorder items, or create new pages/routes.
+
+Keep the current dropdown UI component, styling, trigger behavior, and positioning unchanged. Only update link targets and section anchoring behavior.
+
+Convert the dropdown links into in-page anchors within the existing /about route only:
+- /about#overview
+- /about#company
+- /about#vision
+- /about#goals
+- /about#management
+- /about#orgchart
+- /about#locations
+
+Add matching section IDs inside the existing /about page and make each item scroll to its section correctly, including direct load support for /about#section and sticky-header offset handling.
+
+Keep the existing page structure/design. Reuse the existing About page content where possible, and only reorganize/move content into the correct sections. Do not rewrite large content blocks unless required for factual correction or duplication removal.
+
+Keep the existing hero and timeline sections on the same page. Map them under Overview and/or Company Information as appropriate without removing them.
+
+Mandatory content fixes:
+- SAR 1B -> SAR 1.2 Billion
+- 51 Shareholders -> 59 Shareholders
+- 1,736 Established -> Established on May 24, 2008
+
+Company Information must contain factual company info, not only marketing copy.
+
+Goals & Values must include:
+- High Quality
+- Sustain Development
+- Customer Oriented
+- Social commitment
+- Our people
+
+Do not let modern core values replace this section entirely.
+
+Management must be clearly separated from Governance and from Organizational Chart.
+
+Governance/committees content may remain on the page, but it must not be confused with or duplicate the Management or Organizational Chart sections.
+
+Remove duplicated committee/governance blocks.
+
+Create a dedicated Organizational Chart section on the About page, even if presented in simplified structured format rather than a graphic chart, including:
+CEO, CFO, Legal, IT, Warehouse & Logistics, Accounting, Admin & Personnel, Public Relations, Pipeline Department, Drilling Department, Geoscience Department, Inspection Department, ZENCUS
+
+Workshop / Camp Locations must be a real section including Makamin Oyun Camp and related facilities.
+
+If any required section content is missing from the existing source material, create only a minimal structured section using the provided approved labels, without inventing extra claims or unsupported details.
+
+Do not introduce new libraries, do not change architecture, and do not redesign the page.
+Do not break existing styling, responsive behavior, dropdown behavior, or other navigation outside the anchor-link update.
+
+Make minimal safe edits only.
+
+Return a concise report:
+Files modified / behavior changed / unchanged / risk / architecture preserved.
