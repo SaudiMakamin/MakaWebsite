@@ -1,0 +1,81 @@
+أمر إلى وكيل Replit — EXECUTION MODE
+
+الوضع: EXECUTION MODE
+الهدف: تطبيق التعديلات النهائية على المينيو فقط كتهيئة مؤقتة، بدون إنشاء صفحات جديدة وبدون تعديل routes الحالية.
+
+عدّل فقط بالحد الأدنى:
+- client/src/components/header.tsx
+
+وإذا لزم فقط لمزامنة الموبايل لأنه يعتمد على نفس المصدر:
+- ابقِ التعديل داخل نفس الملف ما أمكن
+
+لا تعدّل:
+- client/src/App.tsx
+- client/src/components/footer.tsx
+- client/src/lib/i18n.ts
+- server/routes.ts
+- vite.config.ts
+- server/vite.ts
+- package.json
+- drizzle.config.ts
+
+المطلوب:
+
+1) إضافة top-level dropdown جديد باسم:
+Operations / Group
+
+ويحتوي على:
+- Overview → /group
+- Makamin Petroleum Services → /makamin-petroleum
+- Makamin Offshore Bahrain → /makamin-offshore-bahrain
+- ZENCUS International → /zencus
+- Offshore Operations → /offshore-operations
+
+مهم:
+- هذا تجهيز مؤقت للمينيو فقط
+- لا تنشئ routes جديدة
+- لا تعدّل App.tsx
+- لا تغيّر أي route حالي
+
+2) إصلاح التفاف "Media Coverage"
+- اجعل "Media Coverage" يبقى في سطر واحد
+- امنع التفاف عناصر الهيدر إلى سطر ثانٍ
+- استخدم أقل تعديل CSS ممكن
+- لا تعِد بناء الهيدر
+
+3) إزالة العناصر المنطقية المكررة
+HSE:
+- Overview
+- HSE Policy Statement
+احذف: HSE Overview
+
+Shareholder Information:
+- Overview
+- Investor Relations
+- Corporate Governance
+احذف: Shareholder Information
+
+4) تأكد أن Projects dropdown متسق مع البقية ويحتوي على:
+- Overview → /projects
+- Major Projects → /projects
+- Project Management → /projects
+
+5) الحفاظ على الاستقرار
+- لا تغيير في routes الحالية
+- لا تغيير في URLs الحالية
+- لا تغيير في بنية desktop nav
+- mobile dropdown system يجب أن يستمر بالعمل
+- لا refactor واسع
+
+مهم جداً:
+إذا كانت الروابط الجديدة غير مربوطة بصفحات فعلية حالياً، لا تعتبر ذلك خطأ.
+نفّذها كعناصر menu مؤقتة فقط حسب الطلب.
+
+التقرير النهائي يجب أن يشمل:
+A. Updated final menu structure
+B. Confirmation that no existing routes were changed
+C. Screenshot of the final header (desktop)
+D. Screenshot of the mobile menu
+E. Files modified
+F. What changed vs what remained unchanged
+G. Whether verification was by local run or code inspection

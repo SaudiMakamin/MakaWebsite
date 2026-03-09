@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck } from 'lucide-react';
+import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck, Anchor, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -36,6 +36,13 @@ export default function Header() {
     { path: '/petroleum-services', label: 'Technical Staffing Services', labelAr: 'خدمات التوظيف التقني', icon: UserCheck },
   ];
 
+  const operationsDropdown = [
+    { path: '/petroleum-services', label: 'Makamin Petroleum Services', labelAr: 'مكامن للخدمات البترولية', icon: Drill },
+    { path: '/offshore-operations', label: 'Makamin Offshore Bahrain', labelAr: 'مكامن البحرية البحرين', icon: Anchor },
+    { path: '/petroleum-services', label: 'ZENCUS International', labelAr: 'زينكوس الدولية', icon: Cpu },
+    { path: '/offshore-operations', label: 'Offshore Operations', labelAr: 'العمليات البحرية', icon: Ship },
+  ];
+
   const projectsDropdown = [
     { path: '/projects', label: 'Major Projects', labelAr: 'المشاريع الكبرى', icon: FolderKanban },
     { path: '/projects', label: 'Project Management', labelAr: 'إدارة المشاريع', icon: ClipboardList },
@@ -50,12 +57,10 @@ export default function Header() {
   ];
 
   const hseDropdown = [
-    { path: '/petroleum-services', label: 'HSE Overview', labelAr: 'نظرة عامة على السلامة', icon: Shield },
     { path: '/petroleum-services', label: 'HSE Policy Statement', labelAr: 'بيان سياسة السلامة', icon: FileCheck },
   ];
 
   const shareholderDropdown = [
-    { path: '/update-shareholder', label: 'Shareholder Information', labelAr: 'تحديث بيانات المساهم', icon: Users },
     { path: '/investor-relations', label: 'Investor Relations', labelAr: 'علاقات المستثمرين', icon: TrendingUp },
     { path: '/news', label: 'Corporate Governance', labelAr: 'حوكمة الشركات', icon: Building2 },
   ];
@@ -75,6 +80,13 @@ export default function Header() {
       hasDropdown: true,
       overviewLabel: language === 'ar' ? 'نظرة عامة على الخدمات' : 'Services Overview',
       dropdown: servicesDropdown
+    },
+    { 
+      path: '/about', 
+      label: language === 'ar' ? 'المجموعة' : 'Group',
+      hasDropdown: true,
+      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
+      dropdown: operationsDropdown
     },
     { 
       path: '/projects', 
@@ -126,7 +138,7 @@ export default function Header() {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-auto p-0 font-medium text-base makamin-gray hover:makamin-blue">
+            <Button variant="ghost" className="h-auto p-0 font-medium text-base makamin-gray hover:makamin-blue whitespace-nowrap">
               {label}
               <ChevronDown className="ml-1 h-4 w-4" />
             </Button>
@@ -201,7 +213,7 @@ export default function Header() {
           isActiveLink(path)
             ? 'makamin-blue border-b-2 border-makamin-blue'
             : 'makamin-gray hover:makamin-blue'
-        } ${mobile ? 'block py-2' : 'inline-flex items-center'} transition-colors font-medium`}
+        } ${mobile ? 'block py-2' : 'inline-flex items-center whitespace-nowrap'} transition-colors font-medium`}
         onClick={() => mobile && setMobileMenuOpen(false)}
       >
         {label}
@@ -240,7 +252,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className={`hidden md:flex ${language === 'ar' ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+          <nav className={`hidden md:flex items-center flex-nowrap ${language === 'ar' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
             {navItems.map((item, index) => (
               <NavLink 
                 key={`${item.path}-${index}`} 
