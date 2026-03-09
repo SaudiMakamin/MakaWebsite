@@ -1,0 +1,174 @@
+هذه **نسخة مختصرة جدًا ومشددة** مناسبة لـ **Replit Agent** حتى لا يبدأ بالتعديل تلقائيًا. يمكنك إرسالها له كما هي:
+
+```text
+STRICT READ-ONLY CODE AUDIT — NO MODIFICATIONS ALLOWED
+
+CRITICAL RULE:
+You are NOT allowed to modify anything in the repository.
+
+DO NOT:
+- edit files
+- create files
+- delete files
+- rename files
+- refactor code
+- run formatters
+- change routes
+- change configs
+- save changes
+- create commits
+
+This task is INSPECTION ONLY.
+
+If any tool tries to write to the repository, STOP.
+
+==================================================
+
+OBJECTIVE
+
+Audit the current Makamin project to understand the real architecture of the website before any future navigation changes.
+
+Extract facts from the codebase only.
+Do not assume anything.
+If something is uncertain, mark it as UNCERTAIN.
+
+==================================================
+
+TASKS
+
+1. Identify project architecture
+- Framework (Next.js or other)
+- App Router or Pages Router
+- main layout files
+- Navbar / Header / Navigation components
+- location of route/page files
+- Arabic/English language handling
+- translation files
+- menu/nav config sources (JSON / constants / CMS / API)
+
+2. Extract full site structure
+- list ALL routes
+- list ALL pages
+- list ALL top navigation links
+- list ALL dropdown items
+- show the real URL for each item
+- confirm whether the page actually exists
+- detect orphan pages
+- detect duplicate routes or pages
+- detect broken links
+
+3. Navigation system analysis
+Determine whether the menu is:
+- hardcoded in a component
+- generated from config/object
+- loaded from CMS/JSON/API
+
+Provide the exact file paths responsible.
+
+Also confirm:
+- whether multiple navbars exist
+- whether mobile menu uses the same source as desktop.
+
+4. Dependency inspection
+Identify elements that could break if the menu changes:
+- layout nesting
+- active link logic
+- dropdown behavior
+- mobile navigation
+- i18n routing
+- metadata
+- breadcrumbs
+- animations
+- shared navigation utilities
+
+5. Audit these menu pages specifically:
+
+Main:
+Home
+About
+Services
+Projects
+Certifications & Accreditations
+News
+Media Coverage
+Shareholder Information
+Contact
+العربية
+
+Inside Services:
+Overview
+Petroleum Services
+Offshore Operations
+Bahrain Operations
+Investor Relations
+
+For each item report:
+- where it is defined
+- which URL it opens
+- destination page file
+- whether page exists
+- whether placeholder
+- whether translated
+- whether shared components are used
+
+6. URL system audit
+Provide:
+- all routes
+- dynamic routes
+- nested routes
+- redirects / rewrites
+- middleware affecting routing
+- route groups
+- SEO-sensitive routes
+
+7. Risk analysis
+Explain what could break if we:
+- move menu items
+- change labels
+- change slugs
+- add new menu items
+- modify Arabic menu
+- modify mobile menu
+
+Include risks related to:
+build
+hydration
+routing
+translations
+SEO
+layout inheritance
+
+==================================================
+
+FINAL OUTPUT FORMAT
+
+Return a structured report only:
+
+A. Project Structure  
+B. Navigation Architecture  
+C. Navigation Source Files  
+D. Route Inventory  
+E. Dropdown Inventory  
+F. Page Status (existing / missing / placeholder / duplicate / orphan)  
+G. Risk Assessment  
+H. Safe Refactor Strategy  
+I. Files Likely To Require Future Editing  
+J. Files That Must NOT Be Modified  
+
+Also include:
+
+1. Navigation-related file tree
+2. Table of all menu items and URLs
+3. Table of dropdown items
+4. Table of risks
+5. One safest recommendation before any change
+
+==================================================
+
+FINAL RULE
+
+READ ONLY.
+DO NOT MODIFY THE REPOSITORY.
+
+Return the audit report only.
+```
