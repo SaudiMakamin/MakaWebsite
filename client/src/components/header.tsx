@@ -382,7 +382,7 @@ export default function Header() {
               onClick={toggleLanguage}
               variant="outline"
               size="sm"
-              className="md:hidden bg-makamin-light makamin-blue hover:bg-makamin-blue hover:text-white h-10 px-3 sm:px-4"
+              className="hidden"
             >
               <Globe className={`h-4 w-4 ${language === 'ar' ? 'ml-1 sm:ml-2' : 'mr-1 sm:mr-2'}`} />
               <span className="text-xs">{language === 'ar' ? 'EN' : 'عر'}</span>

@@ -49,16 +49,17 @@ export default function About() {
   const companyStats = [
     {
       icon: DollarSign,
-      value: 1200000000,
-      prefix: 'SAR ',
-      suffix: 'M',
+      value: 0,
+      suffix: '',
+      displayText: language === 'ar' ? '1.2 مليار ريال' : 'SAR 1.2 Billion',
       label: language === 'ar' ? 'رأس المال' : 'Capital',
       color: 'text-green-500'
     },
     {
       icon: Users,
-      value: 59,
+      value: 0,
       suffix: '',
+      displayText: language === 'ar' ? '59 مساهماً' : '59 Shareholders',
       label: language === 'ar' ? 'مساهم' : 'Shareholders',
       color: 'text-blue-500'
     },
@@ -461,8 +462,6 @@ export default function About() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                   {'displayText' in stat && stat.displayText ? (
                     <span className="text-2xl md:text-3xl">{stat.displayText}</span>
-                  ) : stat.value === 1200000000 ? (
-                    <><span className="text-2xl">SAR </span><AnimatedCounter value={1.2} duration={2000} suffix="B" /></>
                   ) : (
                     <AnimatedCounter value={stat.value} duration={2000} suffix={stat.suffix} />
                   )}
