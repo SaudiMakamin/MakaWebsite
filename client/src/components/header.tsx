@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, X, ChevronDown, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck } from 'lucide-react';
+import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -11,6 +11,11 @@ export default function Header() {
   const [location] = useLocation();
   const { language, toggleLanguage, t } = useLanguageContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileSections, setExpandedMobileSections] = useState<Record<string, boolean>>({});
+
+  const toggleMobileSection = (key: string) => {
+    setExpandedMobileSections(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const aboutDropdown = [
     { path: '/about', label: 'Company Information', labelAr: 'معلومات الشركة', icon: Building2 },
@@ -147,6 +152,48 @@ export default function Header() {
       );
     }
 
+    if (hasDropdown && mobile) {
+      const sectionKey = `${path}-${label}`;
+      const isExpanded = expandedMobileSections[sectionKey] || false;
+      return (
+        <div>
+          <button
+            type="button"
+            onClick={() => toggleMobileSection(sectionKey)}
+            className={`flex items-center justify-between w-full py-2 transition-colors font-medium ${
+              isActiveLink(path) ? 'makamin-blue' : 'makamin-gray hover:makamin-blue'
+            }`}
+          >
+            <span>{label}</span>
+            <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+          </button>
+          {isExpanded && (
+            <div className={`${language === 'ar' ? 'pr-4' : 'pl-4'} border-${language === 'ar' ? 'r' : 'l'}-2 border-gray-200 space-y-1 pb-2`}>
+              <Link
+                href={path}
+                className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Globe className="h-3.5 w-3.5 flex-shrink-0" />
+                {overviewLabel || (language === 'ar' ? 'نظرة عامة' : 'Overview')}
+              </Link>
+              {dropdown?.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.path}
+                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
+                  {language === 'ar' ? item.labelAr : item.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
     return (
       <Link
         href={path}
@@ -224,10 +271,18 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col space-y-4 mt-8">
+              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px] overflow-y-auto">
+                <nav className="flex flex-col space-y-2 mt-8">
                   {navItems.map((item, index) => (
-                    <NavLink key={`mobile-${item.path}-${index}`} path={item.path} label={item.label} mobile />
+                    <NavLink 
+                      key={`mobile-${item.path}-${index}`} 
+                      path={item.path} 
+                      label={item.label} 
+                      mobile 
+                      hasDropdown={item.hasDropdown}
+                      dropdown={item.dropdown}
+                      overviewLabel={item.overviewLabel}
+                    />
                   ))}
                 </nav>
               </SheetContent>

@@ -1,0 +1,122 @@
+MAKAMIN PROJECT — MOBILE NAVIGATION FIX (SAFE MODE)
+
+You are authorized to implement ONE change only:
+
+Add expandable dropdown support for the mobile navigation menu.
+
+STRICT RULES
+
+DO NOT:
+- change any route
+- change any URL
+- rename any file
+- move any file
+- create new pages
+- delete pages
+- modify backend
+- modify routing logic
+- refactor navigation architecture
+- change desktop navigation behavior
+
+FILES ALLOWED TO MODIFY
+client/src/components/header.tsx ONLY
+
+OBJECTIVE
+
+Currently the mobile menu flattens navigation and hides dropdown child items.
+
+You must update the mobile navigation so that:
+
+If a nav item hasDropdown = true,
+the mobile menu shows it as an expandable/collapsible section.
+
+For mobile only:
+- tapping the parent toggles expand/collapse
+- parent items with dropdown must NOT navigate directly
+- child items must navigate normally
+- desktop behavior must remain exactly unchanged
+
+Expected behavior:
+
+About
+▶ tap → expand
+    Overview
+    Company Information
+    Vision, Mission & Objectives
+    Goals & Values
+    Management
+    Organizational Chart
+    Workshop / Camp Locations
+
+Services
+▶ tap → expand
+    Services Overview
+    Pipeline & Industrial Services
+    Drilling Services
+    Geoscience Services
+    Industrial Inspection Services
+    ZENCUS Services
+    Supply Chain Services
+    Technical Staffing Services
+
+Projects
+▶ tap → expand
+    Overview
+    Major Projects
+    Project Management
+
+Certifications & Documents
+▶ tap → expand
+    Overview
+    ISO Certifications
+    Legal Documents
+    Commercial Registration Certificates
+    Saudization Certificates
+    Letters of Appreciation & Completions
+
+HSE
+▶ tap → expand
+    Overview
+    HSE Overview
+    HSE Policy Statement
+
+Shareholder Information
+▶ tap → expand
+    Overview
+    Shareholder Information
+    Investor Relations
+    Corporate Governance
+
+REQUIREMENTS
+
+- Mobile items must expand/collapse on tap
+- Parent item must NOT navigate on mobile when it has dropdown
+- Child links must navigate normally
+- Desktop navigation must remain unchanged
+- All existing URLs must remain unchanged
+- The solution must work correctly in both English and Arabic
+- Do not break RTL layout
+- Do not break language toggle behavior
+
+VALIDATION
+
+Before finishing verify:
+
+- Desktop navigation still works
+- Mobile dropdown expands/collapses correctly
+- Child links navigate correctly
+- No TypeScript errors
+- No console errors
+- No broken JSX
+- No route changed
+- Arabic mode still works correctly
+- English mode still works correctly
+
+FINAL REPORT
+
+Provide:
+
+A. Confirmation that header.tsx was the only modified file
+B. Confirmation of which mobile dropdown groups were tested successfully
+C. Confirmation that all routes remained unchanged
+D. Confirmation that desktop navigation behavior remained unchanged
