@@ -97,7 +97,7 @@ export default function Header() {
     },
     { 
       path: '/certifications', 
-      label: language === 'ar' ? 'الشهادات والوثائق' : 'Certifications & Documents',
+      label: language === 'ar' ? 'الشهادات' : 'Certifications',
       hasDropdown: true,
       overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
       dropdown: certificationsDropdown
@@ -113,7 +113,7 @@ export default function Header() {
     { path: '/media-coverage', label: language === 'ar' ? 'صدى مكامن' : 'Media Coverage' },
     { 
       path: '/update-shareholder', 
-      label: language === 'ar' ? 'معلومات المساهمين' : 'Shareholder Information',
+      label: language === 'ar' ? 'المساهمين' : 'Shareholders',
       hasDropdown: true,
       overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
       dropdown: shareholderDropdown
@@ -252,7 +252,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className={`hidden md:flex items-center flex-nowrap ${language === 'ar' ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+          <nav className={`hidden md:flex items-center flex-nowrap ${language === 'ar' ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
             {navItems.map((item, index) => (
               <NavLink 
                 key={`${item.path}-${index}`} 
@@ -270,11 +270,10 @@ export default function Header() {
               onClick={toggleLanguage}
               variant="outline"
               size="sm"
-              className="bg-makamin-light makamin-blue hover:bg-makamin-blue hover:text-white h-10 px-3 sm:px-4"
+              className="md:hidden bg-makamin-light makamin-blue hover:bg-makamin-blue hover:text-white h-10 px-3 sm:px-4"
             >
               <Globe className={`h-4 w-4 ${language === 'ar' ? 'ml-1 sm:ml-2' : 'mr-1 sm:mr-2'}`} />
-              <span className="hidden sm:inline">{t('language')}</span>
-              <span className="sm:hidden text-xs">{language === 'ar' ? 'EN' : 'عر'}</span>
+              <span className="text-xs">{language === 'ar' ? 'EN' : 'عر'}</span>
             </Button>
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
