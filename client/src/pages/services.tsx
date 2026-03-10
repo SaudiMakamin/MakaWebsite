@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { Wrench, Drill, FlaskConical, Search, Cpu, Package, UserCheck, ArrowRight, CheckCircle } from 'lucide-react';
+import { Wrench, Drill, FlaskConical, Search, Cpu, Package, UserCheck, Anchor, ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import SemanticMetadata from '@/components/semantic-metadata';
 import heroCarouselPath from '@assets/hero-carousel-1_1752529906169.jpg';
@@ -55,6 +55,15 @@ export default function Services() {
       descriptionAr: 'مراقبة الحقول في الوقت الفعلي، اكتساب البيانات اللاسلكية، تصور البيانات، والمراقبة الأمنية.',
       path: '/services/zencus',
       color: 'from-teal-500 to-cyan-500',
+    },
+    {
+      icon: Anchor,
+      title: 'Offshore Services',
+      titleAr: 'الخدمات البحرية',
+      description: 'Offshore operations and marine support services for oil and gas exploration, production, and subsea infrastructure.',
+      descriptionAr: 'عمليات بحرية وخدمات دعم بحري لاستكشاف وإنتاج النفط والغاز والبنية التحتية تحت البحر.',
+      path: '/services/offshore',
+      color: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Package,

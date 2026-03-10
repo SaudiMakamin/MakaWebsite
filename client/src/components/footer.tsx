@@ -171,6 +171,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
+                  href="/services/offshore" 
+                  className="transition-colors duration-300 hover:text-[#c5a66e]"
+                  style={{ color: '#f1f1f1' }}
+                >
+                  {language === 'ar' ? 'الخدمات البحرية' : 'Offshore Services'}
+                </Link>
+              </li>
+              <li>
+                <Link 
                   href="/petroleum-services" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}

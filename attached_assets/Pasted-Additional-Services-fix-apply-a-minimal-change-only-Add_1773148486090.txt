@@ -1,0 +1,68 @@
+Additional Services fix — apply a minimal change only. Add a new submenu item under Services named exactly Offshore Services. Keep all existing Services items unchanged, preserve their order, and insert Offshore Services before Supply Chain Services. Do not remove or rename any existing menu item. Create a dedicated page for Offshore Services and keep the existing routing architecture, header, footer, dropdown behavior, layout system, and site structure unchanged. Do not modify unrelated pages. Do not redesign the site.
+
+Offshore Services page requirements:
+
+Page title:
+Offshore Services - Makamin Offshore Saudi Ltd. (MOS)
+
+Intro text:
+Offshore operations and marine support services for oil and gas exploration, production, and subsea infrastructure.
+
+Supporting paragraph:
+Makamin provides integrated offshore solutions including diving operations, subsea works, offshore platform support, and marine logistics services.
+
+Create the following exact sections and items:
+
+Section: Marine & Offshore Operations
+
+Chartering Services
+
+Offshore Manning Services
+
+Marine Support Services
+
+Platform Support Vessel Services
+
+Security & Accommodation Vessels
+
+Section: Diving & Subsea Services
+
+Air Diving
+
+Saturation Diving
+
+Diving Support Vessel (DSV)
+
+ROV Services
+
+Section: Underwater Engineering
+
+Underwater Inspection
+
+Underwater NDT
+
+Underwater Survey
+
+Underwater Construction Support
+
+Inspection Repair & Maintenance (IRM)
+
+Section: Marine Fleet Support
+
+AHTSS Vessels
+
+Platform Supply Vessels (PSV)
+
+Crew Boats
+
+Utility Boats
+
+Maintenance Boats
+
+Jack-Up Barges
+
+Floating Storage Vessels
+
+Supply Vessels
+
+Implementation constraints: use the existing Services page/component pattern already used in the project; keep styling consistent with the current site; do not merge this content into another page; do not replace existing Offshore-related Group content; and do not change Group → Offshore Operations if it already exists, because that page should remain a company/entity page, while Services → Offshore Services must be a service page. Keep changes strictly limited to adding this one new Services item and its dedicated page only.**

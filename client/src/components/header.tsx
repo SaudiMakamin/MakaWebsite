@@ -32,6 +32,7 @@ export default function Header() {
     { path: '/services/geoscience', label: 'Geoscience Services', labelAr: 'خدمات علوم الأرض', icon: FlaskConical },
     { path: '/services/industrial-inspection', label: 'Industrial Inspection Services', labelAr: 'خدمات التفتيش الصناعي', icon: Search },
     { path: '/services/zencus', label: 'ZENCUS Services', labelAr: 'خدمات زينكوس', icon: Cpu },
+    { path: '/services/offshore', label: 'Offshore Services', labelAr: 'الخدمات البحرية', icon: Anchor },
     { path: '/services/supply-chain', label: 'Supply Chain Services', labelAr: 'خدمات سلسلة الإمداد', icon: Package },
     { path: '/services/technical-staffing', label: 'Technical Staffing Services', labelAr: 'خدمات التوظيف التقني', icon: UserCheck },
   ];

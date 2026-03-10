@@ -34,6 +34,7 @@ import DrillingServices from '@/pages/services/drilling';
 import GeoscienceServices from '@/pages/services/geoscience';
 import IndustrialInspection from '@/pages/services/industrial-inspection';
 import ZencusServices from '@/pages/services/zencus';
+import OffshoreServices from '@/pages/services/offshore';
 import SupplyChainServices from '@/pages/services/supply-chain';
 import TechnicalStaffingServices from '@/pages/services/technical-staffing';
 import InvestorRelations from '@/pages/investor-relations';
@@ -69,6 +70,7 @@ function Router() {
       <Route path="/services/geoscience" component={GeoscienceServices} />
       <Route path="/services/industrial-inspection" component={IndustrialInspection} />
       <Route path="/services/zencus" component={ZencusServices} />
+      <Route path="/services/offshore" component={OffshoreServices} />
       <Route path="/services/supply-chain" component={SupplyChainServices} />
       <Route path="/services/technical-staffing" component={TechnicalStaffingServices} />
       <Route path="/petroleum-services" component={PetroleumServices} />
