@@ -67,7 +67,11 @@ export default function SupplyChainServices() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Supply Chain Services | Saudi Makamin"
+        description="Vendor management, procurement, material test certificates, expediting, factory acceptance tests, and quality control inspection by Saudi Makamin."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

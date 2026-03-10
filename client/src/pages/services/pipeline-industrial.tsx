@@ -77,7 +77,11 @@ export default function PipelineIndustrialServices() {
 
   return (
     <div className={`min-h-screen bg-gray-50 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Pipeline & Industrial Services | Saudi Makamin"
+        description="Pipeline construction, industrial maintenance, cathodic protection, and PDHMS services by Saudi Makamin for oil and gas infrastructure."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

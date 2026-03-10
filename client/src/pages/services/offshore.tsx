@@ -67,7 +67,11 @@ export default function OffshoreServices() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Offshore Services - Makamin Offshore Saudi Ltd. (MOS) | Saudi Makamin"
+        description="Offshore operations, diving and subsea services, underwater engineering, and marine fleet support by Makamin Offshore Saudi Ltd."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

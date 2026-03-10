@@ -80,7 +80,11 @@ export default function GeoscienceServices() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Geoscience Services | Saudi Makamin"
+        description="Geological, geophysical, and petrophysical studies, core analysis, digital data services, and 4D seismic monitoring by Saudi Makamin."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

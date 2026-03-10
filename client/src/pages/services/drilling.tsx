@@ -82,7 +82,11 @@ export default function DrillingServices() {
 
   return (
     <div className={`min-h-screen bg-slate-900 ${isAr ? 'rtl' : 'ltr'}`}>
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Drilling Services | Saudi Makamin"
+        description="Drilling operations including reverse circulation, auger, pile drilling, VSP, and micro seismic services by Saudi Makamin."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

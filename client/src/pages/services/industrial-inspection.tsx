@@ -56,7 +56,11 @@ export default function IndustrialInspection() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Industrial Inspection Services | Saudi Makamin"
+        description="Non-destructive testing, PAUT, TOFD, PMI, corrosion monitoring, and tank floor inspection services by Saudi Makamin."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

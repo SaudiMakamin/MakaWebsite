@@ -66,7 +66,11 @@ export default function ZencusServices() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="ZENCUS Technology Services | Saudi Makamin"
+        description="Real-time field monitoring, wireless data acquisition with mono transmitters and field transceivers, ZDV Studio, and CCTV surveillance by Saudi Makamin."
+      />
       <EnhancedSecurity />
 
       <section className="relative text-white py-20 overflow-hidden">

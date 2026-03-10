@@ -1,0 +1,54 @@
+Final QA and Google indexing readiness check for the entire Services section — verify with precision that all Services pages are complete, internally linked, crawlable, indexable, and SEO-ready, without changing site architecture.
+
+Scope:
+Check the full Services section, including:
+- Services Overview
+- Pipeline & Industrial Services
+- Drilling Services
+- Geoscience Services
+- Industrial Inspection Services
+- ZENCUS Services
+- Offshore Services
+- Supply Chain Services
+- Technical Staffing Services
+
+Required QA checks:
+1. Confirm every Services submenu item opens its correct dedicated page.
+2. Confirm no service page is missing.
+3. Confirm no listed service item or section is omitted from any page.
+4. Confirm no incorrect reused content appears in Services pages, especially `Company Structure` or any About/Group content.
+5. Confirm the Services dropdown order is correct and stable.
+6. Confirm header, footer, routing, dropdown behavior, and layout remain unchanged.
+7. Confirm each Services page is linked in a crawlable way through normal HTML links/navigation and is not orphaned.
+
+Google indexing and SEO readiness requirements:
+8. Ensure every Services page has a unique HTML `<title>` tag.
+9. Ensure every Services page has a unique meta description matching its actual content.
+10. Ensure every Services page returns indexable page output with no `noindex` meta tag and no `X-Robots-Tag: noindex`.
+11. Ensure `robots.txt` does not block crawling of Services URLs.
+12. Ensure each Services page has a correct self-referencing canonical URL.
+13. Ensure all Services URLs are included in the sitemap if a sitemap exists; if sitemap generation is part of the current project pattern, include them there without changing architecture.
+14. Ensure pages use clean, stable, human-readable URLs consistent with the existing routing pattern.
+15. Ensure each page has one clear H1 matching the service page topic.
+16. Ensure on-page headings reflect the actual service sections and content.
+17. Ensure the content is rendered in page HTML in a way search engines can access under the project’s existing setup.
+18. Add appropriate structured data only if it fits the current project pattern and can be done safely with minimal change. Do not invent unsupported schema. Use valid, page-relevant structured data only.
+19. Keep all changes minimal and limited strictly to Services SEO/indexing readiness only.
+
+Important constraints:
+- Do not redesign the site.
+- Do not change the routing architecture.
+- Do not rename existing menu items unless already explicitly approved.
+- Do not modify unrelated pages.
+- Do not remove existing content unless it is incorrect reused content inside Services.
+- Do not claim Google ranking or guaranteed indexing. Only make the pages technically eligible and search-friendly.
+
+Final output required from you:
+Provide a concise verification report with:
+A. Files checked
+B. Files modified
+C. What was fixed
+D. What remains unchanged
+E. Any remaining risk for indexing or SEO
+F. Explicit confirmation whether all Services pages are now technically crawlable and indexable by Google under the current site setup
+G. Explicit confirmation whether all Services pages are included in sitemap/canonical/title/meta checks

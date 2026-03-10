@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguageContext } from '@/components/language-provider';
+import SemanticMetadata from '@/components/semantic-metadata';
+import EnhancedSecurity from '@/components/enhanced-security';
 import { Users, UserCheck, Briefcase, Globe, HeadphonesIcon, ArrowRight, CheckCircle } from 'lucide-react';
 import HeroLogo from '@/components/hero-logo';
 
@@ -58,6 +60,12 @@ export default function TechnicalStaffingServices() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SemanticMetadata
+        page="services"
+        title="Technical Staffing Services | Saudi Makamin"
+        description="Permanent and contract staffing, payroll management, visa processing, and specialized workforce for petrochemical and oil & gas sectors by Saudi Makamin."
+      />
+      <EnhancedSecurity />
       <section className="relative text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800"></div>
         <div className="relative z-10 container mx-auto px-4 lg:px-8">

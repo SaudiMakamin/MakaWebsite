@@ -87,7 +87,11 @@ export default function Services() {
 
   return (
     <div className="min-h-screen">
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="services"
+        title="Oil & Gas Services | Saudi Makamin"
+        description="Comprehensive oil and gas services including pipeline, drilling, geoscience, industrial inspection, ZENCUS, offshore, supply chain, and technical staffing by Saudi Makamin."
+      />
 
       <section className="relative bg-slate-900 text-white py-24 overflow-hidden">
         <div className="absolute inset-0">
