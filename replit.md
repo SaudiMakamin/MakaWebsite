@@ -158,6 +158,16 @@ Group pages = legal/corporate entities only. Services pages = operational servic
 
 ## Recent Changes - March 10, 2026
 
+### Sitewide QA / Polish Pass
+- **SEO**: Expanded SemanticMetadata type to include `group`, `news`, `media-coverage` page types with proper default titles/descriptions in both languages
+- **SEO**: Fixed 10+ pages using incorrect `page="about"` — project pages now use `page="projects"`, group/entity pages now use `page="group"`
+- **SEO**: Added unique title/description to media-coverage, bahrain-operations, investor-relations pages
+- **SEO**: Fixed inconsistent title formats (e.g., "Pipeline Projects | Makamin" → "Pipeline Projects | Saudi Makamin")
+- **Navigation**: Removed duplicate "Project Management" link from Projects dropdown (was identical to Major Projects)
+- **Navigation**: Added "Marine Fleet & Assets" to Projects dropdown (was missing)
+- **Navigation**: Cleaned unused icon imports (FolderKanban, ClipboardList, X, ChevronRight, FileText) from header
+- **Footer**: Updated copyright year from 2025 to 2026
+
 ### Structured Projects System
 - **Data source**: `client/src/data/projects.ts` — 97 total records (93 public + 4 reference-only) with typed data model including `contractNo?: string` and `referenceOnly?: boolean`
 - **Contract enrichment**: 73 records carry verified Aramco contract numbers from profile data (PISD, DSD, IISD divisions)
@@ -168,7 +178,7 @@ Group pages = legal/corporate entities only. Services pages = operational servic
   - `/projects` — main landing page consuming featured projects from dataset (projects-enhanced.tsx refactored)
   - `/projects/aramco` — `aramco-projects.tsx` — Aramco projects with sector breakdown, search, grid/list toggle
   - `/projects/pipeline` — `pipeline-projects.tsx` — pipeline projects with category breakdown, Aramco filter
-- **Navigation**: Projects dropdown now has 6 items: Major Projects, Project Management, Aramco Projects, Pipeline Projects, Offshore Projects, ZENCUS Projects
+- **Navigation**: Projects dropdown now has 5 items: Aramco Projects, Pipeline Projects, Offshore Projects, ZENCUS Projects, Marine Fleet & Assets (Overview accessible via dropdown header)
 - **Fleet dataset**: `client/src/data/fleet.ts` — 19 marine assets with status labels (Verified / Partially Documented / Referenced in Records)
 - **Fleet page**: `/projects/fleet` — `fleet-assets.tsx` — Marine Fleet & Offshore Assets registry with search, filter by type/status
 - **Offshore Projects page**: `/projects/offshore` — `offshore-projects.tsx` — 13 offshore projects (excludes ZENCUS entity) with category breakdown, value display, related assets, record status badges

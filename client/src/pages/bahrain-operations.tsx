@@ -105,7 +105,11 @@ export default function BahrainOperations() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SemanticMetadata page="services" />
+      <SemanticMetadata
+        page="group"
+        title="Bahrain Operations | Saudi Makamin"
+        description="Makamin Bahrain — offshore commercial arm and investment management operations in the Kingdom of Bahrain."
+      />
       <EnhancedSecurity />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white py-20 overflow-hidden">

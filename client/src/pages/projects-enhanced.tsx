@@ -102,7 +102,7 @@ export default function Projects() {
   return (
     <div className="min-h-screen bg-black">
       <SemanticMetadata
-        page="about"
+        page="projects"
         title="Projects | Saudi Makamin"
         description="Makamin's complete project portfolio across pipeline, drilling, geoscience, inspection, and offshore operations for Saudi Aramco and major clients."
       />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, FileText, Anchor, Layers } from 'lucide-react';
+import { Globe, Menu, ChevronDown, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, Anchor, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -45,12 +45,11 @@ export default function Header() {
   ];
 
   const projectsDropdown = [
-    { path: '/projects', label: 'Major Projects', labelAr: 'المشاريع الكبرى', icon: FolderKanban },
-    { path: '/projects', label: 'Project Management', labelAr: 'إدارة المشاريع', icon: ClipboardList },
     { path: '/projects/aramco', label: 'Aramco Projects', labelAr: 'مشاريع أرامكو', icon: Building2 },
     { path: '/projects/pipeline', label: 'Pipeline Projects', labelAr: 'مشاريع الأنابيب', icon: Wrench },
     { path: '/projects/offshore', label: 'Offshore Projects', labelAr: 'المشاريع البحرية', icon: Anchor },
     { path: '/projects/zencus', label: 'ZENCUS Projects', labelAr: 'مشاريع ZENCUS', icon: Cpu },
+    { path: '/projects/fleet', label: 'Marine Fleet & Assets', labelAr: 'الأسطول البحري والأصول', icon: Ship },
   ];
 
   const newsDropdown = [

@@ -240,7 +240,11 @@ export default function MediaCoverage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-900 to-slate-800">
-      <SemanticMetadata page="media-coverage" />
+      <SemanticMetadata
+        page="media-coverage"
+        title="Media Coverage | Saudi Makamin"
+        description="Media coverage, press releases, and industry publications featuring Saudi Makamin Holding Company for Oil & Gas Services."
+      />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

@@ -50,7 +50,7 @@ export default function ZencusInternational() {
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
+        page="group"
         title="ZENCUS International Ltd | Saudi Makamin"
         description="ZENCUS International Ltd — a technology subsidiary (51% owned by Makamin) specializing in wireless data acquisition, real-time monitoring, and field instrumentation for oil and gas operations."
       />

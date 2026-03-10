@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLanguageContext } from '@/components/language-provider';
 
 interface SemanticMetadataProps {
-  page: 'home' | 'about' | 'services' | 'projects' | 'contact' | 'certifications' | 'media-coverage' | 'update-shareholder';
+  page: 'home' | 'about' | 'services' | 'projects' | 'contact' | 'certifications' | 'media-coverage' | 'update-shareholder' | 'group' | 'news';
   title?: string;
   description?: string;
 }
@@ -334,7 +334,10 @@ function getDefaultTitle(page: string, language?: string): string {
       services: 'خدماتنا - مكامن السعودية',
       projects: 'مشاريعنا - مكامن السعودية', 
       certifications: 'الشهادات والاعتمادات - مكامن السعودية',
-      contact: 'تواصل معنا - مكامن السعودية'
+      contact: 'تواصل معنا - مكامن السعودية',
+      'media-coverage': 'التغطية الإعلامية - مكامن السعودية',
+      group: 'نظرة عامة على المجموعة - مكامن السعودية',
+      news: 'أخبار مكامن - مكامن السعودية'
     },
     en: {
       home: 'Saudi Makamin - Leading Oil & Gas Services Company',
@@ -342,7 +345,10 @@ function getDefaultTitle(page: string, language?: string): string {
       services: 'Our Services - Saudi Makamin',
       projects: 'Our Projects - Saudi Makamin',
       certifications: 'Certifications & Accreditations - Saudi Makamin',
-      contact: 'Contact Us - Saudi Makamin'
+      contact: 'Contact Us - Saudi Makamin',
+      'media-coverage': 'Media Coverage - Saudi Makamin',
+      group: 'Group Overview - Saudi Makamin',
+      news: 'Makamin News | Saudi Makamin'
     }
   };
   
@@ -358,7 +364,10 @@ function getDefaultDescription(page: string, language?: string): string {
       services: 'خدمات شاملة في النفط والغاز تشمل الحفر والأنابيب والفحص الصناعي والعمليات البحرية.',
       projects: 'مشاريع مكتملة مع أرامكو السعودية والعملاء الرئيسيين في قطاع النفط والغاز.',
       certifications: 'شهادات آيزو الدولية والاعتمادات المحلية التي تؤكد التزامنا بأعلى معايير الجودة والسلامة.',
-      contact: 'تواصل مع مكامن السعودية - معلومات الاتصال والمكاتب في الدمام والمملكة العربية السعودية.'
+      contact: 'تواصل مع مكامن السعودية - معلومات الاتصال والمكاتب في الدمام والمملكة العربية السعودية.',
+      'media-coverage': 'التغطية الإعلامية والنشرات الصحفية والمقالات الصناعية التي تتناول شركة مكامن السعودية القابضة.',
+      group: 'نظرة عامة على هيكل مجموعة مكامن — مكامن القابضة، مكامن للخدمات البترولية، زينكوس الدولية، ومكامن البحرية السعودية.',
+      news: 'آخر الأخبار وإعلانات حوكمة الشركات من شركة مكامن السعودية القابضة لخدمات النفط والغاز.'
     },
     en: {
       home: 'Saudi Makamin Holding Company - Leading oil & gas services company with SAR 1.2 billion capital, providing drilling, pipeline, industrial inspection, and offshore operations.',
@@ -366,7 +375,10 @@ function getDefaultDescription(page: string, language?: string): string {
       services: 'Comprehensive oil & gas services including drilling, pipeline, industrial inspection, and offshore operations.',
       projects: 'Completed projects with Saudi Aramco and major clients in the oil & gas sector.',
       certifications: 'International ISO certifications and local accreditations confirming our commitment to highest quality and safety standards.',
-      contact: 'Contact Saudi Makamin - contact information and offices in Dammam, Saudi Arabia.'
+      contact: 'Contact Saudi Makamin - contact information and offices in Dammam, Saudi Arabia.',
+      'media-coverage': 'Media coverage, press releases, and industry publications featuring Saudi Makamin Holding Company.',
+      group: 'Overview of the Makamin Group corporate structure — Makamin Holding, Makamin Petroleum Services, ZENCUS International, and Makamin Offshore Saudi.',
+      news: 'Latest news and corporate governance announcements from Saudi Makamin Holding Company for Oil & Gas Services.'
     }
   };
   

@@ -26,7 +26,7 @@ export default function PetroleumServices() {
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
+        page="group"
         title="Makamin Petroleum Services Company | Saudi Makamin"
         description="Makamin Petroleum Services Company — the primary operating entity of the Makamin Group, managing pipeline, drilling, geoscience, inspection, staffing, and supply chain operations."
       />

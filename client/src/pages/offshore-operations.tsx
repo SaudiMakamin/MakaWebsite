@@ -33,7 +33,7 @@ export default function OffshoreOperations() {
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
+        page="group"
         title="Makamin Offshore Saudi Ltd (MOS) | Saudi Makamin"
         description="Makamin Offshore Saudi Ltd — a 51% Makamin-owned offshore entity providing marine services, diving operations, underwater engineering, and fleet support for oil and gas operations."
       />

@@ -85,7 +85,7 @@ export default function OffshoreProjectsPage() {
   return (
     <div className="min-h-screen bg-black">
       <SemanticMetadata
-        page="about"
+        page="projects"
         title="Makamin Offshore Saudi (MOS) — Offshore Projects Portfolio | Saudi Makamin"
         description="Makamin Offshore Saudi (MOS) marine and offshore project portfolio including vessel charters, security patrol, navigational aids, and offshore manning services for Saudi Aramco."
       />

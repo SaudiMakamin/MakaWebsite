@@ -264,8 +264,8 @@ export default function Footer() {
         <div className="border-t mt-8 pt-8 text-center text-sm" style={{ borderColor: '#404040', color: '#f1f1f1' }}>
           <p>
             {language === 'ar' ? 
-              '© 2025 شركة مكامن السعودية القابضة. جميع الحقوق محفوظة.' :
-              '© 2025 Saudi Makamin Holding Company. All rights reserved.'
+              '© 2026 شركة مكامن السعودية القابضة. جميع الحقوق محفوظة.' :
+              '© 2026 Saudi Makamin Holding Company. All rights reserved.'
             }
           </p>
         </div>

@@ -84,7 +84,7 @@ export default function ZencusProjectsPage() {
   return (
     <div className="min-h-screen bg-black">
       <SemanticMetadata
-        page="about"
+        page="projects"
         title="ZENCUS Projects | Saudi Makamin"
         description="ZENCUS International technology projects — wireless well monitoring, remote monitoring, SCADA systems, and oilfield IoT solutions for oil & gas operations."
       />

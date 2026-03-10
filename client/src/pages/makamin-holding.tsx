@@ -23,7 +23,7 @@ export default function MakaminHolding() {
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
+        page="group"
         title="Makamin Holding for Oil & Gas | Saudi Makamin"
         description="Makamin Saudi Holding Company for Oil & Gas Services — the parent corporate umbrella overseeing Makamin Petroleum Services, ZENCUS International, and Makamin Offshore Saudi."
       />

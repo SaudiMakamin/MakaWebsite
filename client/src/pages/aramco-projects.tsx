@@ -87,8 +87,8 @@ export default function AramcoProjects() {
   return (
     <div className="min-h-screen bg-black" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
-        title="Saudi Aramco Projects | Makamin"
+        page="projects"
+        title="Saudi Aramco Projects | Saudi Makamin"
         description="Makamin's comprehensive portfolio of Saudi Aramco projects spanning pipeline, drilling, inspection, and geoscience operations."
       />
       <EnhancedSecurity />

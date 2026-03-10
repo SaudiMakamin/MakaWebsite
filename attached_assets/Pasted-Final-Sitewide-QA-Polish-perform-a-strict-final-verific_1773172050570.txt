@@ -1,0 +1,291 @@
+Final Sitewide QA / Polish — perform a strict final verification and refinement pass across the entire website. This is the final executive-quality QA and polish stage before closure. Do not redesign the site, do not change architecture, do not change routing, and do not introduce new features unless a small correction is required to fix a real inconsistency. Preserve the current structure, styling system, desktop behavior, mobile behavior, and all approved section/page architecture.
+
+Goal:
+Close the website with one final sitewide pass focused on:
+
+SEO consistency
+
+title/meta consistency
+
+page-heading consistency
+
+CTA consistency
+
+media/image consistency
+
+navigation consistency
+
+footer/quick-link consistency
+
+visual/textual polish
+
+final executive-level credibility review
+
+1) Full sitewide QA scope
+
+Check the entire approved site structure, including at minimum:
+
+Main sections
+
+Home
+
+About Overview and all About submenu pages
+
+Services Overview and all Services pages
+
+Group Overview and all Group entity pages
+
+Projects Overview and all Project pages
+
+News
+
+Media Coverage
+
+Shareholders
+
+Contact
+
+Key project/service/entity pages that must be checked carefully
+
+Aramco Projects
+
+Pipeline Projects
+
+Offshore Projects
+
+ZENCUS Projects
+
+Offshore & Marine Services
+
+Marine Fleet & Offshore Assets
+
+ZENCUS entity page
+
+Makamin Offshore Saudi Ltd page
+
+Makamin Petroleum Services Company page
+
+Makamin Holding for Oil & Gas page
+
+2) SEO review — final consistency pass
+
+Perform a sitewide SEO sanity check using the project’s existing SEO pattern only.
+
+Verify and correct where needed:
+
+every important page has a unique HTML title
+
+every important page has a unique meta description
+
+titles and descriptions match the actual page content
+
+page titles are institutionally consistent across the site
+
+page headings (H1 / hero heading) align with the title/meta and page purpose
+
+MOS, ZENCUS, Group, Services, and Projects pages use accurate entity/page naming
+
+pages do not use vague, weak, misleading, or outdated labels
+
+if canonical tags are already part of the project pattern, verify them
+
+if sitemap handling exists, verify all important approved pages are included
+
+check for accidental leftover noindex / hidden indexing blockers only if relevant to the existing pattern
+
+Important:
+Do not invent a new SEO system.
+Use the existing site pattern only and fix inconsistencies.
+
+3) Consistency review for titles, headings, and descriptions
+
+Perform a sitewide consistency audit for naming and hierarchy.
+
+Verify:
+
+page titles use the approved final naming
+
+entity pages use correct legal/corporate names
+
+ZENCUS appears as ZENCUS International Ltd where required
+
+MOS appears consistently as Makamin Offshore Saudi (MOS) or approved corporate/page form depending on context
+
+Group pages remain corporate/entity pages
+
+Services pages remain service pages
+
+Projects pages remain project pages
+
+overview pages do not accidentally show content from unrelated sections
+
+no old labels remain from earlier site states
+
+no weak or confusing hero subtitles remain on key pages
+
+4) CTA consistency review
+
+Perform a final consistency check for CTAs across the site.
+
+Verify:
+
+primary and secondary CTA logic is coherent
+
+CTA labels are clear, professional, and relevant to page intent
+
+homepage CTA structure remains strong
+
+Download Company Profile usage is consistent where intended
+
+Contact Us / inquiry-style actions are placed logically
+
+Group pages use related-project or related-service CTA correctly where approved
+
+Services pages link logically into Projects or related pages where appropriate
+
+Project pages link logically into related Services or entity pages where appropriate
+
+no CTA is broken, blank, misleading, or visually inconsistent
+
+no duplicate competing CTAs weaken the page
+
+Fix only actual inconsistencies.
+
+5) Images, logos, icons, and media consistency
+
+Perform a final visual asset consistency pass.
+
+Verify:
+
+logos are correct and not distorted
+
+Makamin master brand remains the global brand
+
+sub-brand/entity logos (such as MOS) are used only in the correct contexts
+
+no page uses missing, broken, stretched, cropped, or blurry media unnecessarily
+
+cards and hero sections using images/icons remain visually clean
+
+Aramco-related visual markers remain consistent on Aramco Projects page
+
+MOS logo usage remains consistent across MOS-related contexts
+
+no page has broken empty image containers or placeholder-looking media areas
+
+no icon/text rendering bugs remain
+
+badge/icon color contrast remains professional and readable
+
+6) Navigation, footer, and quick-links consistency
+
+Perform a final global navigation and footer consistency audit.
+
+Verify:
+
+top navigation matches the final approved structure
+
+removed items such as Certifications and HSE are not visible
+
+News dropdown structure is correct
+
+Media Coverage sits under News
+
+Projects dropdown contains the final approved items
+
+Services dropdown contains the final approved items
+
+Group dropdown contains the final approved items
+
+desktop and mobile navigation are consistent
+
+footer / quick-links do not show outdated menu items or legacy structure
+
+no page-specific inherited blocks reintroduce outdated links or labels
+
+Fix any inconsistency that remains.
+
+7) Executive credibility and messaging review
+
+Perform a final business-credibility pass across the site.
+
+Verify:
+
+no misleading capital/revenue-style wording remains
+
+no unsupported partnership claims remain
+
+no weak live counters or negative zero-value counters remain
+
+no page overstates unverified numbers
+
+entity/project/service relationships are clear
+
+MOS offshore records look credible and documented
+
+Aramco projects look contract-backed and reference-driven
+
+ZENCUS reads as a real technology entity/platform, not a placeholder
+
+homepage and major landing pages present Makamin as an integrated energy platform, not a confused mixture of identities
+
+8) Visual polish and rendering review
+
+Perform a final render-quality pass across important pages.
+
+Verify:
+
+no broken text
+
+no undefined labels
+
+no corrupted strings
+
+no overlap in cards/badges/metadata
+
+no broken related-services blocks
+
+no blank cards/buttons
+
+no inconsistent spacing that weakens premium feel
+
+no major desktop/mobile layout regressions remain
+
+no horizontal overflow where it should not exist
+
+no page feels visually unfinished relative to the rest of the site
+
+9) Scope discipline
+
+This is a final QA/polish pass, not a rebuild.
+
+Rules:
+
+do not redesign the site
+
+do not expand scope into new features
+
+do not alter architecture
+
+do not change routing unless needed to fix an approved broken link
+
+do not modify unrelated business logic
+
+prefer the smallest safe correction for each issue found
+
+preserve all approved structural work already completed
+
+10) Final required deliverable
+
+Return one concise executive QA/polish report with:
+
+A. Pages/sections checked
+B. Files modified
+C. SEO/title/meta issues found and fixed
+D. Naming/heading consistency issues found and fixed
+E. CTA consistency issues found and fixed
+F. Image/logo/media issues found and fixed
+G. Navigation/footer/quick-link inconsistencies found and fixed
+H. Any remaining risks or items intentionally left unchanged
+I. Explicit confirmation that architecture, routing, and unrelated pages remained unchanged
+J. Explicit final statement on whether the site is now ready for executive review / closure

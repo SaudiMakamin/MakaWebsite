@@ -134,7 +134,7 @@ export default function FleetAssetsPage() {
   return (
     <div className="min-h-screen bg-black">
       <SemanticMetadata
-        page="about"
+        page="projects"
         title="Marine Fleet & Offshore Assets | Saudi Makamin"
         description="Complete marine fleet and offshore assets registry for Makamin Offshore Saudi (MOS) including platform support vessels, security patrol boats, and offshore vessels."
       />

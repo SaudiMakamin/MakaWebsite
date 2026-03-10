@@ -70,8 +70,8 @@ export default function PipelineProjects() {
   return (
     <div className="min-h-screen bg-black" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
-        title="Pipeline Projects | Makamin"
+        page="projects"
+        title="Pipeline Projects | Saudi Makamin"
         description="Makamin's complete pipeline project portfolio including tie-ins, replacements, RTR installations, water injection, and rehabilitation projects."
       />
       <EnhancedSecurity />

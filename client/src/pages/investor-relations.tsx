@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguageContext } from '@/components/language-provider';
 import { TrendingUp, DollarSign, Users, Building, Award, Download, ChevronRight } from 'lucide-react';
 import HeroLogo from '@/components/hero-logo';
+import SemanticMetadata from '@/components/semantic-metadata';
 
 export default function InvestorRelations() {
   const { t, language } = useLanguageContext();
@@ -123,6 +124,11 @@ export default function InvestorRelations() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SemanticMetadata
+        page="about"
+        title="Investor Relations | Saudi Makamin"
+        description="Investor relations, financial highlights, and corporate governance information for Saudi Makamin Holding Company."
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white py-24 overflow-hidden">
         {/* Enhanced Background Overlay */}

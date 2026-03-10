@@ -51,7 +51,7 @@ export default function GroupOverview() {
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
-        page="about"
+        page="group"
         title="Group Overview | Saudi Makamin"
         description="Overview of the Makamin Group corporate structure — Makamin Holding, Makamin Petroleum Services, ZENCUS International, and Makamin Offshore Saudi."
       />
