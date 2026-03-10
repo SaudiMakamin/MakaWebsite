@@ -1,0 +1,76 @@
+Final correction for Aramco Projects page — fix this page only, with no scope expansion. The page is improved, but it is still not approved. Complete the missing execution exactly as follows:
+
+Show Contract No. on every Aramco project card that has verified contract data already supplied earlier.
+
+Do not leave contract numbers visible on only some cards.
+
+Apply the same contract-reference treatment consistently across all Aramco records with verified contract numbers.
+
+This includes the Aramco records already provided for Petroleum / PISD / DSD / IISD and the MOS-linked Aramco offshore records where verified contract/project reference data already exists.
+
+Keep the SAUDI ARAMCO PROJECT badge, but also add a stronger Aramco visual marker to each card.
+
+If logo usage is supported safely in the existing pattern, use a small Aramco logo marker.
+
+If not, strengthen the existing Aramco client badge treatment so it is visually unmistakable and consistent on every card.
+
+Do not leave Aramco identity weak or inconsistent across cards.
+
+Fix the card hierarchy everywhere on this page.
+
+Every Aramco card should follow the same clear order:
+
+Aramco identity marker
+
+project title
+
+short description
+
+Contract No. block
+
+supporting metadata
+
+Do not let category/status badges visually overpower the contract reference.
+
+Fix the broken Related Services section.
+
+The current cards/buttons in that section are visually broken / blank.
+
+Repair the rendering so all related service cards/buttons display correctly, with visible text, proper contrast, and working links.
+
+Fix visual consistency at the bottom of the page.
+
+Clean up any outdated footer / quick-link elements that still show old navigation items inconsistent with the final approved site structure.
+
+Do this only if the inconsistency is coming from this page’s rendered composition or inherited page-level blocks. Do not redesign the global footer in this task.
+
+Do not ignore the offshore Aramco records on this page.
+
+If they are part of the Aramco Projects page, they must follow the same contract-reference and hierarchy logic wherever verified source data already exists.
+
+Do not leave offshore Aramco cards visually weaker than the Petroleum Aramco cards.
+
+Important:
+You were already given the verified data, contract numbers, project references, and values earlier. Use that approved data. Do not fabricate anything new, and do not leave already-verified fields unused.
+
+Constraints:
+
+page scope: Aramco Projects only
+
+no redesign
+
+no architecture changes
+
+no routing changes
+
+no unrelated page edits
+
+preserve filters/search/responsive behavior
+
+Return a concise report with:
+A. files modified
+B. which missing contract-reference displays were completed
+C. how Aramco visual identity was made consistent on every card
+D. confirmation that Related Services is fixed
+E. confirmation that outdated/inconsistent bottom-page elements were corrected
+F. confirmation that only Aramco Projects was changed**

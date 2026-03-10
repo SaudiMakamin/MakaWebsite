@@ -1,9 +1,10 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Building, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
+import { MapPin, Building, FileText, ArrowRight, Calendar } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import { Link } from 'wouter';
 import type { Project } from '@/data/projects';
+import aramcoLogoPath from '@assets/Logo-saudi-aramco-vector-PNG_1752578814086.png';
 
 interface ProjectCardProps {
   project: Project;
@@ -25,14 +26,19 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
     ? 'bg-blue-600 text-white'
     : 'bg-gray-500 text-white';
 
+  const hasContractNo = !!project.contractNo;
+  const hasContractValue = !!project.value && !!project.currency;
+  const hasYearRange = !!project.yearFrom || !!project.yearTo;
+  const hasAnyReference = hasContractNo || hasContractValue;
+
   if (compact) {
     return (
       <Card className={`${isDark ? 'bg-slate-800/60 border-slate-700 hover:border-[#c5a66e]/50' : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-md'} transition-all duration-300`}>
         <CardContent className="p-4">
           {aramcoMode && (
-            <div className="flex items-center gap-1.5 mb-2">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#c5a66e]" />
-              <span className="text-[10px] font-bold tracking-wider uppercase text-[#c5a66e]">Saudi Aramco</span>
+            <div className="flex items-center gap-2 mb-2">
+              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-4 w-auto opacity-80" />
+              <span className="text-[10px] font-bold tracking-wider uppercase text-[#c5a66e]">Aramco Project</span>
             </div>
           )}
           <div className="flex items-start justify-between gap-3 mb-2">
@@ -41,16 +47,22 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
               <Badge className={`${statusColor} text-xs flex-shrink-0`}>{project.status}</Badge>
             )}
           </div>
-          <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
             {project.location && (
               <span className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                 <MapPin className="w-3 h-3" />{project.location}
               </span>
             )}
-            {project.contractNo && (
-              <span className={`flex items-center gap-1 font-mono ${isDark ? 'text-[#c5a66e]/80' : 'text-blue-600'}`}>
+            {hasContractNo && (
+              <span className={`flex items-center gap-1 font-mono ${isDark ? 'text-[#c5a66e]' : 'text-blue-600'}`}>
                 <FileText className="w-3 h-3" />
                 <span className="font-semibold">{isAr ? 'عقد' : 'Contract'}:</span> {project.contractNo}
+              </span>
+            )}
+            {!hasContractNo && hasContractValue && (
+              <span className={`flex items-center gap-1 font-mono ${isDark ? 'text-[#c5a66e]' : 'text-blue-600'}`}>
+                <FileText className="w-3 h-3" />
+                {project.currency} {project.value}
               </span>
             )}
           </div>
@@ -61,12 +73,12 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
 
   if (aramcoMode) {
     return (
-      <Card className="h-full bg-slate-800 border-[#c5a66e]/20 hover:border-[#c5a66e]/50 transition-all duration-300 group">
+      <Card className={`h-full bg-slate-800 border-[#c5a66e]/20 hover:border-[#c5a66e]/50 transition-all duration-300 group ${hasAnyReference ? 'ring-1 ring-[#c5a66e]/10' : ''}`}>
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#c5a66e]" />
-              <span className="text-[11px] font-bold tracking-wider uppercase text-[#c5a66e]">Saudi Aramco Project</span>
+              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-5 w-auto opacity-80 group-hover:opacity-100 transition-opacity" />
+              <span className="text-[10px] font-bold tracking-widest uppercase text-[#c5a66e]/80">Project</span>
             </div>
             {project.status && (
               <Badge className={`${statusColor} text-xs`}>{project.status}</Badge>
@@ -76,35 +88,53 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
           <h3 className="text-lg font-bold mb-2 leading-tight text-white group-hover:text-[#c5a66e] transition-colors">{title}</h3>
           <p className="text-sm mb-4 leading-relaxed line-clamp-2 text-gray-400">{description}</p>
 
-          {project.contractNo && (
-            <div className="bg-slate-900/80 border border-[#c5a66e]/20 rounded-lg px-4 py-3 mb-4">
-              <div className="flex items-center gap-2">
+          {hasContractNo && (
+            <div className="bg-slate-900/80 border border-[#c5a66e]/25 rounded-lg px-4 py-3 mb-4">
+              <div className="flex items-center gap-2 mb-1">
                 <FileText className="w-4 h-4 text-[#c5a66e] flex-shrink-0" />
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">{isAr ? 'رقم العقد' : 'Contract No.'}</span>
+                <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">{isAr ? 'رقم العقد' : 'Contract No.'}</span>
               </div>
-              <p className="font-mono text-base font-bold text-[#c5a66e] mt-1 tracking-wide">{project.contractNo}</p>
+              <p className="font-mono text-base font-bold text-[#c5a66e] tracking-wide">{project.contractNo}</p>
+            </div>
+          )}
+
+          {!hasContractNo && hasContractValue && (
+            <div className="bg-slate-900/80 border border-[#c5a66e]/25 rounded-lg px-4 py-3 mb-4">
+              <div className="flex items-center gap-2 mb-1">
+                <FileText className="w-4 h-4 text-[#c5a66e] flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">{isAr ? 'قيمة العقد' : 'Contract Value'}</span>
+              </div>
+              <p className="font-mono text-base font-bold text-[#c5a66e] tracking-wide">
+                {project.currency} {project.value}
+              </p>
+              {hasYearRange && (
+                <div className="flex items-center gap-1.5 mt-1.5 text-xs text-gray-500">
+                  <Calendar className="w-3 h-3" />
+                  <span>{project.yearFrom}{project.yearTo ? ` – ${project.yearTo}` : ''}</span>
+                </div>
+              )}
             </div>
           )}
 
           <div className="space-y-1.5 mb-4">
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-gray-500 w-16 flex-shrink-0">{isAr ? 'العميل' : 'Client'}</span>
+              <span className="text-gray-500 min-w-[52px] flex-shrink-0">{isAr ? 'العميل' : 'Client'}</span>
               <span className="text-[#c5a66e] font-medium">{project.client}</span>
             </div>
             {project.location && (
               <div className="flex items-center gap-2 text-xs">
-                <span className="text-gray-500 w-16 flex-shrink-0">{isAr ? 'الموقع' : 'Location'}</span>
+                <span className="text-gray-500 min-w-[52px] flex-shrink-0">{isAr ? 'الموقع' : 'Location'}</span>
                 <span className="text-gray-300">{project.location}</span>
               </div>
             )}
             {project.entity && (
               <div className="flex items-center gap-2 text-xs">
-                <span className="text-gray-500 w-16 flex-shrink-0">{isAr ? 'الكيان' : 'Entity'}</span>
+                <span className="text-gray-500 min-w-[52px] flex-shrink-0">{isAr ? 'الكيان' : 'Entity'}</span>
                 <span className="text-gray-300">{project.entity}</span>
               </div>
             )}
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-gray-500 w-16 flex-shrink-0">{isAr ? 'القطاع' : 'Sector'}</span>
+              <span className="text-gray-500 min-w-[52px] flex-shrink-0">{isAr ? 'القطاع' : 'Sector'}</span>
               <Badge className="bg-[#003f6a]/50 text-[#c5a66e] border border-[#c5a66e]/30 text-[10px] px-2 py-0">
                 {project.sector}
               </Badge>

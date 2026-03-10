@@ -242,18 +242,19 @@ export default function AramcoProjects() {
 
       <section className="bg-gradient-to-r from-[#003f6a] to-slate-800 py-12 border-t border-[#c5a66e]/20">
         <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">
+          <h2 className="text-2xl font-bold text-white mb-6">
             {isAr ? 'الخدمات ذات الصلة' : 'Related Services'}
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {[
               { label: isAr ? 'الأنابيب والصناعة' : 'Pipeline & Industrial', path: '/services/pipeline-industrial' },
               { label: isAr ? 'الحفر' : 'Drilling', path: '/services/drilling' },
               { label: isAr ? 'الفحص الصناعي' : 'Industrial Inspection', path: '/services/industrial-inspection' },
+              { label: isAr ? 'العمليات البحرية' : 'Offshore Services', path: '/services/offshore' },
               { label: isAr ? 'الجيوفيزياء' : 'Geoscience', path: '/services/geoscience' },
             ].map(svc => (
               <Link key={svc.path} href={svc.path}>
-                <Button variant="outline" className="text-white border-[#c5a66e]/30 hover:bg-[#c5a66e]/20">
+                <Button className="bg-slate-700/60 text-white border border-[#c5a66e]/40 hover:bg-[#c5a66e]/30 hover:border-[#c5a66e]/60 font-medium px-5 py-2.5 transition-all duration-200">
                   {svc.label}
                   <ArrowRight className={`w-4 h-4 ${isAr ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
