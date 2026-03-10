@@ -47,6 +47,8 @@ export default function Header() {
   const projectsDropdown = [
     { path: '/projects', label: 'Major Projects', labelAr: 'المشاريع الكبرى', icon: FolderKanban },
     { path: '/projects', label: 'Project Management', labelAr: 'إدارة المشاريع', icon: ClipboardList },
+    { path: '/projects/aramco', label: 'Aramco Projects', labelAr: 'مشاريع أرامكو', icon: Building2 },
+    { path: '/projects/pipeline', label: 'Pipeline Projects', labelAr: 'مشاريع الأنابيب', icon: Wrench },
   ];
 
   const certificationsDropdown = [

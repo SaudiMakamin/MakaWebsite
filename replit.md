@@ -135,6 +135,19 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 ### Key Separation Rule
 Group pages = legal/corporate entities only. Services pages = operational service lines only. No mixing.
 
+## Recent Changes - March 10, 2026
+
+### Structured Projects System
+- **Data source**: `client/src/data/projects.ts` — 93 projects with typed data model (id, title, titleAr, client, entity, sector, category, serviceLine, status, location, description, highlights, isAramco, isPipeline, isOffshore, featured, serviceLink)
+- **Reusable components**: `client/src/components/project-card.tsx` (grid/compact modes), `client/src/components/project-filters.tsx` (search + multi-filter)
+- **Pages**:
+  - `/projects` — main landing page consuming featured projects from dataset (projects-enhanced.tsx refactored)
+  - `/projects/aramco` — `aramco-projects.tsx` — 88 Aramco projects with sector breakdown, search, grid/list toggle
+  - `/projects/pipeline` — `pipeline-projects.tsx` — 29 pipeline projects with category breakdown, Aramco filter
+- **Navigation**: Projects dropdown now has 4 items: Major Projects, Project Management, Aramco Projects, Pipeline Projects
+- **Entity classification**: Holding (none), Petroleum (pipeline/drilling/inspection/geoscience), Offshore (marine), ZENCUS (digital/wireless)
+- **No fabricated stats**: Hero badges show real counts from dataset instead of unverified metrics
+
 ## Recent Changes - March 2, 2026
 
 ### JSON-Driven News System

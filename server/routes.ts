@@ -239,6 +239,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `${base}/services/supply-chain`,
       `${base}/services/technical-staffing`,
       `${base}/projects`,
+      `${base}/projects/aramco`,
+      `${base}/projects/pipeline`,
       `${base}/certifications`,
       `${base}/contact`,
       `${base}/news`

@@ -1,0 +1,316 @@
+Final Projects enhancement — execute with minimal architectural risk and keep the existing strong Projects page design. Do not rebuild the site from scratch. Preserve the current SPA architecture, routing pattern, header/footer, visual design language, search/filter UI direction, and reusable component approach already used in the project.
+
+Goal:
+Upgrade the `Projects` section from a general showcase into a scalable project system driven by structured data, while adding two new dedicated pages:
+- `Aramco Projects`
+- `Pipeline Projects`
+
+Critical rules:
+1. Keep the current `Projects` landing page, but reorganize it so it can consume structured project data.
+2. Add the two new pages without breaking the current Projects page.
+3. Build the project system so future projects can be added easily without rewriting components.
+4. Separate project data by entity and sector correctly:
+   - `Holding` = no direct execution projects; only group portfolio / strategic overview
+   - `Petroleum` = Pipeline / Drilling / Geoscience / Inspection / EPC / Water / Industrial projects
+   - `Offshore` = Marine / Chartering / Diving / Subsea / IRM / Vessel-based / Offshore support projects
+   - `ZENCUS` = Wireless Monitoring / SCADA / Data Visualization / Remote Monitoring / CCTV / digital field systems
+5. Do not hardcode project cards directly inside page components if they can be moved into a structured local dataset.
+6. Keep all changes architecture-safe and limited to the Projects section and its related structured data source.
+
+Required navigation outcome under `Projects`:
+- Overview
+- Major Projects
+- Project Management
+- Aramco Projects   ← new
+- Pipeline Projects ← new
+
+Implementation approach:
+A) Create a structured local project dataset (JSON or TypeScript data file, following the existing project pattern).
+B) Refactor Projects-related pages to read from this dataset.
+C) Make the design scalable for dozens of projects, not only the currently visible ones.
+
+Required data model for each project:
+- `id`
+- `title`
+- `client`
+- `entity` (`Holding` | `Petroleum` | `Offshore` | `ZENCUS`)
+- `sector`
+- `category`
+- `serviceLine`
+- `yearFrom`
+- `yearTo`
+- `status`
+- `value`
+- `location`
+- `description`
+- `highlights[]`
+- `images[]`
+- `featured`
+- `caseStudy`
+- `serviceLink`
+- `isAramco`
+- `isOffshore`
+
+Search and filter requirements:
+Make search and filtering work against the full project dataset, not only against static cards.
+Filters required:
+- Client
+- Entity
+- Sector
+- Category
+- Year
+- Status
+- Offshore / Onshore
+- Aramco / Non-Aramco
+
+Search must work on:
+- project title
+- client
+- location
+- description
+
+Projects landing page requirements:
+Keep the existing visual strength, but reorganize content into these sections where appropriate:
+- Projects Overview
+- Strategic Clients
+- Saudi Aramco Projects
+- Major Projects
+- Project Categories
+- Featured Case Studies
+- Project Gallery
+- Project Management
+
+Important numeric rule:
+Any metrics currently shown such as `SAR 280M+`, `8 Active Projects`, or `Zero LTA Record` must not remain as unverified placeholders. If they are not confirmed in the current source data, either move them into an easily editable config/data source or temporarily hide them. Do not present unverified numbers as facts.
+
+Page 1: `Aramco Projects`
+Create a dedicated Projects page for Saudi Aramco-related projects only.
+This page must read from the structured dataset and show projects where `isAramco = true`.
+
+Required page behavior:
+- Show Aramco-specific hero/title area
+- Show search/filter capability across Aramco projects
+- Show project cards or list view generated from data
+- Support future addition of many more Aramco projects without page redesign
+
+Recommended content sections:
+- Aramco Projects Overview
+- Featured Aramco Projects
+- Pipeline / Drilling / Inspection / Geoscience breakdown
+- Aramco Case Studies
+- Related Services
+
+Project fields displayed per item where available:
+- Project Title
+- Client
+- Location
+- Service Type / Sector
+- Year / Duration
+- Status
+- Short Scope / Description
+- Optional Value
+- Optional Images
+- Optional Related Service
+
+Populate Aramco-related data using the following classification and records:
+
+Petroleum — Major Projects Done & Completed:
+- `Pipeline Tie-in and Installation Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Pipeline Replacement & Water Injection Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Construction of Wellhead Guard Rails, Platforms & Perimeter Fences` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Installation of Water Injection Centrifugal Pumps` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Installation of Multiphase Flow Meters (MPFM)` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Permanent Downhole System (PDHMS) and E&I Installation Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Replacement and Installation of RTR Lines` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Strip out & Re-manifold of Water & Oil Wells` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Installation of Low Pressure Production System at GOSP` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Pipeline Rehabilitation, Repair & Reconditioning Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Upgrading of Corrosion Inhibitor Skid Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Drilling of Water Well Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Corrosion Coupon Inspection and Monitoring` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Inspection of MFL TAN G-80 D-16 Crude Tank Bottom Plates` | Client: `Saudi Aramco` | Entity: `Petroleum`
+- `Magnetic Flux Leakage Tank Floor Scanning Projects` | Client: `Saudi Aramco` | Entity: `Petroleum`
+
+Petroleum — PISD Track Records:
+- `Tie-in UTMN 1395 & 1396 to UTMN GOSP-4 and UTMN 1695 to UTMN GOSP-9 w/ SSD Fence`
+- `Tie-in Qatif 516 & 517 PWI; 12” New PWI Header & Extension with E&I`
+- `Installation of 8” GRE Line from WTF2- to Disposal Wells RKH 10 & 9`
+- `Replacement of UTMN 415/266/463 Water Injection`
+- `Tie-in Qatif548 @ P3 & Qatif397 @ P23 & Upgrading of six Corrosion Skids with E&I`
+- `Replacement of Carbon Steel F/L with RTR at six locations`
+- `QUU1 and 2 Rehabilitation; Phase III – 60” Sea Water Pipeline`
+- `Tie-in HRDH 500 / 736 / 507 F/L`
+- `Installation of Four Water Injection Centrifugal Pumps at Abqaiq Area`
+- `Re-route of UTMN272 Tr/L & Replacement of UTMN 419/189/420 SWD Header`
+- `Installation of Multiphase Flow Meter (MPFM) @ Shedgum GOSP 1, 6 & 4`
+- `Installation of One Centrifugal Pump with Associated Piping for ABQQ wells`
+- `Low Pressure Production System @ Abqaiq GOSP-2`
+- `Tie-in ANDR349-, Replacement of CS Flow Line with 6” GRE Line`
+- `Lateral (RIS-D) 6” RTR Replacement of six Corroded Lines @ Ghina wells`
+- `Trunk Line Replacement @ HWYH wells & Manifold`
+- `Tie-in Qatif679 PWI Well`
+- `Tie-in Layla01 F/L & TR/L with E&I, Fencing, MPFM & RTU/SCADA`
+- `Header Trunk Line Replacements & Surface Equipment @ UTMN Wells`
+- `Strip-out & Re-manifold of 50 EA SGPD Oil/Water Disposal Wells`
+- `UMJF 37 & 18 F/L RTR Replacement`
+- `Haradh East & West Header Replacement @ HAWIP`
+- `Tie-in HRDH246`
+All of the above should be classified under:
+Client: `Saudi Aramco`
+Entity: `Petroleum`
+Category/Sector: pipeline / industrial / water injection / facilities according to best fit
+
+Petroleum — DSD Track Records:
+Classify these as Aramco drilling-related Petroleum projects:
+- `LIDAM 801 / 802`
+- `UMAMR 801 / 802`
+- `ABUJFN 820 / 819 / 829 / 831 / 832 / 822 / 824 / 833 / 834`
+- `MZLG 833 / 828 / 835`
+- `ABJF-830 / 836 / 837 / 840 / 838 / 841`
+- `SDGM-984`
+- `SNMN-801 / 802`
+- `USFR-801 / 802`
+- `UYRS-801 / 802`
+- `AHDB-801 / 802`
+- `Naam-801`
+- `FRYD-804`
+- `AWFD-801 / 802`
+- `JLMD-805 / 808`
+
+Petroleum — Geoscience:
+- `4D Seismic Permanent Monitoring` | Client: `Saudi Aramco EXPEC-ARC`
+- `24-hours live seismic data quality operation` | Client: `Saudi Aramco EXPEC-ARC`
+- `Maintenance of seismic project equipment & instruments` | Client: `Saudi Aramco EXPEC-ARC`
+
+Petroleum — Industrial Inspection for Saudi Aramco:
+- `MFL Floor Tank – Safaniyah`
+- `MFL Floor Tank – Yanbu`
+- `PA / ToFD – Udhailiyah`
+- `AUT-HIC/SWC – Jubail BGP`
+- `Corrosion Coupon Survey – Ras Tanurah`
+- `Tube Inspection @ AUT – Riyadh Refinery`
+- `API Inspection – Ras Tanurah Refinery`
+- `AUT-HIC/SWC – Uthmania GP`
+- `QC Inspector – Ras Tanurah Refinery`
+- `Corrosion Coupon Survey – Hawiyah NGL`
+- `NGP Piping & Vessels – Abqaiq`
+- `MFL Floor Tank – Hawiyah NGL`
+- `Advance NDT Services – Verity`
+- `MFL Tube Inspection – Hawiyah GP`
+- `Magnetic Flux flat bottom tanks floor – HNGL`
+- `Magnetic Flux of Flat Bottom Tanks Floor – Jeddah Refinery`
+- `Provide MFL Services – Yanbu`
+- `Tube MFL Testing for Boiler F-104 – Juaymah Gas Plant`
+- `Corrosion Coupons Services – Hawiyah NGL`
+- `API Inspection Services – Jeddah Refinery`
+- `Advance NDT Services – Hawiyah GP`
+- `Ultrasonic NDT @ Shedgum GP`
+- `Replace/Clean Corrosion Coupons Plant Wide – Shedgum GP`
+- `Implementing RBI Recommendations for NGPD GOSPS`
+- `Test & Calibration Inspection Unit Equipment's`
+- `Advanced UT Scan NDT – Abqaiq`
+- `DO ADVANCED UT – Abqaiq`
+- `Calibrate Inspection Unit Devices – Haradh GP MAI`
+- `NDT Inspection Equipment Calibration – Uthmania Gas Plant`
+- `Step Wise Cracking Inspection – Refinery Inspection`
+- `Long Form Contract: Corrosion Coupons Services`
+- `Long Form Contract: Advance NDT`
+
+Page 2: `Pipeline Projects`
+Create a dedicated page focused on pipeline-related work only.
+This page must pull all dataset entries relevant to pipeline-related categories regardless of client, while still allowing Aramco filtering.
+
+Required page behavior:
+- Show pipeline-specific hero/title area
+- Show search/filter capability across all pipeline projects
+- Show cards/list generated from data
+- Support future expansion
+
+Include projects classified under pipeline / industrial / water injection / tie-ins / replacement / rehabilitation / RTR / GRE / flow lines / headers / related facility piping.
+
+At minimum include these pipeline-relevant records:
+- `Pipeline Tie-in and Installation Projects`
+- `Pipeline Replacement & Water Injection Projects`
+- `Replacement and Installation of RTR Lines`
+- `Pipeline Rehabilitation, Repair & Reconditioning Projects`
+- `Tie-in UTMN 1395 & 1396 to UTMN GOSP-4 and UTMN 1695 to UTMN GOSP-9 w/ SSD Fence`
+- `Tie-in Qatif 516 & 517 PWI; 12” New PWI Header & Extension with E&I`
+- `Installation of 8” GRE Line from WTF2- to Disposal Wells RKH 10 & 9`
+- `Replacement of UTMN 415/266/463 Water Injection`
+- `Tie-in Qatif548 @ P3 & Qatif397 @ P23 & Upgrading of six Corrosion Skids with E&I`
+- `Replacement of Carbon Steel F/L with RTR at six locations`
+- `QUU1 and 2 Rehabilitation; Phase III – 60” Sea Water Pipeline`
+- `Tie-in HRDH 500 / 736 / 507 F/L`
+- `Re-route of UTMN272 Tr/L & Replacement of UTMN 419/189/420 SWD Header`
+- `Tie-in ANDR349-, Replacement of CS Flow Line with 6” GRE Line`
+- `Lateral (RIS-D) 6” RTR Replacement of six Corroded Lines @ Ghina wells`
+- `Trunk Line Replacement @ HWYH wells & Manifold`
+- `Header Trunk Line Replacements & Surface Equipment @ UTMN Wells`
+- `UMJF 37 & 18 F/L RTR Replacement`
+- `Haradh East & West Header Replacement @ HAWIP`
+- `Tie-in HRDH246`
+- `RTR Pipe Installation PDH-PP of Al-Waha Plant Cooling System` | Client: `Technimont / Al-Waha`
+- `Installation & Provision of Lighting & Power Supply with Associated Piping` | Client: `SWCC`
+
+Classification rules that must be respected in the dataset:
+- `Holding`: no direct execution projects; only group-level portfolio/overview content
+- `Petroleum`: all Pipeline, Drilling, Geoscience, Industrial Inspection, EPC, Water, Industrial execution projects
+- `Offshore`: all Marine, Chartering, Diving, Subsea, IRM, vessel-based, offshore support projects
+- `ZENCUS`: all Wireless Monitoring, SCADA, Data Visualization, Remote Monitoring, CCTV, digital field projects
+
+Boundary cases:
+- `Hook up, Upgrade, Modification and Commissioning Support for MMG Offshore Projects` = mark as boundary case and classify carefully based on the actual execution context; if marine/offshore execution, place under `Offshore`, otherwise under `Petroleum`
+- `Offshore Wireless Well Monitoring` = `ZENCUS`, not `Offshore`
+- `Remote Monitoring of Offshore Production Facilities` = `ZENCUS`, not `Offshore`
+- Inspection works in offshore locations that belong to Industrial Inspection records remain classified as `Petroleum`, not `Offshore`
+
+Do not add fake project values, dates, images, or statuses where none are confirmed.
+Where source data is incomplete:
+- keep the structure ready
+- leave optional fields empty or hidden
+- avoid fabricated content
+
+Case studies:
+Improve the case studies logic so it uses real project data only.
+Case studies should be attached only to genuine important projects, especially:
+- Aramco projects
+- major projects
+- projects with clear operational impact
+
+Each case study structure should support:
+- Title
+- Client
+- Challenge
+- Scope
+- Execution
+- Impact / Outcome
+- Related images
+
+Scalability requirement:
+Build the Projects system so it can support:
+- dozens of projects
+- future additions
+- multiple clients
+- onshore and offshore records
+- entity-based and sector-based views
+without requiring component rewrites
+
+Do not lose good existing content:
+Keep the current strong visual structure wherever possible.
+This is a reorganization and expansion, not a destructive redesign.
+
+Final deliverables required:
+1. Structured project dataset
+2. Improved Projects landing page wired to data
+3. New `Aramco Projects` page
+4. New `Pipeline Projects` page
+5. Search and filters operating on the full dataset
+6. Reusable project card / listing / filter components if needed
+7. Ability to add future projects easily
+8. Project-to-service linking where relevant
+9. Concise implementation report listing:
+   A. files modified
+   B. data structure created
+   C. pages added
+   D. what remained unchanged
+   E. any unverified fields intentionally hidden or left editable
