@@ -35,6 +35,8 @@ export interface Project {
   images: string[];
   featured: boolean;
   caseStudy?: CaseStudy;
+  contractNo?: string;
+  referenceOnly?: boolean;
   serviceLink?: string;
   isAramco: boolean;
   isOffshore: boolean;
@@ -366,6 +368,7 @@ export const projects: Project[] = [
   // ═══════════════════════════════════════════════════════════
   {
     id: 'pisd-tr-utmn-gosp4-gosp9',
+    contractNo: '6510366558',
     title: 'Tie-in UTMN 1395 & 1396 to UTMN GOSP-4 and UTMN 1695 to UTMN GOSP-9 w/ SSD Fence',
     titleAr: 'ربط UTMN 1395 و 1396 بمعمل UTMN GOSP-4 و UTMN 1695 بمعمل UTMN GOSP-9 مع سياج SSD',
     client: 'Saudi Aramco',
@@ -386,6 +389,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-qatif-pwi-header',
+    contractNo: '6510378868',
     title: 'Tie-in Qatif 516 & 517 PWI; 12" New PWI Header & Extension with E&I',
     titleAr: 'ربط القطيف 516 و 517 لحقن المياه؛ رأس حقن مياه جديد 12 بوصة مع E&I',
     client: 'Saudi Aramco',
@@ -406,6 +410,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-gre-disposal',
+    contractNo: 'HD036PC11',
     title: 'Installation of 8" GRE Line from WTF2- to Disposal Wells RKH 10 & 9',
     titleAr: 'تركيب خط GRE 8 بوصة من WTF2 إلى آبار التخلص RKH 10 و 9',
     client: 'Saudi Aramco',
@@ -426,6 +431,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-utmn-water-injection-repl',
+    contractNo: '6510386158',
     title: 'Replacement of UTMN 415/266/463 Water Injection',
     titleAr: 'استبدال حقن المياه UTMN 415/266/463',
     client: 'Saudi Aramco',
@@ -446,6 +452,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-qatif548-corrosion',
+    contractNo: '6510412870',
     title: 'Tie-in Qatif548 @ P3 & Qatif397 @ P23 & Upgrading of six Corrosion Skids with E&I',
     titleAr: 'ربط القطيف 548 في P3 والقطيف 397 في P23 وترقية ستة أنظمة تآكل مع E&I',
     client: 'Saudi Aramco',
@@ -466,6 +473,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-cs-rtr-replacement',
+    contractNo: '6600024824',
     title: 'Replacement of Carbon Steel F/L with RTR at six locations',
     titleAr: 'استبدال خطوط التدفق الكربونية بخطوط RTR في ستة مواقع',
     client: 'Saudi Aramco',
@@ -474,7 +482,7 @@ export const projects: Project[] = [
     category: 'RTR Replacement',
     serviceLine: 'Pipeline & Industrial',
     status: 'Completed',
-    location: 'Multiple Fields',
+    location: 'Abqaiq / Aindar',
     description: 'Replacement of corroded carbon steel flow lines with RTR at six locations.',
     descriptionAr: 'استبدال خطوط التدفق الفولاذية المتآكلة بخطوط RTR في ستة مواقع.',
     highlights: [],
@@ -486,6 +494,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-quu-seawater',
+    contractNo: '6600024944',
     title: 'QUU1 and 2 Rehabilitation; Phase III – 60" Sea Water Pipeline',
     titleAr: 'إعادة تأهيل QUU1 و 2؛ المرحلة الثالثة - خط أنابيب مياه البحر 60 بوصة',
     client: 'Saudi Aramco',
@@ -494,7 +503,7 @@ export const projects: Project[] = [
     category: 'Rehabilitation',
     serviceLine: 'Pipeline & Industrial',
     status: 'Completed',
-    location: 'Eastern Province',
+    location: 'Qurayyah',
     description: 'Major rehabilitation of 60-inch sea water pipeline infrastructure.',
     descriptionAr: 'إعادة تأهيل رئيسية للبنية التحتية لخط أنابيب مياه البحر قطر 60 بوصة.',
     highlights: ['60-inch pipeline rehabilitated'],
@@ -506,6 +515,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-hrdh-tiein',
+    contractNo: '6510488524',
     title: 'Tie-in HRDH 500 / 736 / 507 F/L',
     titleAr: 'ربط خطوط التدفق HRDH 500 / 736 / 507',
     client: 'Saudi Aramco',
@@ -526,6 +536,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-abqaiq-pumps',
+    contractNo: '6510500152',
     title: 'Installation of Four Water Injection Centrifugal Pumps at Abqaiq Area',
     titleAr: 'تركيب أربع مضخات حقن مياه طاردة مركزية في منطقة بقيق',
     client: 'Saudi Aramco',
@@ -546,6 +557,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-utmn272-reroute',
+    contractNo: '6510511826',
     title: 'Re-route of UTMN272 Tr/L & Replacement of UTMN 419/189/420 SWD Header',
     titleAr: 'إعادة توجيه UTMN272 واستبدال رأس التخلص UTMN 419/189/420',
     client: 'Saudi Aramco',
@@ -566,6 +578,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-mpfm-shedgum',
+    contractNo: '6510525741',
     title: 'Installation of Multiphase Flow Meter (MPFM) @ Shedgum GOSP 1, 6 & 4',
     titleAr: 'تركيب أجهزة قياس التدفق متعددة الأطوار في معامل شدقم 1 و 6 و 4',
     client: 'Saudi Aramco',
@@ -586,6 +599,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-abqq-pump',
+    contractNo: '6510542782',
     title: 'Installation of One Centrifugal Pump with Associated Piping for ABQQ wells',
     titleAr: 'تركيب مضخة طاردة مركزية مع الأنابيب المرتبطة لآبار ABQQ',
     client: 'Saudi Aramco',
@@ -606,6 +620,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-lpps-abqaiq',
+    contractNo: '6510560769',
     title: 'Low Pressure Production System @ Abqaiq GOSP-2',
     titleAr: 'نظام الإنتاج منخفض الضغط في معمل بقيق GOSP-2',
     client: 'Saudi Aramco',
@@ -626,6 +641,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-andr349-gre',
+    contractNo: '6510582008',
     title: 'Tie-in ANDR349-, Replacement of CS Flow Line with 6" GRE Line',
     titleAr: 'ربط ANDR349 واستبدال خط التدفق الكربوني بخط GRE 6 بوصة',
     client: 'Saudi Aramco',
@@ -634,7 +650,7 @@ export const projects: Project[] = [
     category: 'Tie-in & GRE Replacement',
     serviceLine: 'Pipeline & Industrial',
     status: 'Completed',
-    location: 'Eastern Province',
+    location: 'Aindar',
     description: 'Tie-in with replacement of carbon steel flow line with 6" GRE line.',
     descriptionAr: 'ربط مع استبدال خط التدفق الكربوني بخط GRE 6 بوصة.',
     highlights: [],
@@ -646,6 +662,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-ghina-rtr',
+    contractNo: '6510584011',
     title: 'Lateral (RIS-D) 6" RTR Replacement of six Corroded Lines @ Ghina wells',
     titleAr: 'استبدال جانبي (RIS-D) لستة خطوط متآكلة بأنابيب RTR 6 بوصة في آبار غينا',
     client: 'Saudi Aramco',
@@ -666,6 +683,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-hwyh-trunk',
+    contractNo: '6510584016',
     title: 'Trunk Line Replacement @ HWYH wells & Manifold',
     titleAr: 'استبدال خط الجذع في آبار HWYH والمشعب',
     client: 'Saudi Aramco',
@@ -686,6 +704,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-qatif679',
+    contractNo: '6510596704',
     title: 'Tie-in Qatif679 PWI Well',
     titleAr: 'ربط بئر حقن المياه القطيف 679',
     client: 'Saudi Aramco',
@@ -706,6 +725,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-layla01',
+    contractNo: '6510609753',
     title: 'Tie-in Layla01 F/L & TR/L with E&I, Fencing, MPFM & RTU/SCADA',
     titleAr: 'ربط ليلى 01 خط التدفق والجذع مع E&I وسياج و MPFM و RTU/SCADA',
     client: 'Saudi Aramco',
@@ -726,6 +746,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-utmn-header-surface',
+    contractNo: '6510614913',
     title: 'Header Trunk Line Replacements & Surface Equipment @ UTMN Wells',
     titleAr: 'استبدال خطوط الجذع والمعدات السطحية في آبار العثمانية',
     client: 'Saudi Aramco',
@@ -746,6 +767,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-sgpd-remanifold',
+    contractNo: '6510619663',
     title: 'Strip-out & Re-manifold of 50 EA SGPD Oil/Water Disposal Wells',
     titleAr: 'إزالة وإعادة تجميع مشعبات 50 بئر تخلص نفط/مياه SGPD',
     client: 'Saudi Aramco',
@@ -766,6 +788,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-umjf-rtr',
+    contractNo: '6510651064',
     title: 'UMJF 37 & 18 F/L RTR Replacement',
     titleAr: 'استبدال خطوط التدفق بأنابيب RTR في UMJF 37 و 18',
     client: 'Saudi Aramco',
@@ -774,7 +797,7 @@ export const projects: Project[] = [
     category: 'RTR Replacement',
     serviceLine: 'Pipeline & Industrial',
     status: 'Completed',
-    location: 'Eastern Province',
+    location: 'Uthmaniyah',
     description: 'RTR replacement of flow lines at UMJF 37 and 18.',
     descriptionAr: 'استبدال خطوط التدفق بأنابيب RTR في UMJF 37 و 18.',
     highlights: [],
@@ -786,6 +809,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-haradh-header',
+    contractNo: '6510657690',
     title: 'Haradh East & West Header Replacement @ HAWIP',
     titleAr: 'استبدال رؤوس حرض الشرقية والغربية في HAWIP',
     client: 'Saudi Aramco',
@@ -806,6 +830,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pisd-tr-hrdh246',
+    contractNo: '6510663178',
     title: 'Tie-in HRDH246',
     titleAr: 'ربط HRDH246',
     client: 'Saudi Aramco',
@@ -830,6 +855,7 @@ export const projects: Project[] = [
   // ═══════════════════════════════════════════════════════════
   {
     id: 'dsd-lidam',
+    contractNo: '6510274335',
     title: 'LIDAM 801 / 802',
     titleAr: 'LIDAM 801 / 802',
     client: 'Saudi Aramco',
@@ -851,6 +877,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-umamr',
+    contractNo: '6510303758',
     title: 'UMAMR 801 / 802',
     titleAr: 'UMAMR 801 / 802',
     client: 'Saudi Aramco',
@@ -872,6 +899,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-abujfn',
+    contractNo: '6510303758',
     title: 'ABUJFN 820 / 819 / 829 / 831 / 832 / 822 / 824 / 833 / 834',
     titleAr: 'ABUJFN 820 / 819 / 829 / 831 / 832 / 822 / 824 / 833 / 834',
     client: 'Saudi Aramco',
@@ -893,6 +921,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-mzlg',
+    contractNo: '6510303758 / 6510350791',
     title: 'MZLG 833 / 828 / 835',
     titleAr: 'MZLG 833 / 828 / 835',
     client: 'Saudi Aramco',
@@ -914,6 +943,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-abjf',
+    contractNo: '6510350791',
     title: 'ABJF-830 / 836 / 837 / 840 / 838 / 841',
     titleAr: 'ABJF-830 / 836 / 837 / 840 / 838 / 841',
     client: 'Saudi Aramco',
@@ -935,6 +965,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-sdgm',
+    contractNo: '6510350791',
     title: 'SDGM-984',
     titleAr: 'SDGM-984',
     client: 'Saudi Aramco',
@@ -956,6 +987,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-snmn',
+    contractNo: '6510350791',
     title: 'SNMN-801 / 802',
     titleAr: 'SNMN-801 / 802',
     client: 'Saudi Aramco',
@@ -977,6 +1009,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-usfr',
+    contractNo: '6510372480',
     title: 'USFR-801 / 802',
     titleAr: 'USFR-801 / 802',
     client: 'Saudi Aramco',
@@ -998,6 +1031,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-uyrs',
+    contractNo: '6510372480',
     title: 'UYRS-801 / 802',
     titleAr: 'UYRS-801 / 802',
     client: 'Saudi Aramco',
@@ -1019,6 +1053,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-ahdb',
+    contractNo: '6510372480',
     title: 'AHDB-801 / 802',
     titleAr: 'AHDB-801 / 802',
     client: 'Saudi Aramco',
@@ -1040,6 +1075,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-naam',
+    contractNo: '6510410895',
     title: 'Naam-801',
     titleAr: 'Naam-801',
     client: 'Saudi Aramco',
@@ -1061,6 +1097,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-fryd',
+    contractNo: '6600024582',
     title: 'FRYD-804',
     titleAr: 'FRYD-804',
     client: 'Saudi Aramco',
@@ -1082,6 +1119,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-awfd',
+    contractNo: '6600024582',
     title: 'AWFD-801 / 802',
     titleAr: 'AWFD-801 / 802',
     client: 'Saudi Aramco',
@@ -1103,6 +1141,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dsd-jlmd',
+    contractNo: '6600024582',
     title: 'JLMD-805 / 808',
     titleAr: 'JLMD-805 / 808',
     client: 'Saudi Aramco',
@@ -1195,6 +1234,7 @@ export const projects: Project[] = [
   // ═══════════════════════════════════════════════════════════
   {
     id: 'insp-mfl-safaniyah',
+    contractNo: '6510414116',
     title: 'MFL Floor Tank – Safaniyah',
     titleAr: 'فحص أرضية الخزان MFL – السفانية',
     client: 'Saudi Aramco',
@@ -1216,6 +1256,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-yanbu',
+    contractNo: '6510439122',
     title: 'MFL Floor Tank – Yanbu',
     titleAr: 'فحص أرضية الخزان MFL – ينبع',
     client: 'Saudi Aramco',
@@ -1237,6 +1278,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-pa-tofd-udhailiyah',
+    contractNo: '6510461459',
     title: 'PA / ToFD – Udhailiyah',
     titleAr: 'PA / ToFD – العضيلية',
     client: 'Saudi Aramco',
@@ -1258,6 +1300,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-aut-hic-jubail',
+    contractNo: '6510485604',
     title: 'AUT-HIC/SWC – Jubail BGP',
     titleAr: 'AUT-HIC/SWC – معمل غاز الجبيل',
     client: 'Saudi Aramco',
@@ -1279,6 +1322,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-coupon-ras-tanurah',
+    contractNo: '6600027199',
     title: 'Corrosion Coupon Survey – Ras Tanurah',
     titleAr: 'مسح كوبونات التآكل – رأس تنورة',
     client: 'Saudi Aramco',
@@ -1300,6 +1344,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-tube-riyadh',
+    contractNo: '6510505157',
     title: 'Tube Inspection @ AUT – Riyadh Refinery',
     titleAr: 'فحص الأنابيب AUT – مصفاة الرياض',
     client: 'Saudi Aramco',
@@ -1321,6 +1366,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-api-ras-tanurah',
+    contractNo: '6600028108',
     title: 'API Inspection – Ras Tanurah Refinery',
     titleAr: 'فحص API – مصفاة رأس تنورة',
     client: 'Saudi Aramco',
@@ -1342,6 +1388,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-aut-hic-uthmania',
+    contractNo: '6510525716',
     title: 'AUT-HIC/SWC – Uthmania GP',
     titleAr: 'AUT-HIC/SWC – معمل غاز العثمانية',
     client: 'Saudi Aramco',
@@ -1363,6 +1410,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-qc-ras-tanurah',
+    contractNo: '6510533427',
     title: 'QC Inspector – Ras Tanurah Refinery',
     titleAr: 'مفتش مراقبة الجودة – مصفاة رأس تنورة',
     client: 'Saudi Aramco',
@@ -1384,6 +1432,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-coupon-hawiyah',
+    contractNo: '6510548155',
     title: 'Corrosion Coupon Survey – Hawiyah NGL',
     titleAr: 'مسح كوبونات التآكل – حوية NGL',
     client: 'Saudi Aramco',
@@ -1405,6 +1454,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-ngp-abqaiq',
+    contractNo: '6510552590',
     title: 'NGP Piping & Vessels – Abqaiq',
     titleAr: 'أنابيب وأوعية NGP – بقيق',
     client: 'Saudi Aramco',
@@ -1426,6 +1476,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-hawiyah-ngl',
+    contractNo: '6510563767',
     title: 'MFL Floor Tank – Hawiyah NGL',
     titleAr: 'فحص أرضية الخزان MFL – حوية NGL',
     client: 'Saudi Aramco',
@@ -1447,6 +1498,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-adv-ndt-verity',
+    contractNo: '6600029004',
     title: 'Advance NDT Services – Verity',
     titleAr: 'خدمات الفحص غير المدمر المتقدمة – فيريتي',
     client: 'Saudi Aramco',
@@ -1468,6 +1520,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-tube-hawiyah',
+    contractNo: '6510572796',
     title: 'MFL Tube Inspection – Hawiyah GP',
     titleAr: 'فحص أنابيب MFL – معمل غاز حوية',
     client: 'Saudi Aramco',
@@ -1489,6 +1542,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-flat-hngl',
+    contractNo: '6510608085',
     title: 'Magnetic Flux flat bottom tanks floor – HNGL',
     titleAr: 'فحص أرضيات الخزانات المسطحة بالتسرب المغناطيسي – HNGL',
     client: 'Saudi Aramco',
@@ -1510,6 +1564,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-jeddah',
+    contractNo: '6510609572',
     title: 'Magnetic Flux of Flat Bottom Tanks Floor – Jeddah Refinery',
     titleAr: 'فحص أرضيات الخزانات المسطحة بالتسرب المغناطيسي – مصفاة جدة',
     client: 'Saudi Aramco',
@@ -1531,6 +1586,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-mfl-yanbu-provide',
+    contractNo: '6510616215',
     title: 'Provide MFL Services – Yanbu',
     titleAr: 'تقديم خدمات MFL – ينبع',
     client: 'Saudi Aramco',
@@ -1552,6 +1608,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-tube-mfl-juaymah',
+    contractNo: '6510620445',
     title: 'Tube MFL Testing for Boiler F-104 – Juaymah Gas Plant',
     titleAr: 'فحص أنابيب MFL للغلاية F-104 – معمل غاز الجعيمة',
     client: 'Saudi Aramco',
@@ -1573,6 +1630,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-coupon-hawiyah-ngl2',
+    contractNo: '6510620224',
     title: 'Corrosion Coupons Services – Hawiyah NGL',
     titleAr: 'خدمات كوبونات التآكل – حوية NGL',
     client: 'Saudi Aramco',
@@ -1594,6 +1652,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-api-jeddah',
+    contractNo: '6510572787',
     title: 'API Inspection Services – Jeddah Refinery',
     titleAr: 'خدمات فحص API – مصفاة جدة',
     client: 'Saudi Aramco',
@@ -1636,6 +1695,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-ut-shedgum',
+    contractNo: '6510676334',
     title: 'Ultrasonic NDT @ Shedgum GP',
     titleAr: 'الفحص بالموجات فوق الصوتية – معمل غاز شدقم',
     client: 'Saudi Aramco',
@@ -1657,6 +1717,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-coupon-shedgum',
+    contractNo: '6510650506',
     title: 'Replace/Clean Corrosion Coupons Plant Wide – Shedgum GP',
     titleAr: 'استبدال/تنظيف كوبونات التآكل على مستوى المعمل – شدقم',
     client: 'Saudi Aramco',
@@ -1678,6 +1739,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-rbi-ngpd',
+    contractNo: '6510671603',
     title: 'Implementing RBI Recommendations for NGPD GOSPS',
     titleAr: 'تنفيذ توصيات الفحص القائم على المخاطر لمعامل NGPD',
     client: 'Saudi Aramco',
@@ -1699,6 +1761,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-calibration-test',
+    contractNo: '6510702547',
     title: "Test & Calibration Inspection Unit Equipment's",
     titleAr: 'اختبار ومعايرة معدات وحدة الفحص',
     client: 'Saudi Aramco',
@@ -1720,6 +1783,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-adv-ut-abqaiq',
+    contractNo: '6510689119',
     title: 'Advanced UT Scan NDT – Abqaiq',
     titleAr: 'فحص بالموجات فوق الصوتية المتقدم – بقيق',
     client: 'Saudi Aramco',
@@ -1741,6 +1805,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-do-adv-ut-abqaiq',
+    contractNo: '6510689120',
     title: 'DO ADVANCED UT – Abqaiq',
     titleAr: 'تنفيذ الفحص بالموجات فوق الصوتية المتقدم – بقيق',
     client: 'Saudi Aramco',
@@ -1762,6 +1827,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-calibrate-haradh',
+    contractNo: '6510590603',
     title: 'Calibrate Inspection Unit Devices – Haradh GP MAI',
     titleAr: 'معايرة أجهزة وحدة الفحص – معمل غاز حرض MAI',
     client: 'Saudi Aramco',
@@ -1783,6 +1849,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-calibrate-uthmania',
+    contractNo: '6510702547',
     title: 'NDT Inspection Equipment Calibration – Uthmania Gas Plant',
     titleAr: 'معايرة معدات الفحص غير المدمر – معمل غاز العثمانية',
     client: 'Saudi Aramco',
@@ -1804,6 +1871,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-swc-refinery',
+    contractNo: '6510733416',
     title: 'Step Wise Cracking Inspection – Refinery Inspection',
     titleAr: 'فحص التشقق التدريجي – فحص المصافي',
     client: 'Saudi Aramco',
@@ -1825,6 +1893,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-lfc-coupon',
+    contractNo: '6600027199',
     title: 'Long Form Contract: Corrosion Coupons Services',
     titleAr: 'عقد طويل الأجل: خدمات كوبونات التآكل',
     client: 'Saudi Aramco',
@@ -1846,6 +1915,7 @@ export const projects: Project[] = [
   },
   {
     id: 'insp-lfc-adv-ndt',
+    contractNo: '6600029004',
     title: 'Long Form Contract: Advance NDT',
     titleAr: 'عقد طويل الأجل: الفحص غير المدمر المتقدم',
     client: 'Saudi Aramco',
@@ -1871,6 +1941,7 @@ export const projects: Project[] = [
   // ═══════════════════════════════════════════════════════════
   {
     id: 'other-rtr-waha',
+    contractNo: 'L-AGC SRAC390-0 Rev. 01',
     title: 'RTR Pipe Installation PDH-PP of Al-Waha Plant Cooling System',
     titleAr: 'تركيب أنابيب RTR لنظام تبريد مصنع الواحة PDH-PP',
     client: 'Technimont / Al-Waha',
@@ -1933,6 +2004,103 @@ export const projects: Project[] = [
     serviceLink: '/services/drilling',
   },
 
+
+    // ═══════════════════════════════════════════════════════════
+    // PETROLEUM — REFERENCE-ONLY RECORDS (Bank Guarantee / Amendment Contracts)
+    // ═══════════════════════════════════════════════════════════
+    {
+      id: 'ref-aramco-bg-45101',
+      contractNo: '6600045101',
+      title: 'Aramco Contract Referenced in Bank Guarantee Documentation',
+      titleAr: 'عقد أرامكو المشار إليه في وثائق الضمان البنكي',
+      client: 'Saudi Aramco',
+      entity: 'Petroleum',
+      sector: 'Pipeline',
+      category: 'Reference Contract',
+      serviceLine: 'Pipeline & Industrial',
+      status: 'Ongoing',
+      location: 'KSA',
+      description: 'Aramco contract referenced in bank guarantee documentation.',
+      descriptionAr: 'عقد أرامكو المشار إليه في وثائق الضمان البنكي.',
+      highlights: [],
+      images: [],
+      featured: false,
+      referenceOnly: true,
+      isAramco: true,
+      isOffshore: false,
+      isPipeline: false,
+      serviceLink: '/services/pipeline-industrial',
+    },
+    {
+      id: 'ref-aramco-bg-45102',
+      contractNo: '6600045102',
+      title: 'Aramco Contract Referenced in Bank Guarantee Documentation',
+      titleAr: 'عقد أرامكو المشار إليه في وثائق الضمان البنكي',
+      client: 'Saudi Aramco',
+      entity: 'Petroleum',
+      sector: 'Pipeline',
+      category: 'Reference Contract',
+      serviceLine: 'Pipeline & Industrial',
+      status: 'Ongoing',
+      location: 'KSA',
+      description: 'Aramco contract referenced in bank guarantee documentation.',
+      descriptionAr: 'عقد أرامكو المشار إليه في وثائق الضمان البنكي.',
+      highlights: [],
+      images: [],
+      featured: false,
+      referenceOnly: true,
+      isAramco: true,
+      isOffshore: false,
+      isPipeline: false,
+      serviceLink: '/services/pipeline-industrial',
+    },
+    {
+      id: 'ref-aramco-amend-46802',
+      contractNo: '6600046802',
+      title: 'Replacement Contract Number (Amendment)',
+      titleAr: 'رقم عقد بديل (تعديل)',
+      client: 'Saudi Aramco',
+      entity: 'Petroleum',
+      sector: 'Pipeline',
+      category: 'Reference Contract',
+      serviceLine: 'Pipeline & Industrial',
+      status: 'Ongoing',
+      location: 'KSA',
+      description: 'Replacement contract number issued as amendment.',
+      descriptionAr: 'رقم عقد بديل صادر كتعديل.',
+      highlights: [],
+      images: [],
+      featured: false,
+      referenceOnly: true,
+      isAramco: true,
+      isOffshore: false,
+      isPipeline: false,
+      serviceLink: '/services/pipeline-industrial',
+    },
+    {
+      id: 'ref-aramco-amend-46803',
+      contractNo: '6600046803',
+      title: 'Replacement Contract Number (Amendment)',
+      titleAr: 'رقم عقد بديل (تعديل)',
+      client: 'Saudi Aramco',
+      entity: 'Petroleum',
+      sector: 'Pipeline',
+      category: 'Reference Contract',
+      serviceLine: 'Pipeline & Industrial',
+      status: 'Ongoing',
+      location: 'KSA',
+      description: 'Replacement contract number issued as amendment.',
+      descriptionAr: 'رقم عقد بديل صادر كتعديل.',
+      highlights: [],
+      images: [],
+      featured: false,
+      referenceOnly: true,
+      isAramco: true,
+      isOffshore: false,
+      isPipeline: false,
+      serviceLink: '/services/pipeline-industrial',
+    },
+  
   // ═══════════════════════════════════════════════════════════
   // ZENCUS — Technology Projects
   // ═══════════════════════════════════════════════════════════
@@ -2005,6 +2173,8 @@ export const projects: Project[] = [
   },
 ];
 
+export const publicProjects = projects.filter(p => !p.referenceOnly);
+
 export function getProjectsByFilter(filters: {
   client?: string;
   entity?: EntityType;
@@ -2016,8 +2186,10 @@ export function getProjectsByFilter(filters: {
   isAramco?: boolean;
   isPipeline?: boolean;
   search?: string;
+  includeReferenceOnly?: boolean;
 }): Project[] {
   return projects.filter(p => {
+    if (!filters.includeReferenceOnly && p.referenceOnly) return false;
     if (filters.client && filters.client !== 'all' && p.client !== filters.client) return false;
     if (filters.entity && filters.entity !== ('all' as any) && p.entity !== filters.entity) return false;
     if (filters.sector && filters.sector !== 'all' && p.sector !== filters.sector) return false;
@@ -2043,7 +2215,8 @@ export function getProjectsByFilter(filters: {
       const match = p.title.toLowerCase().includes(s) ||
         p.client.toLowerCase().includes(s) ||
         p.location.toLowerCase().includes(s) ||
-        p.description.toLowerCase().includes(s);
+        p.description.toLowerCase().includes(s) ||
+        (p.contractNo && p.contractNo.toLowerCase().includes(s));
       if (!match) return false;
     }
     return true;
@@ -2060,15 +2233,15 @@ export function getUniqueValues(field: keyof Project): string[] {
 }
 
 export function getFeaturedProjects(): Project[] {
-  return projects.filter(p => p.featured);
+  return projects.filter(p => p.featured && !p.referenceOnly);
 }
 
 export function getAramcoProjects(): Project[] {
-  return projects.filter(p => p.isAramco);
+  return projects.filter(p => p.isAramco && !p.referenceOnly);
 }
 
 export function getPipelineProjects(): Project[] {
-  return projects.filter(p => p.isPipeline);
+  return projects.filter(p => p.isPipeline && !p.referenceOnly);
 }
 
 export function getProjectsBySector(sector: string): Project[] {

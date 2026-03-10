@@ -13,7 +13,7 @@ import EnhancedSecurity from '@/components/enhanced-security';
 import ProjectCard from '@/components/project-card';
 import { Link } from 'wouter';
 import { useState, useMemo } from 'react';
-import { projects, getFeaturedProjects, getUniqueValues, type Project } from '@/data/projects';
+import { projects, publicProjects, getFeaturedProjects, getUniqueValues, type Project } from '@/data/projects';
 
 import heroCarouselPath from '@assets/hero-carousel-1_1752529906169.jpg';
 import drillingOperationsPath from '@assets/IMG-20250710-WA0011_1752529906170.jpg';
@@ -92,12 +92,12 @@ export default function Projects() {
 
   const sectorBreakdown = useMemo(() => {
     const map: Record<string, number> = {};
-    projects.forEach(p => { map[p.sector] = (map[p.sector] || 0) + 1; });
+    publicProjects.forEach(p => { map[p.sector] = (map[p.sector] || 0) + 1; });
     return Object.entries(map).sort((a, b) => b[1] - a[1]).slice(0, 8);
   }, []);
 
-  const aramcoCount = useMemo(() => projects.filter(p => p.isAramco).length, []);
-  const pipelineCount = useMemo(() => projects.filter(p => p.isPipeline).length, []);
+  const aramcoCount = useMemo(() => publicProjects.filter(p => p.isAramco).length, []);
+  const pipelineCount = useMemo(() => publicProjects.filter(p => p.isPipeline).length, []);
 
   return (
     <div className="min-h-screen bg-black">
@@ -256,7 +256,7 @@ export default function Projects() {
             >
               <Badge className="bg-gradient-to-r from-[#003f6a] to-[#b72b2b] text-white px-8 py-4 text-xl font-bold shadow-2xl border-2 border-[#c5a66e]">
                 <Target className="w-6 h-6 mr-3" />
-                {language === 'ar' ? `${projects.length}+ مشروع مسجل` : `${projects.length}+ Recorded Projects`}
+                {language === 'ar' ? `${publicProjects.length}+ مشروع مسجل` : `${publicProjects.length}+ Recorded Projects`}
               </Badge>
               <Badge className="bg-gradient-to-r from-[#b72b2b] to-[#c5a66e] text-white px-8 py-4 text-xl font-bold shadow-2xl border-2 border-[#003f6a]">
                 <Shield className="w-6 h-6 mr-3" />

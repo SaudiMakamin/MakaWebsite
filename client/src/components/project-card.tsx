@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Building, Calendar, ArrowRight } from 'lucide-react';
+import { MapPin, Building, FileText, ArrowRight } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import { Link } from 'wouter';
 import type { Project } from '@/data/projects';
@@ -43,6 +43,11 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
                 <MapPin className="w-3 h-3" />{project.location}
               </span>
             )}
+            {project.contractNo && (
+              <span className={`flex items-center gap-1 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                <FileText className="w-3 h-3" />{project.contractNo}
+              </span>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -76,6 +81,11 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
           {project.entity && (
             <Badge variant="outline" className={`text-xs ${isDark ? 'text-gray-400 border-gray-600' : 'text-gray-500 border-gray-300'}`}>
               {project.entity}
+            </Badge>
+          )}
+          {project.contractNo && (
+            <Badge variant="outline" className={`text-xs ${isDark ? 'text-gray-500 border-gray-700' : 'text-gray-400 border-gray-300'}`}>
+              <FileText className="w-3 h-3 mr-1" />{project.contractNo}
             </Badge>
           )}
         </div>

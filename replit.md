@@ -138,12 +138,15 @@ Group pages = legal/corporate entities only. Services pages = operational servic
 ## Recent Changes - March 10, 2026
 
 ### Structured Projects System
-- **Data source**: `client/src/data/projects.ts` — 93 projects with typed data model (id, title, titleAr, client, entity, sector, category, serviceLine, status, location, description, highlights, isAramco, isPipeline, isOffshore, featured, serviceLink)
-- **Reusable components**: `client/src/components/project-card.tsx` (grid/compact modes), `client/src/components/project-filters.tsx` (search + multi-filter)
+- **Data source**: `client/src/data/projects.ts` — 97 total records (93 public + 4 reference-only) with typed data model including `contractNo?: string` and `referenceOnly?: boolean`
+- **Contract enrichment**: 73 records carry verified Aramco contract numbers from profile data (PISD, DSD, IISD divisions)
+- **Reference-only records**: 4 bank guarantee / amendment contracts (not shown in public listings)
+- **Public API**: `publicProjects` (excludes referenceOnly), `getAramcoProjects()`, `getPipelineProjects()`, `getFeaturedProjects()` — all exclude reference-only
+- **Reusable components**: `client/src/components/project-card.tsx` (grid/compact modes, shows contractNo when present), `client/src/components/project-filters.tsx` (search + multi-filter, searches contractNo)
 - **Pages**:
   - `/projects` — main landing page consuming featured projects from dataset (projects-enhanced.tsx refactored)
-  - `/projects/aramco` — `aramco-projects.tsx` — 88 Aramco projects with sector breakdown, search, grid/list toggle
-  - `/projects/pipeline` — `pipeline-projects.tsx` — 29 pipeline projects with category breakdown, Aramco filter
+  - `/projects/aramco` — `aramco-projects.tsx` — Aramco projects with sector breakdown, search, grid/list toggle
+  - `/projects/pipeline` — `pipeline-projects.tsx` — pipeline projects with category breakdown, Aramco filter
 - **Navigation**: Projects dropdown now has 4 items: Major Projects, Project Management, Aramco Projects, Pipeline Projects
 - **Entity classification**: Holding (none), Petroleum (pipeline/drilling/inspection/geoscience), Offshore (marine), ZENCUS (digital/wireless)
 - **No fabricated stats**: Hero badges show real counts from dataset instead of unverified metrics

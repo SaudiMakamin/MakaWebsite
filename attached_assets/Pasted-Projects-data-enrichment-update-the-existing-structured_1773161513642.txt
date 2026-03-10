@@ -1,0 +1,325 @@
+Projects data enrichment — update the existing structured Projects dataset using verified profile data only. This is a data-enrichment pass, not a redesign and not a new architecture task. Preserve the current Projects pages, routes, filters, components, SEO setup, and visual structure. Modify only the structured dataset and any minimal rendering logic needed to safely display newly verified fields.
+
+Primary objective:
+Enrich the project records with verified contract numbers, locations, client names, and statuses from the supplied profile data, without fabricating any missing values.
+
+Rules:
+1. Use only verified data from the provided profile records.
+2. Do not invent yearFrom, yearTo, project values, durations, images, or case study narratives where they are not explicitly confirmed.
+3. Keep optional fields empty/hidden if unverified.
+4. Do not convert bank-guarantee reference contracts into full public project case entries unless they have a confirmed project title/scope approved in the provided data.
+5. Keep MOS / Offshore records generic where the profile does not provide contract-level details.
+6. Preserve classification rules already validated in QA.
+
+Dataset update requirements:
+Add or enrich these fields where verified:
+- `contractNo`
+- `location`
+- `status`
+- `client`
+- `entity`
+- `sector`
+- `category`
+- `serviceLine`
+- `description` (only when directly supported by the provided scope/title)
+- `isAramco`
+- `isOffshore`
+
+Add support in the dataset schema for:
+- `contractNo?: string`
+- `referenceOnly?: boolean`
+
+Rendering rule:
+- Show `contractNo` on project cards/detail sections only when present.
+- Do not show empty placeholders for missing fields.
+- If a record is `referenceOnly: true`, do not feature it prominently on public listing pages unless the existing UI already has a safe secondary metadata treatment.
+
+Apply the following verified enrichments:
+
+A) Saudi Aramco Project Experience – Track Record
+Enrich these Aramco Petroleum records with verified contract number, location, client, and status:
+
+1. Contract `6510366558`
+   Title: `Tie-in UTMN Flowlines to GOSP Facilities with Wellhead Fencing`
+   Location: `Uthmaniyah`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+2. Contract `6510378868`
+   Title: `Tie-in Qatif Water Injection Wells with New Header and E&I Works`
+   Location: `Qatif`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+3. Contract `6510386158`
+   Title: `Replacement and Installation of Water Injection Pipelines`
+   Location: `Uthmaniyah`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+4. Contract `6510412870`
+   Title: `Tie-in Qatif Wells and Upgrade of Corrosion Inhibitor Skids with E&I`
+   Location: `Qatif`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+5. Contract `6600024824`
+   Title: `Replacement of Carbon Steel Flowlines with RTR Pipes`
+   Location: `Abqaiq / Aindar`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+6. Contract `6600024944`
+   Title: `Rehabilitation of 60” Sea Water Pipeline (QUU Phase III)`
+   Location: `Qurayyah`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+7. Contract `6510488524`
+   Title: `Installation of Haradh Flowlines and Tie-in to Wellheads`
+   Location: `Haradh`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+8. Contract `6510500152`
+   Title: `Installation of Water Injection Centrifugal Pumps`
+   Location: `Abqaiq`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+9. Contract `6510511826`
+   Title: `Re-route of UTMN Trunk Line and Replacement of SWD Headers`
+   Location: `Uthmaniyah`
+   Client: `Saudi Aramco`
+   Status: `Completed`
+
+10. Contract `6510525741`
+    Title: `Installation of Multiphase Flow Meter (MPFM) Systems`
+    Location: `Shedgum GOSP`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+11. Contract `6510542782`
+    Title: `Installation of Centrifugal Pump with Associated Mechanical & E&I Works`
+    Location: `Abqaiq`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+12. Contract `6510560769`
+    Title: `Installation of Low Pressure Production System`
+    Location: `Abqaiq GOSP-2`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+13. Contract `6510582008`
+    Title: `Replacement of Carbon Steel Flowline with GRE Pipeline`
+    Location: `Aindar`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+14. Contract `6510584011`
+    Title: `RTR Replacement of Corroded Flowlines for Ghina Wells`
+    Location: `Ghina Field`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+15. Contract `6510584016`
+    Title: `Trunk Line Replacement and Manifold Installation`
+    Location: `Hawiyah`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+16. Contract `6510596704`
+    Title: `Tie-in Construction of Qatif PWI Well`
+    Location: `Qatif`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+17. Contract `6510609753`
+    Title: `Installation of Layla Flowline and Trunk Line with MPFM and SCADA`
+    Location: `Layla Field`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+18. Contract `6510614913`
+    Title: `Trunk Line Replacement and Surface Equipment Installation`
+    Location: `Uthmaniyah`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+19. Contract `6510619663`
+    Title: `Strip-out and Re-manifold of 50 Oil and Water Disposal Wells`
+    Location: `Multiple Fields`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+20. Contract `6510651064`
+    Title: `RTR Flowline Replacement for UMJF Wells`
+    Location: `Uthmaniyah`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+21. Contract `6510657690`
+    Title: `Replacement of Haradh East & West Headers`
+    Location: `Haradh`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+22. Contract `6510663178`
+    Title: `Construction and Tie-in of HRDH-246 Oil Flowline`
+    Location: `Haradh`
+    Client: `Saudi Aramco`
+    Status: `Completed`
+
+Reference-only records:
+23. Contract `6600045101`
+    Title: `Aramco Contract Referenced in Bank Guarantee Documentation`
+    Location: `KSA`
+    Client: `Saudi Aramco`
+    Status: `Active`
+    Set `referenceOnly: true`
+
+24. Contract `6600045102`
+    Title: `Aramco Contract Referenced in Bank Guarantee Documentation`
+    Location: `KSA`
+    Client: `Saudi Aramco`
+    Status: `Active`
+    Set `referenceOnly: true`
+
+25. Contract `6600046802`
+    Title: `Replacement Contract Number (Amendment)`
+    Location: `KSA`
+    Client: `Saudi Aramco`
+    Status: `Active`
+    Set `referenceOnly: true`
+
+26. Contract `6600046803`
+    Title: `Replacement Contract Number (Amendment)`
+    Location: `KSA`
+    Client: `Saudi Aramco`
+    Status: `Active`
+    Set `referenceOnly: true`
+
+B) Pipeline & Industrial Services (PISD)
+For the Petroleum / pipeline records already in the dataset, attach the following verified contract numbers exactly where titles match or where safe normalization can match the existing titles:
+
+- `6510366558` → `Tie-in UTMN 1395 & 1396 to UTMN GOSP-4 and UTMN 1695 to UTMN GOSP-9 w/ SSD Fence`
+- `6510378868` → `Tie-in Qatif 516 & 517 PWI; 12” New PWI Header & Extension with E&I`
+- `HD036PC11` → `Installation of 8” GRE Line from WTF2- to Disposal Wells RKH 10 & 9`
+- `6510386158` → `Replacement of UTMN 415, 266, 463 Water Injection`
+- `6510412870` → `Tie-in Qatif548- @ P3- & Qatif397- @ P23- & Upgrading of six (6) Corrosion Skids with E&I`
+- `6600024824` → `Replacement of Carbon Steel F/L w/ Reinforced Thermosetting Resin (RTR) at six (6) locations`
+- `6600024944` → `QUU1 and 2 Rehabilitation; Phase III – 60”Ø Sea Water Pipeline`
+- `6510488524` → `Tie-in HRDH,500-736 & 507 F/L`
+- `6510500152` → `Installation of Four (4) Water Injection Centrifugal Pumps at Abqaiq Area`
+- `6510511826` → `Re-route of UTMN272- Tr/L & Replacement of UTMN 189, 419, 420 SWD Header`
+- `6510525741` → `Installation of Multiphase Flow Meter (MPFM) @ Shedgum GOSP 1, 6 & 4`
+- `6510542782` → `Installation of One (1) Centrifugal Pump with All the Associated Piping for ABQQ 161, 601, 254, 936 & 455`
+- `6510560769` → `Low Pressure Production System @ Abqaiq GOSP-2`
+- `6510582008` → `Tie-in ANDR349-, Replacement of CS Flow Line with 6”Ø GRE Line`
+- `6510584011` → `Lateral (RIS-D) 6”Ø RTR Replacement of six (6) Corroded Lines @ Ghina 07, 30, 33, 40 & 59`
+- `6510584016` → `Trunk Line Replacement @ HWYH 44, 55, 137, 243, 250, 266 & 292 Trunk Line & Manifold`
+- `L-AGC SRAC390-0 Rev. 01` → `AGC - TECHNIMONT SUB-CONTRACT RTR PIPE INSTALLATION PDH-PP @ AL-WAHA, JUBAIL`
+- `6510596704` → `Tie-in Qatif679- PWI Well`
+- `6510609753` → `Tie-in Layla01- F/L & TR/L with E&I Fencing, MPFM & RTU/SCADA`
+- `6510614913` → `Header Trunk Line Replacements & Surface Equipment @ UTMN Wells`
+- `6510619663` → `Strip-out & Re-manifold of 50 EA SGPD Oil/Water Disposal Wells`
+- `6510651064` → `UMJF 37 & 18 F/L RTR Replacement`
+- `6510657690` → `Haradh East & West Header Replacement @ HAWIP`
+- `6510663178` → `Tie-in HRDH246-`
+
+Also enrich these non-Aramco Petroleum pipeline-related records where already present:
+- `L-AGC SRAC390-0 Rev. 01` | Client: `Technimont / Al-Waha`
+- Keep `Installation & Provision of Lighting & Power Supply with Associated Piping` under client `SWCC` if it exists in the dataset, but only add fields that are already verified.
+
+C) Drilling Services (DSD)
+For drilling-related Petroleum records, add contract numbers / PO references at grouped record level or individual record level according to the existing dataset structure, without forcing a redesign.
+Use these verified mappings:
+
+- `6510274335` → `LIDAM 801`, `LIDAM 802`
+- `6510303758` → `UMAMR 801`, `UMAMR 802`, `ABUJFN 820`, `ABUJFN 819`, `ABUJFN 829`, `ABUJFN 831`, `ABUJFN 832`, `ABUJFN 822`, `ABUJFN 824`, `ABUJFN 833`, `ABUJFN 834`, `MZLG 833`, `MZLG 828`
+- `6510350791` → `MZLG-835`, `ABJF-830`, `ABJF-836`, `ABJF837`, `ABJF-840`, `ABJF-838`, `ABJF-841`, `SDGM-984`, `SNMN-801`, `SNMN-802`
+- `6510372480` → `USFR-801`, `USFR-802`, `UYRS-802`, `UYRS-801`, `AHDB-801`, `AHDB-802`
+- `6510410895` → `Naam-801`
+- `6600024582` → `FRYD-804`, `AWFD-801`, `AWFD-802`, `JLMD-805`, `JLMD-808`
+
+If the current dataset represents these as aggregated drilling records, add the contract reference in the most architecture-safe way without duplicating records unnecessarily.
+
+D) Industrial Inspection Services (IISD) – Saudi Aramco
+Enrich the Petroleum inspection records with these verified contract numbers where titles safely match existing dataset records:
+
+- `6510414116` → `MFL Floor Tank`
+- `6510439122` → `MFL Floor Tank`
+- `6510461459` → `PA, ToFD`
+- `6510485604` → `AUT-HIC/SWC`
+- `6600027199` → `Corrosion Coupon Survey`
+- `6510505157` → `Tube Inspection @ AUT`
+- `6600028108` → `API Inspection`
+- `6510525716` → `AUT-HIC/SWC`
+- `6510533427` → `QC Inspector`
+- `6510548155` → `Corrosion Coupon Survey`
+- `6510552590` → `NGP Piping & Vessels`
+- `6510563767` → `MFL Floor Tank`
+- `6600029004` → `Advance NDT Services`
+- `6510572796` → `MFL tube Inspection`
+- `6510609940` → `MFL tube Inspection`
+- `6510604757` → `Perform MFL utility area T&I, HGP`
+- `6510608085` → `Magnetic Flux flat bottom tanks floor (HNGL) for D-114 A/B & D-120`
+- `6510609572` → `Magnetic Flux of Flat Bottom Tanks Floor`
+- `6510616215` → `Provide MFL Services`
+- `6510620445` → `Tube MFL Testing for Boiler F-104 / Juaymah Gas Plant`
+- `6510620224` → `Corrosion Coupons Services`
+- `6510572787` → `API Inspection Services`
+- `6510639928` → `Advance NDT Services - Tube inspections`
+- `6510639933` → `Advance NDT Services - Tube inspections`
+- `6510639929` → `Advance NDT Services - Tube inspections`
+- `6510639932` → `Advance NDT Services - Tube inspections`
+- `6510639930` → `Advance NDT Services - Tube inspections`
+- `6510676334` → `Ultrasonic Non-Destructive Testing (NDT) @ Shedgum GP PR#3000538308`
+- `6510650506` → `Replace/Clean Corrosion Coupons Plant Wide`
+- `6510671603` → `Implementing Risk Based Inspection (RBI) Recommendations for NGPD GOSPS`
+- `6510702547` → `Test & Calibration Inspection Unit Equipment's`
+- `6510689119` → `462 / To Conduct Advanced UT Scan NDT`
+- `6510689120` → `462 / DO ADVANCED UT`
+- `6510590603` → `Calibrate Inspection Unit Devices`
+- `6510702547` → `NDT Inspection Equipment Calibration`
+- `6510733416` → `Step Wise Cracking Inspection`
+
+Long-form contracts:
+- `6600027199` → `Corrosion Coupons Services`
+- `6600029004` → `Advance NDT`
+Mark these safely if the UI supports contract metadata, but do not create misleading duplicates.
+
+E) Industrial Inspection – Other Clients
+Do not attempt a full public enrichment of the long “Other Clients” inspection list unless matching records already exist in the dataset and can be mapped safely.
+For now:
+- keep them in the structured source only if already represented
+- do not create a noisy public wall of low-context codes
+- do not fabricate missing client names when not provided
+
+F) Makamin Offshore Saudi Ltd (MOS)
+Do not add contract-level offshore records with invented numbers because the MOS profile does not provide contract numbers or contract titles.
+You may enrich MOS overview/offshore project metadata only with these verified high-level facts if the dataset or Offshore-related pages support summary metadata:
+- `Awarded Contracts` → present but no detailed contract numbers provided
+- `In-Tendering Contracts` → total value `USD 1.585 billion`
+- `Total Project Value` → more than `USD 400 million`
+- `Approved provider by Aramco` for `Diving`, `Chartering`, and `Marine Services`
+
+Important:
+These MOS figures are summary-level profile facts, not contract-level project entries. Do not convert them into fake individual projects.
+
+G) Validation requirements after enrichment
+After updating the dataset:
+1. verify no duplicate records were unintentionally created
+2. verify contract numbers display only where present
+3. verify Aramco Projects page still shows only the correct Aramco subset
+4. verify Pipeline Projects page still filters correctly
+5. verify drilling and inspection records remain correctly classified under `Petroleum`
+6. verify ZENCUS and Offshore classifications remain unchanged from the QA-approved logic
+7. verify no unverified year/value/image fields were introduced
+8. provide a concise report with:
+   A. files modified
+   B. number of records enriched
+   C. any records left reference-only
+   D. any records intentionally left unchanged due to insufficient source certainty
+   E. confirmation that architecture and navigation remained unchanged
