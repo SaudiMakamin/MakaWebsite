@@ -216,14 +216,14 @@ export default function AramcoProjects() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.3) }}
                 >
-                  <ProjectCard project={project} variant="dark" />
+                  <ProjectCard project={project} variant="dark" aramcoMode />
                 </motion.div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {filtered.map(project => (
-                <ProjectCard key={project.id} project={project} variant="dark" compact />
+                <ProjectCard key={project.id} project={project} variant="dark" compact aramcoMode />
               ))}
             </div>
           )}

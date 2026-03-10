@@ -1,0 +1,183 @@
+Final Aramco Projects page refinement — apply a precise, minimal, non-breaking improvement pass to the Aramco Projects page only. Do not redesign the site, do not change routing, do not change the shared data architecture, and do not modify unrelated pages. Preserve the existing strong page structure, but improve the visual hierarchy, contract-reference clarity, and Aramco-specific identity of each project card.
+
+Core objective:
+Make the Aramco Projects page feel like a high-trust contract-backed project showcase, not just a generic project listing. The page must communicate clearly that these are Saudi Aramco-related projects with visible contract references, stronger client identity, and better executive readability.
+
+Required improvements
+1) Make the contract number highly visible on every Aramco project card
+
+The contract number is currently too weak visually.
+
+Required behavior:
+
+show the contract number with a clear label: Contract No.
+
+do not leave it as a small unlabeled badge/value mixed with other metadata
+
+give it stronger visual priority than it has now
+
+place it in a dedicated area of the card or a clearly distinguished reference block
+
+keep it readable on both desktop and mobile
+
+Important:
+The contract number must feel like a reference credential, not like a minor tag.
+
+2) Add Aramco identity to every Aramco project card
+
+Each project card on the Aramco Projects page must include a clear Aramco visual marker.
+
+Required behavior:
+
+add a Saudi Aramco badge or a small Aramco logo marker on every Aramco project card
+
+keep it professional and subtle, not oversized
+
+make the client identity immediately recognizable at a glance
+
+do not rely only on plain metadata text for the client name
+
+If logo usage is already supported safely in the project pattern, use it. Otherwise use a strong branded badge/chip such as:
+
+Saudi Aramco Project
+
+or Saudi Aramco
+
+3) Improve the visual hierarchy inside each card
+
+Right now, too many data points compete equally.
+
+Restructure each Aramco card so the hierarchy is clearer:
+
+Aramco identity marker
+
+project title
+
+short description
+
+contract reference block
+
+supporting metadata
+
+Supporting metadata should remain visible, but secondary.
+Examples:
+
+Client
+
+Location
+
+Entity
+
+Category
+
+Status
+
+Do not let category/status badges visually overpower the contract number.
+
+4) Separate metadata more intelligently
+
+Do not present metadata as one visually flat line of badges.
+
+Preferred structure:
+
+Client: Saudi Aramco
+
+Location: ...
+
+Entity: Petroleum / Offshore / etc.
+
+Status: ...
+
+Contract No.: ...
+
+This can still be rendered in a compact card style, but it must be easier to scan and understand.
+
+5) Highlight contract-backed credibility
+
+The page should visually communicate that these are contract-backed reference projects.
+
+Without redesigning the page, improve the card treatment so the viewer can quickly recognize:
+
+this is an Aramco project
+
+this project has a contract number
+
+this is a documented reference entry
+
+Use minimal visual enhancements only:
+
+stronger contract label
+
+clearer metadata grouping
+
+better spacing
+
+better badge hierarchy
+
+6) Improve featured/executive readability
+
+Some Aramco records are especially strong reference items and currently do not stand out enough.
+
+Without creating a brand new design system, improve the overall readability so major Aramco records do not visually disappear inside repetitive cards.
+
+Do this through:
+
+better spacing
+
+clearer contract block
+
+better client marker
+
+improved title/description balance
+
+Do not create visual clutter and do not redesign the entire page.
+
+Critical “hawk-eye” issues that must be corrected
+
+Address these exact issues in the refinement:
+
+Contract numbers are present but too visually weak
+
+Contract numbers appear without strong labeling
+
+Saudi Aramco identity is too weak inside each card
+
+Category/status badges currently compete too much with contract reference importance
+
+Cards feel too similar, which weakens executive scanning
+
+The page currently reads more like a data listing than a contract-reference showcase
+
+Review visual consistency so no outdated or weaker page elements undermine the Aramco page hierarchy
+
+Constraints
+
+page scope: Aramco Projects only
+
+do not redesign the site
+
+do not change architecture
+
+do not change the shared project dataset structure unless a minimal field-display adjustment is required
+
+do not modify unrelated pages
+
+preserve responsive behavior
+
+preserve filters/search behavior
+
+preserve existing routing and SEO pattern
+
+use existing components/styles wherever possible
+
+Final verification required
+
+Return a concise report with:
+
+A. files modified
+B. how the contract number was made more prominent
+C. how Aramco identity was added to each card
+D. what hierarchy improvements were made inside the cards
+E. confirmation that filters/search and responsive behavior remained intact
+F. confirmation that only the Aramco Projects page was refined
+G. confirmation that the page now reads more like a contract-backed Aramco reference showcase than a generic listing**
