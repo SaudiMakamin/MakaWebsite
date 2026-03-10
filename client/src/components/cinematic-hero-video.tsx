@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Globe, Award, Target, ChevronRight, Briefcase, Calendar, Users } from 'lucide-react';
+import { ArrowDown, Globe, ChevronRight, Briefcase, Calendar, Users } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import heroCarouselPath from '@assets/hero-carousel-1_1752529906169.jpg';
 import newLogoPath from '@assets/logo mkamin_1752532541023.png';

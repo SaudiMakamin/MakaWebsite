@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'wouter';
-import { Drill, Ship, ArrowRight, Award, Target, Users, Globe, Eye, Wrench, TrendingUp, Activity, Cpu, Anchor, Search as SearchIcon } from 'lucide-react';
+import { Drill, Ship, ArrowRight, Target, Users, Globe, Eye, Wrench, TrendingUp, Activity, Cpu, Anchor, Search as SearchIcon } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useLanguageContext } from '@/components/language-provider';
@@ -87,7 +87,7 @@ export default function Home() {
     {
       icon: Users,
       title: language === 'ar' ? 'قوة المساهمين الاستراتيجيين' : 'Strategic Shareholder Strength',
-      desc: language === 'ar' ? 'أكثر من 60 مستثمراً استراتيجياً ورأس مال مصرح به 1.2 مليار ريال' : '60+ strategic investors with SAR 1.2B authorized capital backing',
+      desc: language === 'ar' ? 'قاعدة مساهمين مؤسسيين تدعم النمو والتوسع الاستراتيجي' : 'Institutional shareholder base supporting strategic growth and expansion',
       href: '/group'
     }
   ];
@@ -371,9 +371,6 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-300 text-base sm:text-lg mb-4">
-              {language === 'ar' ? 'شركاء استراتيجيون آمنوا بإعادة انطلاقة مكامن في 2025' : 'Strategic partners who believed in Makamin\'s relaunch in 2025'}
-            </p>
             <div className="flex items-center justify-center text-gray-400 text-sm">
               <p className="italic">
                 {language === 'ar' ? 

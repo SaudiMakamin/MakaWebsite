@@ -1,0 +1,149 @@
+Final homepage QA — do not redesign and do not implement unrelated changes. Perform a strict verification and correction pass for the homepage only, based on the approved homepage refinement requirements. Check the actual rendered homepage carefully and verify that the messaging, hierarchy, credibility, CTA structure, counters, and section logic are all correct after implementation. Fix only real homepage issues that remain.
+
+Homepage-only QA checklist:
+
+Hero wording verification
+
+verify the homepage no longer uses weak wording such as Energy Power
+
+verify the hero now uses a stronger industry-appropriate positioning such as Integrated Energy Services or equivalent approved wording
+
+verify the capital message is no longer misleading
+
+confirm that SAR 1.2B is presented clearly as authorized capital / capital strength, not as revenue, company size, or generic boast
+
+Hero CTA verification
+
+verify Discover Our Projects remains present
+
+verify Explore Services was added
+
+verify both hero buttons are visible, balanced, tappable, and responsive
+
+verify the hero is not overcrowded
+
+Key facts / numbers verification
+
+verify the homepage shows only one clean key-facts row or equivalent summary block
+
+verify capital / investor / age / projects facts are not repeated unnecessarily in multiple sections
+
+verify no unsupported or fabricated numbers appear
+
+verify the selected metrics align with current approved content and structured data where applicable
+
+Dangerous counters removal
+
+verify counters such as 0 Active Rigs, 0 Vessels Deployed, and 2 Active Contracts are fully removed
+
+verify they were replaced with safer capability-based messaging if applicable
+
+verify no weak live-style counters remain on the homepage
+
+Digital / AI section verification
+
+verify the digital section no longer makes Makamin look primarily like an AI company
+
+verify the section is now framed as digital operations / monitoring / field support / ZENCUS-related capability
+
+verify the wording is tied to real energy operations and projects
+
+verify the section supports, rather than overwhelms, the homepage’s oil & gas / offshore / industrial identity
+
+Core services section verification
+
+verify the homepage includes the new section Our Core Energy Services
+
+verify it contains the 5 intended cards or their approved final equivalents:
+
+Pipeline Infrastructure
+
+Drilling Operations
+
+Industrial Inspection
+
+Offshore Services
+
+Digital Energy Solutions
+
+verify each card links to the correct existing section/page
+
+verify the section is visually clean and consistent with the rest of the site
+
+Strategic positioning verification
+
+verify the homepage now clearly reflects Makamin’s strengths across:
+
+integrated services
+
+project execution
+
+Aramco-related project experience
+
+offshore / marine capability
+
+ZENCUS digital solutions
+
+strategic shareholder / capital strength
+
+verify the homepage does this through structure and messaging, not exaggerated claims
+
+Strategic shareholders section
+
+verify the old investor heading was improved to a stronger corporate heading such as Strategic Shareholders or approved equivalent
+
+verify the section remains visually strong and credible
+
+verify it does not conflict with the dedicated Shareholders page
+
+Industry ecosystem / technology alignment section
+
+verify any references to major industry names are framed safely
+
+verify the section does not imply unsupported formal partnerships
+
+verify the wording is now closer to Industry Technology Ecosystem, Technology & Industry Alignment, or another safe equivalent
+
+Future / Vision section
+
+verify the future-facing section is now clearly tied to Saudi Vision 2030 or approved equivalent positioning
+
+verify it connects logically to Makamin’s real service and project direction
+
+Duplication cleanup
+
+verify capital, investors/shareholders, establishment/age, and major proof points are not repeated excessively
+
+verify the homepage feels more focused and less repetitive than before
+
+Footer CTA verification
+
+verify the homepage footer CTA remains strong
+
+verify practical CTA actions such as Contact Us and Download Company Profile are present if they were added in implementation
+
+verify the footer CTA is consistent with the site style
+
+Mobile and desktop stability
+
+verify the homepage still works cleanly on both desktop and mobile
+
+verify hero layout, CTA buttons, cards, and section spacing are stable
+
+verify no text overlap, broken buttons, clipping, or horizontal overflow was introduced
+
+Architecture safety
+
+verify only the homepage was changed in this pass
+
+verify routing, navigation architecture, and unrelated pages remained unchanged
+
+Required final QA report:
+A. files checked
+B. files modified in this QA pass
+C. issues found
+D. issues fixed
+E. exact homepage sections verified as corrected
+F. any remaining homepage risks or wording ambiguities
+G. confirmation that desktop and mobile homepage behavior remain stable
+H. confirmation that unrelated pages, routes, and architecture remained unchanged**
