@@ -135,6 +135,18 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 ### Key Separation Rule
 Group pages = legal/corporate entities only. Services pages = operational service lines only. No mixing.
 
+## Homepage Refinement (March 2026)
+- **Hero**: "Saudi Makamin / Integrated Energy Services" replacing "Energy Power"; subtitle now mentions petroleum, infrastructure, offshore, inspection, digital monitoring + "backed by SAR 1.2B authorized capital"
+- **Hero CTAs**: "Discover Our Projects" (primary) + "Explore Services" (secondary)
+- **Hero Stats**: SAR 1.2B Authorized Capital | 60+ Strategic Investors | 17+ Years Experience | 100+ Projects & Records
+- **New section**: "Our Core Energy Services" — 5 cards: Pipeline Infrastructure, Drilling Operations, Industrial Inspection, Offshore Services, Digital Energy Solutions
+- **Digital section**: Repositioned from "Advanced Digital Energy HQ / Makamin AI Intelligence" to "Digital Operations Platform" with ZENCUS-linked capabilities (Wireless Well Monitoring, Remote SCADA, Integrated Field Visibility)
+- **Shareholders**: Heading changed from "Our Investors" to "Strategic Shareholders"
+- **Industry Ecosystem**: "Our Global Partners" → "Energy Industry Ecosystem"; partner descriptions reframed (Aramco = "Approved Vendor", others = "Industry Leader", Ministry = "Regulatory Authority"); fabricated partnership statistics removed
+- **Vision 2030**: Final CTA section now "Aligned with Saudi Vision 2030" with Contact Us + Company Profile buttons
+- **Removed**: AI Assistant button, fake operational counters (Active Rigs, Vessels Deployed), "Advanced Technical Integration" section (Aramco API, ESG Reports, Voice Assistant), "Achievements in Numbers" duplicate stats section, AnimatedCounter dependency from home page
+- **AI Dashboard**: The `ai-enhanced-dashboard.tsx` component is no longer rendered on the homepage
+
 ## Mobile Responsiveness (March 2026)
 - **Mobile menu**: Dark branded gradient background (`from-slate-900 via-[#003f6a] to-slate-900`), width 280px/350px, white text with gold hover accents (`text-white/90 hover:text-[#c5a66e]`), white close button
 - **Hero sections**: All project pages use `min-h-[40vh] md:min-h-[60vh]` for reduced mobile height

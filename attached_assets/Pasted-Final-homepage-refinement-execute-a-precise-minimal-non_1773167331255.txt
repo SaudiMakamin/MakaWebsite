@@ -1,0 +1,411 @@
+Final homepage refinement — execute a precise, minimal, non-breaking improvement pass for the homepage only. Do not redesign the site, do not change architecture, do not change routing, and do not modify unrelated pages. Preserve the current strong visual design language, but correct the homepage messaging, credibility, hierarchy, and business positioning so it accurately reflects Makamin’s real strengths across services, projects, Aramco-related execution, offshore capabilities, vessel-linked operations, and digital energy solutions.
+
+Core objective:
+Keep the homepage visually strong, but make it clearer, more credible, more institutionally correct, and more aligned with the actual structure now built across:
+
+Services
+
+Projects
+
+Group entities
+
+Offshore / Marine
+
+ZENCUS
+
+Aramco-related project experience
+
+Do not make the homepage look like a pure AI company, and do not make it sound like a vague marketing page. It must clearly present Makamin as an integrated energy platform with operating strength across Petroleum, Offshore, Inspection, and Digital Energy solutions.
+
+1) Hero section — correct the main message
+
+Replace weak or misleading wording in the homepage hero.
+
+Current wording such as:
+
+Energy Power
+
+A 1.2 Billion SAR Powerhouse
+
+must be corrected.
+
+Required homepage hero direction:
+
+company name stays: Saudi Makamin
+
+replace the hero category/title with a stronger industry-appropriate phrase such as:
+
+Integrated Energy Services
+
+or another equally strong oil-and-gas/infrastructure-oriented wording consistent with the site tone
+
+Important capital wording correction:
+Do not present SAR 1.2 Billion in a way that can be misunderstood as company size, revenue, or delivered project volume.
+
+Use wording such as:
+
+Backed by SAR 1.2B Authorized Capital
+or
+
+Capital Strength: SAR 1.2 Billion
+
+Choose the option that best fits the current homepage style, but the meaning must be clear: this is capital strength / authorized capital, not a misleading generic boast.
+
+Hero supporting message should reflect actual site strengths, such as:
+
+integrated oil & gas services
+
+infrastructure
+
+offshore operations
+
+industrial inspection
+
+digital monitoring solutions
+
+project execution capabilities
+
+Do not use vague hype language.
+
+2) Hero CTA buttons
+
+Keep the existing strong primary CTA:
+
+Discover Our Projects
+
+Add a second CTA:
+
+Explore Services
+
+CTA rules:
+
+both buttons must be visible and balanced in the hero
+
+keep the existing design system/button style
+
+do not break mobile layout
+
+do not overload the hero with too many CTAs
+
+3) Hero metrics / key facts row
+
+The homepage should show only credible and safe summary facts.
+Do not repeat the same numbers in multiple sections.
+
+Use a clean single set of key facts below the hero, based on confirmed positioning already used across the site.
+
+Preferred direction:
+
+SAR 1.2B Authorized Capital
+
+60+ Strategic Investors
+
+17+ Years Experience
+
+100+ Projects & Records
+
+Important rule:
+If any number is not safely supported by the current structured data or approved content, either:
+
+replace it with a safer wording
+
+or hide it until confirmed
+
+Do not fabricate or overstate figures.
+
+4) Remove dangerous operational counters
+
+Any homepage operational counters such as:
+
+0 Active Rigs
+
+0 Vessels Deployed
+
+2 Active Contracts
+
+must be removed immediately from the homepage.
+
+These create a negative impression and damage credibility.
+
+Replace them with capability-based, non-misleading indicators, for example:
+
+Drilling Capabilities
+
+Marine Operations
+
+Industrial Inspection
+
+Digital Monitoring
+
+Or equivalent capability cards/badges that reflect real strengths without pretending to be live operational counts.
+
+Do not show empty or weak “0” operational counters anywhere on the homepage.
+
+5) Reposition the AI / digital section
+
+The current digital/AI section is visually interesting, but its wording risks making Makamin look like an AI startup instead of an energy services group.
+
+Do not remove the digital capability theme, but reposition it clearly.
+
+Avoid overemphasizing wording like:
+
+Makamin AI Intelligence
+
+Advanced Digital Energy HQ
+
+unless it is reframed properly.
+
+Required positioning:
+This section should present Makamin’s digital capability as an operations-support layer for real energy execution.
+
+Preferred messaging direction:
+
+Digital Operations Platform
+
+Integrated Monitoring for Projects, Production, and Field Operations
+
+Digital Energy Solutions
+
+with clear linkage to:
+
+ZENCUS
+
+monitoring
+
+SCADA
+
+remote operations
+
+field visibility
+
+project support
+
+It must not overshadow the core identity as an energy/infrastructure/services group.
+
+6) Add a new section after the hero: Our Core Energy Services
+
+This is a required homepage improvement.
+
+Add a clear section immediately after the hero (or immediately after the key facts row if that fits better) titled:
+
+Our Core Energy Services
+
+Create 5 service cards that connect the homepage to the actual site structure:
+
+Pipeline Infrastructure
+
+Drilling Operations
+
+Industrial Inspection
+
+Offshore Services
+
+Digital Energy Solutions
+
+Rules for this section:
+
+each card should link to the most relevant existing Services page or related section
+
+use existing card styles/components where possible
+
+keep the design clean, premium, and corporate
+
+this section should make the homepage immediately understandable to new visitors
+
+This is one of the most important improvements.
+
+7) Strategic corporate strength and project proof
+
+The homepage must better reflect that the site now contains:
+
+real service structure
+
+real project structure
+
+Aramco-related projects
+
+offshore capabilities
+
+vessel-linked offshore activity
+
+ZENCUS digital projects
+
+Without turning the homepage into a long data wall.
+
+Homepage should clearly suggest:
+
+strong execution base
+
+proven energy projects
+
+offshore presence
+
+digital field capability
+
+strategic shareholder strength
+
+You may add or refine a section that highlights these areas through structured summary cards or summary badges, but do not overcrowd the page.
+
+8) Strategic Shareholders section
+
+The current investor section is strong and should remain, but improve the heading.
+
+Change the heading from generic investor wording to a stronger corporate heading such as:
+
+Strategic Shareholders
+or
+
+Institutional Shareholders
+
+Use whichever fits best with the current content and tone.
+
+Keep the listed names as currently approved, but do not redesign the whole section unless needed for clarity.
+
+9) Global technology / ecosystem section
+
+If the homepage currently references major industry names such as:
+
+Schlumberger
+
+Halliburton
+
+Baker Hughes
+
+be careful not to imply unsupported formal partnership claims.
+
+Reframe the section title and wording into something safer such as:
+
+Industry Technology Ecosystem
+
+Technology & Industry Alignment
+
+Energy Industry Ecosystem
+
+Do not present unsupported relationships as official partnerships if that is not explicitly confirmed.
+
+10) Future energy / Vision alignment
+
+Keep the future-oriented section, but make it more relevant to the Saudi market and Makamin’s direction.
+
+Preferred direction:
+
+Aligned with Saudi Vision 2030
+
+The section should connect Makamin’s future-facing direction to:
+
+energy infrastructure
+
+offshore growth
+
+digital monitoring
+
+project delivery
+
+industrial capability
+
+Do not let it feel detached from the rest of the homepage.
+
+11) Remove duplication
+
+The homepage currently risks repeating the same facts more than once:
+
+capital
+
+investors/shareholders
+
+establishment or age
+
+company scale positioning
+
+Reduce repetition.
+Key numbers and proof points should appear once in a strong place, not multiple times in weaker repeated forms.
+
+12) Footer CTA improvement
+
+If the homepage already ends with a strong partnership/future CTA, keep it.
+
+But improve the CTA actions by ensuring there are two practical buttons such as:
+
+Contact Us
+
+Download Company Profile
+
+Use the existing CTA/button system only.
+Do not redesign the footer.
+
+13) Important credibility rules
+
+The homepage must reflect the real strength of the current website and approved content, including:
+
+integrated services
+
+Aramco-related project experience
+
+offshore operations and marine support
+
+fleet-linked offshore history where already represented in the site structure
+
+ZENCUS digital energy and field monitoring capability
+
+strategic shareholder / capital strength
+
+But do not:
+
+fabricate unsupported project totals
+
+fabricate live activity counts
+
+overclaim partnerships
+
+present capital as if it were revenue or output
+
+make the homepage sound like an AI company first
+
+14) Keep the homepage connected to the repaired site structure
+
+The homepage should now serve as the clean executive entry point into the repaired sections:
+
+Services
+
+Projects
+
+Group
+
+Offshore
+
+ZENCUS
+
+Use smart link-outs where useful, but do not overcrowd the page with too many links.
+
+15) Implementation constraints
+
+homepage only
+
+minimal change surface
+
+preserve architecture
+
+preserve routing
+
+preserve desktop visual strength
+
+preserve mobile responsiveness
+
+do not redesign unrelated sections
+
+do not modify unrelated pages
+
+use existing components and patterns already established in the project
+
+16) Final verification required
+
+Return a concise implementation report with:
+
+A. files modified
+B. exact hero wording changes made
+C. exact CTA changes made
+D. what homepage sections were added, removed, or renamed
+E. which weak/misleading counters or claims were removed
+F. how the digital/AI section was repositioned
+G. confirmation that the homepage now better reflects Makamin’s strengths across services, projects, offshore, ZENCUS, and Aramco-related execution
+H. confirmation that architecture, routing, and unrelated pages remained unchanged**

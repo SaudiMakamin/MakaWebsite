@@ -17,36 +17,36 @@ export default function GlobalPartnersSlider() {
       name: 'Saudi Aramco',
       nameAr: 'أرامكو السعودية',
       logo: aramcoLogo,
-      description: 'Strategic Partnership',
-      descriptionAr: 'شراكة استراتيجية'
+      description: 'Approved Vendor',
+      descriptionAr: 'مورد معتمد'
     },
     {
       name: 'Schlumberger',
       nameAr: 'شلمبرجير',
       logo: schlumbergerLogo,
-      description: 'Technology Partner',
-      descriptionAr: 'شريك تقني'
+      description: 'Industry Leader',
+      descriptionAr: 'رائد في الصناعة'
     },
     {
       name: 'Halliburton',
       nameAr: 'هاليبرتون',
       logo: halliburtonLogo,
-      description: 'Service Alliance',
-      descriptionAr: 'تحالف خدمي'
+      description: 'Industry Leader',
+      descriptionAr: 'رائد في الصناعة'
     },
     {
       name: 'Baker Hughes',
       nameAr: 'بيكر هيوز',
       logo: bakerHughesLogo,
-      description: 'Technology Solutions',
-      descriptionAr: 'حلول تقنية'
+      description: 'Industry Leader',
+      descriptionAr: 'رائد في الصناعة'
     },
     {
       name: 'Ministry of Energy',
       nameAr: 'وزارة الطاقة',
       logo: ministryEnergyLogo,
-      description: 'Government Partner',
-      descriptionAr: 'شريك حكومي'
+      description: 'Regulatory Authority',
+      descriptionAr: 'جهة تنظيمية'
     }
   ];
 
@@ -60,13 +60,13 @@ export default function GlobalPartnersSlider() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {language === 'ar' ? 'شركاؤنا العالميون' : 'Our Global Partners'}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            {language === 'ar' ? 'المنظومة التقنية والصناعية' : 'Energy Industry Ecosystem'}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
             {language === 'ar' ? 
-              'شراكات استراتيجية مع قادة الصناعة العالمية لتقديم حلول متطورة' :
-              'Strategic partnerships with global industry leaders to deliver advanced solutions'
+              'تواجد مكامن ضمن منظومة قطاع الطاقة مع كبرى الشركات والمؤسسات الرائدة' :
+              'Makamin\'s presence within the energy sector ecosystem alongside leading companies and institutions'
             }
           </p>
         </motion.div>
@@ -121,43 +121,6 @@ export default function GlobalPartnersSlider() {
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-blue-50 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Partnership Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8"
-        >
-          {[
-            { 
-              number: '50+', 
-              label: language === 'ar' ? 'شراكة عالمية' : 'Global Partnerships',
-              description: language === 'ar' ? 'في 15 دولة' : 'Across 15 countries'
-            },
-            { 
-              number: '25+', 
-              label: language === 'ar' ? 'عاماً من الخبرة' : 'Years of Experience',
-              description: language === 'ar' ? 'في التعاون الدولي' : 'In international cooperation'
-            },
-            { 
-              number: '100%', 
-              label: language === 'ar' ? 'معدل النجاح' : 'Success Rate',
-              description: language === 'ar' ? 'في المشاريع المشتركة' : 'In joint ventures'
-            },
-            { 
-              number: '$5B+', 
-              label: language === 'ar' ? 'قيمة المشاريع' : 'Project Value',
-              description: language === 'ar' ? 'مع الشركاء' : 'With partners'
-            }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</div>
-              <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
-              <div className="text-sm text-gray-600">{stat.description}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
