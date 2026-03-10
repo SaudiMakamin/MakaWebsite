@@ -10,6 +10,7 @@ import HeroLogo from '@/components/hero-logo';
 import { marineAssets, type MarineAsset, type RecordStatus } from '@/data/fleet';
 
 import heroPath from '@assets/hero-carousel-1_1752529906169.jpg';
+import mosLogoPath from '@assets/Makamin-Offshore-Saudi-MOS_1773171180771.png';
 
 function statusColor(status: RecordStatus) {
   switch (status) {
@@ -150,7 +151,15 @@ export default function FleetAssetsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
         </div>
         <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
-          <HeroLogo size="md" className="mx-auto mb-6" />
+          <HeroLogo size="md" className="mx-auto mb-4" />
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mb-4"
+          >
+            <img src={mosLogoPath} alt="Makamin Offshore Saudi (MOS)" className="h-14 sm:h-18 w-auto mx-auto drop-shadow-lg" />
+          </motion.div>
           <motion.h1
             className="text-4xl md:text-5xl font-bold mb-4"
             initial={{ y: 30, opacity: 0 }}

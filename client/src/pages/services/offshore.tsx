@@ -8,6 +8,7 @@ import HeroLogo from '@/components/hero-logo';
 import { Link } from 'wouter';
 import { Anchor, Ship, Waves, Wrench, CheckCircle, ArrowRight } from 'lucide-react';
 import heroPath from '@assets/hero-carousel-1_1752529906169.jpg';
+import mosLogoPath from '@assets/Makamin-Offshore-Saudi-MOS_1773171180771.png';
 
 export default function OffshoreServices() {
   const { language } = useLanguageContext();
@@ -86,19 +87,13 @@ export default function OffshoreServices() {
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <HeroLogo size="lg" />
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mr-4">
-                <Anchor className="w-12 h-12 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                  {language === 'ar' ? 'الخدمات البحرية' : 'Offshore Services'}
-                </h1>
-                <p className="text-lg text-blue-100">
-                  {language === 'ar' ? 'مكامن البحرية السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd. (MOS)'}
-                </p>
-              </div>
-            </div>
+            <img src={mosLogoPath} alt="Makamin Offshore Saudi (MOS)" className="h-16 sm:h-20 w-auto mx-auto mb-6 drop-shadow-lg" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-3">
+              {language === 'ar' ? 'الخدمات البحرية' : 'Offshore & Marine Services'}
+            </h1>
+            <p className="text-lg text-blue-100 mb-2">
+              {language === 'ar' ? 'مكامن البحرية السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd. (MOS)'}
+            </p>
             <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed mt-6">
               {language === 'ar'
                 ? 'عمليات بحرية وخدمات دعم بحري لاستكشاف وإنتاج النفط والغاز والبنية التحتية تحت البحر.'

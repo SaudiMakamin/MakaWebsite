@@ -6,8 +6,9 @@ import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
 import HeroLogo from '@/components/hero-logo';
 import { Link } from 'wouter';
-import { Anchor, Ship, FileText, Waves, ArrowRight, CheckCircle } from 'lucide-react';
+import { Ship, FileText, Waves, ArrowRight, CheckCircle } from 'lucide-react';
 import heroPath from '@assets/hero-carousel-1_1752529906169.jpg';
+import mosLogoPath from '@assets/Makamin-Offshore-Saudi-MOS_1773171180771.png';
 
 export default function OffshoreOperations() {
   const { language } = useLanguageContext();
@@ -46,19 +47,13 @@ export default function OffshoreOperations() {
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <HeroLogo size="lg" />
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mr-4">
-                <Anchor className="w-12 h-12 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                  {isAr ? 'شركة مكامن البحرية السعودية المحدودة' : 'Makamin Offshore Saudi Ltd'}
-                </h1>
-                <p className="text-lg text-blue-200">
-                  {isAr ? 'MOS — كيان بحري ضمن مجموعة مكامن' : 'MOS — Marine Entity — Makamin Group'}
-                </p>
-              </div>
-            </div>
+            <img src={mosLogoPath} alt="Makamin Offshore Saudi (MOS)" className="h-16 sm:h-20 w-auto mx-auto mb-6 drop-shadow-lg" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-3">
+              {isAr ? 'شركة مكامن البحرية السعودية المحدودة' : 'Makamin Offshore Saudi Ltd'}
+            </h1>
+            <p className="text-lg text-blue-200 mb-4">
+              {isAr ? 'MOS — كيان بحري ضمن مجموعة مكامن' : 'MOS — Marine Entity — Makamin Group'}
+            </p>
           </div>
         </div>
       </section>

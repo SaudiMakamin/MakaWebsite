@@ -1,0 +1,213 @@
+Final MOS branding + Offshore Projects correction — execute this as one focused, minimal, non-breaking pass. Use the attached official Makamin Offshore Saudi (MOS) logo and fix the Offshore Projects page hierarchy/rendering/reference quality precisely. Do not redesign the site, do not change architecture, do not change routing, and do not modify unrelated pages.
+
+Part 1 — Official MOS logo usage across all MOS-related areas
+
+I am attaching the official Makamin Offshore Saudi (MOS) logo.
+
+Use this exact supplied logo consistently across all MOS-related pages and sections in the site, following the existing design system and keeping Makamin corporate branding as the primary site brand.
+
+MOS logo usage scope
+
+Use the attached official Makamin Offshore Saudi (MOS) logo in all MOS-related contexts, including where relevant:
+
+Makamin Offshore Saudi Ltd Group page
+
+Offshore & Marine Services
+
+Offshore Projects
+
+Marine Fleet & Offshore Assets
+
+any MOS-specific hero/intro/identity section already present in the site
+
+MOS logo rules
+
+Use the attached official MOS logo only in MOS-related contexts.
+
+Do not replace the global Makamin corporate logo site-wide.
+
+Keep Makamin as the master brand and MOS as the sub-brand/entity-specific logo.
+
+Make the MOS logo clearly visible but professionally sized.
+
+Do not distort, stretch, crop, or oversize the logo.
+
+Use it in:
+
+hero/intro areas of MOS-related pages
+
+MOS entity/company identity blocks
+
+MOS project/service identity markers where appropriate
+
+Do not scatter the logo randomly in unrelated cards or unrelated pages.
+
+Preserve responsive behavior and visual clarity on desktop and mobile.
+
+Part 2 — Final correction for Offshore Projects page
+
+Fix this page only, with no scope expansion. The page is not approved. Complete the missing execution exactly as follows:
+
+1) Make Makamin Offshore Saudi (MOS) the dominant page identity at the top
+
+Makamin Offshore Saudi (MOS) must be visually prominent in the hero/top section.
+
+Do not leave Offshore Projects as the only dominant headline while Makamin Offshore Saudi (MOS) appears as a weak small subtitle.
+
+Rebuild the page hierarchy so the page clearly reads as the offshore project portfolio of MOS.
+
+Preferred hierarchy:
+
+primary identity: Makamin Offshore Saudi (MOS)
+
+secondary descriptor: Offshore Projects Portfolio or equivalent
+
+2) Fix all broken rendering issues immediately
+
+The page currently shows undefined projects found — fix this completely.
+
+The page currently has corrupted/overlapped vessel/asset text in cards — fix all layout/rendering bugs so vessel names display cleanly and normally.
+
+No broken labels, corrupted strings, merged text, or mixed rendering should remain anywhere on this page.
+
+3) Show strong project/contract reference information on every offshore card where verified data already exists
+
+Do not leave offshore project cards as generic listings.
+
+Use the approved MOS data already provided earlier.
+
+Where verified project reference / contract-related data exists, display it clearly and consistently.
+
+If there is no formal contract number but there is a verified project title, value, period, related asset, or client, structure that reference block clearly so the card reads like a documented offshore record, not a vague summary.
+
+Do not leave already-supplied verified values, periods, or linked vessels weak or hidden.
+
+4) Strengthen MOS identity inside every offshore project card
+
+Each card must clearly feel like an MOS project / Makamin Offshore Saudi project.
+
+Add a strong, consistent MOS marker or badge treatment across all cards.
+
+Use the supplied MOS logo where appropriate within the existing pattern.
+
+Do not rely only on generic offshore metadata.
+
+5) Improve the hierarchy of each offshore project card
+
+Every offshore card should clearly present:
+
+MOS identity marker
+
+project title
+
+related vessel/asset name if applicable
+
+short description
+
+project/contract reference block
+
+supporting metadata:
+
+client
+
+period
+
+value
+
+status
+
+category
+
+Do not let small metadata badges overpower the core project identity or the reference block.
+
+6) Make vessel-linked offshore projects visually readable
+
+Where a project is linked to a vessel/asset such as:
+
+Jaya Centurion
+
+Jaya Chieftain
+
+Jaya Concordia
+
+Arkstar Voyager
+
+Posh Pelican
+
+Belait Barakah
+
+Makamin 1
+
+Ansar 3
+
+and other approved MOS-linked assets
+that vessel/asset name must display clearly and cleanly.
+
+Do not allow asset names to break, overlap, merge, corrupt, or render as unreadable mixed text.
+
+7) Support search visibility for Makamin Offshore Saudi (MOS)
+
+The visible page hierarchy, page heading, and page presentation must strongly support discoverability for users searching for Makamin Offshore Saudi (MOS).
+
+The page must not visually hide MOS behind a generic Offshore Projects heading.
+
+Make MOS clearly present in:
+
+visible page heading hierarchy
+
+hero identity
+
+page presentation
+
+Keep the SEO pattern consistent with the project’s existing implementation style.
+
+8) Fix bottom-page consistency issues
+
+Clean up any outdated footer / quick-link / inherited page-level elements that still show old or inconsistent structure, but only as far as this page’s composition is concerned.
+
+Do not redesign the global footer in this task.
+
+Fix only what makes this page inconsistent with the final approved site structure.
+
+Important execution rule
+
+You were already given the approved MOS vessel names, project titles, values, periods, and linked offshore project records earlier.
+
+Use that approved data.
+
+Do not fabricate anything new.
+
+Do not ignore already-verified MOS information.
+
+Do not leave approved offshore information inconsistently displayed.
+
+Constraints
+
+scope: MOS-related branding usage + Offshore Projects page correction only
+
+no redesign
+
+no architecture changes
+
+no routing changes unless absolutely required for an already-approved MOS page to render correctly
+
+no unrelated page edits
+
+preserve responsive behavior
+
+preserve filters/search behavior unless directly broken on this page
+
+follow the existing component/page pattern only
+
+Final verification report required
+
+Return a concise report with:
+
+A. files modified
+B. where the attached MOS logo was applied across MOS-related pages/sections
+C. how the Offshore Projects page hierarchy was corrected
+D. how the broken rendering issues were fixed
+E. how project/contract reference information was strengthened
+F. how vessel/asset names were made clean and readable
+G. confirmation that MOS branding is now clearly visible in all MOS-related areas
+H. confirmation that only MOS-related branding contexts and the Offshore Projects page were changed, with architecture and unrelated pages preserved
