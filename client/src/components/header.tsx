@@ -50,6 +50,7 @@ export default function Header() {
     { path: '/projects/aramco', label: 'Aramco Projects', labelAr: 'مشاريع أرامكو', icon: Building2 },
     { path: '/projects/pipeline', label: 'Pipeline Projects', labelAr: 'مشاريع الأنابيب', icon: Wrench },
     { path: '/projects/offshore', label: 'Offshore Projects', labelAr: 'المشاريع البحرية', icon: Anchor },
+    { path: '/projects/zencus', label: 'ZENCUS Projects', labelAr: 'مشاريع ZENCUS', icon: Cpu },
   ];
 
   const certificationsDropdown = [

@@ -1,0 +1,265 @@
+Final ZENCUS projects implementation — apply a minimal, architecture-safe enhancement. Add a new menu item under Projects named exactly ZENCUS Projects, and place it after Offshore Projects. Keep all existing Projects items unchanged. Create a dedicated ZENCUS Projects page that uses the structured shared projects dataset, follows the existing Projects page/component pattern, preserves the current routing architecture, header/footer, dropdown behavior, filters/search behavior, visual system, and SEO pattern. Do not redesign the site and do not modify unrelated pages.
+
+Required Projects dropdown order:
+
+Overview
+
+Major Projects
+
+Project Management
+
+Aramco Projects
+
+Pipeline Projects
+
+Offshore Projects
+
+ZENCUS Projects
+
+Create/update the structured dataset so ZENCUS records are properly classified and publicly displayed under the new ZENCUS Projects page. ZENCUS records must remain classified under entity: ZENCUS, not Petroleum and not Offshore, even when the operating environment is offshore.
+
+Add these ZENCUS project records to the shared projects dataset:
+
+Wireless Well Monitoring for Improved Reservoir Management
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Wireless Well Monitoring
+
+serviceLine: ZENCUS
+
+description: Wireless well monitoring system for improved reservoir management and real-time production visibility.
+
+isAramco: false
+
+isOffshore: false
+
+recordStatus: Verified
+
+Offshore Wireless Well Monitoring
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Wireless Well Monitoring
+
+serviceLine: ZENCUS
+
+description: Wireless monitoring solution for offshore wells using the ZENCUS field network.
+
+isAramco: false
+
+isOffshore: true
+
+recordStatus: Verified
+
+Wireless Well Monitoring – Veracruz Activo
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Wireless Well Monitoring
+
+serviceLine: ZENCUS
+
+description: Wireless well monitoring deployment for the Veracruz Activo field environment.
+
+isAramco: false
+
+isOffshore: false
+
+recordStatus: Verified
+
+Remote Monitoring of Offshore Production Facilities
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Remote Monitoring
+
+serviceLine: ZENCUS
+
+description: Remote monitoring solution for offshore production facilities.
+
+isAramco: false
+
+isOffshore: true
+
+recordStatus: Verified
+
+Remote Monitoring & Control of Offshore Production Facilities via VSAT
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Remote Monitoring
+
+serviceLine: ZENCUS
+
+description: Remote monitoring and control of offshore production facilities through VSAT connectivity.
+
+isAramco: false
+
+isOffshore: true
+
+recordStatus: Verified
+
+Dukhan PWI Wireless SCADA Project
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Wireless SCADA
+
+serviceLine: ZENCUS
+
+description: Wireless SCADA project supporting produced water injection operations in Dukhan.
+
+isAramco: false
+
+isOffshore: false
+
+recordStatus: Verified
+
+Chemical Injection System Remote Monitoring
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Remote Monitoring
+
+serviceLine: ZENCUS
+
+description: Remote monitoring solution for chemical injection systems in field operations.
+
+isAramco: false
+
+isOffshore: false
+
+recordStatus: Verified
+
+Wireless Pressure Transmitters for Wireline Operations
+
+client: leave empty if not verified
+
+entity: ZENCUS
+
+sector: Technology
+
+category: Wireless Instrumentation
+
+serviceLine: ZENCUS
+
+description: Wireless pressure transmitter solution for wireline operations and field instrumentation.
+
+isAramco: false
+
+isOffshore: false
+
+recordStatus: Verified
+
+ZENCUS Projects page requirements:
+
+Build a dedicated page using the same project system as the other project pages.
+
+The page must read from the shared structured dataset and show only records where entity = ZENCUS.
+
+Enable search and filtering across the ZENCUS subset.
+
+Keep it scalable for future ZENCUS project additions.
+
+Do not hardcode the page to only these 8 records.
+
+Recommended sections for the page:
+
+ZENCUS Projects Overview
+
+Wireless Well Monitoring Projects
+
+Remote Monitoring & Control
+
+SCADA & Digital Field Systems
+
+Featured Technology Capabilities
+
+Related ZENCUS Services
+
+Also add a products/technology capability section on the page or in a reusable ZENCUS component using these platform items, but do not classify them as projects:
+
+Mono Transmitter
+
+Field Transceiver
+
+ZENCUS Gateway
+
+ZENCUS Data Visualization Suite
+
+ZDV Listener
+
+ZDV Studio
+
+ZDV Alert
+
+ZDV Report
+
+ZENCUS CCTV
+
+Industry/application context to reflect in the page content where appropriate:
+
+oil well monitoring
+
+reservoir management
+
+production monitoring
+
+wireless SCADA
+
+offshore monitoring
+
+chemical injection systems
+
+oilfield IoT
+
+security and surveillance systems
+
+Important constraints:
+
+Do not mix ZENCUS projects into Offshore Projects just because some are offshore environments.
+
+Do not move ZENCUS into Petroleum.
+
+Do not fabricate clients, values, years, images, or statuses where not verified.
+
+Hide missing fields cleanly.
+
+Keep the Group / Services / Projects separation intact.
+
+Final verification report required:
+A. files modified
+B. number of ZENCUS project records added
+C. confirmation that ZENCUS Projects appears in the Projects dropdown
+D. confirmation that all ZENCUS records remain classified under entity: ZENCUS
+E. any fields intentionally left blank due to unverified source data
+F. confirmation that architecture and unrelated pages remained unchanged**

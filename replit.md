@@ -147,11 +147,13 @@ Group pages = legal/corporate entities only. Services pages = operational servic
   - `/projects` — main landing page consuming featured projects from dataset (projects-enhanced.tsx refactored)
   - `/projects/aramco` — `aramco-projects.tsx` — Aramco projects with sector breakdown, search, grid/list toggle
   - `/projects/pipeline` — `pipeline-projects.tsx` — pipeline projects with category breakdown, Aramco filter
-- **Navigation**: Projects dropdown now has 5 items: Major Projects, Project Management, Aramco Projects, Pipeline Projects, Offshore Projects
+- **Navigation**: Projects dropdown now has 6 items: Major Projects, Project Management, Aramco Projects, Pipeline Projects, Offshore Projects, ZENCUS Projects
 - **Fleet dataset**: `client/src/data/fleet.ts` — 19 marine assets with status labels (Verified / Partially Documented / Referenced in Records)
 - **Fleet page**: `/projects/fleet` — `fleet-assets.tsx` — Marine Fleet & Offshore Assets registry with search, filter by type/status
-- **Offshore Projects page**: `/projects/offshore` — `offshore-projects.tsx` — 13 offshore projects with category breakdown, value display, related assets, record status badges
+- **Offshore Projects page**: `/projects/offshore` — `offshore-projects.tsx` — 13 offshore projects (excludes ZENCUS entity) with category breakdown, value display, related assets, record status badges
+- **ZENCUS Projects page**: `/projects/zencus` — `zencus-projects.tsx` — 8 ZENCUS technology projects with category breakdown, search/filter, 9 technology product capabilities, and application contexts
 - **Entity classification**: Holding (none), Petroleum (pipeline/drilling/inspection/geoscience), Offshore (marine), ZENCUS (digital/wireless)
+- **Entity separation**: `getOffshoreProjects()` excludes `entity: 'ZENCUS'` even if `isOffshore: true`; `getZencusProjects()` filters by `entity: 'ZENCUS'` only
 - **No fabricated stats**: Hero badges show real counts from dataset instead of unverified metrics
 
 ## Recent Changes - March 2, 2026
