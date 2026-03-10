@@ -230,19 +230,19 @@ export default function Header() {
           <button
             type="button"
             onClick={() => toggleMobileSection(sectionKey)}
-            className={`flex items-center justify-between w-full py-2 transition-colors font-medium ${
-              isActiveLink(path) ? 'makamin-blue' : 'makamin-gray hover:makamin-blue'
+            className={`flex items-center justify-between w-full py-3 transition-colors font-medium ${
+              isActiveLink(path) ? 'text-[#c5a66e]' : 'text-white/90 hover:text-[#c5a66e]'
             }`}
           >
             <span>{label}</span>
             <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
           </button>
           {isExpanded && (
-            <div className={`${language === 'ar' ? 'pr-4 border-r-2' : 'pl-4 border-l-2'} border-gray-200 space-y-1 pb-2`}>
+            <div className={`${language === 'ar' ? 'pr-4 border-r-2' : 'pl-4 border-l-2'} border-[#c5a66e]/30 space-y-1 pb-2`}>
               {path.includes('#') ? (
                 <a
                   href={path}
-                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                  className="flex items-center gap-2 py-2 text-sm text-white/70 hover:text-[#c5a66e] transition-colors"
                   onClick={(e) => {
                     setMobileMenuOpen(false);
                     e.preventDefault();
@@ -269,7 +269,7 @@ export default function Header() {
               ) : (
                 <Link
                   href={path}
-                  className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                  className="flex items-center gap-2 py-2 text-sm text-white/70 hover:text-[#c5a66e] transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <Globe className="h-3.5 w-3.5 flex-shrink-0" />
@@ -302,7 +302,7 @@ export default function Header() {
                   <a
                     key={index}
                     href={item.path}
-                    className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                    className="flex items-center gap-2 py-2 text-sm text-white/70 hover:text-[#c5a66e] transition-colors"
                     onClick={handleMobileHashClick}
                   >
                     <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
@@ -312,7 +312,7 @@ export default function Header() {
                   <Link
                     key={index}
                     href={item.path}
-                    className="flex items-center gap-2 py-1.5 text-sm makamin-gray hover:makamin-blue transition-colors"
+                    className="flex items-center gap-2 py-2 text-sm text-white/70 hover:text-[#c5a66e] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <item.icon className="h-3.5 w-3.5 flex-shrink-0" />
@@ -330,10 +330,10 @@ export default function Header() {
       <Link
         href={path}
         className={`${
-          isActiveLink(path)
-            ? 'makamin-blue border-b-2 border-makamin-blue'
-            : 'makamin-gray hover:makamin-blue'
-        } ${mobile ? 'block py-2' : 'inline-flex items-center whitespace-nowrap'} transition-colors font-medium`}
+          mobile
+            ? (isActiveLink(path) ? 'text-[#c5a66e]' : 'text-white/90 hover:text-[#c5a66e]')
+            : (isActiveLink(path) ? 'makamin-blue border-b-2 border-makamin-blue' : 'makamin-gray hover:makamin-blue')
+        } ${mobile ? 'block py-3' : 'inline-flex items-center whitespace-nowrap'} transition-colors font-medium`}
         onClick={() => mobile && setMobileMenuOpen(false)}
       >
         {label}
@@ -402,8 +402,8 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[300px] sm:w-[400px] overflow-y-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-                <nav className="flex flex-col space-y-2 mt-8">
+              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[280px] sm:w-[350px] overflow-y-auto bg-gradient-to-b from-slate-900 via-[#003f6a] to-slate-900 border-l-[#c5a66e]/30" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                <nav className="flex flex-col space-y-1 mt-6 px-1">
                   {navItems.map((item, index) => (
                     <NavLink 
                       key={`mobile-${item.path}-${index}`} 

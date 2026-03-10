@@ -1,0 +1,107 @@
+Final mobile responsiveness stabilization pass — apply a safe, minimal, non-breaking mobile optimization across the site.
+
+Do not redesign the site, do not change architecture, do not change routing, and do not modify unrelated business logic. Preserve the current desktop layout and visual identity as much as possible. The goal is to make the website highly usable on mobile devices without breaking any existing pages, routes, dropdown behavior, or bilingual functionality.
+
+Only make targeted responsive styling/layout fixes. Prefer CSS/Tailwind class adjustments and minimal component-level changes over structural rewrites. Do not shorten, rewrite, remove, or replace business content for responsiveness. Fix layout only.
+
+Scope of this pass:
+- mobile header
+- mobile navigation
+- dropdown menus on mobile
+- hero sections
+- cards
+- buttons
+- spacing
+- filters/search areas
+- data-heavy sections such as projects, offshore, fleet/assets, and ZENCUS pages
+
+Core requirements:
+
+Mobile header and navigation
+- Make the top navigation fully mobile-friendly.
+- Ensure the mobile menu opens and closes cleanly.
+- Ensure submenu items are easy to tap.
+- Prevent text overlap, menu clipping, horizontal overflow, or broken dropdown positioning.
+- Preserve all current navigation items and route mappings exactly as they already exist.
+
+Mobile menu visual treatment
+- The mobile menu must not appear as plain white or blend into the page.
+- Give the mobile menu a clearly visible, polished background with strong contrast and professional colors aligned with the site branding.
+- Use a distinct menu panel/background so it is visually separated from the page content.
+- Make sure the menu is clearly visible to the user when opened and not visually lost against the page.
+- Avoid transparent or near-invisible white menu panels.
+- Ensure menu text, icons, hover/tap states, and submenu states remain readable and accessible.
+
+Hero sections
+- Optimize hero sections for mobile without removing their current design language.
+- Reduce oversized heights where needed.
+- Scale headings and paragraph text properly.
+- Stack content vertically when necessary.
+- Prevent hero buttons, badges, counters, and text from overlapping or overflowing.
+- Keep CTA buttons easy to tap on small screens.
+
+Cards and section blocks
+- Make cards responsive and clean on mobile.
+- Use single-column or safe two-column layouts depending on available width.
+- Prevent long titles, descriptions, and badges from breaking layouts.
+- Ensure icons, buttons, and metadata remain aligned and readable.
+
+Projects / filters / search
+- Make project filters and search mobile-friendly.
+- Stack filters vertically or collapse them safely where appropriate.
+- Prevent filter controls from becoming too small or overflowing the viewport.
+- Ensure all project listing pages remain usable on small screens, including:
+  - Projects Overview
+  - Aramco Projects
+  - Pipeline Projects
+  - Offshore Projects
+  - ZENCUS Projects
+
+Data-heavy pages
+- For fleet/assets, offshore, and other dense pages, ensure mobile layout is readable and touch-friendly.
+- Avoid wide table-like layouts that overflow on small screens.
+- Convert dense multi-column layouts into stacked responsive layouts if needed, using the existing design system only.
+- Hide empty fields cleanly and keep metadata readable.
+
+Group and Services pages
+- Ensure corporate entity pages and service pages are well structured on mobile.
+- Keep company info blocks, registration numbers, ownership fields, CTA buttons, and section cards vertically aligned and readable.
+- Preserve the distinction between Group pages, Services pages, and Projects pages.
+
+General mobile stability
+- Eliminate horizontal scrolling unless absolutely required by an intentional UI pattern.
+- Prevent clipped text, overlapping sections, broken buttons, and off-screen content.
+- Maintain consistent spacing, padding, and typography on small screens.
+- Preserve RTL/LTR behavior and language switching.
+- Ensure images, logos, badges, counters, and media blocks scale safely on mobile without cropping critical content or causing layout shifts.
+
+Important constraints:
+- Do not redesign desktop.
+- Do not change architecture.
+- Do not change routing structure.
+- Do not remove content.
+- Do not replace the design system.
+- Do not introduce a new UI framework.
+- Do not modify unrelated pages or business logic.
+- Follow the project’s existing component and styling patterns only.
+
+Priority order for safe implementation:
+1. mobile navigation and dropdowns
+2. hero sections
+3. cards and CTA buttons
+4. filters/search and data-heavy pages
+
+Validation requirement:
+Validate responsive behavior specifically at 320px, 360px, 390px, and 430px widths.
+
+Final verification required:
+Provide a concise report with:
+A. files modified
+B. what was improved for mobile navigation
+C. what was improved for hero sections and cards
+D. what was improved for filters/data-heavy pages
+E. confirmation that desktop behavior remained unchanged
+F. confirmation that routing, architecture, and unrelated pages remained unchanged
+G. confirmation that the mobile menu now uses a visible branded background and is not plain white or visually lost against the page
+
+After completing the pass, stage, commit, and push all responsive updates immediately to GitHub on the current branch with a clear commit message.

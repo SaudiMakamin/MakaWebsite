@@ -226,15 +226,100 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .text-4xl {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+
+  .text-5xl {
     font-size: 2rem;
     line-height: 2.5rem;
   }
-  
+
   .text-6xl {
-    font-size: 3rem;
-    line-height: 3.5rem;
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+
+  .min-h-\[60vh\] {
+    min-height: 45vh;
+  }
+
+  .min-h-\[70vh\] {
+    min-height: 50vh;
+  }
+
+  .min-h-\[80vh\] {
+    min-height: 55vh;
+  }
+
+  .py-20 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .py-16 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .gap-6 {
+    gap: 1rem;
+  }
+
+  .text-lg {
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+  }
+
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .text-4xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .text-5xl {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+
+  .text-6xl {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .py-12 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .text-4xl {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+  }
+
+  .text-5xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 }
 

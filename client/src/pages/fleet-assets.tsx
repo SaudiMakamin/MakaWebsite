@@ -140,7 +140,7 @@ export default function FleetAssetsPage() {
       <EnhancedSecurity />
 
       <motion.section
-        className="relative min-h-[55vh] flex items-center justify-center text-white overflow-hidden"
+        className="relative min-h-[40vh] md:min-h-[55vh] flex items-center justify-center text-white overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -170,13 +170,13 @@ export default function FleetAssetsPage() {
               : 'Complete marine asset registry for Makamin Offshore Saudi Ltd (MOS)'}
           </motion.p>
           <motion.div
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <Badge className="bg-[#003f6a] text-white px-5 py-3 text-base font-bold border border-[#c5a66e]">
-              <Ship className="w-5 h-5 mr-2" />
+            <Badge className="bg-[#003f6a] text-white px-4 sm:px-5 py-2 sm:py-3 text-sm sm:text-base font-bold border border-[#c5a66e]">
+              <Ship className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               {marineAssets.length} {isAr ? 'أصل بحري' : 'Marine Assets'}
             </Badge>
           </motion.div>
@@ -185,7 +185,7 @@ export default function FleetAssetsPage() {
 
       <section className="py-10 px-6 bg-gradient-to-b from-black to-slate-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8">
             {Object.entries(statusCounts).map(([status, count]) => (
               <button
                 key={status}

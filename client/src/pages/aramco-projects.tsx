@@ -93,7 +93,7 @@ export default function AramcoProjects() {
       />
       <EnhancedSecurity />
 
-      <section className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden">
+      <section className="relative min-h-[40vh] md:min-h-[60vh] flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroPath} alt="Aramco Projects" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-[#003f6a]/50 to-black/80"></div>
@@ -111,11 +111,11 @@ export default function AramcoProjects() {
               ? 'سجل شامل لمشاريع مكامن مع أرامكو السعودية عبر قطاعات الأنابيب والحفر والفحص والجيوفيزياء'
               : "Makamin's comprehensive track record with Saudi Aramco across pipeline, drilling, inspection, and geoscience sectors"}
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Badge className="bg-[#003f6a]/80 text-white px-6 py-3 text-lg border border-[#c5a66e]/30">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-6 sm:mt-8">
+            <Badge className="bg-[#003f6a]/80 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg border border-[#c5a66e]/30">
               {allAramco.length} {isAr ? 'مشروع' : 'Projects'}
             </Badge>
-            <Badge className="bg-[#003f6a]/80 text-white px-6 py-3 text-lg border border-[#c5a66e]/30">
+            <Badge className="bg-[#003f6a]/80 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg border border-[#c5a66e]/30">
               {sectorBreakdown.length} {isAr ? 'قطاع' : 'Sectors'}
             </Badge>
           </div>

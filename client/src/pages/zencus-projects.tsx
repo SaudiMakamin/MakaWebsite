@@ -91,7 +91,7 @@ export default function ZencusProjectsPage() {
       <EnhancedSecurity />
 
       <motion.section
-        className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
+        className="relative min-h-[40vh] md:min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -126,8 +126,8 @@ export default function ZencusProjectsPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <Badge className="bg-[#003f6a] text-white px-6 py-3 text-lg font-bold border border-[#c5a66e]">
-              <Cpu className="w-5 h-5 mr-2" />
+            <Badge className="bg-[#003f6a] text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-bold border border-[#c5a66e]">
+              <Cpu className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               {allZencus.length} {isAr ? 'مشروع تقني' : 'Technology Projects'}
             </Badge>
           </motion.div>

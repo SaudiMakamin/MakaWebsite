@@ -93,7 +93,7 @@ export default function OffshoreProjectsPage() {
       <EnhancedSecurity />
 
       <motion.section
-        className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
+        className="relative min-h-[40vh] md:min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -123,18 +123,18 @@ export default function OffshoreProjectsPage() {
               : 'Makamin Offshore Saudi (MOS) marine & offshore operations portfolio'}
           </motion.p>
           <motion.div
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <Badge className="bg-[#003f6a] text-white px-6 py-3 text-lg font-bold border border-[#c5a66e]">
-              <Anchor className="w-5 h-5 mr-2" />
+            <Badge className="bg-[#003f6a] text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-bold border border-[#c5a66e]">
+              <Anchor className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               {allOffshore.length} {isAr ? 'مشروع بحري' : 'Offshore Projects'}
             </Badge>
             {totalValue > 0 && (
-              <Badge className="bg-[#b72b2b] text-white px-6 py-3 text-lg font-bold border border-[#c5a66e]">
-                <Ship className="w-5 h-5 mr-2" />
+              <Badge className="bg-[#b72b2b] text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg font-bold border border-[#c5a66e]">
+                <Ship className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 SAR {(totalValue / 1e9).toFixed(2)}B+ {isAr ? 'إجمالي القيمة' : 'Total Value'}
               </Badge>
             )}

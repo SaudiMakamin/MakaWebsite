@@ -220,7 +220,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="text-7xl md:text-9xl font-bold mb-8 leading-tight"
+              className="text-4xl sm:text-7xl md:text-9xl font-bold mb-6 sm:mb-8 leading-tight"
             >
               <span className="bg-gradient-to-r from-[#003f6a] via-[#c5a66e] to-[#b72b2b] bg-clip-text text-transparent">
                 {language === 'ar' ? 'مشاريع القوة' : 'PROJECTS'}
@@ -237,10 +237,10 @@ export default function Projects() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl text-[#c5a66e] mb-4 font-bold">
+              <h2 className="text-xl sm:text-3xl md:text-4xl text-[#c5a66e] mb-4 font-bold">
                 {language === 'ar' ? 'الدقة الهندسية. التنفيذ الاستراتيجي. القيادة السعودية.' : 'Engineering Precision. Strategic Execution. Saudi Leadership.'}
               </h2>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
                 {language === 'ar' ?
                   'تأثير مكامن عبر أرامكو السعودية وسابك والمياه الوطنية والأسواق البحرية - قيادة تقنية تشكل مستقبل الطاقة' :
                   'Makamin\'s impact across Saudi Aramco, SABIC, NWC, and offshore markets - Technical leadership shaping the future of energy'
@@ -252,18 +252,18 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-wrap justify-center gap-6 mb-8"
+              className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-8"
             >
-              <Badge className="bg-gradient-to-r from-[#003f6a] to-[#b72b2b] text-white px-8 py-4 text-xl font-bold shadow-2xl border-2 border-[#c5a66e]">
-                <Target className="w-6 h-6 mr-3" />
+              <Badge className="bg-gradient-to-r from-[#003f6a] to-[#b72b2b] text-white px-4 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-xl font-bold shadow-2xl border-2 border-[#c5a66e]">
+                <Target className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                 {language === 'ar' ? `${publicProjects.length}+ مشروع مسجل` : `${publicProjects.length}+ Recorded Projects`}
               </Badge>
-              <Badge className="bg-gradient-to-r from-[#b72b2b] to-[#c5a66e] text-white px-8 py-4 text-xl font-bold shadow-2xl border-2 border-[#003f6a]">
-                <Shield className="w-6 h-6 mr-3" />
+              <Badge className="bg-gradient-to-r from-[#b72b2b] to-[#c5a66e] text-white px-4 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-xl font-bold shadow-2xl border-2 border-[#003f6a]">
+                <Shield className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                 {language === 'ar' ? `${aramcoCount} مشروع أرامكو` : `${aramcoCount} Aramco Projects`}
               </Badge>
-              <Badge className="bg-gradient-to-r from-[#c5a66e] to-[#003f6a] text-white px-8 py-4 text-xl font-bold shadow-2xl border-2 border-[#b72b2b]">
-                <Zap className="w-6 h-6 mr-3" />
+              <Badge className="bg-gradient-to-r from-[#c5a66e] to-[#003f6a] text-white px-4 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-xl font-bold shadow-2xl border-2 border-[#b72b2b]">
+                <Zap className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                 {language === 'ar' ? `${pipelineCount} مشروع أنابيب` : `${pipelineCount} Pipeline Projects`}
               </Badge>
             </motion.div>

@@ -236,7 +236,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <h1 className="text-6xl md:text-8xl font-bold mb-8">
+              <h1 className="text-3xl sm:text-6xl md:text-8xl font-bold mb-6 sm:mb-8">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
                   {language === 'ar' ? 'مكامن' : 'Makamin'}
                 </span>

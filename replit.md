@@ -135,6 +135,15 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 ### Key Separation Rule
 Group pages = legal/corporate entities only. Services pages = operational service lines only. No mixing.
 
+## Mobile Responsiveness (March 2026)
+- **Mobile menu**: Dark branded gradient background (`from-slate-900 via-[#003f6a] to-slate-900`), width 280px/350px, white text with gold hover accents (`text-white/90 hover:text-[#c5a66e]`), white close button
+- **Hero sections**: All project pages use `min-h-[40vh] md:min-h-[60vh]` for reduced mobile height
+- **Badge sizing**: Responsive padding/font across all project hero badges (`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg`)
+- **Text scaling**: Home hero `text-3xl sm:text-6xl md:text-8xl`, Projects hero `text-4xl sm:text-7xl md:text-9xl`
+- **CSS breakpoints**: Custom media queries at 768px, 430px, and 360px for progressive text/spacing reduction
+- **Fleet filter grid**: `grid-cols-1 sm:grid-cols-3` for stacked filters on mobile
+- **Sheet component**: Close button styled `text-white opacity-90` for dark background visibility
+
 ## Recent Changes - March 10, 2026
 
 ### Structured Projects System
