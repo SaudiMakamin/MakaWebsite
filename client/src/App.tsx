@@ -27,7 +27,9 @@ import Contact from '@/pages/contact';
 import UpdateShareholder from '@/pages/update-shareholder';
 import RoyalShareholderDashboard from '@/pages/royal-shareholder-dashboard';
 import NotFound from '@/pages/not-found';
+import MakaminHolding from '@/pages/makamin-holding';
 import PetroleumServices from '@/pages/petroleum-services';
+import ZencusInternational from '@/pages/zencus-international';
 import OffshoreOperations from '@/pages/offshore-operations';
 import PipelineIndustrialServices from '@/pages/services/pipeline-industrial';
 import DrillingServices from '@/pages/services/drilling';
@@ -73,7 +75,9 @@ function Router() {
       <Route path="/services/offshore" component={OffshoreServices} />
       <Route path="/services/supply-chain" component={SupplyChainServices} />
       <Route path="/services/technical-staffing" component={TechnicalStaffingServices} />
+      <Route path="/makamin-holding" component={MakaminHolding} />
       <Route path="/petroleum-services" component={PetroleumServices} />
+      <Route path="/zencus-international" component={ZencusInternational} />
       <Route path="/offshore-operations" component={OffshoreOperations} />
       <Route path="/investor-relations" component={InvestorRelations} />
       <Route path="/bahrain-operations" component={BahrainOperations} />

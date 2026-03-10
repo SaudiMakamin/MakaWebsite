@@ -38,10 +38,10 @@ export default function Header() {
   ];
 
   const operationsDropdown = [
-    { path: '/petroleum-services', label: 'Makamin Petroleum Services', labelAr: 'مكامن للخدمات البترولية', icon: Drill },
-    { path: '/offshore-operations', label: 'Makamin Offshore Bahrain', labelAr: 'مكامن البحرية البحرين', icon: Anchor },
-    { path: '/petroleum-services', label: 'ZENCUS International', labelAr: 'زينكوس الدولية', icon: Cpu },
-    { path: '/offshore-operations', label: 'Offshore Operations', labelAr: 'العمليات البحرية', icon: Ship },
+    { path: '/makamin-holding', label: 'Makamin Holding for Oil & Gas', labelAr: 'مكامن القابضة للنفط والغاز', icon: Building2 },
+    { path: '/petroleum-services', label: 'Makamin Petroleum Services Company', labelAr: 'شركة مكامن للخدمات البترولية', icon: Drill },
+    { path: '/zencus-international', label: 'ZENCUS International Ltd', labelAr: 'زينكوس الدولية المحدودة', icon: Cpu },
+    { path: '/offshore-operations', label: 'Makamin Offshore Saudi Ltd', labelAr: 'مكامن البحرية السعودية المحدودة', icon: Anchor },
   ];
 
   const projectsDropdown = [

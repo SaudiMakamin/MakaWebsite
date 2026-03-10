@@ -135,7 +135,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link 
-                  href="/petroleum-services" 
+                  href="/services/pipeline-industrial" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}
                 >
@@ -144,7 +144,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/petroleum-services" 
+                  href="/services/drilling" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}
                 >
@@ -153,7 +153,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/petroleum-services" 
+                  href="/services/geoscience" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}
                 >
@@ -162,7 +162,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/petroleum-services" 
+                  href="/services/industrial-inspection" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}
                 >
@@ -180,7 +180,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/petroleum-services" 
+                  href="/services/supply-chain" 
                   className="transition-colors duration-300 hover:text-[#c5a66e]"
                   style={{ color: '#f1f1f1' }}
                 >

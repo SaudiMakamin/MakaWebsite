@@ -1,0 +1,91 @@
+Final Group section correction — execute with strict separation between corporate entities and service pages. In the website information architecture, `Group` must represent legal/corporate entities only, while `Services` must represent operational service lines only. Apply minimal, architecture-safe changes using the existing project pattern. Preserve the current SPA architecture, routing system, header/footer behavior, dropdown behavior, layout system, and bilingual compatibility. Do not redesign the site. Do not modify unrelated sections.
+
+Required Group structure:
+- Group Overview
+- Makamin Holding for Oil & Gas
+- Makamin Petroleum Services Company
+- ZENCUS International Ltd
+- Makamin Offshore Saudi Ltd
+
+Critical correction rules:
+1. `Makamin Petroleum Services Company` must no longer appear as an exaggerated drilling/services page. It must become a corporate entity page for the main operating company.
+2. `ZENCUS` must no longer be a placeholder/temporary page. It must become a formal technology entity page.
+3. `Makamin Offshore Saudi Ltd` must not be presented as fully owned by Makamin. It must clearly reflect Makamin ownership as 51% only.
+4. Do not expose suspended, inactive, or sensitive entities in the main navigation.
+5. Do not mix service descriptions into Group pages except where needed to describe a subsidiary’s role at a high level.
+6. Keep detailed operational service content inside the Services section, not inside Group pages.
+
+Page requirements:
+
+1) `Group Overview`
+Purpose: brief overview of the holding structure only.
+Include:
+- a short introduction to the holding company
+- a simplified corporate structure summary
+- the main entities only
+Do not include sensitive details or overly complex ownership breakdowns.
+
+2) `Makamin Holding for Oil & Gas`
+This page must present the parent/holding company.
+Include:
+- company overview
+- Commercial Registration: `1010251168`
+- Branch: `2051038139`
+- Bahrain Branch: `72626-1`
+- Bahrain branch ownership: `100%`
+- role description: parent owner / corporate umbrella
+
+3) `Makamin Petroleum Services Company`
+This page must present the main operating entity, not a services landing page.
+Include:
+- entity description as the primary operating company
+- ownership structure: `90% + 10%`
+- high-level divisions/subordinate operating areas only:
+  - `Pipeline & Industrial`
+  - `Drilling`
+  - `Geoscience`
+  - `Industrial Inspection`
+  - `Technical Staffing`
+  - `Supply Chain`
+  - `Project Management`
+- mention `ZENCUS` as a `51% technology subsidiary/affiliate`
+Do not turn this page into a long services catalog.
+
+4) `ZENCUS International Ltd`
+This page must present ZENCUS as a formal technology entity.
+Include:
+- ownership: `51%`
+- technology solutions
+- products
+- operational monitoring
+- relation to energy and field operations
+Do not leave this page as placeholder content.
+
+5) `Makamin Offshore Saudi Ltd`
+This page must present the company as a related offshore entity with Makamin ownership at `51%`.
+Include:
+- Commercial Registration: `2050077238`
+- Makamin ownership: `51%`
+- offshore activity
+- marine services
+- fleet/capabilities
+Do not state or imply full ownership by Makamin.
+Do not include sensitive content or inactive entity information on the public page.
+
+Implementation constraints:
+- Keep Group pages corporate/entity-focused.
+- Keep Services pages service-focused.
+- Do not move service details into Group except for brief role descriptions.
+- Do not add inactive/suspended entities to the main Group menu.
+- Do not rename pages unless required for exact matching above.
+- Preserve current navigation architecture and route pattern.
+- Use existing page/component patterns already used in the project.
+
+Final verification required:
+Provide a concise report with:
+A. files modified
+B. what changed in Group
+C. what remained unchanged
+D. confirmation that Group now represents corporate entities only
+E. confirmation that Services remains the location for operational services only
+F. any remaining risk or ambiguity

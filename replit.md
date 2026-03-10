@@ -112,6 +112,29 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 
 **PROJECT STATE**: مُحل تقنياً ومحفوظ بدقة - جاهز للنشر النهائي غداً.
 
+## Site Information Architecture (March 2026)
+
+### Group Section (Corporate Entities)
+- **Group Overview** → `/about` — holding structure summary
+- **Makamin Holding for Oil & Gas** → `/makamin-holding` — parent company, CR: 1010251168
+- **Makamin Petroleum Services Company** → `/petroleum-services` — primary operating entity (90%+10%), lists operating divisions
+- **ZENCUS International Ltd** → `/zencus-international` — technology entity (51% Makamin ownership)
+- **Makamin Offshore Saudi Ltd** → `/offshore-operations` — marine entity (51% Makamin ownership), CR: 2050077238
+
+### Services Section (Operational Service Lines)
+- **Services Overview** → `/services` — 8-card grid
+- **Pipeline & Industrial** → `/services/pipeline-industrial`
+- **Drilling** → `/services/drilling`
+- **Geoscience** → `/services/geoscience`
+- **Industrial Inspection** → `/services/industrial-inspection`
+- **ZENCUS Services** → `/services/zencus`
+- **Offshore Services** → `/services/offshore`
+- **Supply Chain** → `/services/supply-chain`
+- **Technical Staffing** → `/services/technical-staffing`
+
+### Key Separation Rule
+Group pages = legal/corporate entities only. Services pages = operational service lines only. No mixing.
+
 ## Recent Changes - March 2, 2026
 
 ### JSON-Driven News System
