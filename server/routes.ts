@@ -225,6 +225,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `${base}/`,
       `${base}/about`,
       `${base}/services`,
+      `${base}/group`,
       `${base}/makamin-holding`,
       `${base}/petroleum-services`,
       `${base}/zencus-international`,

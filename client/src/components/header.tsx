@@ -83,7 +83,7 @@ export default function Header() {
       dropdown: servicesDropdown
     },
     { 
-      path: '/about', 
+      path: '/group', 
       label: language === 'ar' ? 'المجموعة' : 'Group',
       hasDropdown: true,
       overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',

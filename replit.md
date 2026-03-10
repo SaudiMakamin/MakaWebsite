@@ -115,7 +115,7 @@ Visual standards: Royal-grade precision suitable for regulatory and ministerial 
 ## Site Information Architecture (March 2026)
 
 ### Group Section (Corporate Entities)
-- **Group Overview** → `/about` — holding structure summary
+- **Group Overview** → `/group` — dedicated Group overview page (separate from About page)
 - **Makamin Holding for Oil & Gas** → `/makamin-holding` — parent company, CR: 1010251168
 - **Makamin Petroleum Services Company** → `/petroleum-services` — primary operating entity (90%+10%), lists operating divisions
 - **ZENCUS International Ltd** → `/zencus-international` — technology entity (51% Makamin ownership)
