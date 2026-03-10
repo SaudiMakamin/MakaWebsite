@@ -49,6 +49,7 @@ export default function Header() {
     { path: '/projects', label: 'Project Management', labelAr: 'إدارة المشاريع', icon: ClipboardList },
     { path: '/projects/aramco', label: 'Aramco Projects', labelAr: 'مشاريع أرامكو', icon: Building2 },
     { path: '/projects/pipeline', label: 'Pipeline Projects', labelAr: 'مشاريع الأنابيب', icon: Wrench },
+    { path: '/projects/offshore', label: 'Offshore Projects', labelAr: 'المشاريع البحرية', icon: Anchor },
   ];
 
   const certificationsDropdown = [

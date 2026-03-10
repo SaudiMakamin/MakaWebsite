@@ -42,6 +42,8 @@ import SupplyChainServices from '@/pages/services/supply-chain';
 import TechnicalStaffingServices from '@/pages/services/technical-staffing';
 import AramcoProjects from '@/pages/aramco-projects';
 import PipelineProjectsPage from '@/pages/pipeline-projects';
+import OffshoreProjectsPage from '@/pages/offshore-projects';
+import FleetAssetsPage from '@/pages/fleet-assets';
 import InvestorRelations from '@/pages/investor-relations';
 import BahrainOperations from '@/pages/bahrain-operations';
 import MediaCoverage from '@/pages/media-coverage';
@@ -65,6 +67,8 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/projects/aramco" component={AramcoProjects} />
       <Route path="/projects/pipeline" component={PipelineProjectsPage} />
+      <Route path="/projects/offshore" component={OffshoreProjectsPage} />
+      <Route path="/projects/fleet" component={FleetAssetsPage} />
       <Route path="/projects" component={Projects} />
       <Route path="/certifications" component={Certifications} />
       <Route path="/news" component={NewsIndex} />

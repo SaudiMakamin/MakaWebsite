@@ -1,0 +1,445 @@
+Final MOS / Offshore implementation correction — all provided MOS fleet/assets and offshore project records must be publicly visible. Do not hide any of the supplied vessels, marine assets, or offshore project entries from the public website. However, present them with accurate confidence/status labeling so the site remains factually precise.
+
+Core rule:
+Everything supplied in the approved MOS source list must appear publicly.
+Do not keep any supplied vessel or offshore project record as internal-only.
+Do not omit any supplied name.
+Do not delete uncertain/partial records.
+Instead, classify and render them transparently using status labels such as:
+- `Verified`
+- `Partially Documented`
+- `Referenced in Records`
+
+Information architecture must still remain separated:
+- `Group` = legal/corporate entity page
+- `Services` = service-line page
+- `Projects` = offshore project/contracts page
+- `Marine Fleet & Offshore Assets` = vessels/assets page
+
+Required adjustment:
+Previously hidden/internal-only MOS records must now be made public and included in the fleet/assets dataset and public rendering.
+
+Public rendering rules:
+1. Show all 19 supplied vessels/assets publicly.
+2. Show all 12 supplied offshore/marine project records publicly.
+3. Do not hide records just because some fields are incomplete.
+4. For incomplete records, show only the fields that are actually available.
+5. Add a visible status badge/label for each public record:
+   - `Verified` for confirmed records
+   - `Partially Documented` for records with incomplete but usable source data
+   - `Referenced in Records` for records that are mentioned in files/records but not fully documented
+6. Do not use legal-dispute language, seizure language, court-enforcement language, or guarantee-enforcement wording in the public UI.
+7. For records with uncertainty, do not state assumptions as facts; instead present them neutrally with the above status labels.
+
+Fleet/assets page requirements:
+Create/update `Marine Fleet & Offshore Assets` so it publicly displays all 19 supplied assets.
+
+Structured fleet dataset fields should support:
+- `id`
+- `assetName`
+- `ownerOrOperator`
+- `assetType`
+- `role`
+- `relatedProject`
+- `client`
+- `dateFrom`
+- `dateTo`
+- `contractValue`
+- `currency`
+- `recordStatus`
+- `notes`
+
+Use `recordStatus` values:
+- `Verified`
+- `Partially Documented`
+- `Referenced in Records`
+
+Populate and publicly display these 19 assets:
+
+1. `Jaya Centurion`
+   ownerOrOperator: `Jaya / Mermaid Australia`
+   assetType: `Platform Support Vessel`
+   relatedProject: `Full Charter of Platform Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2013-12-15`
+   dateTo: `2018-12-14`
+   contractValue: `152589619`
+   currency: `SAR`
+   recordStatus: `Verified`
+   notes: `Full charter platform support vessel`
+
+2. `Jaya Chieftain`
+   ownerOrOperator: `Jaya / Mermaid Australia`
+   assetType: `Platform Support Vessel`
+   relatedProject: `Full Charter of Platform Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2013-12-15`
+   dateTo: `2018-12-14`
+   contractValue: `152589619`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+3. `Jaya Concordia`
+   ownerOrOperator: `Jaya`
+   assetType: `Platform Support Vessel`
+   relatedProject: `Full Charter of Platform Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2013-12-15`
+   dateTo: `2018-12-14`
+   contractValue: `152589619`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+4. `Arkstar Voyager`
+   ownerOrOperator: `Arkstar`
+   assetType: `Offshore Platform Vessel`
+   relatedProject: `Full Charter of Platform Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2013-12-15`
+   dateTo: `2018-12-14`
+   contractValue: `165687279`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+5. `Posh Pelican`
+   ownerOrOperator: `POSH Semco`
+   assetType: `Offshore Platform Vessel`
+   relatedProject: `Full Charter of Platform Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2013-12-22`
+   dateTo: `2018-12-22`
+   contractValue: `168022914`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+6. `Belait Barakah`
+   ownerOrOperator: `Belait Shipping`
+   assetType: `Accommodation / Security Vessel`
+   relatedProject: `Security Accommodation Vessel`
+   client: `Saudi Aramco`
+   dateFrom: `2014-04-01`
+   dateTo: `2019-03-31`
+   contractValue: `340409950`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+7. `Zakher Crest`
+   ownerOrOperator: `Zakher Marine Services`
+   assetType: `Security / Logistic Vessel`
+   relatedProject: `Security & Marine Logistics`
+   client: `Saudi Aramco`
+   recordStatus: `Partially Documented`
+   notes: `Duration/value not fully specified; within fleet contracts`
+
+8. `Makamin 1`
+   ownerOrOperator: `Makamin Petroleum Services`
+   assetType: `Security Patrol Boat`
+   relatedProject: `Interceptor Vessel Program`
+   client: `Saudi Aramco`
+   dateFrom: `2015-01-01`
+   dateTo: `2019-12-31`
+   contractValue: `29893500`
+   currency: `SAR`
+   recordStatus: `Verified`
+
+9. `Ansar 3`
+   ownerOrOperator: `Makamin Petroleum Services`
+   assetType: `Security Patrol Boat`
+   relatedProject: `Interceptor Vessel Program`
+   client: `Saudi Aramco`
+   dateFrom: `2015-01-01`
+   dateTo: `2019-12-31`
+   contractValue: `29893500`
+   currency: `SAR`
+   recordStatus: `Verified`
+   notes: `Ownership referenced in 2015 report`
+
+10. `Jaya Pearl`
+    ownerOrOperator: `MOS IES Pearl Pte Ltd (Singapore JV)`
+    assetType: `Offshore Vessel`
+    relatedProject: `NPCC Contract`
+    client: `NPCC`
+    dateTo: `2015-10-31`
+    recordStatus: `Partially Documented`
+    notes: `Joint ownership via Singapore JV; value not specified`
+
+11. `Makamin 10`
+    ownerOrOperator: `Makamin Offshore`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in execution records`
+    recordStatus: `Referenced in Records`
+
+12. `Makamin 302`
+    ownerOrOperator: `Makamin Offshore`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in execution records`
+    recordStatus: `Referenced in Records`
+
+13. `Ansar`
+    ownerOrOperator: `Makamin Offshore`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in records`
+    recordStatus: `Referenced in Records`
+
+14. `Manar`
+    ownerOrOperator: `Makamin Offshore`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in records`
+    recordStatus: `Referenced in Records`
+
+15. `MMA Chieftain`
+    ownerOrOperator: `MMA Offshore`
+    assetType: `Platform Vessel`
+    relatedProject: `Associated with MOS contracts`
+    client: `Saudi Aramco`
+    recordStatus: `Referenced in Records`
+
+16. `MMA Centurion`
+    ownerOrOperator: `MMA Offshore`
+    assetType: `Platform Vessel`
+    relatedProject: `Associated with MOS contracts`
+    client: `Saudi Aramco`
+    recordStatus: `Referenced in Records`
+    notes: `Potentially linked in later records; do not state identity equivalence as fact`
+
+17. `MKN 203`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in analytical records`
+    recordStatus: `Referenced in Records`
+
+18. `Vzmorye (2007)`
+    assetType: `Offshore Vessel`
+    relatedProject: `Referenced in analytical records`
+    recordStatus: `Referenced in Records`
+
+19. `Makamin 3`
+    ownerOrOperator: `Makamin Offshore`
+    assetType: `Offshore Vessel`
+    relatedProject: `IMO 9807413`
+    recordStatus: `Partially Documented`
+
+Offshore Projects page requirements:
+Create/update `Offshore Projects` to publicly display all 12 supplied marine/offshore project records.
+
+Use/extend the structured projects dataset with these public records:
+
+1. `Full Charter Platform Vessel – Jaya Centurion`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Operations`
+   serviceLine: `MOS`
+   yearFrom: `2013`
+   yearTo: `2018`
+   status: `Completed`
+   value: `152589619`
+   currency: `SAR`
+   relatedAssets: [`Jaya Centurion`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+2. `Full Charter Platform Vessel – Jaya Chieftain`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Operations`
+   serviceLine: `MOS`
+   yearFrom: `2013`
+   yearTo: `2018`
+   status: `Completed`
+   value: `152589619`
+   currency: `SAR`
+   relatedAssets: [`Jaya Chieftain`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+3. `Full Charter Platform Vessel – Jaya Concordia`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Operations`
+   serviceLine: `MOS`
+   yearFrom: `2013`
+   yearTo: `2018`
+   status: `Completed`
+   value: `152589619`
+   currency: `SAR`
+   relatedAssets: [`Jaya Concordia`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+4. `Full Charter Platform Vessel – Arkstar Voyager`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Operations`
+   serviceLine: `MOS`
+   yearFrom: `2013`
+   yearTo: `2018`
+   status: `Completed`
+   value: `165687279`
+   currency: `SAR`
+   relatedAssets: [`Arkstar Voyager`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+5. `Full Charter Platform Vessel – Posh Pelican`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Operations`
+   serviceLine: `MOS`
+   yearFrom: `2013`
+   yearTo: `2018`
+   status: `Completed`
+   value: `168022914`
+   currency: `SAR`
+   relatedAssets: [`Posh Pelican`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+6. `Security Accommodation Vessel`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Support`
+   serviceLine: `MOS`
+   yearFrom: `2014`
+   yearTo: `2019`
+   status: `Completed`
+   value: `340409950`
+   currency: `SAR`
+   relatedAssets: [`Belait Barakah`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+7. `Navigational Aids Maintenance`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Marine Support`
+   serviceLine: `MOS`
+   yearFrom: `2014`
+   yearTo: `2021`
+   status: `Completed`
+   value: `237573000`
+   currency: `SAR`
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+8. `Interceptor Vessel Contract 1`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Security Patrol`
+   serviceLine: `MOS`
+   yearFrom: `2015`
+   yearTo: `2019`
+   status: `Completed`
+   value: `29893500`
+   currency: `SAR`
+   relatedAssets: [`Makamin 1`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+9. `Interceptor Vessel Contract 2`
+   client: `Saudi Aramco`
+   entity: `Offshore`
+   sector: `Offshore`
+   category: `Security Patrol`
+   serviceLine: `MOS`
+   yearFrom: `2015`
+   yearTo: `2020`
+   status: `Completed`
+   value: `29893500`
+   currency: `SAR`
+   relatedAssets: [`Ansar 3`]
+   isAramco: `true`
+   isOffshore: `true`
+   recordStatus: `Verified`
+
+10. `Interceptor Vessel Contract 3`
+    client: `Saudi Aramco`
+    entity: `Offshore`
+    sector: `Offshore`
+    category: `Security Patrol`
+    serviceLine: `MOS`
+    yearFrom: `2015`
+    yearTo: `2020`
+    status: `Completed`
+    value: `29893500`
+    currency: `SAR`
+    isAramco: `true`
+    isOffshore: `true`
+    recordStatus: `Verified`
+
+11. `Tanajib Offshore Manning Services`
+    client: `Saudi Aramco`
+    entity: `Offshore`
+    sector: `Offshore`
+    category: `Offshore Manning`
+    serviceLine: `MOS`
+    yearFrom: `2015`
+    yearTo: `2020`
+    status: `Completed`
+    value: `245419153`
+    currency: `SAR`
+    isAramco: `true`
+    isOffshore: `true`
+    recordStatus: `Verified`
+
+12. `NPCC Offshore Contract (Jaya Pearl)`
+    client: `NPCC`
+    entity: `Offshore`
+    sector: `Offshore`
+    category: `Marine Operations`
+    serviceLine: `MOS`
+    yearTo: `2015`
+    status: `Completed`
+    relatedAssets: [`Jaya Pearl`]
+    isAramco: `false`
+    isOffshore: `true`
+    recordStatus: `Partially Documented`
+
+Navigation requirements:
+Services menu must include:
+- Services Overview
+- Pipeline & Industrial Services
+- Drilling Services
+- Geoscience Services
+- Industrial Inspection Services
+- Offshore & Marine Services
+- ZENCUS Services
+- Supply Chain Services
+- Technical Staffing Services
+
+Projects menu must include:
+- Overview
+- Major Projects
+- Project Management
+- Aramco Projects
+- Pipeline Projects
+- Offshore Projects
+
+Display behavior:
+- All supplied MOS names must appear publicly
+- Missing fields must simply remain hidden, not fabricated
+- Record status labels must be visible on public cards or detail rows
+- Do not present assumptions as confirmed facts
+- Do not remove any supplied name from public display
+
+Final verification report required:
+A. files modified
+B. total public fleet/assets records displayed
+C. total offshore project records displayed
+D. confirmation that all supplied MOS names are publicly visible
+E. any fields intentionally left blank because source data is incomplete
+F. confirmation that architecture, routing pattern, and unrelated pages remained unchanged
