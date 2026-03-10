@@ -8,6 +8,8 @@ import { AnimatedDrillIcon, AnimatedShipIcon, AnimatedPipelineIcon } from '@/com
 import InsideMakaminGallery from '@/components/inside-makamin-gallery';
 import TeamGallery from '@/components/team-gallery';
 import HeroLogo from '@/components/hero-logo';
+import SemanticMetadata from '@/components/semantic-metadata';
+import EnhancedSecurity from '@/components/enhanced-security';
 import ProjectCard from '@/components/project-card';
 import { Link } from 'wouter';
 import { useState, useMemo } from 'react';
@@ -99,6 +101,12 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-black">
+      <SemanticMetadata
+        page="about"
+        title="Projects | Saudi Makamin"
+        description="Makamin's complete project portfolio across pipeline, drilling, geoscience, inspection, and offshore operations for Saudi Aramco and major clients."
+      />
+      <EnhancedSecurity />
       <motion.section
         className="relative min-h-screen flex items-center justify-center text-white overflow-hidden"
         initial={{ opacity: 0 }}

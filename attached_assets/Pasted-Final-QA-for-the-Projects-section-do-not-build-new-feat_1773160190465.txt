@@ -1,0 +1,79 @@
+Final QA for the Projects section — do not build new features now. Perform a strict verification and correction pass only for the existing implementation.
+
+Scope:
+- Projects Overview
+- Major Projects
+- Project Management
+- Aramco Projects
+- Pipeline Projects
+- shared project dataset
+- project filters/search
+- Projects dropdown navigation
+
+Required verification and correction checklist:
+
+1. Navigation correctness
+- Confirm `Projects -> Overview` opens the correct Projects overview page only.
+- Confirm `Projects -> Aramco Projects` opens the dedicated Aramco page.
+- Confirm `Projects -> Pipeline Projects` opens the dedicated Pipeline page.
+- Confirm existing `Major Projects` and `Project Management` links still work correctly.
+- Confirm no Projects dropdown item points to the wrong route or reused unrelated page.
+
+2. Dataset integrity
+- Verify every project record uses the intended structure consistently.
+- Verify there are no duplicate IDs.
+- Verify duplicate project titles are either intentional or normalized safely.
+- Verify no fake values, fake dates, fake images, or fake statuses were added where source data is incomplete.
+- Verify optional fields are hidden or left empty safely where data is not confirmed.
+
+3. Classification correctness
+- Confirm `Holding` contains no direct execution projects.
+- Confirm `Petroleum` contains Pipeline / Drilling / Geoscience / Inspection / EPC / Water / Industrial execution projects.
+- Confirm `Offshore` contains Marine / Chartering / Diving / Subsea / IRM / vessel-based / offshore support projects only.
+- Confirm `ZENCUS` contains Wireless Monitoring / SCADA / Data Visualization / Remote Monitoring / CCTV / digital field projects only.
+
+4. Boundary-case validation
+- Verify `Offshore Wireless Well Monitoring` is classified under `ZENCUS`, not `Offshore`.
+- Verify `Remote Monitoring of Offshore Production Facilities` is classified under `ZENCUS`, not `Offshore`.
+- Verify offshore-location inspection works that belong to Industrial Inspection remain under `Petroleum`, not `Offshore`.
+- Verify `Hook up, Upgrade, Modification and Commissioning Support for MMG Offshore Projects` is flagged as a boundary case and classified carefully according to the actual execution context used in the dataset.
+
+5. Aramco Projects page validation
+- Confirm the page shows only Aramco-related projects from the dataset.
+- Confirm search and filters operate only on the Aramco subset while still using the shared dataset.
+- Confirm page content is scalable and not hardcoded to a fixed number of projects.
+- Confirm the page displays project title, client, sector/service type, location, status, and description only where data exists.
+
+6. Pipeline Projects page validation
+- Confirm the page shows all pipeline-relevant projects from the dataset, regardless of client.
+- Confirm pipeline filtering logic includes tie-ins, replacement, rehabilitation, RTR, GRE, headers, flow lines, water injection, and related piping/facility work.
+- Confirm Aramco pipeline projects appear correctly there as part of the broader pipeline category.
+- Confirm search and filters operate correctly on the pipeline subset.
+
+7. Main Projects page validation
+- Confirm the main Projects page now reads from structured data instead of relying on hardcoded cards.
+- Confirm the existing strong visual design was preserved.
+- Confirm unverified numbers such as `SAR 280M+`, `8 Active Projects`, or `Zero LTA Record` were either removed, hidden, or moved into an editable source if not verified.
+- Confirm no placeholder metrics remain presented as facts.
+
+8. UI/UX consistency
+- Confirm cards, filters, and page sections use the project’s existing visual system.
+- Confirm no styling regressions were introduced.
+- Confirm layout works consistently across the new pages.
+- Confirm no duplicated sections or broken empty states appear.
+
+9. Technical verification
+- Confirm all new routes return 200.
+- Confirm there are no import errors, route conflicts, or broken references.
+- Confirm search/filter state does not break rendering.
+- Confirm sitemap includes the new Projects routes if sitemap handling already exists in the current project pattern.
+- Confirm titles/meta are present or consistent with the existing project SEO pattern for the new pages.
+
+10. Final report format
+Return a concise report with:
+A. files checked
+B. files modified in this QA pass
+C. issues found
+D. issues fixed
+E. anything intentionally left editable because source data is unverified
+F. confirmation that navigation, classification, and dataset usage are all correct
