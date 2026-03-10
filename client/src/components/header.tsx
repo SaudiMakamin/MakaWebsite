@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, Award, FileText, BadgeCheck, Medal, Heart, Shield, FileCheck, Anchor, Layers } from 'lucide-react';
+import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, FileText, Anchor, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -53,16 +53,8 @@ export default function Header() {
     { path: '/projects/zencus', label: 'ZENCUS Projects', labelAr: 'مشاريع ZENCUS', icon: Cpu },
   ];
 
-  const certificationsDropdown = [
-    { path: '/certifications', label: 'ISO Certifications', labelAr: 'شهادات الأيزو', icon: Award },
-    { path: '/certifications', label: 'Legal Documents', labelAr: 'الوثائق القانونية', icon: FileText },
-    { path: '/certifications', label: 'Commercial Registration Certificates', labelAr: 'شهادات السجل التجاري', icon: BadgeCheck },
-    { path: '/certifications', label: 'Saudization Certificates', labelAr: 'شهادات السعودة', icon: Medal },
-    { path: '/certifications', label: 'Letters of Appreciation & Completions', labelAr: 'خطابات التقدير والإنجاز', icon: Heart },
-  ];
-
-  const hseDropdown = [
-    { path: '/petroleum-services', label: 'HSE Policy Statement', labelAr: 'بيان سياسة السلامة', icon: FileCheck },
+  const newsDropdown = [
+    { path: '/media-coverage', label: 'Media Coverage', labelAr: 'صدى مكامن', icon: Layers },
   ];
 
   const shareholderDropdown = [
@@ -101,21 +93,12 @@ export default function Header() {
       dropdown: projectsDropdown
     },
     { 
-      path: '/certifications', 
-      label: language === 'ar' ? 'الشهادات' : 'Certifications',
+      path: '/news', 
+      label: t('news'),
       hasDropdown: true,
-      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
-      dropdown: certificationsDropdown
+      overviewLabel: language === 'ar' ? 'آخر الأخبار' : 'Latest News',
+      dropdown: newsDropdown
     },
-    { 
-      path: '/petroleum-services', 
-      label: language === 'ar' ? 'السلامة والصحة المهنية' : 'HSE',
-      hasDropdown: true,
-      overviewLabel: language === 'ar' ? 'نظرة عامة' : 'Overview',
-      dropdown: hseDropdown
-    },
-    { path: '/news', label: t('news') },
-    { path: '/media-coverage', label: language === 'ar' ? 'صدى مكامن' : 'Media Coverage' },
     { 
       path: '/update-shareholder', 
       label: language === 'ar' ? 'المساهمين' : 'Shareholders',
