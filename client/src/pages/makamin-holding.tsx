@@ -120,9 +120,9 @@ export default function MakaminHolding() {
             </Card>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              <Link href="/about">
+              <Link href="/projects">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                  {isAr ? 'نظرة عامة على المجموعة' : 'Group Overview'}
+                  {isAr ? 'نظرة عامة على المشاريع' : 'Projects Overview'}
                   <ArrowRight className={`w-5 h-5 ${isAr ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
               </Link>

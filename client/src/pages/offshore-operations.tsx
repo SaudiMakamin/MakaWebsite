@@ -140,7 +140,7 @@ export default function OffshoreOperations() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/services/offshore">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                  {isAr ? 'خدمات بحرية' : 'Offshore Services'}
+                  {isAr ? 'الخدمات البحرية والعمليات البحرية' : 'Offshore & Marine Services'}
                   <ArrowRight className={`w-5 h-5 ${isAr ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
               </Link>

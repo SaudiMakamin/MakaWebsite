@@ -1,0 +1,59 @@
+Final Group-to-related-pages linking update — apply a minimal, architecture-safe enhancement to the Group section. On each company/entity page inside Group, add one clear CTA button that links to that entity’s most relevant related section/page. Keep the existing page structure, routing architecture, styling system, bilingual behavior, and current content unchanged. Do not redesign the pages. Add only the minimum necessary UI/action link.
+
+Required entity-to-related-page linking:
+
+Makamin Holding for Oil & Gas → link to the general Projects Overview page or group-level projects overview
+
+Makamin Petroleum Services Company → link to the most relevant existing Petroleum-related projects page/listing within the current Projects structure
+
+ZENCUS International Ltd → link to the dedicated ZENCUS Projects page
+
+Makamin Offshore Saudi Ltd → link to the parent service page Offshore & Marine Services, not directly only to Offshore Projects, because the offshore structure includes:
+
+Marine Fleet & Offshore Assets
+
+Subsea & Diving Operations
+
+Offshore Projects
+
+CTA behavior requirements:
+
+the button must be clearly visible on each Group entity page
+
+use the existing button/component style already used in the project
+
+keep only one primary CTA per entity page unless the existing pattern already supports more
+
+do not break the corporate/entity nature of Group pages
+
+ZENCUS company page correction:
+
+update the company name everywhere on the Group entity page to exactly: ZENCUS International Ltd
+
+display the registration number clearly: 05173867
+
+keep ZENCUS presented as a formal technology entity/company, not just a service page
+
+Implementation constraints:
+
+preserve Group = corporate entities
+
+preserve Services = service pages
+
+preserve Projects = project listings
+
+do not redesign navigation
+
+do not create unnecessary new pages in this step
+
+do not modify unrelated pages
+
+do not change architecture beyond the minimal linking update and ZENCUS company-page correction
+
+Final verification required:
+A. files modified
+B. confirmation that each Group company page now has one related-page CTA
+C. exact target link used for each entity page
+D. confirmation that Makamin Offshore Saudi Ltd now links to Offshore & Marine Services as the parent offshore page
+E. confirmation that ZENCUS International Ltd is shown with registration number 05173867
+F. confirmation that architecture and unrelated pages remained unchanged**

@@ -99,10 +99,16 @@ export default function ZencusInternational() {
                     ? 'زينكوس الدولية المحدودة هي شركة تقنية متخصصة ضمن مجموعة مكامن، تمتلك فيها مكامن حصة 51%. تركز الشركة على تطوير وتوفير حلول التقنية المتقدمة لقطاع الطاقة والعمليات الميدانية.'
                     : 'ZENCUS International Ltd is a specialized technology company within the Makamin Group, with Makamin holding a 51% ownership stake. The company focuses on developing and delivering advanced technology solutions for the energy sector and field operations.'}
                 </p>
-                <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
-                  <p className="text-sm text-teal-700 font-medium">
-                    {isAr ? 'الملكية: 51% — مكامن السعودية القابضة' : 'Ownership: 51% — Saudi Makamin Holding'}
-                  </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
+                    <p className="text-sm text-teal-700 font-medium">
+                      {isAr ? 'الملكية: 51% — مكامن السعودية القابضة' : 'Ownership: 51% — Saudi Makamin Holding'}
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <p className="text-sm text-gray-500 mb-1">{isAr ? 'رقم التسجيل' : 'Registration Number'}</p>
+                    <p className="text-lg font-semibold text-gray-900">05173867</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -148,9 +154,9 @@ export default function ZencusInternational() {
             </Card>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/services/zencus">
+              <Link href="/projects/zencus">
                 <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white">
-                  {isAr ? 'خدمات زينكوس' : 'ZENCUS Services'}
+                  {isAr ? 'مشاريع ZENCUS' : 'ZENCUS Projects'}
                   <ArrowRight className={`w-5 h-5 ${isAr ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
               </Link>

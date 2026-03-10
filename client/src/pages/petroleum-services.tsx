@@ -131,9 +131,9 @@ export default function PetroleumServices() {
             </Card>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/services">
+              <Link href="/projects/aramco">
                 <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white">
-                  {isAr ? 'الخدمات التشغيلية' : 'Operational Services'}
+                  {isAr ? 'مشاريع أرامكو' : 'Aramco Projects'}
                   <ArrowRight className={`w-5 h-5 ${isAr ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
               </Link>
