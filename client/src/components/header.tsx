@@ -136,14 +136,34 @@ export default function Header() {
     overviewLabel?: string;
   }) => {
     if (hasDropdown && !mobile) {
+      const handleLabelClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const [pathname, hash] = path.split('#');
+        const basePath = pathname || '/';
+        if (hash && window.location.pathname === basePath) {
+          const el = document.getElementById(hash);
+          if (el) {
+            const offset = 100;
+            const top = el.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+            window.history.replaceState(null, '', path);
+          }
+        } else {
+          window.location.href = path;
+        }
+      };
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-auto p-0 font-medium text-base makamin-gray hover:makamin-blue whitespace-nowrap">
+          <div className="flex items-center gap-0">
+            <a href={path} onClick={handleLabelClick} className="font-medium text-base makamin-gray hover:makamin-blue whitespace-nowrap cursor-pointer">
               {label}
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
+            </a>
+            <DropdownMenuTrigger asChild>
+              <button className="p-1 makamin-gray hover:makamin-blue">
+                <ChevronDown className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+          </div>
           <DropdownMenuContent align="start" className="w-56">
             <DropdownMenuItem asChild>
               {path.includes('#') ? (
