@@ -1,0 +1,70 @@
+Final mobile menu visibility fix — apply a minimal, non-breaking UI correction for the mobile header/menu trigger only. The issue is not the full navigation architecture; the issue is visual clarity of the mobile menu button in the header on small screens. In the current mobile view, the menu trigger becomes too subtle / visually unclear until hover or focus, which is unacceptable on touch devices. Fix this precisely without redesigning the site.
+
+Required fix:
+
+Make the mobile menu trigger/button clearly visible at all times on mobile.
+
+Do not rely on hover to make the icon understandable.
+
+Ensure the hamburger/menu icon has strong contrast against its background in the default state.
+
+Ensure the trigger button itself has a clear visible container/background/border/shadow so it does not look hidden or blend into the header.
+
+Keep the button professional and consistent with the site branding.
+
+Preserve the current header layout, logo placement, routing, and navigation structure.
+
+Do not change desktop navigation behavior.
+
+Do not redesign the whole mobile menu; fix only the visibility and clarity problem of the mobile menu trigger and its immediate interaction state.
+
+Visual behavior requirements:
+
+the menu button must be immediately recognizable on mobile without mouse hover
+
+icon color must remain visible in default, active, and open states
+
+button background must not visually disappear into the header
+
+spacing/tap target must remain comfortable for touch
+
+focus/open state should remain clear and polished
+
+no clipping, misalignment, or weak contrast
+
+If needed, improve these specific UI details only:
+
+icon color contrast
+
+trigger background color
+
+trigger border/ring
+
+subtle shadow
+
+active/open state styling
+
+tap target padding
+
+vertical alignment inside the header
+
+Constraints:
+
+mobile header/menu trigger only
+
+no architecture changes
+
+no routing changes
+
+no unrelated page edits
+
+no desktop redesign
+
+smallest safe change only
+
+Final verification required:
+A. files modified
+B. what was changed to improve mobile menu trigger visibility
+C. confirmation that the menu button is now clearly visible in default mobile view without hover
+D. confirmation that desktop behavior remained unchanged
+E. confirmation that architecture and unrelated pages remained unchanged**

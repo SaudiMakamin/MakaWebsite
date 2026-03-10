@@ -397,7 +397,7 @@ export default function Header() {
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="md:hidden">
+                <Button variant="outline" size="sm" className="md:hidden border-[#003f6a]/30 bg-[#003f6a]/5 text-[#003f6a] shadow-sm hover:bg-[#003f6a]/10 hover:border-[#003f6a]/50 min-w-[40px] min-h-[40px] p-2">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
