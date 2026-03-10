@@ -1,0 +1,362 @@
+Final Services fix — execute with precision and do not omit any service. Keep the Services top navigation exactly as it is now with these submenu items only: Services Overview, Pipeline & Industrial Services, Drilling Services, Geoscience Services, Industrial Inspection Services, ZENCUS Services, Supply Chain Services, and Technical Staffing Services. Each submenu item must open its own dedicated service page. Remove any incorrect reused sections from the Services area, especially Company Structure and any About/Group content. Preserve the existing routing architecture, header, footer, dropdown behavior, layout system, and overall site structure. Do not redesign the site. Do not modify unrelated pages. Use the existing project pattern only.
+
+Populate the pages with the following exact content structure:
+
+Services Overview
+Intro text:
+Saudi Makamin provides integrated oil and gas services covering upstream operations, industrial services, inspection technologies, and technical support.
+
+Section title: Our Core Services
+Items:
+
+Pipeline & Industrial Services
+
+Drilling Services
+
+Geoscience Services
+
+Industrial Inspection Services
+
+ZENCUS Technology Services
+
+Supply Chain Services
+
+Technical Staffing Services
+
+Supporting paragraph:
+Makamin delivers comprehensive oil and gas solutions including pipeline construction, drilling operations, geoscience studies, industrial inspection, real-time monitoring technologies, supply chain management, and technical staffing support.
+
+Pipeline & Industrial Services
+Section: Scope of Services
+
+Oil, Gas and Water Pipeline Construction
+
+Utility & Facility Installations
+
+Well Site Preparations
+
+Construction of Right of Ways
+
+Compaction and Leveling Works
+
+Fencing Works
+
+Engineering & Project Execution
+
+EPC Contracts (Engineering, Procurement & Construction)
+
+LSTK Projects (Lump Sum Turnkey)
+
+LSPB Projects (Lump Sum Procure & Build)
+
+Section: Specialized Installations
+
+Permanent Downhole Monitoring Systems (PDHMS)
+
+Multiphase Flow Meter Systems (MPFM)
+
+Water Injection Centrifugal Pumps
+
+Low Pressure Production Systems (LPPS)
+
+Section: Pipeline Services
+
+Pipeline Replacement
+
+Pipeline Reconditioning
+
+RTR Pipe Installations
+
+Carbon Steel Pipeline Replacement
+
+Section: Maintenance Services
+
+Stripping & Re-manifolding of Oil & Water Wells
+
+Cathodic Protection
+
+Corrosion Control Services
+
+Section: Core Capabilities
+
+Mechanical & Piping Works
+
+Electrical & Instrumentation Works
+
+Civil & Architectural Works
+
+Welding, Fabrication & Steel Erection
+
+Drilling Services
+Section: Drilling Operations
+
+Workover Services
+
+Deep Water Drilling
+
+Top Hole Drilling
+
+Water Well Drilling
+
+Section: Specialized Drilling
+
+Micro Seismic Drilling
+
+Vertical Seismic Profiling (VSP)
+
+Reverse Circulation Drilling
+
+Core Drilling (Mud / Air)
+
+Section: Additional Drilling Services
+
+Oil Well Workover
+
+Shallow Water Well Drilling
+
+Water Well Rehabilitation
+
+Soil Testing
+
+Pile Drilling
+
+Auger Drilling
+
+Section: Monitoring & Technology
+
+Real-time Well Monitoring
+
+Remote Drilling Operation Monitoring
+
+Section: Industries Served
+
+Oil & Gas
+
+Civil Construction
+
+Agriculture
+
+Mining
+
+Geoscience Services
+Section: Geological & Geophysical Studies
+
+Geological Analysis
+
+Geophysical Studies
+
+Petrophysical Studies
+
+Section: Digital Data Services
+
+Log Scanning
+
+Log Digitizing
+
+Legacy Log Conversion
+
+Section: Core Analysis
+
+Porosity Analysis
+
+Permeability Studies
+
+Mineralogy Analysis
+
+Wettability Mapping
+
+Fluid Distribution Analysis
+
+Section: Advanced Core Studies
+
+Relative Permeability
+
+Capillary Pressure Analysis
+
+Imbibition & Drainage Studies
+
+Section: Consultancy & Manpower
+
+Geophysics Consultancy
+
+Geology Consultancy
+
+Petrophysics Consultancy
+
+Specialized Technical Manpower
+
+Section: Monitoring Services
+
+4D Seismic Monitoring
+
+Seismic Data Quality Control
+
+Seismic Equipment Maintenance
+
+Industrial Inspection Services
+Section: Non-Destructive Testing (NDT)
+
+Radiographic Testing (RT)
+
+Ultrasonic Testing (UT)
+
+Magnetic Particle Testing (MT)
+
+Liquid Penetrant Testing (PT)
+
+Visual Testing (VT)
+
+Section: Advanced NDT
+
+Phased Array Ultrasonic Testing (PAUT)
+
+Time of Flight Diffraction (TOFD)
+
+Automated Corrosion Mapping
+
+Tube Inspection
+
+Tank Floor Inspection
+
+Section: Material Identification
+
+Positive Material Identification (PMI)
+
+Section: Corrosion Monitoring
+
+Corrosion Monitoring Programs
+
+Corrosion Coupons (Weight Loss Monitoring)
+
+ZENCUS Services
+Section: Real-Time Field Monitoring
+
+Wellhead Monitoring Systems
+
+Real-Time Production Data
+
+Remote Field Monitoring
+
+Section: Wireless Data Acquisition
+
+Wireless Field Instrumentation
+
+Data Transmission Systems
+
+Remote Monitoring Networks
+
+Section: ZENCUS Technologies
+
+Mono Transmitter
+
+Field Transceiver
+
+ZENCUS Gateway
+
+Section: Data Visualization
+
+ZENCUS Data Visualization Suite
+
+ZDV Studio
+
+ZDV Listener
+
+ZDV Alert
+
+ZDV Reporting
+
+Section: Security & Surveillance
+
+ZENCUS CCTV Monitoring Systems
+
+Remote Site Security Systems
+
+Supply Chain Services
+Section: Procurement & Vendor Management
+
+Vendor Selection
+
+Vendor Qualification
+
+Vendor Inspection
+
+Section: Material & Equipment Supply
+
+Equipment Procurement
+
+Tools Procurement
+
+Materials Procurement
+
+Section: Quality & Inspection
+
+Material Test Certificates
+
+Mill Certificates
+
+Third-Party Inspection
+
+Section: Logistics & Project Support
+
+Expediting
+
+Factory Acceptance Tests
+
+Manufacturing Inspection
+
+Technical Inspection
+
+Section: Quality Assurance
+
+Quality Control Inspection
+
+Vendor Technical Audit
+
+Failure Analysis
+
+Technical Staffing Services
+Section: Workforce Supply
+
+Engineers
+
+Inspectors
+
+Technicians
+
+Operators
+
+Project Managers
+
+Section: Recruitment Services
+
+Permanent Staffing
+
+Contract Staffing
+
+Global Recruitment Solutions
+
+Section: Industries Served
+
+Oil & Gas
+
+Petrochemical
+
+Construction
+
+Power
+
+Water Utilities
+
+Section: HR & Logistics Support
+
+Local Recruitment
+
+Expat Recruitment
+
+Payroll Services
+
+Visa Processing
+
+In-Country Logistics Support
+
+Implementation constraints: keep all existing Services menu labels intact, keep styling consistent with the current site, do not omit any page or any listed service item, do not merge pages, do not invent new sections, do not change architecture, and keep changes strictly limited to the Services section only.**

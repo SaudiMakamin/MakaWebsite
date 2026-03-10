@@ -27,13 +27,13 @@ export default function Header() {
   ];
 
   const servicesDropdown = [
-    { path: '/petroleum-services', label: 'Pipeline & Industrial Services', labelAr: 'خدمات الأنابيب والصناعة', icon: Wrench },
-    { path: '/petroleum-services', label: 'Drilling Services', labelAr: 'خدمات الحفر', icon: Drill },
-    { path: '/petroleum-services', label: 'Geoscience Services', labelAr: 'خدمات علوم الأرض', icon: FlaskConical },
-    { path: '/petroleum-services', label: 'Industrial Inspection Services', labelAr: 'خدمات التفتيش الصناعي', icon: Search },
-    { path: '/petroleum-services', label: 'ZENCUS Services', labelAr: 'خدمات زينكوس', icon: Cpu },
-    { path: '/petroleum-services', label: 'Supply Chain Services', labelAr: 'خدمات سلسلة الإمداد', icon: Package },
-    { path: '/petroleum-services', label: 'Technical Staffing Services', labelAr: 'خدمات التوظيف التقني', icon: UserCheck },
+    { path: '/services/pipeline-industrial', label: 'Pipeline & Industrial Services', labelAr: 'خدمات الأنابيب والصناعة', icon: Wrench },
+    { path: '/services/drilling', label: 'Drilling Services', labelAr: 'خدمات الحفر', icon: Drill },
+    { path: '/services/geoscience', label: 'Geoscience Services', labelAr: 'خدمات علوم الأرض', icon: FlaskConical },
+    { path: '/services/industrial-inspection', label: 'Industrial Inspection Services', labelAr: 'خدمات التفتيش الصناعي', icon: Search },
+    { path: '/services/zencus', label: 'ZENCUS Services', labelAr: 'خدمات زينكوس', icon: Cpu },
+    { path: '/services/supply-chain', label: 'Supply Chain Services', labelAr: 'خدمات سلسلة الإمداد', icon: Package },
+    { path: '/services/technical-staffing', label: 'Technical Staffing Services', labelAr: 'خدمات التوظيف التقني', icon: UserCheck },
   ];
 
   const operationsDropdown = [

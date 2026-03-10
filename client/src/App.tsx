@@ -29,6 +29,13 @@ import RoyalShareholderDashboard from '@/pages/royal-shareholder-dashboard';
 import NotFound from '@/pages/not-found';
 import PetroleumServices from '@/pages/petroleum-services';
 import OffshoreOperations from '@/pages/offshore-operations';
+import PipelineIndustrialServices from '@/pages/services/pipeline-industrial';
+import DrillingServices from '@/pages/services/drilling';
+import GeoscienceServices from '@/pages/services/geoscience';
+import IndustrialInspection from '@/pages/services/industrial-inspection';
+import ZencusServices from '@/pages/services/zencus';
+import SupplyChainServices from '@/pages/services/supply-chain';
+import TechnicalStaffingServices from '@/pages/services/technical-staffing';
 import InvestorRelations from '@/pages/investor-relations';
 import BahrainOperations from '@/pages/bahrain-operations';
 import MediaCoverage from '@/pages/media-coverage';
@@ -57,6 +64,13 @@ function Router() {
       <Route path="/update-shareholder" component={UpdateShareholder} />
       <Route path="/royal-dashboard" component={RoyalShareholderDashboard} />
       <Route path="/contact" component={Contact} />
+      <Route path="/services/pipeline-industrial" component={PipelineIndustrialServices} />
+      <Route path="/services/drilling" component={DrillingServices} />
+      <Route path="/services/geoscience" component={GeoscienceServices} />
+      <Route path="/services/industrial-inspection" component={IndustrialInspection} />
+      <Route path="/services/zencus" component={ZencusServices} />
+      <Route path="/services/supply-chain" component={SupplyChainServices} />
+      <Route path="/services/technical-staffing" component={TechnicalStaffingServices} />
       <Route path="/petroleum-services" component={PetroleumServices} />
       <Route path="/offshore-operations" component={OffshoreOperations} />
       <Route path="/investor-relations" component={InvestorRelations} />
