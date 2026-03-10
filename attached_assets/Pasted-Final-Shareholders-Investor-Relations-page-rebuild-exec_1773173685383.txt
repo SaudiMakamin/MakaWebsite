@@ -1,0 +1,352 @@
+Final Shareholders / Investor Relations page rebuild — execute a precise, minimal, architecture-safe restructuring of the current Investor Relations page and its related Shareholders section. Do not redesign the whole site, do not change routing architecture, and do not modify unrelated pages. Preserve the existence of the separate page Update Shareholder Information. Keep that page available and functional. The task is to rebuild the main shareholder/investor-facing page so it reflects Makamin’s real corporate strength and approved site structure, instead of looking like a public-market investor relations template for a listed company.
+
+Core diagnosis that must guide this rebuild
+
+The current page is incorrectly positioned.
+
+1) The page currently looks like Investor Relations for a listed company
+
+But the actual website now presents:
+
+a holding company
+
+group entities
+
+operating subsidiaries
+
+execution services
+
+Aramco-related projects
+
+offshore / MOS capability
+
+ZENCUS digital solutions
+
+marine fleet / offshore assets
+
+capital strength and strategic shareholders
+
+The current Investor Relations page instead presents things such as:
+
+financial results
+
+expected revenue growth
+
+market share projections
+
+IPO readiness
+
+annual and quarterly reports
+
+board members with biographies
+
+downloadable governance reports
+
+This creates the impression that:
+
+the company is listed or close to listing
+
+formal public-market disclosures are available
+
+financial and governance reporting is already published in a capital-markets style
+
+If those items are not real, approved, uploaded, and institutionally verified, this page harms credibility more than it helps.
+
+2) The page contains unsafe financial / legal / regulatory style claims
+
+Examples previously observed include:
+
++23%
+
+850M
+
+45 projects
+
+18% regional
+
+IPO readiness
+
+Big Four audits
+
+full regulatory compliance
+
+These are high-risk claim types because they sound:
+
+financial
+
+legal
+
+regulatory
+
+investment-related
+
+If unverified, they are not just weak marketing; they are institutional risk.
+
+3) The current page does not reflect Makamin’s actual strengths
+
+The real strength of the website now is:
+
+Projects
+
+Aramco reference work
+
+Petroleum execution
+
+Offshore / MOS capability
+
+ZENCUS digital solutions
+
+strategic shareholders
+
+capital strength
+
+group structure
+
+The page should communicate:
+
+this is a group with operating companies, services, projects, and execution strength
+
+It must not communicate:
+
+this is a generic investor dashboard with speculative financial indicators and IPO-style content
+
+4) The current page also appears to contain legacy / inconsistent elements
+
+Examples include:
+
+outdated or irrelevant certifications & documents style references
+
+old footer/quick-link remnants
+
+duplicated text
+
+weak Arabic translation in places
+
+overall structure closer to a generic investor relations template than the approved Makamin site structure
+
+Required strategic direction
+
+Do not keep the page as a generic listed-company style Investor Relations page.
+
+Reposition it into a more accurate corporate/shareholder page.
+
+Preferred page direction
+
+Transform the current main shareholder/investor-facing page into a corporate page titled along the lines of:
+
+Strategic Shareholders
+or
+
+Shareholders & Corporate Strength
+
+Choose the option that best fits the existing site tone and page structure, but the page must clearly become a corporate strength / shareholder backing page, not a speculative capital-markets dashboard.
+
+Important:
+Keep the separate Update Shareholder Information page.
+Do not remove it.
+Do not break it.
+Keep it accessible as its own separate shareholder utility page.
+
+What must be removed from the current main Investor Relations page
+
+Remove or replace the following immediately unless each item is officially verified, approved for public display, and backed by real uploaded documents/content already in the project:
+
++23% expected revenue growth
+
+850M 2023
+
++15% active contracts expected
+
+18% coming market share
+
+IPO readiness
+
+Big Four audits
+
+full regulatory compliance
+
+fake or unverified annual / quarterly reports
+
+fake or unverified governance reports
+
+board member names and biographies if they are not explicitly approved for public publication
+
+any download button that points to a non-real or placeholder document
+
+any public-market style disclosure blocks that are not institutionally supported
+
+Do not leave speculative or placeholder investor-style metrics on the page.
+
+What the rebuilt page should contain instead
+
+Rebuild the page into a strong, credible corporate/shareholder page with the following structure:
+
+1) Hero
+
+Use a strong corporate headline such as:
+
+Strategic Shareholders
+or
+
+Shareholders & Corporate Strength
+
+Supporting line should reflect the real structure and strength of Makamin, for example:
+
+Institutional backing behind Makamin’s integrated energy platform
+
+2) Corporate strength row
+
+Use a safe summary row with institutionally aligned facts such as:
+
+SAR 1.2B Authorized Capital
+
+60+ Strategic Investors
+
+17+ Years Since Establishment
+
+Integrated Group Structure
+
+Only use figures already approved elsewhere in the site structure.
+Do not fabricate new financial-style claims.
+
+3) Strategic shareholders
+
+Present the approved shareholder / strategic backer names clearly and professionally.
+
+This section should reinforce:
+
+institutional confidence
+
+group backing
+
+ownership strength
+
+Do not make it look like a stock-market disclosure table.
+
+4) Group strength
+
+Add a concise section showing Makamin’s corporate and operating structure through summary cards linking to the real site structure:
+
+Makamin Petroleum Services
+
+Makamin Offshore Saudi (MOS)
+
+ZENCUS International Ltd
+
+Projects & Execution
+
+This should connect shareholders to real operating strength.
+
+5) Why Makamin
+
+Add a concise executive-strength section highlighting:
+
+Aramco-related project experience
+
+offshore marine capability
+
+industrial execution
+
+digital monitoring solutions
+
+diversified operating structure
+
+This should be a proof-of-strength summary, not financial speculation.
+
+6) Documents / profile
+
+Do not present this as a financial reporting center unless the documents are real and approved.
+
+Preferred document/action area:
+
+Company Profile
+
+Corporate Overview
+
+Contact Corporate Team
+
+Only include downloads that are real and available.
+
+7) CTA area
+
+Use practical CTAs such as:
+
+View Projects
+
+Contact Us
+
+Download Company Profile
+
+Do not use fake investor-report downloads.
+
+Relationship with Update Shareholder Information
+
+The separate page Update Shareholder Information must remain as its own page and function.
+Do not merge it into the rebuilt main page.
+Do not remove it.
+Do not break its route or accessibility.
+If needed, the rebuilt shareholder page may link to it in a clean secondary CTA or utility link, but do not let it dominate the page.
+
+Consistency requirements
+Page role consistency
+
+Group pages remain corporate/entity pages
+
+Services pages remain service pages
+
+Projects pages remain project pages
+
+the rebuilt shareholder page must now behave like a corporate/shareholder-strength page
+
+Naming consistency
+
+use approved final corporate/entity names
+
+keep ZENCUS as ZENCUS International Ltd where required
+
+keep MOS naming consistent with approved site usage
+
+avoid legacy labels and weak generic investor wording
+
+Visual/system consistency
+
+use the existing design system
+
+use existing card, section, CTA, and layout patterns
+
+do not redesign the whole page from scratch if it can be rebuilt safely within the current pattern
+
+preserve desktop and mobile responsiveness
+
+Footer / quick-link cleanup
+
+If this page currently inherits outdated quick links, old footer references, duplicated text, or legacy page-specific blocks, clean them up only as needed for this page’s consistency.
+Do not redesign the global footer in this task.
+
+Constraints
+
+rebuild the main Investor Relations / Shareholders page only
+
+keep Update Shareholder Information as a separate existing page
+
+no sitewide redesign
+
+no routing architecture changes unless needed for already-approved page consistency
+
+no unrelated page edits
+
+no fabricated investor/financial/legal/regulatory claims
+
+smallest safe implementation using current architecture and patterns only
+
+Final verification required
+
+Return a concise report with:
+
+A. files modified
+B. how the main Investor Relations / Shareholders page was repositioned
+C. what risky financial / IPO / regulatory / speculative content was removed or replaced
+D. what new approved content structure was added
+E. confirmation that Update Shareholder Information remains as a separate functioning page
+F. confirmation that the rebuilt page now reflects Makamin’s real strengths across group structure, services, projects, offshore, ZENCUS, shareholders, and capital strength
+G. confirmation that architecture, routing, and unrelated pages remained unchanged**

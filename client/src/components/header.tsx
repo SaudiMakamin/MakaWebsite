@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Globe, Menu, ChevronDown, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, Anchor, Layers } from 'lucide-react';
+import { Globe, Menu, ChevronDown, Drill, Ship, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, Anchor, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
@@ -57,7 +57,7 @@ export default function Header() {
   ];
 
   const shareholderDropdown = [
-    { path: '/investor-relations', label: 'Investor Relations', labelAr: 'علاقات المستثمرين', icon: TrendingUp },
+    { path: '/investor-relations', label: 'Strategic Shareholders', labelAr: 'المساهمون الاستراتيجيون', icon: Users },
     { path: '/news', label: 'Corporate Governance', labelAr: 'حوكمة الشركات', icon: Building2 },
   ];
 
