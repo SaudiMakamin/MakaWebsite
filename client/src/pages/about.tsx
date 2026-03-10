@@ -447,7 +447,7 @@ export default function About() {
         className="py-20 bg-slate-800/50 backdrop-blur-sm"
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {companyStats.map((stat, index) => (
               <motion.div
                 key={index}

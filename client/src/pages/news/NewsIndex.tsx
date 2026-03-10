@@ -81,7 +81,7 @@ export default function NewsIndex() {
             <Badge className="mb-6 bg-[#c5a66e]/20 text-[#c5a66e] border-[#c5a66e]/30 px-4 py-2">
               {language === "ar" ? "مركز الأخبار" : "News Center"}
             </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
               {language === "ar" ? "أخبار مكامن" : "Makamin News"}
             </h1>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">

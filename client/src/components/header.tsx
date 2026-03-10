@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Globe, Menu, X, ChevronDown, ChevronRight, Drill, Ship, TrendingUp, Building2, Eye, Target, Users, LayoutGrid, MapPin, Wrench, Search, FlaskConical, Cpu, Package, UserCheck, FolderKanban, ClipboardList, FileText, Anchor, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { useLanguageContext } from './language-provider';
 import makaminLogoPath from '@assets/logo mkamin_1752524503536.png';
@@ -402,7 +402,8 @@ export default function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[280px] sm:w-[350px] overflow-y-auto bg-gradient-to-b from-slate-900 via-[#003f6a] to-slate-900 border-l-[#c5a66e]/30" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+              <SheetContent side={language === 'ar' ? 'left' : 'right'} className="w-[280px] sm:w-[350px] overflow-y-auto bg-gradient-to-b from-slate-900 via-[#003f6a] to-slate-900 border-l-[#c5a66e]/30" dir={language === 'ar' ? 'rtl' : 'ltr'} aria-describedby={undefined}>
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <nav className="flex flex-col space-y-1 mt-6 px-1">
                   {navItems.map((item, index) => (
                     <NavLink 

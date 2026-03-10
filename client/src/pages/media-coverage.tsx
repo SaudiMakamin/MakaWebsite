@@ -270,10 +270,10 @@ export default function MediaCoverage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
               {language === 'ar' ? 'صدى مكامن في الإعلام' : 'Echoes of Makamin in the Media'}
             </h1>
-            <div className="text-2xl md:text-3xl font-semibold mb-4 text-yellow-400">
+            <div className="text-lg sm:text-2xl md:text-3xl font-semibold mb-4 text-yellow-400">
               {language === 'ar' ? 'مكامن في العناوين... حيث يولد التأثير' : 'Makamin in the Headlines... Where Influence is Born'}
             </div>
             <p className="text-xl md:text-2xl text-white font-bold max-w-5xl mx-auto leading-relaxed mb-4">

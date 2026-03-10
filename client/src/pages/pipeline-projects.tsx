@@ -83,12 +83,12 @@ export default function PipelineProjects() {
         </div>
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
           <HeroLogo size="lg" />
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4">
             <span className="bg-gradient-to-r from-[#003f6a] via-[#c5a66e] to-[#b72b2b] bg-clip-text text-transparent">
               {isAr ? 'مشاريع خطوط الأنابيب' : 'Pipeline Projects'}
             </span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto px-2 sm:px-0">
             {isAr
               ? 'سجل شامل لمشاريع خطوط الأنابيب — الربط والاستبدال والتأهيل وتركيب RTR وحقن المياه'
               : 'Complete pipeline track record — tie-ins, replacements, rehabilitation, RTR installations, and water injection'}
