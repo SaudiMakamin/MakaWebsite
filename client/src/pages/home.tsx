@@ -9,6 +9,8 @@ import CinematicHeroVideo from '@/components/cinematic-hero-video';
 import GlobalPartnersSlider from '@/components/global-partners-slider';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
+import aramcoLogo from '@assets/Saudi_Aramco_logo_1773268826426.png';
+import offshoreLogo from '@assets/Makamin-Offshore-Saudi-MOS_1773268826426.png';
 import energyHouseLogo from '@assets/Energy House Holding_1752769769299.jpg';
 import alDorraLogo from '@assets/Al-Dorra Petroleum Services_1752769769298.jpg';
 import binTamiLogo from '@assets/Bin Tami Holding_1752769769299.jpg';
@@ -68,12 +70,16 @@ export default function Home() {
   const strengthCards = [
     {
       icon: Target,
+      logoSrc: aramcoLogo,
+      logoAlt: 'Saudi Aramco',
       title: language === 'ar' ? 'تنفيذ مشاريع أرامكو' : 'Aramco Project Execution',
       desc: language === 'ar' ? 'سجل حافل في تنفيذ مشاريع أرامكو السعودية عبر قطاعات متعددة' : 'Proven track record executing Saudi Aramco projects across multiple sectors',
       href: '/projects/aramco'
     },
     {
       icon: Ship,
+      logoSrc: offshoreLogo,
+      logoAlt: 'Makamin Offshore Saudi',
       title: language === 'ar' ? 'العمليات البحرية' : 'Offshore Operations',
       desc: language === 'ar' ? 'أسطول بحري وقدرات بحرية متكاملة — تأجير وخدمات غوص ودعم بحري' : 'Marine fleet and integrated offshore capabilities — chartering, diving, and marine support',
       href: '/projects/offshore'
@@ -282,7 +288,11 @@ export default function Home() {
                 <Link href={card.href}>
                   <Card className="h-full cursor-pointer group hover:shadow-xl transition-all duration-300 border border-gray-200">
                     <CardContent className="p-6">
-                      <card.icon className="w-10 h-10 text-[#003f6a] mb-4 group-hover:text-[#c5a66e] transition-colors" />
+                      {card.logoSrc ? (
+                        <img src={card.logoSrc} alt={card.logoAlt} className="h-10 w-auto mb-4 object-contain" />
+                      ) : (
+                        <card.icon className="w-10 h-10 text-[#003f6a] mb-4 group-hover:text-[#c5a66e] transition-colors" />
+                      )}
                       <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#003f6a] transition-colors">
                         {card.title}
                       </h3>
