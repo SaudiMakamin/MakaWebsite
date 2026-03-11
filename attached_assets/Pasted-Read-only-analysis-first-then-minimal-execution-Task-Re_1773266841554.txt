@@ -1,0 +1,60 @@
+Read-only analysis first, then minimal execution.
+
+Task:
+Replace only the current top cover/hero image of the already published English news article with the new uploaded image that I will provide.
+
+Strict scope:
+- Change the top cover image only
+- Do not change article text
+- Do not change gallery images
+- Do not change title
+- Do not change publication date
+- Do not change Arabic version
+- Do not change slug, route, layout, archive logic, or news listing behavior
+- Do not redesign the page
+- Do not refactor the news system
+- Preserve existing architecture
+- Minimal safe non-breaking change only
+
+Required behavior:
+- Replace the current main image shown at the top of the article page with the newly uploaded replacement image
+- Keep all other article images exactly as they are
+- Keep the same rendering pattern already used by the project
+- Ensure the hero image remains visibly rendered in the article header/top section
+- Use a normal crawlable image element if the existing implementation already does so
+- Keep image URL/reference stable according to the existing project pattern
+- Do not modify unrelated articles
+
+SEO handling:
+- Use the new uploaded image as the primary article image only
+- Preserve existing alt/caption behavior pattern
+- Update alt text only for the replaced hero image if needed
+- Preserve any existing Article/NewsArticle image reference through the current pattern only
+- Do not add any new SEO plugin, schema system, or metadata architecture
+
+Execution rules:
+1. Inspect how the current hero image is assigned for this specific article
+2. Replace only that hero image reference with the new uploaded image
+3. Keep every other image and all article content unchanged
+4. Do not touch unrelated files unless strictly required by the existing architecture
+
+Then perform a review immediately after implementation.
+
+Post-implementation review checklist:
+1. Confirm the top hero image was replaced successfully
+2. Confirm all other images remain unchanged
+3. Confirm article text remains unchanged
+4. Confirm title and publication date remain unchanged
+5. Confirm Arabic version remains unchanged
+6. Confirm slug, route, layout, and listing behavior remain unchanged
+7. Confirm no unrelated article was modified
+8. Confirm architecture was preserved
+9. Verify by code inspection only
+
+Return report in this exact structure:
+A. Files modified
+B. Exact hero image change made
+C. What remained unchanged
+D. Any risk
+E. Confirmation architecture was preserved
+F. Verification performed via code inspection only
