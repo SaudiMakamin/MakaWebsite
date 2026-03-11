@@ -1,0 +1,59 @@
+Execute deletion batch 2 only.
+
+Delete only files inside attached_assets/ that meet all of the following conditions:
+- exact reference count = 0 across the entire codebase
+- not referenced by any active source file
+- not referenced by any routed page
+- not referenced by CSS, JSON, content mapping, metadata, markdown, or content loaders
+- not referenced by App.tsx, main.tsx, server code, sendFile logic, config, build flow, or deployment flow
+- not referenced by any review-before-delete file
+- not referenced by any orphan file that has not already been deleted
+- not referenced by mounted components
+- not dynamically loaded
+- not classified as editorial archive, business archive, legal archive, company archive, profile/archive document, PDF, or PPT/PPTX
+- not required for runtime, build, deployment, or server behavior
+
+Allowed scope only:
+- zero-reference non-archive assets inside attached_assets/
+- duplicate image/logo files with confirmed 0 references
+- screenshots
+- generic upload dumps
+- unused image variants
+- replaced images
+- unused HEIC files
+- unused ZIP files only if they are clearly non-business, non-editorial, non-archival disposable uploads
+
+Do not touch:
+- any PDF
+- any PPT or PPTX
+- any legal document
+- any company profile or archive document
+- any business deliverable
+- any ambiguous ZIP archive
+- any asset referenced by news-article.tsx, news-new.tsx, news-premium.tsx, or any review-before-delete file
+- any asset referenced by mounted components
+- any asset referenced by server code
+- any asset with possible business, editorial, legal, or archival value
+- dist/
+- package.json
+- App.tsx
+- main.tsx
+- server/
+- shared/
+- any config, routing, build, deployment, or environment file
+
+Required safeguards:
+- Re-verify exact reference count before deleting each asset
+- If any asset has even 1 reference, skip it
+- If any asset has possible archival, editorial, legal, or business value, skip it
+- If any result is ambiguous, uncertain, or classification is not explicit, skip it
+- No edits outside deletion of approved attached_assets files only
+- No renames, no moves, no refactors, no cleanup beyond deletion of approved assets only
+
+After deletion, report only:
+1. exact assets deleted
+2. exact assets skipped and the precise reason for each skip
+3. estimated storage recovered
+4. confirmation that runtime, server, routing, and build behavior remained unchanged
+5. confirmation that the operation remained deletion-only with no edits outside approved files
+6. a list of all files larger than 1 MB that were skipped, with exact reference status and whether each appears to be archive/editorial/business material
