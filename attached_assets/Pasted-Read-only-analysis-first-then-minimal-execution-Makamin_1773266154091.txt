@@ -1,0 +1,103 @@
+Read-only analysis first, then minimal execution.
+
+Makamin Saudi Holding Holds General Assembly in the Presence of the Ministry of Commerce
+
+
+Task:
+Update the already published English news article by adding the uploaded images only.
+
+
+
+Scope:
+- Existing published article only
+- Images only
+- Do not change article text
+- Do not change title
+- Do not change publication date
+- Do not change Arabic version
+- Do not change slug, route, layout, archive logic, or news listing behavior
+- Do not redesign the page
+- Do not refactor the news system
+- Preserve existing architecture
+- Minimal safe non-breaking change only
+
+Required presentation for this article:
+- Use exactly one main cover image at the top of the article
+- Then display the remaining images inside the same article page as a visible gallery or in-article media block using the existing article media pattern only
+- Do not merely upload images to a media library or attach them invisibly
+- The images must be rendered visibly inside the published article page
+
+Rendering and crawlability requirements:
+- Use normal crawlable HTML image elements such as img src=...
+- Do not use CSS background-only images for the article photos
+- Ensure the images are visible in the article on desktop and mobile
+- Keep image URLs stable
+- Do not block image indexing
+
+Exact preferred image order:
+Cover / Hero
+1. makamin-general-assembly-2025-riyadh.png
+Reason: best cover image because it clearly shows Canary Center, Riyadh, which strengthens the article context and search relevance
+
+Gallery
+2. makamin-ministry-commerce-attendance75.png
+3. makamin-general-assembly-shareholders8.png
+4. makamin-general-assembly-shareholders9.png
+5. makamin-othman-almousa-general-assembly.png
+6. makamin-adel-alnoob-ceo-meeting.png
+7. makamin-adel-alnoob-ceo-meeting2.png
+8. makamin-ibrahim-alghamdi-general-assembly.png
+9. makamin-ibrahim-alghamdi-general-assembly2.png
+10. makamin-adel-alnoob-ceo-meeting3.png
+
+If one image must be excluded for a cleaner gallery, exclude:
+- makamin-adel-alnoob-ceo-meeting3.png
+because it is the weakest visually compared with the others
+
+Editorial sequence to preserve:
+- venue first
+- official attendance second
+- shareholders and attendee presence third
+- meeting proceedings and leadership after that
+
+Reason for this ordering:
+- It creates a stronger documentary narrative for the article
+- It aligns the images with the article context
+- It improves the semantic relationship between image content and nearby text
+- It supports search visibility readiness by pairing strong descriptive filenames with relevant article placement, alt text, and visible rendering
+
+SEO handling rules:
+- Keep descriptive filenames as uploaded
+- Add descriptive alt text for every image
+- Add visible captions only if already supported by the current article system
+- Ensure images are part of the actual article content, not hidden assets
+- If the project already includes sitemap generation, preserve inclusion through the existing pattern only
+- If the article already uses Article or NewsArticle structured data, preserve it and update image references only through the existing pattern
+- Do not introduce any new SEO plugin, new schema system, or new metadata architecture
+
+Suggested alt text:
+- Canary Center in Riyadh, venue of Makamin Saudi Holding's General Assembly held on February 18, 2025
+- Ministry of Commerce representatives and attendees during Makamin Saudi Holding's General Assembly in Riyadh
+- Major shareholders attending Makamin Saudi Holding's General Assembly
+- Shareholders participating in Makamin Saudi Holding's General Assembly meeting in Riyadh
+- Othman Fadhel Al-Mousa during Makamin Saudi Holding's General Assembly session
+- Attendees in discussion during Makamin Saudi Holding's General Assembly
+- General view of attendees at Makamin Saudi Holding's General Assembly
+- Presentation proceedings during Makamin Saudi Holding's General Assembly in Riyadh
+- Shareholders reviewing assembly proceedings at Makamin Saudi Holding
+- Attendees seated during Makamin Saudi Holding's General Assembly meeting
+
+Execution rules:
+- First inspect how the existing article stores and renders images
+- Modify only the image references for this one article
+- Keep everything else unchanged
+- Do not modify unrelated articles
+- Preserve architecture
+
+Return report in this exact structure:
+A. Files modified
+B. Exact image integration made
+C. What remained unchanged
+D. Any risk
+E. Confirmation architecture was preserved
+F. Verification performed via code inspection only
