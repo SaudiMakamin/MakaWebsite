@@ -1,0 +1,62 @@
+Execute deletion batch 3 only.
+
+Perform a coordinated dead-import cleanup limited to the legacy news files and their now-exclusive assets.
+
+Allowed scope only:
+1. remove only the confirmed dead import lines from client/src/App.tsx
+2. delete only the corresponding dead-import pages after those imports are removed
+3. delete only the attached_assets files listed in the approved asset candidate list below, and only if they become exact 0-reference exclusively because of those page deletions
+4. do not touch any other route, component, wrapper, provider, server file, config file, dependency, content JSON, or structural file
+
+Targets:
+- client/src/pages/news-new.tsx
+- client/src/pages/news-article.tsx
+- client/src/pages/news-premium.tsx
+
+App.tsx allowed edits only:
+- remove: import NewsCenter from '@/pages/news-new';
+- remove: import NewsArticleOld from '@/pages/news-article';
+
+Required safeguards:
+- Before editing App.tsx, re-verify that NewsCenter and NewsArticleOld are imported but not used by any Route, dynamic import, runtime path, active UI flow, or mounted structure
+- Re-verify that news-premium.tsx has exact 0 active references before deleting it
+- Delete no page unless its final reference count is valid for deletion
+- Delete only assets from the approved asset candidate list below
+- Re-verify each approved asset after page deletion and delete it only if its exact reference count becomes 0
+- If any asset is also referenced by content/news.json, client/src/content/news.json, mounted components, App.tsx, main.tsx, server code, config, or any active file, skip it
+- If any result is ambiguous, uncertain, or non-exclusive, skip it
+- No refactors, no route changes, no wrapper/provider changes, no dependency changes
+- No edits outside the exact App.tsx import removals and deletion of approved files only
+
+Approved asset candidates for deletion only if they become exact 0-reference after the page deletions:
+- attached_assets/10cd286c-eee6-4dd9-a542-6e5db6742fcc_1752785954593.JPG
+- attached_assets/b5f98830-bca6-492c-8802-7a5058484347(1)_1752785954594.JPG
+- attached_assets/IMG_0420_1752785954601.PNG
+- attached_assets/IMG_0430_1752785954601.PNG
+- attached_assets/IMG_0423_1752787074922.jpg
+- attached_assets/IMG_0427_1752787074922.jpg
+- attached_assets/IMG_0444_1752787074923.jpg
+- attached_assets/logo mkamin_1752872763270.png
+- attached_assets/Logo_Ministry_of_Commerce.svg_1752785663072.png
+
+Explicitly do not touch:
+- attached_assets/لقطة الشاشة 2025-07-21 172931_1754473884923.jpg
+- attached_assets/Logo_Ministry_of_Commerce.svg_1752787097521.png
+- any content/news.json file
+- any mounted shadow component
+- client/src/main.tsx
+- server/
+- shared/
+- package.json
+- dist/
+- any config, routing, deployment, or environment file
+- any file or asset not explicitly covered by this batch
+
+After completion, report only:
+1. exact App.tsx lines removed
+2. exact files deleted
+3. exact assets deleted
+4. exact assets skipped and the precise reason for each skip
+5. confirmation that routing and runtime behavior remained unchanged except for dead-import removal
+6. confirmation that no unresolved imports or missing asset references were introduced
+7. confirmation that no unrelated files were modified

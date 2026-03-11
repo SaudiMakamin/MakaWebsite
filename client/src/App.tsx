@@ -19,8 +19,6 @@ import About from '@/pages/about';
 import Services from '@/pages/services';
 import Projects from '@/pages/projects-enhanced';
 import Certifications from '@/pages/certifications-enhanced';
-import NewsCenter from '@/pages/news-new';
-import NewsArticleOld from '@/pages/news-article';
 import NewsIndex from './pages/news/NewsIndex';
 import NewsArticlePage from './pages/news/NewsArticle';
 import Contact from '@/pages/contact';
