@@ -1,0 +1,67 @@
+Execute SEO batch 3 only.
+
+Implement only the confirmed missing page-level SEO config entries identified in the SEO audit.
+
+Allowed scope only:
+1. add only missing page-level entries to client/src/lib/seo-config.ts for routes that currently fall back to generic metadata
+2. preserve the existing SEO system architecture and usage pattern
+3. do not modify page components, routes, metadata writers, sitemap logic, JSON-LD logic, assets, or content structure
+4. do not rewrite or remove any existing SEO config entry
+
+Target file only:
+- client/src/lib/seo-config.ts
+
+Target routes only:
+- /group
+- /makamin-holding
+- /zencus-international
+- /projects/aramco
+- /projects/pipeline
+- /projects/offshore
+- /projects/fleet
+- /projects/zencus
+- /services/pipeline-industrial
+- /services/drilling
+- /services/geoscience
+- /services/industrial-inspection
+- /services/zencus
+- /services/offshore
+- /services/supply-chain
+- /services/technical-staffing
+
+Required safeguards:
+- before editing, re-verify that each target route currently has no dedicated pagesSEO entry and falls back to generic metadata
+- add entries only for the exact target routes above
+- preserve the existing object structure, field naming, and formatting conventions already used in seo-config.ts
+- do not modify any existing route entry unless a duplicate-key conflict makes it strictly necessary, and if so, stop and report instead
+- keep titles, descriptions, keywords, canonicalUrl, and ogImage fields consistent with the current project pattern where applicable
+- do not invent a new metadata schema
+- do not add per-page JSON-LD in this batch
+- do not add or change canonical domain rules in this batch
+- do not add H1 fixes in this batch
+- do not change NewsIndex or NewsArticle in this batch
+- if any route meaning is ambiguous, preserve the current style used by its nearest comparable route and report the assumption
+- if any entry already exists, skip it and report why
+- no unrelated cleanup, no refactor, no route changes, no asset changes
+
+Content constraints:
+- use concise, production-appropriate SEO titles and descriptions
+- keep wording aligned with Makamin Saudi Holding branding and the route purpose
+- avoid keyword stuffing
+- preserve the project’s existing language/style pattern already present in seo-config.ts
+- if existing config entries are English-only, follow that pattern unless the file already uses bilingual conventions
+- do not introduce promotional exaggeration beyond the tone already used in the file
+
+Expected action pattern:
+- add one new SEO config entry per missing target route
+- each new entry should match the existing pagesSEO shape used elsewhere in seo-config.ts
+- use the same canonicalUrl pattern already established in the file
+
+After completion, report only:
+1. exact routes added to seo-config.ts
+2. exact fields added per new entry
+3. any routes skipped and why
+4. confirmation that no existing SEO config entries were altered
+5. confirmation that the target routes no longer fall back to generic metadata
+6. confirmation that runtime, routing, and build remained intact
+7. confirmation that no unrelated files were modified

@@ -135,6 +135,102 @@ export const pagesSEO: Record<string, SEOConfig> = {
     description: "نظام تحديث بيانات المساهمين في مكامن السعودية القابضة: تحديث المعلومات الشخصية، حقوق المساهمين، الشهادات الرقمية، حقوق التصويت، استحقاق الأرباح.",
     keywords: baseSEO.keywords + "، المساهمون، Shareholders، تحديث البيانات، حقوق المساهمين، الشهادات الرقمية",
     canonicalUrl: "https://makamin.com.sa/update-shareholder"
+  },
+  "/group": {
+    title: "مجموعة مكامن السعودية - الهيكل المؤسسي | Group Overview",
+    description: "نظرة عامة على هيكل مجموعة مكامن المؤسسية: مكامن القابضة، خدمات مكامن البترولية، زينكوس الدولية، ومكامن أوفشور السعودية — مجموعة متكاملة في خدمات النفط والغاز.",
+    keywords: baseSEO.keywords + "، مجموعة مكامن، Group Overview، الهيكل المؤسسي، Corporate Structure، شركات مكامن",
+    canonicalUrl: "https://makamin.com.sa/group"
+  },
+  "/makamin-holding": {
+    title: "مكامن القابضة للنفط والغاز - الشركة الأم | Makamin Holding",
+    description: "مكامن السعودية القابضة لخدمات النفط والغاز — الشركة الأم والمظلة المؤسسية لمجموعة مكامن، رأس مال مصرح 1.2 مليار ريال سعودي، التسجيلات التجارية والدور المؤسسي.",
+    keywords: baseSEO.keywords + "، مكامن القابضة، Makamin Holding، الشركة الأم، Parent Company، التسجيل التجاري",
+    canonicalUrl: "https://makamin.com.sa/makamin-holding"
+  },
+  "/zencus-international": {
+    title: "زينكوس الدولية المحدودة - الحلول التقنية للنفط والغاز | ZENCUS International",
+    description: "زينكوس الدولية المحدودة — شركة تقنية تابعة لمجموعة مكامن متخصصة في الاستحواذ اللاسلكي للبيانات، المراقبة الآنية، والأجهزة الميدانية لعمليات النفط والغاز.",
+    keywords: baseSEO.keywords + "، زينكوس الدولية، ZENCUS International، مراقبة الآبار، Well Monitoring، البيانات اللاسلكية، Wireless Data Acquisition",
+    canonicalUrl: "https://makamin.com.sa/zencus-international"
+  },
+  "/projects/aramco": {
+    title: "مشاريع مكامن مع أرامكو السعودية - محفظة مشاريع شاملة | Aramco Projects",
+    description: "محفظة مشاريع مكامن مع أرامكو السعودية: خطوط الأنابيب، الحفر، الفحص غير المدمر، والخدمات الجيوعلمية — سجل إنجازات تقني في قطاع النفط والغاز السعودي.",
+    keywords: baseSEO.keywords + "، مشاريع أرامكو، Aramco Projects، خطوط الأنابيب، الحفر، الفحص غير المدمر، NDT",
+    canonicalUrl: "https://makamin.com.sa/projects/aramco"
+  },
+  "/projects/pipeline": {
+    title: "مشاريع خطوط الأنابيب - مكامن السعودية القابضة | Pipeline Projects",
+    description: "محفظة مشاريع خطوط الأنابيب لمكامن: ربط الخطوط، الاستبدال، تركيبات RTR، حقن المياه، ومشاريع إعادة التأهيل في قطاع النفط والغاز السعودي.",
+    keywords: baseSEO.keywords + "، مشاريع خطوط الأنابيب، Pipeline Projects، ربط الخطوط، RTR، إعادة التأهيل",
+    canonicalUrl: "https://makamin.com.sa/projects/pipeline"
+  },
+  "/projects/offshore": {
+    title: "مشاريع مكامن أوفشور السعودية - العمليات البحرية | Offshore Projects Portfolio",
+    description: "محفظة مشاريع مكامن أوفشور السعودية (MOS): تأجير السفن، دوريات الأمن البحري، الإشارات الملاحية، وخدمات المناوبة البحرية لأرامكو السعودية.",
+    keywords: baseSEO.keywords + "، مشاريع أوفشور، Offshore Projects، MOS، مكامن أوفشور، تأجير السفن، Vessel Charter",
+    canonicalUrl: "https://makamin.com.sa/projects/offshore"
+  },
+  "/projects/fleet": {
+    title: "الأسطول البحري وأصول مكامن أوفشور السعودية | Marine Fleet & Assets",
+    description: "سجل الأسطول البحري والأصول البحرية لمكامن أوفشور السعودية (MOS): سفن دعم المنصات، زوارق الدورية الأمنية، والسفن البحرية المتخصصة.",
+    keywords: baseSEO.keywords + "، الأسطول البحري، Marine Fleet، أصول مكامن، MOS، سفن الدعم، Platform Support Vessels",
+    canonicalUrl: "https://makamin.com.sa/projects/fleet"
+  },
+  "/projects/zencus": {
+    title: "مشاريع زينكوس - المراقبة التقنية للنفط والغاز | ZENCUS Projects",
+    description: "مشاريع زينكوس الدولية التقنية: مراقبة الآبار اللاسلكية، المراقبة عن بُعد، أنظمة SCADA، وحلول إنترنت الأشياء الميدانية في قطاع النفط والغاز.",
+    keywords: baseSEO.keywords + "، مشاريع زينكوس، ZENCUS Projects، مراقبة الآبار، SCADA، إنترنت الأشياء الميدانية، IoT",
+    canonicalUrl: "https://makamin.com.sa/projects/zencus"
+  },
+  "/services/pipeline-industrial": {
+    title: "خدمات خطوط الأنابيب والصناعة - مكامن السعودية | Pipeline & Industrial Services",
+    description: "خدمات خطوط الأنابيب والصيانة الصناعية من مكامن: إنشاء الخطوط، الصيانة الصناعية، الحماية الكاثودية، وأنظمة PDHMS لبنية تحتية النفط والغاز.",
+    keywords: baseSEO.keywords + "، خطوط الأنابيب، Pipeline Services، الصيانة الصناعية، الحماية الكاثودية، Cathodic Protection، PDHMS",
+    canonicalUrl: "https://makamin.com.sa/services/pipeline-industrial"
+  },
+  "/services/drilling": {
+    title: "خدمات الحفر - مكامن السعودية القابضة | Drilling Services",
+    description: "خدمات الحفر التخصصية من مكامن: الحفر العكسي، الحفر الآلي، حفر الأوتاد، VSP، والرصد الزلزالي الدقيق لقطاع النفط والغاز.",
+    keywords: baseSEO.keywords + "، خدمات الحفر، Drilling Services، الحفر العكسي، Reverse Circulation، VSP، Micro Seismic",
+    canonicalUrl: "https://makamin.com.sa/services/drilling"
+  },
+  "/services/geoscience": {
+    title: "خدمات الجيوعلوم - مكامن السعودية القابضة | Geoscience Services",
+    description: "خدمات الجيوعلوم من مكامن: الدراسات الجيولوجية والجيوفيزيائية والبتروفيزيائية، تحليل الأنوية، الخدمات الرقمية للبيانات، والرصد الزلزالي الرباعي الأبعاد.",
+    keywords: baseSEO.keywords + "، الجيوعلوم، Geoscience، الجيوفيزياء، Geophysics، البتروفيزياء، Petrophysics، 4D Seismic",
+    canonicalUrl: "https://makamin.com.sa/services/geoscience"
+  },
+  "/services/industrial-inspection": {
+    title: "خدمات الفحص الصناعي - مكامن السعودية | Industrial Inspection & NDT",
+    description: "خدمات الفحص الصناعي غير المدمر من مكامن: PAUT، TOFD، PMI، رصد التآكل، وفحص قاع الخزانات لضمان سلامة البنية التحتية البترولية.",
+    keywords: baseSEO.keywords + "، الفحص غير المدمر، NDT، PAUT، TOFD، PMI، فحص الخزانات، Tank Inspection، رصد التآكل",
+    canonicalUrl: "https://makamin.com.sa/services/industrial-inspection"
+  },
+  "/services/zencus": {
+    title: "خدمات زينكوس التقنية - المراقبة الآنية والبيانات الميدانية | ZENCUS Technology",
+    description: "خدمات زينكوس التقنية من مكامن: المراقبة الميدانية الآنية، الاستحواذ اللاسلكي للبيانات، أجهزة الإرسال الأحادية، ZDV Studio، ومراقبة CCTV.",
+    keywords: baseSEO.keywords + "، زينكوس، ZENCUS، المراقبة الآنية، Real-Time Monitoring، البيانات اللاسلكية، ZDV Studio، CCTV",
+    canonicalUrl: "https://makamin.com.sa/services/zencus"
+  },
+  "/services/offshore": {
+    title: "خدمات مكامن أوفشور السعودية - الغوص والهندسة البحرية | Offshore Services",
+    description: "خدمات مكامن أوفشور السعودية (MOS): العمليات البحرية، الغوص والخدمات تحت الماء، الهندسة البحرية، ودعم الأسطول البحري لعمليات النفط والغاز.",
+    keywords: baseSEO.keywords + "، خدمات أوفشور، Offshore Services، MOS، الغوص، Diving، الخدمات تحت الماء، Subsea، الأسطول البحري",
+    canonicalUrl: "https://makamin.com.sa/services/offshore"
+  },
+  "/services/supply-chain": {
+    title: "خدمات سلسلة التوريد - مكامن السعودية القابضة | Supply Chain Services",
+    description: "خدمات سلسلة التوريد من مكامن: إدارة الموردين، المشتريات، شهادات اختبار المواد، التسريع، اختبارات القبول في المصنع، ومراقبة الجودة.",
+    keywords: baseSEO.keywords + "، سلسلة التوريد، Supply Chain، المشتريات، Procurement، إدارة الموردين، Vendor Management، مراقبة الجودة",
+    canonicalUrl: "https://makamin.com.sa/services/supply-chain"
+  },
+  "/services/technical-staffing": {
+    title: "خدمات التوظيف التقني - مكامن السعودية القابضة | Technical Staffing",
+    description: "خدمات التوظيف التقني من مكامن: التوظيف الدائم والمؤقت، إدارة الرواتب، تجهيز التأشيرات، والقوى العاملة المتخصصة للقطاع البتروكيماوي والنفط والغاز.",
+    keywords: baseSEO.keywords + "، التوظيف التقني، Technical Staffing، توظيف الكوادر، القوى العاملة، Workforce، البتروكيماويات، Petrochemical",
+    canonicalUrl: "https://makamin.com.sa/services/technical-staffing"
   }
 };
 
