@@ -1,0 +1,61 @@
+Execute performance batch 3 only.
+
+Perform a minimal, coordinated code-splitting implementation for routed page components only.
+
+Allowed scope only:
+1. convert only routed page imports in client/src/App.tsx from static imports to React.lazy()
+2. add only the minimum required Suspense wrapper for routed page rendering
+3. keep all always-needed runtime imports eager
+4. do not change route paths, route order, providers, wrappers, SEO components, business logic, or page content
+5. do not implement any navigation refactor, image changes, asset changes, or any other performance work in this batch
+
+Target scope:
+- routed page components only in client/src/App.tsx
+- use React.lazy() only for page-level route components
+- add a single Suspense boundary around the routed page render area only
+
+Do not lazy-load:
+- Header
+- Footer
+- LanguageProvider
+- QueryClientProvider
+- Toaster
+- SplashScreen
+- SEOHeadTags
+- SEOHead
+- AdvancedSEO
+- any non-page infrastructure or always-mounted runtime component that remains in use
+
+Required safeguards:
+- before editing App.tsx, re-verify which imports are true routed page components versus always-mounted infrastructure
+- re-verify that each target page file is default-export-compatible before converting it to React.lazy()
+- if any page import is not default-export-safe, skip that page and report it
+- preserve the exact existing route paths and route order
+- preserve the existing provider and wrapper structure
+- add only one minimal Suspense fallback, with no redesign of the loading UX
+- keep the fallback visually neutral and structurally non-breaking
+- do not introduce any new route abstraction or route config refactor
+- do not change any page file contents in this batch
+- if any result is ambiguous, skip that item and report it
+- no unrelated cleanup, no dependency changes, no SEO changes, no asset changes
+
+Implementation constraints:
+- App.tsx only
+- use React.lazy and Suspense from React
+- wrap only the Router / Switch rendering area that contains routed page output
+- keep non-routed imports unchanged except where required to remove replaced static page imports
+
+Post-change verification required:
+- verify no unresolved lazy imports were introduced
+- verify all routed pages still resolve correctly
+- verify Suspense fallback appears only during lazy loading and does not break layout
+- verify runtime, routing, and build remain intact
+
+After completion, report only:
+1. exact App.tsx imports converted to React.lazy()
+2. exact Suspense wrapper added and where
+3. any page import skipped and why
+4. confirmation that route paths and order remained unchanged
+5. confirmation that providers, wrappers, SEO components, and runtime structure remained unchanged
+6. confirmation that runtime, routing, and build remained intact
+7. confirmation that no unrelated files were modified

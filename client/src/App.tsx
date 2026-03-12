@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { SEOPerformanceOptimizer } from '@/lib/seo-performance';
 import { Switch, Route } from 'wouter';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -14,41 +14,42 @@ import { AdvancedSEO } from '@/components/advanced-seo';
 import SplashScreen from '@/components/splash-screen';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import Home from '@/pages/home';
-import About from '@/pages/about';
-import Services from '@/pages/services';
-import Projects from '@/pages/projects-enhanced';
-import Certifications from '@/pages/certifications-enhanced';
-import NewsIndex from './pages/news/NewsIndex';
-import NewsArticlePage from './pages/news/NewsArticle';
-import Contact from '@/pages/contact';
-import UpdateShareholder from '@/pages/update-shareholder';
-import RoyalShareholderDashboard from '@/pages/royal-shareholder-dashboard';
-import NotFound from '@/pages/not-found';
-import GroupOverview from '@/pages/group-overview';
-import MakaminHolding from '@/pages/makamin-holding';
-import PetroleumServices from '@/pages/petroleum-services';
-import ZencusInternational from '@/pages/zencus-international';
-import OffshoreOperations from '@/pages/offshore-operations';
-import PipelineIndustrialServices from '@/pages/services/pipeline-industrial';
-import DrillingServices from '@/pages/services/drilling';
-import GeoscienceServices from '@/pages/services/geoscience';
-import IndustrialInspection from '@/pages/services/industrial-inspection';
-import ZencusServices from '@/pages/services/zencus';
-import OffshoreServices from '@/pages/services/offshore';
-import SupplyChainServices from '@/pages/services/supply-chain';
-import TechnicalStaffingServices from '@/pages/services/technical-staffing';
-import AramcoProjects from '@/pages/aramco-projects';
-import PipelineProjectsPage from '@/pages/pipeline-projects';
-import OffshoreProjectsPage from '@/pages/offshore-projects';
-import FleetAssetsPage from '@/pages/fleet-assets';
-import ZencusProjectsPage from '@/pages/zencus-projects';
-import InvestorRelations from '@/pages/investor-relations';
-import BahrainOperations from '@/pages/bahrain-operations';
-import MediaCoverage from '@/pages/media-coverage';
-import MalaysiaCinematic from '@/pages/malaysia-branch';
-import RiyadhHeadquarters from '@/pages/riyadh-headquarters';
-import Headquarters from '@/pages/headquarters';
+
+const Home = lazy(() => import('@/pages/home'));
+const About = lazy(() => import('@/pages/about'));
+const Services = lazy(() => import('@/pages/services'));
+const Projects = lazy(() => import('@/pages/projects-enhanced'));
+const Certifications = lazy(() => import('@/pages/certifications-enhanced'));
+const NewsIndex = lazy(() => import('./pages/news/NewsIndex'));
+const NewsArticlePage = lazy(() => import('./pages/news/NewsArticle'));
+const Contact = lazy(() => import('@/pages/contact'));
+const UpdateShareholder = lazy(() => import('@/pages/update-shareholder'));
+const RoyalShareholderDashboard = lazy(() => import('@/pages/royal-shareholder-dashboard'));
+const NotFound = lazy(() => import('@/pages/not-found'));
+const GroupOverview = lazy(() => import('@/pages/group-overview'));
+const MakaminHolding = lazy(() => import('@/pages/makamin-holding'));
+const PetroleumServices = lazy(() => import('@/pages/petroleum-services'));
+const ZencusInternational = lazy(() => import('@/pages/zencus-international'));
+const OffshoreOperations = lazy(() => import('@/pages/offshore-operations'));
+const PipelineIndustrialServices = lazy(() => import('@/pages/services/pipeline-industrial'));
+const DrillingServices = lazy(() => import('@/pages/services/drilling'));
+const GeoscienceServices = lazy(() => import('@/pages/services/geoscience'));
+const IndustrialInspection = lazy(() => import('@/pages/services/industrial-inspection'));
+const ZencusServices = lazy(() => import('@/pages/services/zencus'));
+const OffshoreServices = lazy(() => import('@/pages/services/offshore'));
+const SupplyChainServices = lazy(() => import('@/pages/services/supply-chain'));
+const TechnicalStaffingServices = lazy(() => import('@/pages/services/technical-staffing'));
+const AramcoProjects = lazy(() => import('@/pages/aramco-projects'));
+const PipelineProjectsPage = lazy(() => import('@/pages/pipeline-projects'));
+const OffshoreProjectsPage = lazy(() => import('@/pages/offshore-projects'));
+const FleetAssetsPage = lazy(() => import('@/pages/fleet-assets'));
+const ZencusProjectsPage = lazy(() => import('@/pages/zencus-projects'));
+const InvestorRelations = lazy(() => import('@/pages/investor-relations'));
+const BahrainOperations = lazy(() => import('@/pages/bahrain-operations'));
+const MediaCoverage = lazy(() => import('@/pages/media-coverage'));
+const MalaysiaCinematic = lazy(() => import('@/pages/malaysia-branch'));
+const RiyadhHeadquarters = lazy(() => import('@/pages/riyadh-headquarters'));
+const Headquarters = lazy(() => import('@/pages/headquarters'));
 
 import { SocialShareOptimizer } from '@/lib/social-share-optimizer';
 
@@ -115,7 +116,9 @@ function App() {
               <AdvancedSEO />
               <Header />
               <main>
-                <Router />
+                <Suspense fallback={<div className="min-h-screen" />}>
+                  <Router />
+                </Suspense>
               </main>
               <Footer />
             </div>
