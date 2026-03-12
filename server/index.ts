@@ -134,18 +134,6 @@ app.use((req, res, next) => {
     res.sendFile('attached_assets/878B2BA1-7AE2-4530-96FD-4769905905A3_1753908213695.png', { root: process.cwd() });
   });
   
-  // Serve attached assets directory with CORS
-  app.use('/attached_assets', express.static('attached_assets', {
-    setHeaders: (res) => {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    }
-  }));
-  
   // IndexNow submission endpoint
   app.get('/IndexNow-submit.txt', (req, res) => {
     res.setHeader('Content-Type', 'text/plain');

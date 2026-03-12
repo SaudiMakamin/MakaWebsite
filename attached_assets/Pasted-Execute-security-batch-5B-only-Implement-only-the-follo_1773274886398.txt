@@ -1,0 +1,59 @@
+Execute security batch 5B only.
+
+Implement only the following two limited actions:
+
+1. remove the duplicate second express.static('attached_assets', ...) mount in server/index.ts only if it is confirmed redundant and unreachable because the first mount already handles the same requests
+2. delete only confirmed zero-reference sensitive files inside attached_assets/ from the approved categories below
+
+Allowed scope only:
+A. server/index.ts
+- remove only the duplicate second express.static('attached_assets', ...) mount block
+- do not change the first active attached_assets mount
+- do not change any other middleware, route, header logic, caching logic, or server behavior
+
+B. attached_assets/
+Delete only files that meet all of the following:
+- exact reference count = 0 across source, content, server, config, build, and mounted/review files
+- not referenced by any active source file
+- not referenced by any routed page
+- not referenced by App.tsx, main.tsx, server code, sendFile logic, content JSON, metadata, or mounted components
+- not dynamically loaded
+- not required for runtime, build, deployment, or current operations
+- explicitly confirmed as safe for deletion in this batch
+
+Approved deletion categories only:
+- zero-reference PDF files confirmed unused
+- zero-reference PPT/PPTX files confirmed unused
+- zero-reference HEIC files confirmed unused
+- the zero-reference commercial registration image confirmed unused
+- zero-reference image_175382*.png files confirmed unused
+
+Do not touch:
+- any asset still referenced anywhere
+- any asset under editorial hold
+- any asset with ambiguous status
+- any active image, logo, article asset, or business-critical asset
+- App.tsx
+- client routes
+- shareholder endpoints
+- auth logic
+- package.json
+- shared/
+- any config, routing, deployment, or environment file
+
+Required safeguards:
+- before removing the duplicate static mount, re-verify that the first mount fully serves all currently active attached_assets requests
+- after removing the duplicate mount, verify active attached_assets files still return HTTP 200
+- before deleting each asset, re-verify exact reference count = 0
+- if any file has even 1 reference, skip it
+- if any classification is ambiguous, skip it
+- no edits outside the exact duplicate static mount removal and deletion of approved files only
+
+After completion, report only:
+1. exact server/index.ts lines removed
+2. exact assets deleted
+3. exact assets skipped and why
+4. exact storage recovered
+5. confirmation that attached_assets active serving still works
+6. confirmation that runtime, routing, and build behavior remained unchanged
+7. confirmation that no unrelated files were modified

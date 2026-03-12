@@ -1,0 +1,68 @@
+Execute security batch 5B only.
+
+Implement only the following two limited actions:
+
+1. remove the duplicate second express.static('attached_assets', ...) mount in server/index.ts only if it is confirmed redundant and unreachable because the first mount already handles the same requests
+2. delete only the exact confirmed zero-reference files listed below inside attached_assets/
+
+Allowed scope only:
+A. server/index.ts
+- remove only the duplicate second express.static('attached_assets', ...) mount block
+- do not change the first active attached_assets mount
+- do not change any other middleware, route, header logic, caching logic, or server behavior
+
+B. attached_assets/
+Delete only the exact files listed below, and only if each one still satisfies all of the following:
+- exact reference count = 0 across source, content, server, config, build, and mounted/review files
+- not referenced by any active source file
+- not referenced by any routed page
+- not referenced by App.tsx, main.tsx, server code, sendFile logic, content JSON, metadata, or mounted components
+- not dynamically loaded
+- not required for runtime, build, deployment, or current operations
+- explicitly confirmed safe for deletion in this batch
+
+Exact approved asset files only:
+- attached_assets/قرار اللجنة للمخالفة رقم 835_1753202929983.pdf
+- attached_assets/Saudi Makamin - Leading Oil & Gas Services Company_1753105605445.pdf
+- attached_assets/Makamin Profile 2017 بروفايل_1752524450266.pdf
+- attached_assets/Makamin Profile 2017 بروفايل_1752529735832.pdf
+- attached_assets/Makamin Profile 2017 بروفايل_1753042833660.pdf
+- attached_assets/Makamin Profile 2017 بروفايل_1753043474369.pdf
+- attached_assets/Makamin Offshore Nov 20 2014 بروفايل_1752524450267.pptx
+- attached_assets/Makamin Offshore Nov 20 2014 بروفايل_1752529880270.pptx
+- attached_assets/Makamin Offshore Nov 20 2014 بروفايل_1752532248116.pptx
+- attached_assets/Commercial Registration - Offshore Operations1_1753048475450.jpg
+- all exact attached_assets/IMG_0391_*.HEIC through IMG_0418_*.HEIC files only if individually re-verified at 0 references
+- all exact attached_assets/image_175382*.png files only if individually re-verified at 0 references
+
+Do not touch:
+- any asset not explicitly listed above
+- any asset still referenced anywhere
+- any asset under editorial hold
+- any asset with ambiguous status
+- any active image, logo, article asset, or business-critical asset
+- App.tsx
+- client routes
+- shareholder endpoints
+- auth logic
+- package.json
+- shared/
+- any config, routing, deployment, or environment file
+
+Required safeguards:
+- before removing the duplicate static mount, re-verify that the first mount fully serves all currently active attached_assets requests
+- after removing the duplicate mount, verify active attached_assets files still return HTTP 200
+- verify no required asset-response behavior regressed unexpectedly after removing the duplicate mount
+- before deleting each asset, re-verify exact reference count = 0
+- if any file has even 1 reference, skip it
+- if any classification is ambiguous, skip it
+- no edits outside the exact duplicate static mount removal and deletion of the exact approved files only
+
+After completion, report only:
+1. exact server/index.ts lines removed
+2. exact assets deleted
+3. exact assets skipped and why
+4. exact storage recovered
+5. confirmation that attached_assets active serving still works
+6. confirmation that runtime, routing, and build behavior remained unchanged
+7. confirmation that no unrelated files were modified
