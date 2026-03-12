@@ -54,7 +54,7 @@ export default function Footer() {
                 <Linkedin className="w-6 h-6" />
               </motion.a>
               <motion.a 
-                href="https://twitter.com/SaudiMakamin_sa" 
+                href="https://x.com/Saudi_makamin" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:scale-110 transition-all duration-300"
