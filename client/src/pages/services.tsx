@@ -136,9 +136,9 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
               {language === 'ar' ? 'خدماتنا الأساسية' : 'Our Core Services'}
-            </h2>
+            </h1>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

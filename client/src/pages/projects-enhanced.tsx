@@ -237,9 +237,9 @@ export default function Projects() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-center mb-12"
             >
-              <h2 className="text-xl sm:text-3xl md:text-4xl text-[#c5a66e] mb-4 font-bold">
+              <h1 className="text-xl sm:text-3xl md:text-4xl text-[#c5a66e] mb-4 font-bold">
                 {language === 'ar' ? 'الدقة الهندسية. التنفيذ الاستراتيجي. القيادة السعودية.' : 'Engineering Precision. Strategic Execution. Saudi Leadership.'}
-              </h2>
+              </h1>
               <p className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
                 {language === 'ar' ?
                   'تأثير مكامن عبر أرامكو السعودية وسابك والمياه الوطنية والأسواق البحرية - قيادة تقنية تشكل مستقبل الطاقة' :

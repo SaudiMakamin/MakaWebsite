@@ -196,9 +196,9 @@ export default function InvestorRelations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">
               {isAr ? 'المساهمون الاستراتيجيون' : 'Strategic Shareholders'}
-            </h2>
+            </h1>
             <p className="text-lg text-blue-200 max-w-3xl mx-auto">
               {isAr
                 ? 'شركاء استراتيجيون آمنوا بإعادة انطلاقة مكامن في 2025'

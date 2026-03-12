@@ -242,9 +242,9 @@ export default function MalaysiaBranch() {
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               {language === 'ar' ? 'مكتب كوالالمبور' : 'Kuala Lumpur Office'}
-            </h2>
+            </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {language === 'ar' ? 
                 'يقع مكتبنا في قلب كوالالمبور، في برج الحدائق الشمالي بمدينة الوادي الأوسط' :

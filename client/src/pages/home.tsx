@@ -115,9 +115,9 @@ export default function Home() {
             className="text-center mb-12 sm:mb-16"
           >
             <HeroLogo size="md" />
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {language === 'ar' ? 'خدمات الطاقة الأساسية' : 'Our Core Energy Services'}
-            </h2>
+            </h1>
             <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
               {language === 'ar' ? 
                 'حلول متكاملة عبر خطوط الأنابيب والحفر والفحص والعمليات البحرية والرقابة الرقمية' :
