@@ -58,6 +58,10 @@ export default function NewsArticlePage() {
       dateModified: article.date,
       mainEntityOfPage: url,
       url,
+      author: {
+        "@type": "Organization",
+        name: "Makamin Saudi Holding Company for Oil & Gas Services"
+      },
       publisher: {
         "@type": "Organization",
         name: "Makamin Saudi Holding Company for Oil & Gas Services"

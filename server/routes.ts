@@ -251,7 +251,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.get("/sitemap.xml", (_req, res) => {
-    const base = "https://www.makamin.com.sa";
+    const base = "https://makamin.com.sa";
     const news = readNews();
 
     const staticPages = [
@@ -279,7 +279,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `${base}/projects/zencus`,
       `${base}/certifications`,
       `${base}/contact`,
-      `${base}/news`
+      `${base}/news`,
+      `${base}/bahrain-operations`,
+      `${base}/headquarters`,
+      `${base}/investor-relations`,
+      `${base}/malaysia`,
+      `${base}/media-coverage`
     ];
 
     const staticXml = staticPages.map((u) => `<url><loc>${u}</loc></url>`).join("\n");
@@ -296,7 +301,7 @@ ${newsXml}
   });
 
   app.get("/rss.xml", (_req, res) => {
-    const base = "https://www.makamin.com.sa";
+    const base = "https://makamin.com.sa";
     const news = readNews();
 
     const sorted = [...news].sort((a: any, b: any) => b.date.localeCompare(a.date));

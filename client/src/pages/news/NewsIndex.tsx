@@ -42,6 +42,15 @@ export default function NewsIndex() {
       content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
     });
 
+    upsertMetaTag('meta[property="og:image"]', {
+      property: "og:image",
+      content: "https://makamin.com.sa/og-image.jpg"
+    });
+    upsertMetaTag('meta[name="twitter:image"]', {
+      name: "twitter:image",
+      content: "https://makamin.com.sa/og-image.jpg"
+    });
+
     upsertJsonLd("news-index", {
       "@context": "https://schema.org",
       "@type": "CollectionPage",

@@ -1,0 +1,72 @@
+Execute SEO batch 1 only.
+
+Implement only the lowest-risk, additive SEO fixes identified in the SEO remediation audit.
+
+Allowed scope only:
+1. align sitemap, RSS, and robots sitemap domain output to the canonical non-www domain already used elsewhere
+2. add only the confirmed missing crawlable pages to the sitemap
+3. add only the confirmed admin/non-public disallow rules to robots.txt
+4. add author to the existing NewsArticle JSON-LD only
+5. add explicit og:image and twitter:image metadata to NewsIndex only
+6. do not modify metadata architecture, SEO system design, page structure, routes, or content text
+
+Exact required changes only:
+
+A. server/routes.ts
+- change sitemap base domain from https://www.makamin.com.sa to https://makamin.com.sa
+- change RSS base domain from https://www.makamin.com.sa to https://makamin.com.sa
+- ensure robots.txt sitemap directive also points to https://makamin.com.sa/sitemap.xml
+- add only these missing crawlable pages to the sitemap staticPages list:
+  - /bahrain-operations
+  - /headquarters
+  - /investor-relations
+  - /malaysia
+  - /media-coverage
+- add only these Disallow rules to robots.txt:
+  - Disallow: /royal-dashboard
+  - Disallow: /update-shareholder
+
+B. client/src/pages/news/NewsArticle.tsx
+- add only an author field to the existing NewsArticle JSON-LD
+- do not change the existing JSON-LD structure beyond the minimum required additive author property
+- do not change article rendering, canonical logic, or metadata order
+
+C. client/src/pages/news/NewsIndex.tsx
+- add explicit og:image
+- add explicit twitter:image
+- use the existing site-level/default social image source already used by the project where appropriate
+- do not redesign the metadata system
+- do not change title, description, canonical, or route behavior
+
+Explicitly do not do:
+- do not change SEOHeadTags.tsx
+- do not change SEOHead.tsx
+- do not change AdvancedSEO.tsx
+- do not merge SEO systems
+- do not modify client/src/lib/seo-config.ts in this batch
+- do not change any H1 tags in this batch
+- do not add per-page og:image mapping in this batch
+- do not modify routes, App.tsx, page layouts, or content JSON
+- do not refactor metadata architecture
+
+Required safeguards:
+- preserve all current route behavior
+- preserve all current page content and layout
+- ensure sitemap output remains valid XML
+- ensure robots.txt output remains valid plain text
+- ensure NewsArticle JSON-LD remains valid structured data after the author addition
+- ensure NewsIndex metadata remains additive and does not remove any existing tags
+- if any target field already exists exactly as required, skip that change and report it
+- if any change risks breaking the current SEO systems due to selector collision or write-order conflicts, skip that item and report exactly why
+
+After completion, report only:
+1. exact files changed
+2. exact SEO fixes applied
+3. exact lines or sections changed at a high level
+4. confirmation that sitemap, RSS, and robots domain output are now aligned
+5. confirmation that the five missing pages were added to sitemap
+6. confirmation that robots disallow rules were added
+7. confirmation that NewsArticle JSON-LD now includes author
+8. confirmation that NewsIndex now sets explicit og:image and twitter:image
+9. confirmation that runtime, routing, and build remained intact
+10. confirmation that no unrelated files were modified
