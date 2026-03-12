@@ -1,0 +1,44 @@
+Use read-only audit mode only.
+
+Perform a focused SEO remediation planning audit on the current Makamin codebase after the completed cleanup, security, and performance batches.
+
+Scope only:
+1. routed page metadata coverage
+2. news page metadata and social sharing metadata
+3. structured data consistency
+4. heading structure and semantic page signals
+5. sitemap, canonical, and crawlability consistency
+
+Goals:
+- identify the smallest safe SEO remediation strategy with the highest search and share-preview impact
+- determine which SEO fixes are additive and low-risk
+- determine which SEO issues are caused by overlapping metadata systems and therefore should be deferred for later architectural cleanup
+- identify exactly which files would need modification for each proposed SEO improvement
+- rank fixes by impact on discoverability, indexing clarity, share previews, and semantic quality
+- identify the smallest safe SEO execution batch that can be implemented without introducing duplicate or conflicting head tags
+
+Rules:
+- read-only only
+- do not modify anything
+- do not merge SEO systems yet
+- do not refactor metadata architecture yet
+- do not change routes, page structure, or content
+- report only
+- prefer additive, page-level improvements first
+- if any finding is uncertain, mark it as review-required
+- if a page already receives metadata from more than one active SEO system, do not recommend additive duplication; mark it as architecture-sensitive
+- clearly separate:
+  1. safe additive SEO fixes
+  2. SEO issues that require architecture cleanup first
+
+Required output:
+1. exact routed pages missing metadata or having weak/incomplete metadata
+2. exact news SEO gaps still present, including article pages and news index
+3. exact structured-data conflicts, duplicates, or overlap between SEO systems
+4. exact pages missing H1 or having weak semantic heading structure
+5. exact sitemap, canonical, og:image, twitter-card, and crawlability issues
+6. exact files that would need modification for each proposed SEO improvement
+7. what can be fixed safely now as an additive SEO batch
+8. what should be deferred because it requires metadata-system cleanup or architectural decisions
+9. break-risk assessment for each proposed SEO remediation
+10. exact safest next SEO execution batch
