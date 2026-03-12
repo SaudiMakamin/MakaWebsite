@@ -112,8 +112,19 @@
     <meta name="twitter:description" content="ريادة في خدمات النفط والغاز والحلول البحرية." />
     <meta name="twitter:image" content="https://makamin.com.sa/og-image.jpg" />
     <meta name="twitter:site" content="@MakaminSaudi" />
-    <script type="module" crossorigin src="/assets/index-DzsNV6nV.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BuR13VG3.css">
+
+    <!-- Font Performance: preconnect before stylesheet fetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts loaded as HTML links (non-blocking vs CSS @import) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" />
+
+    <!-- LCP Hero Image Preload -->
+    <link rel="preload" as="image" href="/attached_assets/hero-carousel-1_1752529906169.jpg" />
+    <script type="module" crossorigin src="/assets/index-Dure-Y_r.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-POpqdwp0.css">
   </head>
   <body>
     <div id="root"></div>

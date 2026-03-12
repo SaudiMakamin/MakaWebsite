@@ -1,0 +1,107 @@
+Use read-only verification mode only.
+
+Perform a final full-system integrity audit on the Makamin codebase after all cleanup, security, performance, and SEO batches.
+
+This is the final verification step before committing and pushing the repository.
+
+Goals:
+- confirm the application builds successfully
+- confirm there are no broken imports or unresolved modules
+- confirm all routes resolve correctly
+- confirm no page references missing assets
+- confirm metadata systems still function without collisions or missing tags
+- confirm sitemap, RSS, and robots outputs are valid
+- confirm SEO fixes are present and functioning
+- confirm no deleted assets are still referenced
+- confirm no unused code paths were accidentally reintroduced
+- confirm runtime stability before Git commit
+
+Rules:
+- read-only only
+- do not modify, delete, move, or rename anything
+- do not refactor or optimize
+- do not regenerate assets
+- do not change routes, components, metadata, or configuration
+- verification and report only
+
+Verification checklist:
+
+1. Build integrity
+- run a full production build
+- confirm no TypeScript errors
+- confirm no unresolved imports
+- confirm bundle completes successfully
+
+2. Import integrity
+- scan all source files for imports referencing:
+  - deleted pages
+  - deleted components
+  - deleted assets
+- confirm zero broken imports remain
+
+3. Route integrity
+- confirm all routes defined in App.tsx resolve to existing page components
+- confirm route order and paths remain unchanged
+- confirm no removed page is still referenced in routing
+
+4. Asset integrity
+- verify all referenced assets exist on disk
+- check both:
+  - @assets imports
+  - /attached_assets URLs
+- confirm no reference exists to previously deleted files
+
+5. SEO verification
+- confirm sitemap.xml generates successfully
+- confirm robots.txt is valid plain text
+- confirm canonical domain consistency (https://makamin.com.sa)
+- confirm NewsArticle JSON-LD contains author
+- confirm NewsIndex includes og:image and twitter:image
+- confirm no duplicate conflicting canonical tags exist
+
+6. Metadata integrity
+- confirm SEOHeadTags, SEOHead, AdvancedSEO, and page-level metadata still execute without removing required tags
+- confirm page titles and descriptions resolve
+- confirm no page renders without a title tag
+
+7. Heading structure verification
+- confirm each page modified in SEO Batch 2 now contains exactly one H1
+- confirm no page contains more than one H1
+
+8. Image integrity
+- confirm lazy-loaded images still resolve correctly
+- confirm hero images still load eagerly
+- confirm og:image URLs resolve
+
+9. Server endpoint verification
+- confirm these endpoints respond successfully:
+  - /sitemap.xml
+  - /robots.txt
+  - /api/news
+- confirm attached_assets serving still returns HTTP 200 for active files
+
+10. Dependency verification
+- confirm removed packages are not referenced anywhere
+- confirm package.json and lockfile remain consistent
+
+11. Deleted file verification
+- confirm no previously deleted page, component, or asset is still referenced anywhere in the codebase
+
+12. Git change scope verification
+- list all files modified since the beginning of the cleanup session
+- confirm modifications align with the executed batches only
+- confirm no unexpected files were modified
+
+Required output:
+1. build status
+2. broken import check result
+3. route integrity result
+4. asset reference integrity result
+5. sitemap and robots validation result
+6. metadata system integrity result
+7. heading structure verification result
+8. server endpoint verification result
+9. dependency verification result
+10. deleted-file reference check result
+11. list of files changed during the session
+12. confirmation that the repository is safe for commit and push
