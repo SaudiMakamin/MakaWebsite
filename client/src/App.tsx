@@ -51,12 +51,6 @@ import RiyadhHeadquarters from '@/pages/riyadh-headquarters';
 import Headquarters from '@/pages/headquarters';
 
 import { SocialShareOptimizer } from '@/lib/social-share-optimizer';
-import ShadowReaper from '@/components/shadow-reaper';
-import ShadowQALayer from '@/components/shadow-qa-layer';
-import ShadowProtectionLayer from '@/components/shadow-protection-layer';
-
-import ShadowDiagnosticProbe from '@/components/shadow-diagnostic-probe';
-import SupremeExecutionOrder006 from '@/components/supreme-execution-order-006';
 
 function Router() {
   return (
@@ -112,27 +106,20 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LanguageProvider>
-          <ShadowProtectionLayer protectedSections={['news-center', 'about-page', 'contact-page', 'investors-section']}>
-            {showSplash ? (
-              <SplashScreen onComplete={() => setShowSplash(false)} />
-            ) : (
-              <div className="min-h-screen">
-                <SEOHeadTags />
-                <SEOHead />
-                <AdvancedSEO />
-                <Header />
-                <main>
-                  <Router />
-                </main>
-                <Footer />
-
-
-
-
-                {/* Shadow systems disabled for clean news implementation */}
-              </div>
-            )}
-          </ShadowProtectionLayer>
+          {showSplash ? (
+            <SplashScreen onComplete={() => setShowSplash(false)} />
+          ) : (
+            <div className="min-h-screen">
+              <SEOHeadTags />
+              <SEOHead />
+              <AdvancedSEO />
+              <Header />
+              <main>
+                <Router />
+              </main>
+              <Footer />
+            </div>
+          )}
           <Toaster />
         </LanguageProvider>
       </TooltipProvider>

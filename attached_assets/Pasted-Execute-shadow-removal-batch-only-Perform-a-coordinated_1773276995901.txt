@@ -1,0 +1,39 @@
+Execute shadow removal batch only.
+
+Perform a coordinated removal of the mounted shadow / diagnostic runtime components identified in prior audits.
+
+Allowed scope only:
+1. remove only the shadow-related imports and mount points from client/src/App.tsx
+2. unwrap the existing app tree from ShadowProtectionLayer only if this can be done with minimal JSX change and without altering the existing visual/container structure
+3. delete only the shadow component files that become unreferenced as a direct result
+4. preserve the current app tree, sibling order, providers, routes, and visible layout structure after shadow removal
+5. do not change any other routes, providers, page components, business logic, SEO content, or asset paths
+
+Target components:
+- client/src/components/shadow-reaper.tsx
+- client/src/components/shadow-qa-layer.tsx
+- client/src/components/shadow-protection-layer.tsx
+- client/src/components/shadow-diagnostic-probe.tsx
+- client/src/components/supreme-execution-order-006.tsx
+
+Required safeguards:
+- before editing App.tsx, re-verify the exact import and mount locations for all five target components
+- preserve the exact existing child app structure currently wrapped by ShadowProtectionLayer
+- remove only the exact shadow-related imports and mount/render lines
+- do not reorder siblings
+- do not rename wrappers or restructure unrelated JSX
+- do not alter any non-shadow component import, provider, route, page, or metadata system
+- if any target asset is still referenced outside the deleted shadow components, keep that asset
+- delete no asset unless its exact reference count becomes 0 across source, content, server, config, and mounted files solely because of this batch
+- if removing the wrapper requires broader JSX restructuring, stop and report instead
+- if any result is ambiguous, skip that item and report it
+- no refactors beyond the minimum required to remove the mounted shadow layer cleanly
+- no unrelated cleanup, no dependency changes, no asset deletions unless they become exact 0-reference solely because of this batch
+
+After completion, report only:
+1. exact App.tsx lines removed or adjusted
+2. exact component files deleted
+3. exact assets deleted or preserved and why
+4. confirmation that the app tree remained structurally intact after wrapper removal
+5. confirmation that runtime, routing, build, and active metadata behavior remained intact
+6. confirmation that no unrelated files were modified
