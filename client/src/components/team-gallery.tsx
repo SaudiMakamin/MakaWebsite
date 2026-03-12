@@ -225,12 +225,16 @@ export default function TeamGallery() {
                   src={image.src} 
                   alt={language === 'ar' ? image.titleAr : image.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* Makamin Logo Overlay - Bottom Right */}
                 <img 
                   src={makaminLogoOverlay}
                   alt="Makamin Brand"
                   className="absolute bottom-2 right-2 w-16 h-auto opacity-70 z-10"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
@@ -306,12 +310,16 @@ export default function TeamGallery() {
                   src={currentImage.src}
                   alt={language === 'ar' ? currentImage.titleAr : currentImage.title}
                   className="w-full h-auto max-h-[70vh] object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* Makamin Logo Overlay - Bottom Right */}
                 <img 
                   src={makaminLogoOverlay}
                   alt="Makamin Brand"
                   className="absolute bottom-16 right-6 w-20 h-auto opacity-70 z-10"
+                  loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Image Caption */}

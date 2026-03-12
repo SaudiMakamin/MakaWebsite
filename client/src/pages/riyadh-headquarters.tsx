@@ -165,7 +165,7 @@ export default function RiyadhHeadquarters() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex items-center space-x-3 p-4 bg-green-50 rounded-lg">
-                    <img src={ministryLogo} alt="Ministry of Commerce" className="w-12 h-12" />
+                    <img src={ministryLogo} alt="Ministry of Commerce" className="w-12 h-12" loading="lazy" decoding="async" />
                     <div>
                       <p className="font-semibold text-sm text-green-800">
                         {language === 'ar' ? 'وزارة التجارة' : 'Ministry of Commerce'}
@@ -176,7 +176,7 @@ export default function RiyadhHeadquarters() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg">
-                    <img src={visionLogo} alt="Saudi Vision 2030" className="w-12 h-12" />
+                    <img src={visionLogo} alt="Saudi Vision 2030" className="w-12 h-12" loading="lazy" decoding="async" />
                     <div>
                       <p className="font-semibold text-sm text-blue-800">
                         {language === 'ar' ? 'رؤية 2030' : 'Vision 2030'}
@@ -248,10 +248,10 @@ export default function RiyadhHeadquarters() {
                   {language === 'ar' ? 'معرض صور المجمع' : 'Complex Photo Gallery'}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <img src={canaryImage1} alt="Canary Complex Interior 1" className="w-full h-32 object-cover rounded-lg shadow-md" />
-                  <img src={canaryImage2} alt="Canary Complex Interior 2" className="w-full h-32 object-cover rounded-lg shadow-md" />
-                  <img src={canaryImage3} alt="Canary Complex Interior 3" className="w-full h-32 object-cover rounded-lg shadow-md" />
-                  <img src={canaryExterior} alt="Canary Complex Exterior" className="w-full h-32 object-cover rounded-lg shadow-md" />
+                  <img src={canaryImage1} alt="Canary Complex Interior 1" className="w-full h-32 object-cover rounded-lg shadow-md" loading="lazy" decoding="async" />
+                  <img src={canaryImage2} alt="Canary Complex Interior 2" className="w-full h-32 object-cover rounded-lg shadow-md" loading="lazy" decoding="async" />
+                  <img src={canaryImage3} alt="Canary Complex Interior 3" className="w-full h-32 object-cover rounded-lg shadow-md" loading="lazy" decoding="async" />
+                  <img src={canaryExterior} alt="Canary Complex Exterior" className="w-full h-32 object-cover rounded-lg shadow-md" loading="lazy" decoding="async" />
                 </div>
               </CardContent>
             </Card>

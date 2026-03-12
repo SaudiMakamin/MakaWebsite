@@ -749,6 +749,8 @@ export default function About() {
                     src={leadership.ceo.photo}
                     alt={leadership.ceo.name}
                     className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
@@ -818,6 +820,8 @@ export default function About() {
                           src="/attached_assets/ADEL AYED ALNOOB_1752885031070.jpg"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.style.display = 'none';
@@ -830,6 +834,8 @@ export default function About() {
                           src="/attached_assets/Ibrahim Ahmed Sabti Alghamdi_1752784084513.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       {/* Executive Committee Chairman - Ibrahim Abdullah Al-Jalal */}
@@ -838,6 +844,8 @@ export default function About() {
                           src="/attached_assets/Ibrahim Abdullah Al-Jallal_1752784084513.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       {/* Board Member - Khalid Hamdan Al-Saif */}
@@ -846,6 +854,8 @@ export default function About() {
                           src="/attached_assets/Khaled Hamdan Alsaif_1752784084514.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       {/* Board Member - Hamad Ali Al-Qahtani */}
@@ -854,6 +864,8 @@ export default function About() {
                           src="/attached_assets/HamadAlQahtani_1752784084512.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       {/* Board Member - Mohammad Jassim Ibrahim Al-Fawaz */}
@@ -862,6 +874,8 @@ export default function About() {
                           src="/attached_assets/Mohammad Jassim Ibrahim Alfawaz_1752784084515.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </div>
@@ -1236,6 +1250,8 @@ export default function About() {
                           src="/attached_assets/kpmg-logo-1_1753201810753.webp" 
                           alt="KPMG Logo"
                           className="h-5 object-contain"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <span className="text-slate-300 text-sm">external audit and compliance support</span>
                       </div>

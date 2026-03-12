@@ -38,13 +38,13 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
         <CardContent className="p-4">
           {aramcoMode && (
             <div className="flex items-center gap-2 mb-2">
-              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-4 w-auto opacity-80" />
+              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-4 w-auto opacity-80" loading="lazy" decoding="async" />
               <span className="text-[10px] font-bold tracking-wider uppercase text-[#c5a66e]">Aramco Project</span>
             </div>
           )}
           {mosMode && (
             <div className="flex items-center gap-2 mb-2">
-              <img src={mosLogoPath} alt="MOS" className="h-5 w-auto opacity-90" />
+              <img src={mosLogoPath} alt="MOS" className="h-5 w-auto opacity-90" loading="lazy" decoding="async" />
               <span className="text-[10px] font-bold tracking-wider uppercase text-[#c5a66e]">MOS Project</span>
             </div>
           )}
@@ -96,7 +96,7 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <img src={mosLogoPath} alt="MOS" className="h-6 w-auto opacity-85 group-hover:opacity-100 transition-opacity" />
+              <img src={mosLogoPath} alt="MOS" className="h-6 w-auto opacity-85 group-hover:opacity-100 transition-opacity" loading="lazy" decoding="async" />
             </div>
             <div className="flex items-center gap-2">
               {project.recordStatus && (
@@ -187,7 +187,7 @@ export default function ProjectCard({ project, variant = 'dark', compact = false
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-5 w-auto opacity-80 group-hover:opacity-100 transition-opacity" />
+              <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-5 w-auto opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" decoding="async" />
               <span className="text-[10px] font-bold tracking-widest uppercase text-[#c5a66e]/80">Project</span>
             </div>
             {project.status && (

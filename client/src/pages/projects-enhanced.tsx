@@ -284,7 +284,7 @@ export default function Projects() {
                 whileHover={{ scale: 1.02 }}
                 className="bg-slate-800 border border-[#c5a66e]/20 rounded-xl p-8 cursor-pointer hover:border-[#c5a66e]/50 transition-all"
               >
-                <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-8 mb-4 opacity-90" />
+                <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-8 mb-4 opacity-90" loading="lazy" decoding="async" />
                 <h3 className="text-2xl font-bold text-white mb-2">
                   {language === 'ar' ? 'مشاريع أرامكو السعودية' : 'Saudi Aramco Projects'}
                 </h3>
@@ -498,10 +498,10 @@ export default function Projects() {
 
                       <div className="absolute top-4 left-4">
                         {project.client === 'Saudi Aramco' && (
-                          <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-8 w-auto opacity-90" />
+                          <img src={aramcoLogoPath} alt="Saudi Aramco" className="h-8 w-auto opacity-90" loading="lazy" decoding="async" />
                         )}
                         {project.client === 'National Water Company' && (
-                          <img src={nwcLogoPath} alt="National Water Company" className="h-8 w-auto opacity-90" />
+                          <img src={nwcLogoPath} alt="National Water Company" className="h-8 w-auto opacity-90" loading="lazy" decoding="async" />
                         )}
                       </div>
 
@@ -590,6 +590,8 @@ export default function Projects() {
                   src={sectorImages[selectedProject.sector] || heroCarouselPath}
                   alt={language === 'ar' ? selectedProject.titleAr : selectedProject.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6">

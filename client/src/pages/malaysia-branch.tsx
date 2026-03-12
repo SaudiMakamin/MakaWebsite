@@ -268,6 +268,8 @@ export default function MalaysiaBranch() {
                       src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
                       alt="Kuala Lumpur Office Interior"
                       className="w-full h-64 object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     <div className="absolute bottom-4 left-4 text-white">
@@ -282,11 +284,15 @@ export default function MalaysiaBranch() {
                         src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
                         alt="Conference Room"
                         className="w-full h-24 object-cover rounded-lg border"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <img 
                         src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
                         alt="Office Reception"
                         className="w-full h-24 object-cover rounded-lg border"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>

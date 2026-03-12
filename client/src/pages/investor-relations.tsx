@@ -224,6 +224,8 @@ export default function InvestorRelations() {
                     src={investor.logo}
                     alt={`${investor.name} Logo`}
                     className="max-w-[75%] max-h-[75%] object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-white text-center mb-1">

@@ -99,6 +99,8 @@ export default function GlobalPartnersSlider() {
                       src={partner.logo}
                       alt={partner.name}
                       className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.src = `data:image/svg+xml;base64,${btoa(`<svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="60" fill="#1f2937"/><text x="60" y="35" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">${partner.name}</text></svg>`)}`;

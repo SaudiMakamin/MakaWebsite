@@ -289,7 +289,7 @@ export default function Home() {
                   <Card className="h-full cursor-pointer group hover:shadow-xl transition-all duration-300 border border-gray-200">
                     <CardContent className="p-6">
                       {card.logoSrc ? (
-                        <img src={card.logoSrc} alt={card.logoAlt} className="h-10 w-auto mb-4 object-contain" />
+                        <img src={card.logoSrc} alt={card.logoAlt} className="h-10 w-auto mb-4 object-contain" loading="lazy" decoding="async" />
                       ) : (
                         <card.icon className="w-10 h-10 text-[#003f6a] mb-4 group-hover:text-[#c5a66e] transition-colors" />
                       )}
@@ -364,6 +364,8 @@ export default function Home() {
                       src={investor.logo} 
                       alt={`${investor.name} Logo`}
                       className="max-w-[75%] max-h-[75%] object-contain filter brightness-105 contrast-110 group-hover:brightness-110 transition-all duration-300"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <h3 className="text-base sm:text-lg font-bold mb-2 text-white">

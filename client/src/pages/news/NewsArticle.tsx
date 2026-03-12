@@ -151,6 +151,8 @@ export default function NewsArticlePage() {
                 src={article.image}
                 alt={language === "ar" ? article.titleAr || article.title : article.title}
                 className="w-full h-auto max-h-[500px] object-cover rounded-xl border border-slate-700"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
           </div>

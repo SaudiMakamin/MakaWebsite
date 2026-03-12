@@ -401,6 +401,8 @@ export default function MediaCoverage() {
                                 src="/attached_assets/aerodyne-agreement_1752881106036.webp" 
                                 alt="Aerodyne Makamin Partnership Signing Ceremony" 
                                 className="w-full h-56 object-cover rounded-lg border-4 border-yellow-400 shadow-2xl"
+                                loading="lazy"
+                                decoding="async"
                                 onLoad={() => console.log('Image loaded successfully')}
                                 onError={(e) => {
                                   console.log('Using fallback image');
