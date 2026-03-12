@@ -1,0 +1,61 @@
+Execute SEO batch 4B only.
+
+Implement only the confirmed semantic heading fixes identified in the SEO audit.
+
+Allowed scope only:
+1. change only the main page heading element on the confirmed pages missing an H1
+2. preserve the existing text content, classes, styling, layout, and visual appearance
+3. do not change metadata systems, routes, content, assets, or page structure beyond the minimum heading tag correction
+
+Target pages only:
+- client/src/pages/home.tsx
+- client/src/pages/services.tsx
+- client/src/pages/projects-enhanced.tsx
+- client/src/pages/certifications-enhanced.tsx
+- client/src/pages/investor-relations.tsx
+- client/src/pages/malaysia-branch.tsx
+- client/src/pages/offshore-projects.tsx
+- client/src/pages/fleet-assets.tsx
+- client/src/pages/zencus-projects.tsx
+
+Required safeguards:
+- before editing each file, re-verify the exact heading that visually functions as the page’s primary title
+- change only one heading element per page if needed to establish the single correct H1
+- change only the HTML heading tag level (e.g. h2 → h1 or h3 → h1)
+- preserve the heading text exactly as-is
+- preserve all classes and styling exactly as-is
+- do not move the heading element within the DOM
+- do not change any other heading levels in the file
+- do not introduce a second H1 on any page
+- verify that each page contains exactly one H1 after the change
+- do not reorder headings or rewrite section structure in this batch
+- if any page already has a valid H1, skip it and report why
+- if the correct primary heading is ambiguous, skip that page and report it
+- no metadata changes
+- no route changes
+- no refactors
+- no unrelated JSX cleanup
+
+Explicitly do not modify:
+- client/src/components/*
+- client/src/lib/*
+- SEOHead.tsx
+- SEOHeadTags.tsx
+- AdvancedSEO.tsx
+- App.tsx
+- routing configuration
+- any assets
+- any metadata configuration
+
+Expected action pattern:
+- convert the existing visually primary hero/banner heading from h2 or h3 to h1 where confirmed
+- leave all subordinate headings unchanged
+
+After completion, report only:
+1. exact files changed
+2. exact heading elements changed (old tag → new tag)
+3. exact files skipped and why
+4. confirmation that text, classes, layout, and styling remained unchanged
+5. confirmation that each modified page now has exactly one primary H1
+6. confirmation that runtime, routing, and build remained intact
+7. confirmation that no unrelated files were modified

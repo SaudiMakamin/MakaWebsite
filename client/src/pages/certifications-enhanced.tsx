@@ -371,9 +371,9 @@ export default function Certifications() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               {language === 'ar' ? 'التزامنا بالجودة والامتثال' : 'Our Commitment to Quality & Compliance'}
-            </h1>
+            </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               {language === 'ar' ? 
                 'نحن ملتزمون بأعلى معايير الجودة والسلامة والامتثال في جميع أنشطتنا. شهاداتنا واعتماداتنا تعكس التزامنا المستمر بالتميز وتقديم خدمات تتجاوز توقعات عملائنا.' :
