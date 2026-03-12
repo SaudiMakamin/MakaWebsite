@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import { Facebook, Twitter, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguageContext } from './language-provider';
 import makaminLogoPath from '@assets/logo mkamin_1752524503536.png';
@@ -62,6 +62,26 @@ export default function Footer() {
                 whileHover={{ filter: 'drop-shadow(0 0 12px rgba(197, 166, 110, 0.6))' }}
               >
                 <Twitter className="w-6 h-6" />
+              </motion.a>
+              <motion.a 
+                href="https://www.facebook.com/saudimakamin" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:scale-110 transition-all duration-300"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(197, 166, 110, 0.3))' }}
+                whileHover={{ filter: 'drop-shadow(0 0 12px rgba(197, 166, 110, 0.6))' }}
+              >
+                <Facebook className="w-6 h-6" />
+              </motion.a>
+              <motion.a 
+                href="https://www.instagram.com/saudimakamin" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:scale-110 transition-all duration-300"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(197, 166, 110, 0.3))' }}
+                whileHover={{ filter: 'drop-shadow(0 0 12px rgba(197, 166, 110, 0.6))' }}
+              >
+                <Instagram className="w-6 h-6" />
               </motion.a>
             </div>
           </div>

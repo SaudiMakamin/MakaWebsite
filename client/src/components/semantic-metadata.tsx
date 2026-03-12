@@ -45,7 +45,9 @@ export default function SemanticMetadata({ page, title, description }: SemanticM
       },
       "sameAs": [
         "https://www.linkedin.com/company/makamin-saudi",
-        "https://twitter.com/makaminsaudi"
+        "https://twitter.com/makaminsaudi",
+        "https://www.facebook.com/saudimakamin",
+        "https://www.instagram.com/saudimakamin"
       ],
       "numberOfEmployees": {
         "@type": "QuantitativeValue",
