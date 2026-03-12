@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import DOMPurify from "dompurify";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, User, Clock, Share2, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -95,9 +96,11 @@ export default function NewsArticlePage() {
     );
   }
 
-  const html = language === "ar"
-    ? article.contentHtmlAr || article.contentHtml || ""
-    : article.contentHtml || "";
+  const html = DOMPurify.sanitize(
+    language === "ar"
+      ? article.contentHtmlAr || article.contentHtml || ""
+      : article.contentHtml || ""
+  );
 
   const related = allNews
     .filter((n) => n.slug !== article.slug && n.category === article.category)

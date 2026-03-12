@@ -1,0 +1,80 @@
+Execute security quick-wins batch only.
+
+Implement only the highest-priority additive security fixes that can be applied safely without restructuring the application.
+
+Allowed scope only:
+1. add HTTP security headers middleware
+2. add rate limiting to write endpoints only
+3. sanitize rendered HTML in the active news article page only
+4. add strict validation for shareholder route params and status input only
+5. do not change business logic, routing structure, page structure, assets, or deployment flow
+
+Exact required changes only:
+
+A. HTTP security headers
+- install and configure helmet
+- mount helmet as early as possible in server/index.ts
+- use a configuration that is compatible with the current app and does not break existing static assets or inline scripts unexpectedly
+- include at minimum:
+  - X-Content-Type-Options
+  - Referrer-Policy
+  - X-Frame-Options or equivalent frameguard
+  - Permissions-Policy
+- if CSP is added, use a non-breaking report-safe configuration first; if CSP would risk breaking the current frontend, skip CSP for now and report that it was intentionally deferred
+
+B. Rate limiting
+- install and configure express-rate-limit
+- apply rate limiting only to write endpoints:
+  - POST /api/contact
+  - POST /api/shareholders
+  - PATCH /api/shareholders/:id/status
+  - POST /api/shareholders/google-workspace
+- do not apply rate limiting to read-only GET endpoints
+- use conservative limits that reduce abuse without breaking normal usage
+- report the exact limits applied
+
+C. News article HTML sanitization
+- use the safest compatible sanitization approach for the current React/Vite environment on the active rendered news article page only:
+  - client/src/pages/news/NewsArticle.tsx
+- sanitize the HTML immediately before rendering through dangerouslySetInnerHTML
+- do not alter article content semantics more than necessary
+- do not change article data structure or content JSON
+- report the exact sanitization package or method used
+
+D. Shareholder endpoint validation
+- in server/routes.ts, validate req.params.id for shareholder routes
+- reject invalid, non-numeric, NaN, zero, or negative ids with a proper 400 response
+- validate req.body.status against an explicit allowlist or enum before accepting PATCH /api/shareholders/:id/status
+- if status is invalid, return a proper 400 response
+- do not redesign the API beyond these guards
+
+Explicitly do not do:
+- do not add authentication yet
+- do not refactor route architecture
+- do not change App.tsx
+- do not change client routing
+- do not touch attached_assets serving behavior yet
+- do not move files
+- do not rename files
+- do not modify content/news.json
+- do not uninstall dependencies in this batch
+- do not perform performance or SEO changes in this batch
+- do not touch mounted shadow components unless strictly required for compilation, and if so, stop and report instead
+
+Required safeguards:
+- verify the app still builds and runs after changes
+- verify no routed page breaks
+- verify no active asset loading breaks
+- verify the patched endpoints still respond correctly
+- if any fix risks breaking runtime behavior, skip that part and report exactly why
+- keep the batch minimal and additive only
+
+After completion, report only:
+1. exact files changed
+2. exact packages added
+3. exact middleware added and where mounted
+4. exact validation rules added
+5. exact rate limits added
+6. whether CSP was added or deferred, and why
+7. confirmation that runtime, routing, and build remained intact
+8. any fix intentionally skipped due to break risk

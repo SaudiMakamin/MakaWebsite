@@ -1,8 +1,22 @@
 import express, { type Request, Response, NextFunction } from "express";
+import helmet from "helmet";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: false,
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+}));
+
+app.use((_req, res, next) => {
+  res.setHeader("Permissions-Policy", "geolocation=(), camera=(), microphone=()");
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

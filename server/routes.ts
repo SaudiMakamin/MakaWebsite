@@ -3,9 +3,34 @@ import { createServer, type Server } from "http";
 import { z } from "zod";
 import fs from "node:fs";
 import path from "node:path";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import { insertContactMessageSchema, insertShareholderSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
+
+const contactRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  message: { success: false, message: "Too many requests, please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const shareholderWriteRateLimit = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5,
+  message: { success: false, message: "Too many requests, please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const shareholderStatusRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 30,
+  message: { success: false, message: "Too many requests, please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 function readNews() {
   const p = path.join(process.cwd(), "content", "news.json");
@@ -23,7 +48,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/health", domainHealthCheck);
   
   // Contact form submission
-  app.post("/api/contact", async (req, res) => {
+  app.post("/api/contact", contactRateLimit, async (req, res) => {
     try {
       const contactData = insertContactMessageSchema.parse(req.body);
       const message = await storage.createContactMessage(contactData);
@@ -56,7 +81,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Shareholder information submission
-  app.post("/api/shareholders", async (req, res) => {
+  app.post("/api/shareholders", shareholderWriteRateLimit, async (req, res) => {
     try {
       const shareholderData = insertShareholderSchema.parse(req.body);
       const shareholder = await storage.createShareholder(shareholderData);
@@ -91,7 +116,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get specific shareholder by ID
   app.get("/api/shareholders/:id", async (req, res) => {
     try {
-      const id = parseInt(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id) || id <= 0) {
+        res.status(400).json({ success: false, message: "Invalid shareholder ID" });
+        return;
+      }
       const shareholder = await storage.getShareholderById(id);
       
       if (!shareholder) {
@@ -113,9 +142,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update shareholder status (for admin use)
-  app.patch("/api/shareholders/:id/status", async (req, res) => {
+  app.patch("/api/shareholders/:id/status", shareholderStatusRateLimit, async (req, res) => {
     try {
-      const id = parseInt(req.params.id);
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id) || id <= 0) {
+        res.status(400).json({ success: false, message: "Invalid shareholder ID" });
+        return;
+      }
       const { status } = req.body;
       
       if (!['pending', 'approved', 'rejected'].includes(status)) {
@@ -151,7 +184,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Google Workspace Integration - Complete Shareholder Registration
-  app.post("/api/shareholders/google-workspace", async (req, res) => {
+  app.post("/api/shareholders/google-workspace", shareholderWriteRateLimit, async (req, res) => {
     try {
       const shareholderData = insertShareholderSchema.parse(req.body);
       
