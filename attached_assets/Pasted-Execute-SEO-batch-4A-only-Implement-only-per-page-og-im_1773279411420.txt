@@ -1,0 +1,49 @@
+Execute SEO batch 4A only.
+
+Implement only per-page og:image coverage for routes that already have dedicated SEO config entries but still rely on a generic/default social image.
+
+Allowed scope only:
+1. add only missing per-page ogImage values to existing page-level SEO config entries
+2. use only already-existing, active, production-safe image assets
+3. preserve the current SEO system architecture and metadata flow
+4. do not modify page components, routes, sitemap, JSON-LD architecture, or asset files in this batch
+5. do not create, rename, move, convert, or delete any image asset
+
+Target file only:
+- client/src/lib/seo-config.ts
+
+Eligible routes only:
+- routes that already have a dedicated pagesSEO entry
+- routes whose current og:image still falls back to the generic/default image
+- routes for which a clearly relevant, already-existing active image can be matched with low ambiguity
+
+Required safeguards:
+- before editing, re-verify which pages already have dedicated SEO config entries but no specific ogImage field
+- add ogImage only where a clearly relevant existing asset is already active and production-safe
+- use only existing live assets that are already referenced safely in the current project
+- do not use ambiguous, archival, admin-only, legal, or non-public assets
+- do not add ogImage for any route where the best image choice is unclear; skip and report it
+- preserve the existing object structure, field naming, formatting, and canonical URL pattern in seo-config.ts
+- do not modify any existing title, description, keywords, or canonicalUrl values
+- do not alter NewsIndex or NewsArticle in this batch
+- do not add per-page JSON-LD in this batch
+- no unrelated cleanup, no refactor, no asset generation, no WebP conversion
+
+Content constraints:
+- each ogImage must be a stable, production-safe absolute URL or follow the exact existing project pattern already used in seo-config.ts
+- prefer route-relevant hero/cover images that already represent the page well in social previews
+- avoid logos-only images unless no better active page image exists
+- if a page has no clearly suitable active image, skip it and report why
+
+Expected action pattern:
+- add only an ogImage field to existing eligible pagesSEO entries
+- do not create new route entries in this batch
+- do not touch any route lacking a dedicated pagesSEO entry
+
+After completion, report only:
+1. exact routes that received a new ogImage
+2. exact ogImage fields added
+3. exact routes skipped and why
+4. confirmation that no other metadata fields were changed
+5. confirmation that runtime, routing, and build remained intact
+6. confirmation that no unrelated files were modified

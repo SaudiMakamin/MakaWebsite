@@ -23,6 +23,7 @@ export const pagesSEO: Record<string, SEOConfig> = {
     title: "شركة مكامن السعودية القابضة | خدمات النفط والغاز",
     description: "شركة مكامن السعودية القابضة - ريادة في خدمات النفط والغاز، الحلول البحرية، والمشاريع الاستراتيجية.",
     keywords: baseSEO.keywords + "، الصفحة الرئيسية، Home Page، مكامن الرئيسية",
+    ogImage: "https://makamin.com.sa/images/makamin-social-card.jpg",
     canonicalUrl: "https://makamin.com.sa/",
     structuredData: {
       "@context": "https://schema.org",
@@ -56,6 +57,7 @@ export const pagesSEO: Record<string, SEOConfig> = {
     title: "عن مكامن السعودية القابضة - تاريخ الشركة وقيادتها | Oil & Gas Services",
     description: "Saudi Makamin Holding Company - About Us | Oil & Gas Services since 2008 | SAR 1.2 Billion Capital | Executive Leadership",
     keywords: baseSEO.keywords + "، عن الشركة، About Us، تاريخ مكامن، مجلس الإدارة، القيادة التنفيذية، Board of Directors",
+    ogImage: "https://makamin.com.sa/images/makamin-flag-hero.jpg",
     canonicalUrl: "https://makamin.com.sa/about"
   },
   "/services": {
@@ -68,12 +70,14 @@ export const pagesSEO: Record<string, SEOConfig> = {
     title: "مشاريع مكامن السعودية القابضة مع أرامكو - مصفاة رأس تنورة ومحطة شدقم",
     description: "مشاريع شركة مكامن مع أرامكو السعودية: مصفاة رأس تنورة، محطة شدقم GOSP-4، خدمات الفحص غير المدمر، صيانة خطوط الأنابيب، مشاريع الحفر والأسمنت بقيمة مليارات الريالات.",
     keywords: baseSEO.keywords + "، مشاريع أرامكو، Aramco Projects، مصفاة رأس تنورة، محطة شدقم، GOSP-4، Projects",
+    ogImage: "https://makamin.com.sa/images/projects-hero-sunset.jpg",
     canonicalUrl: "https://makamin.com.sa/projects"
   },
   "/certifications": {
     title: "شهادات مكامين السعودية القابضة - آيزو 9001:2015 وتوف نورد | Quality Certifications",
     description: "شهادات الجودة والسلامة لشركة مكامن: آيزو 9001:2015، آيزو 14001:2015، آيزو 45001:2018، شهادة توف نورد TÜV NORD، السجل التجاري، شهادات أرامكو المعتمدة، سجل سلامة 1980 يوم صفر حوادث.",
     keywords: baseSEO.keywords + "، شهادات الجودة، ISO Certifications، آيزو 9001، TÜV NORD، Quality Certifications، سجل السلامة",
+    ogImage: "https://makamin.com.sa/images/certifications-hero-industrial.jpg",
     canonicalUrl: "https://makamin.com.sa/certifications"
   },
   "/news": {
