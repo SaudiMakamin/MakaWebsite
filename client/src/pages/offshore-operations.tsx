@@ -47,12 +47,12 @@ export default function OffshoreOperations() {
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <HeroLogo size="lg" />
-            <img src={mosLogoPath} alt="Makamin Offshore Saudi (MOS)" className="h-16 sm:h-20 w-auto mx-auto mb-6 drop-shadow-lg" />
+            <img src={mosLogoPath} alt="Makamin Offshore Saudi Ltd (MOS)" className="h-16 sm:h-20 w-auto mx-auto mb-6 drop-shadow-lg" />
             <h1 className="text-4xl md:text-5xl font-bold mb-3">
               {isAr ? 'شركة مكامن أوفشور السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd (MOS)'}
             </h1>
             <p className="text-lg text-blue-200 mb-4">
-              {isAr ? 'وحدة العمليات البحرية — مجموعة مكامن' : 'Marine Operations Division – Makamin Group'}
+              {isAr ? 'كيان العمليات البحرية الخارجية — مجموعة مكامن' : 'Offshore Marine Operations Entity – Makamin Group'}
             </p>
           </div>
         </div>
@@ -268,7 +268,7 @@ export default function OffshoreOperations() {
                     <thead>
                       <tr className="bg-blue-50 border-b border-blue-200">
                         <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'فئة العقد' : 'Contract Category'}</th>
-                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'قيمة العقد' : 'Contract Value'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'المرجع التجاري' : 'Commercial Reference'}</th>
                         <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'ملاحظات' : 'Notes'}</th>
                       </tr>
                     </thead>

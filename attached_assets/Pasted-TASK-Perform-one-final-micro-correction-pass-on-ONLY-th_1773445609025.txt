@@ -1,0 +1,110 @@
+TASK: Perform one final micro-correction pass on ONLY the “Makamin Offshore Saudi Ltd (MOS)” page.
+
+CRITICAL RULE:
+This is a minimal final-touch correction only.
+Apply ONLY the three corrections listed below.
+Do NOT change anything else.
+Do NOT rewrite any other text.
+Do NOT alter tables, ownership data, vessel rows, metadata, sections, order, layout, routing, or architecture.
+
+PROTECTED BASELINE:
+All current page content is protected and must remain unchanged except for the exact three corrections below.
+
+ARCHITECTURE RULES:
+- Modify ONLY the specific page file for Makamin Offshore Saudi Ltd (MOS).
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Do NOT refactor.
+- Do NOT move files.
+- Do NOT create shared components.
+- Do NOT alter any other company/entity page.
+
+OBJECTIVE:
+Apply ONLY these 3 final corrections:
+
+==================================================
+1) TOP-OF-PAGE NAME CONSISTENCY
+==================================================
+
+If the page currently shows any top-level name near the logo, hero label, or page heading as:
+
+Makamin Offshore Saudi (MOS)
+
+Replace it with:
+
+Makamin Offshore Saudi Ltd (MOS)
+
+This applies only if that label refers to the company/entity name itself.
+Ensure the official company name is consistent at the top of the page.
+
+If the text appears visually merged with the logo label (for example a concatenated rendering like “Makamin LogoMakamin Offshore Saudi (MOS)”), correct only the company-name portion and preserve the intended logo/title layout pattern already used by the page.
+
+==================================================
+2) SUBTITLE / TAGLINE REFINEMENT
+==================================================
+
+If the page currently shows this subtitle/tagline:
+
+Marine Operations Division – Makamin Group
+
+Replace it with:
+
+Offshore Marine Operations Entity – Makamin Group
+
+Apply this only to the page-level subtitle/tagline for this entity.
+
+==================================================
+3) CONTRACT PORTFOLIO COLUMN LABEL SOFTENING
+==================================================
+
+In the section:
+Offshore Marine Contract Portfolio
+
+If the current table column header reads:
+
+Contract Value
+
+Replace ONLY that column header with:
+
+Commercial Reference
+
+Do NOT change any row values beneath it.
+Do NOT remove the masked SAR entries.
+Do NOT rename the section.
+Do NOT change the Notes column.
+This is a header-only wording refinement.
+
+==================================================
+NON-DESTRUCTIVE RULES
+==================================================
+
+- Do NOT change ownership percentages.
+- Do NOT change Entity Overview text.
+- Do NOT change Operational Scope.
+- Do NOT change Main Client.
+- Do NOT change Offshore Fleet Registry.
+- Do NOT change Marine Project & Contract Notes.
+- Do NOT change Offshore Activity.
+- Do NOT change Fleet Capabilities.
+- Do NOT change metadata/title/description.
+- Do NOT change any other labels or sections beyond the exact three items above.
+
+==================================================
+VERIFICATION
+==================================================
+
+After editing, verify by code inspection only:
+1. The top-of-page company name is standardized to “Makamin Offshore Saudi Ltd (MOS)” where applicable.
+2. The subtitle/tagline is updated to “Offshore Marine Operations Entity – Makamin Group”.
+3. The Offshore Marine Contract Portfolio column header “Contract Value” is updated to “Commercial Reference”.
+4. No other page content changed.
+5. No tables other than that single header label were altered.
+6. No architecture or routing was changed.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
