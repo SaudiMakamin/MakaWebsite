@@ -1,0 +1,285 @@
+TASK: Perform one final unified surgical correction pass on ONLY the page for “Makamin Offshore Saudi Ltd (MOS)”, applying the exact approved corrections below and touching nothing else.
+
+CRITICAL RULE:
+This is a precision correction pass on the existing page only.
+Do NOT expand scope.
+Do NOT add new sections.
+Do NOT remove existing sections.
+Do NOT modify other entity/company pages.
+Do NOT change routing, navigation, layout architecture, backend, or shared infrastructure.
+Only correct the approved text/content on this one page.
+
+PROTECTED BASELINE:
+All current sections already on the page must remain in place:
+- Entity Overview
+- Operational Scope
+- Main Client
+- Offshore Fleet Registry
+- Marine Project & Contract Notes
+- Offshore Marine Contract Portfolio
+- Offshore Activity
+- Fleet Capabilities
+- Offshore & Marine Services
+- Group Overview
+
+Do NOT remove any of these sections.
+Do NOT reorder them.
+Do NOT merge them.
+Do NOT create new structural patterns.
+
+ARCHITECTURE RULES:
+- Respect the existing SPA architecture.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Modify ONLY the specific page file used by Makamin Offshore Saudi Ltd (MOS), and only local metadata/content tied to this page if absolutely required.
+- Preserve current EN/AR behavior and RTL/LTR behavior exactly as implemented.
+- Do NOT refactor.
+- Do NOT move files.
+- Do NOT create shared components.
+- Do NOT alter any shared data source unless it is used exclusively by this page.
+
+OBJECTIVE:
+Apply ONLY the following approved corrections.
+
+==================================================
+1) OWNERSHIP CORRECTION
+==================================================
+
+In Entity Overview:
+- Keep Makamin ownership as 51%.
+- Correct OWG ownership from 41% to 49%.
+
+Required result:
+- Makamin Ownership: 51%
+- Offshoreworks Global (L) Ltd (OWG): 49%
+
+Do NOT alter the commercial registration numbers.
+Do NOT alter the contract date note.
+
+==================================================
+2) NAME CONSISTENCY
+==================================================
+
+Standardize the company name to this exact form everywhere on this page where it refers to the entity name:
+
+Makamin Offshore Saudi Ltd (MOS)
+
+Do NOT leave any primary page heading, title, or entity-name label as:
+- Makamin Offshore Saudi
+- Makamin Offshore
+when it is intended to represent the official company/entity name.
+
+If there is a minor secondary UI label or breadcrumb tied specifically to this page, standardize it as well when safe to do so.
+
+==================================================
+3) INTRODUCTORY PARAGRAPH CORRECTION
+==================================================
+
+Replace the current stronger introductory paragraph inside Entity Overview with a more historically accurate and legally safer version.
+
+Replace:
+“Makamin Offshore Saudi Ltd (MOS) operates one of the most diversified offshore marine support portfolios serving Saudi Aramco operations in the Arabian Gulf, including platform support vessels, anchor handling tug supply vessels, navigation support vessels, offshore security patrol boats, and marine logistics units.”
+
+With:
+“Makamin Offshore Saudi Ltd (MOS) operated offshore marine support services for Saudi Aramco projects in the Arabian Gulf, including platform support vessels, navigation support services, offshore security patrol operations, and marine logistics activities.”
+
+If Arabic paired content exists for this exact paragraph, update it to a historically accurate equivalent without changing unrelated Arabic text.
+
+Suggested Arabic equivalent:
+“قدّمت شركة مكامن أوفشور السعودية المحدودة (MOS) خدمات دعم بحري وتشغيل بحري لمشاريع أرامكو السعودية في الخليج العربي، بما في ذلك سفن دعم المنصات، وخدمات دعم الملاحة، وعمليات الدوريات الأمنية البحرية، وأنشطة اللوجستيات البحرية.”
+
+==================================================
+4) FLEET REGISTRY — OPERATOR STANDARDIZATION
+==================================================
+
+In Offshore Fleet Registry:
+Standardize the Operator field for the current applicable rows to the full official entity name:
+
+Makamin Offshore Saudi Ltd (MOS)
+
+Apply this only where the operator currently refers to the same entity.
+Do NOT alter rows whose operator is intentionally different, such as:
+- MOS IES Pearl
+
+==================================================
+5) FLEET REGISTRY — VESSEL TYPE CORRECTIONS
+==================================================
+
+Update only the following vessel type entries in Offshore Fleet Registry:
+
+- Jaya Centurion → Platform Supply Vessel (PSV)
+- Jaya Chieftain → Platform Supply Vessel (PSV)
+- Jaya Concordia → Platform Supply Vessel (PSV)
+- Arkstar Voyager → Platform Supply Vessel (PSV)
+- POSH Pelican → Offshore Support Vessel (OSV)
+- Belait Barakah → Accommodation / Support Vessel
+- Zakher Crest → Offshore Support Vessel (OSV)
+
+Do NOT change vessel types for:
+- Makamin 1
+- Ansar 3
+- Jaya Pearl
+unless those rows already contain the same approved wording above, which they do not.
+
+Do NOT alter vessel names.
+Do NOT alter IMO values.
+Do NOT remove any rows.
+
+==================================================
+6) FLEET REGISTRY — STATUS WORDING CORRECTION
+==================================================
+
+Replace overly absolute “Completed” wording with historically safer wording as follows:
+
+For:
+- Jaya Centurion
+- Jaya Chieftain
+- Jaya Concordia
+- Arkstar Voyager
+- POSH Pelican
+
+Change Status to:
+Historical Aramco Charter
+
+For:
+- Belait Barakah
+
+Change Status to:
+Historical Security Contract
+
+For rows currently showing em dash / blank unknown values:
+- Zakher Crest
+- Makamin 1
+- Ansar 3
+- Jaya Pearl
+
+Leave them unchanged unless they already contain a status requiring correction, which they do not.
+
+Do NOT invent statuses for unknown rows.
+
+==================================================
+7) MARINE PROJECT & CONTRACT NOTES — LEGAL WORDING SOFTENING
+==================================================
+
+In the section:
+Marine Project & Contract Notes
+
+Update ONLY the POSH Pelican row wording.
+
+Replace:
+“Associated with POSH v Makamin litigation in Singapore.”
+
+With:
+“Referenced in maritime charter dispute proceedings involving POSH Semco.”
+
+Do NOT rewrite the other five rows unless required for exact formatting consistency.
+Do NOT add legal detail.
+Do NOT add new rows.
+
+==================================================
+8) FLEET CAPABILITIES CORRECTION
+==================================================
+
+Update Fleet Capabilities so it aligns with the vessels and marine activities actually shown on the page.
+
+Replace the current items if they include unsupported capabilities such as:
+- AHTSS Vessels
+- Diving Support Vessels (DSV)
+- Jack-Up Barges
+
+Use this corrected list instead:
+- Platform Supply Vessels (PSV)
+- Offshore Support Vessels (OSV)
+- Accommodation Support Vessels
+- Security Patrol Boats
+- Marine Logistics Support
+
+Keep the section title unchanged unless it already follows the local page pattern.
+Do NOT add capabilities not listed above.
+
+==================================================
+9) SEO / PAGE METADATA CORRECTION
+==================================================
+
+Update this page’s metadata/title/description only if they are locally defined for this page.
+
+Preferred Title:
+Makamin Offshore Saudi Ltd (MOS) | Offshore Marine Services
+
+Preferred Meta Description:
+Makamin Offshore Saudi Ltd (MOS) has supported offshore marine services including platform supply, offshore logistics, navigation support, and marine security operations in the Arabian Gulf.
+
+Do NOT change global site metadata.
+Do NOT alter metadata for any other page.
+
+==================================================
+10) TAGLINE / SUBTITLE CORRECTION
+==================================================
+
+Review the short subtitle/tagline currently shown near the top of the page.
+
+If it currently reads:
+MOS — Marine Entity — Makamin Group
+
+Replace it with:
+Marine Operations Division – Makamin Group
+
+Only apply this if it refers to the same page-level subtitle/tagline.
+Do NOT change unrelated labels elsewhere.
+
+==================================================
+NON-DESTRUCTIVE RULES
+==================================================
+
+- Do NOT remove any existing section.
+- Do NOT add monetary figures.
+- Do NOT alter Offshore Marine Contract Portfolio values.
+- Do NOT add new legal claims.
+- Do NOT add new timeline content.
+- Do NOT add new summary counters.
+- Do NOT alter current route/path/slug/navigation behavior.
+- Do NOT modify other company pages.
+- Do NOT rewrite the page beyond the exact approved corrections above.
+
+==================================================
+VERIFICATION
+==================================================
+
+After editing, verify by code inspection only:
+1. OWG ownership is corrected from 41% to 49%.
+2. The official name is standardized as “Makamin Offshore Saudi Ltd (MOS)” across this page.
+3. The stronger overview paragraph is replaced with the approved historical wording.
+4. Operator fields are standardized appropriately without changing intentional exceptions.
+5. Vessel types are corrected only for the approved vessels.
+6. Status wording is corrected only for the approved rows.
+7. The POSH Pelican legal note is softened exactly as specified.
+8. Fleet Capabilities reflects only the approved list.
+9. Page-level metadata is updated only if locally defined.
+10. The subtitle/tagline is corrected if present.
+11. No section was removed or reordered.
+12. No other page or architecture was changed.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
+
+
+NAME DISPLAY RULE:
+If the page contains any top-level label, hero label, page heading, breadcrumb-like text, or logo-adjacent company name for this entity, standardize it to:
+Makamin Offshore Saudi Ltd (MOS)
+Do not leave any shortened top-level display as “Makamin Offshore Saudi” when it refers to the company name itself.
+
+
+FLEET ORDER PROTECTION:
+Do NOT reorder existing vessel rows in Offshore Fleet Registry.
+Preserve the current row order exactly as it appears on the page.
+Only update the approved cells for the approved rows.
+
+CONTRACT COLUMN PROTECTION:
+Do NOT change the Contract column wording unless explicitly required above.
+Only update the Status column where approved.
+Leave existing Contract entries unchanged.

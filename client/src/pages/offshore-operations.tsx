@@ -23,19 +23,19 @@ export default function OffshoreOperations() {
   ];
 
   const fleetCapabilities = [
-    { en: "AHTSS Vessels", ar: "سفن المناولة والقطر والإمداد" },
-    { en: "Platform Supply Vessels (PSV)", ar: "سفن إمداد المنصات" },
-    { en: "Diving Support Vessels (DSV)", ar: "سفن دعم الغوص" },
-    { en: "Jack-Up Barges", ar: "صنادل الرفع" },
-    { en: "Crew and Utility Boats", ar: "قوارب الأطقم والخدمات" },
+    { en: "Platform Supply Vessels (PSV)", ar: "سفن إمداد المنصات (PSV)" },
+    { en: "Offshore Support Vessels (OSV)", ar: "سفن الدعم البحري (OSV)" },
+    { en: "Accommodation Support Vessels", ar: "سفن دعم الإقامة" },
+    { en: "Security Patrol Boats", ar: "زوارق الدوريات الأمنية" },
+    { en: "Marine Logistics Support", ar: "دعم اللوجستيات البحرية" },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
         page="group"
-        title="Makamin Offshore Saudi Ltd (MOS) | Saudi Makamin"
-        description="Makamin Offshore Saudi Ltd (MOS) — a 51% Makamin-owned offshore entity providing marine services, diving operations, underwater engineering, and fleet support for oil and gas operations."
+        title="Makamin Offshore Saudi Ltd (MOS) | Offshore Marine Services"
+        description="Makamin Offshore Saudi Ltd (MOS) has supported offshore marine services including platform supply, offshore logistics, navigation support, and marine security operations in the Arabian Gulf."
       />
       <EnhancedSecurity />
 
@@ -52,7 +52,7 @@ export default function OffshoreOperations() {
               {isAr ? 'شركة مكامن أوفشور السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd (MOS)'}
             </h1>
             <p className="text-lg text-blue-200 mb-4">
-              {isAr ? 'MOS — كيان بحري ضمن مجموعة مكامن' : 'MOS — Marine Entity — Makamin Group'}
+              {isAr ? 'وحدة العمليات البحرية — مجموعة مكامن' : 'Marine Operations Division – Makamin Group'}
             </p>
           </div>
         </div>
@@ -78,8 +78,8 @@ export default function OffshoreOperations() {
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   {isAr
-                    ? 'تشغّل شركة مكامن أوفشور السعودية المحدودة (MOS) واحدة من أكثر محافظ الدعم البحري والخدمات البحرية تنوعًا في خدمة عمليات أرامكو السعودية في الخليج العربي، وتشمل سفن دعم المنصات، وسفن مناولة المراسي والإمداد والقطر، وسفن دعم الملاحة، وزوارق الدوريات الأمنية البحرية، ووحدات اللوجستيات البحرية.'
-                    : 'Makamin Offshore Saudi Ltd (MOS) operates one of the most diversified offshore marine support portfolios serving Saudi Aramco operations in the Arabian Gulf, including platform support vessels, anchor handling tug supply vessels, navigation support vessels, offshore security patrol boats, and marine logistics units.'}
+                    ? 'قدّمت شركة مكامن أوفشور السعودية المحدودة (MOS) خدمات دعم بحري وتشغيل بحري لمشاريع أرامكو السعودية في الخليج العربي، بما في ذلك سفن دعم المنصات، وخدمات دعم الملاحة، وعمليات الدوريات الأمنية البحرية، وأنشطة اللوجستيات البحرية.'
+                    : 'Makamin Offshore Saudi Ltd (MOS) operated offshore marine support services for Saudi Aramco projects in the Arabian Gulf, including platform support vessels, navigation support services, offshore security patrol operations, and marine logistics activities.'}
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
@@ -95,7 +95,7 @@ export default function OffshoreOperations() {
                     <p className="text-sm text-gray-500 mb-1">
                       {isAr ? 'Offshoreworks Global (L) Ltd (OWG)' : 'Offshoreworks Global (L) Ltd (OWG)'}
                     </p>
-                    <p className="text-lg font-semibold text-gray-900">41%</p>
+                    <p className="text-lg font-semibold text-gray-900">49%</p>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                     <p className="text-sm text-gray-500 mb-1">
@@ -186,15 +186,15 @@ export default function OffshoreOperations() {
                     </thead>
                     <tbody>
                       {[
-                        { vessel: 'Jaya Centurion', imo: '9548017', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'Jaya Chieftain', imo: '9532874', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'Jaya Concordia', imo: '9527465', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'Arkstar Voyager', imo: '9527582', owner: 'Arkstar Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'POSH Pelican', imo: '9648635', owner: 'POSH Semco (PACC Offshore)', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'Belait Barakah', imo: '9430569', owner: 'Belait Shipping', operator: 'Makamin Offshore', type: isAr ? 'سفينة إقامة / دعم' : 'Accommodation / Support Vessel', contract: isAr ? 'عقد أمني' : 'Security Contract', status: isAr ? 'مكتمل' : 'Completed' },
-                        { vessel: 'Zakher Crest', imo: '9545194', owner: 'Zakher Marine Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel', contract: '—', status: '—' },
-                        { vessel: 'Makamin 1', imo: '—', owner: 'Makamin Petroleum Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة أمن اعتراضية' : 'Interceptor Security Vessel', contract: '—', status: '—' },
-                        { vessel: 'Ansar 3', imo: '—', owner: 'Makamin Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دورية' : 'Patrol Vessel', contract: '—', status: '—' },
+                        { vessel: 'Jaya Centurion', imo: '9548017', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة إمداد المنصات (PSV)' : 'Platform Supply Vessel (PSV)', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'عقد أرامكو التاريخي' : 'Historical Aramco Charter' },
+                        { vessel: 'Jaya Chieftain', imo: '9532874', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة إمداد المنصات (PSV)' : 'Platform Supply Vessel (PSV)', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'عقد أرامكو التاريخي' : 'Historical Aramco Charter' },
+                        { vessel: 'Jaya Concordia', imo: '9527465', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة إمداد المنصات (PSV)' : 'Platform Supply Vessel (PSV)', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'عقد أرامكو التاريخي' : 'Historical Aramco Charter' },
+                        { vessel: 'Arkstar Voyager', imo: '9527582', owner: 'Arkstar Offshore', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة إمداد المنصات (PSV)' : 'Platform Supply Vessel (PSV)', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'عقد أرامكو التاريخي' : 'Historical Aramco Charter' },
+                        { vessel: 'POSH Pelican', imo: '9648635', owner: 'POSH Semco (PACC Offshore)', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة دعم بحرية (OSV)' : 'Offshore Support Vessel (OSV)', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'عقد أرامكو التاريخي' : 'Historical Aramco Charter' },
+                        { vessel: 'Belait Barakah', imo: '9430569', owner: 'Belait Shipping', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة إقامة / دعم' : 'Accommodation / Support Vessel', contract: isAr ? 'عقد أمني' : 'Security Contract', status: isAr ? 'عقد أمني تاريخي' : 'Historical Security Contract' },
+                        { vessel: 'Zakher Crest', imo: '9545194', owner: 'Zakher Marine Services', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة دعم بحرية (OSV)' : 'Offshore Support Vessel (OSV)', contract: '—', status: '—' },
+                        { vessel: 'Makamin 1', imo: '—', owner: 'Makamin Petroleum Services', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة أمن اعتراضية' : 'Interceptor Security Vessel', contract: '—', status: '—' },
+                        { vessel: 'Ansar 3', imo: '—', owner: 'Makamin Offshore', operator: 'Makamin Offshore Saudi Ltd (MOS)', type: isAr ? 'سفينة دورية' : 'Patrol Vessel', contract: '—', status: '—' },
                         { vessel: 'Jaya Pearl', imo: '9594171', owner: 'MOS-IES Joint Venture', operator: 'MOS IES Pearl', type: isAr ? 'سفينة بحرية' : 'Offshore Vessel', contract: '—', status: '—' },
                       ].map((row, i) => (
                         <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
@@ -234,7 +234,7 @@ export default function OffshoreOperations() {
                     </thead>
                     <tbody>
                       {[
-                        { vessel: 'POSH Pelican', noteType: isAr ? 'ملاحظة عقدية / قانونية' : 'Contract / Litigation Note', details: isAr ? 'مرتبطة بقضية POSH ضد مكامن في سنغافورة.' : 'Associated with POSH v Makamin litigation in Singapore.' },
+                        { vessel: 'POSH Pelican', noteType: isAr ? 'ملاحظة عقدية / قانونية' : 'Contract / Litigation Note', details: isAr ? 'مُشار إليها في إجراءات نزاع التأجير البحري المتعلقة بـ POSH Semco.' : 'Referenced in maritime charter dispute proceedings involving POSH Semco.' },
                         { vessel: 'Jaya Pearl / MOS IES Pearl', noteType: isAr ? 'ملاحظة مشروع مشترك' : 'Joint Venture Note', details: isAr ? 'تشغّلت ضمن هيكل المشروع المشترك MOS-IES.' : 'Operated within the MOS-IES joint venture structure.' },
                         { vessel: 'Ansar 3', noteType: isAr ? 'ملاحظة تاريخية' : 'Historical Note', details: isAr ? 'ارتبطت في الأصل بشركة بكري للملاحة قبل تشغيلها ضمن شبكة مكامن أوفشور.' : 'Originally associated with Bakri Navigation before operation within the Makamin Offshore network.' },
                         { vessel: 'Makamin 1', noteType: isAr ? 'ملاحظة تشغيلية' : 'Operational Note', details: isAr ? 'تُستخدم كسفينة أمن اعتراضية في عمليات الأمن البحري.' : 'Used as an interceptor security vessel within offshore security operations.' },
