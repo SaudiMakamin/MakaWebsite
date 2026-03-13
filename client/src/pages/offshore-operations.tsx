@@ -216,6 +216,46 @@ export default function OffshoreOperations() {
             <Card className="mb-8">
               <CardHeader>
                 <div className="flex items-center gap-3">
+                  <FileText className="w-5 h-5 text-blue-600" />
+                  <CardTitle className="text-xl">
+                    {isAr ? 'ملاحظات المشاريع والعقود البحرية' : 'Marine Project & Contract Notes'}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left border-collapse">
+                    <thead>
+                      <tr className="bg-blue-50 border-b border-blue-200">
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'السفينة / المشروع' : 'Vessel / Project'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'نوع الملاحظة' : 'Note Type'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'التفاصيل' : 'Details'}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { vessel: 'POSH Pelican', noteType: isAr ? 'ملاحظة عقدية / قانونية' : 'Contract / Litigation Note', details: isAr ? 'مرتبطة بقضية POSH ضد مكامن في سنغافورة.' : 'Associated with POSH v Makamin litigation in Singapore.' },
+                        { vessel: 'Jaya Pearl / MOS IES Pearl', noteType: isAr ? 'ملاحظة مشروع مشترك' : 'Joint Venture Note', details: isAr ? 'تشغّلت ضمن هيكل المشروع المشترك MOS-IES.' : 'Operated within the MOS-IES joint venture structure.' },
+                        { vessel: 'Ansar 3', noteType: isAr ? 'ملاحظة تاريخية' : 'Historical Note', details: isAr ? 'ارتبطت في الأصل بشركة بكري للملاحة قبل تشغيلها ضمن شبكة مكامن أوفشور.' : 'Originally associated with Bakri Navigation before operation within the Makamin Offshore network.' },
+                        { vessel: 'Makamin 1', noteType: isAr ? 'ملاحظة تشغيلية' : 'Operational Note', details: isAr ? 'تُستخدم كسفينة أمن اعتراضية في عمليات الأمن البحري.' : 'Used as an interceptor security vessel within offshore security operations.' },
+                        { vessel: 'Belait Barakah', noteType: isAr ? 'ملاحظة مشروع' : 'Project Note', details: isAr ? 'تُستخدم في دعم عمليات سفن الأمن والإقامة.' : 'Used in security and accommodation vessel support operations.' },
+                        { vessel: 'Zakher Crest', noteType: isAr ? 'ملاحظة تشغيلية' : 'Operational Note', details: isAr ? 'مرتبطة بنشاط الأمن البحري ودعم الخدمات اللوجستية البحرية.' : 'Associated with offshore security and marine logistics support activity.' },
+                      ].map((row, i) => (
+                        <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-3 py-2 font-medium text-gray-900 border-b border-gray-100 whitespace-nowrap">{row.vessel}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.noteType}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.details}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="mb-8">
+              <CardHeader>
+                <div className="flex items-center gap-3">
                   <FileText className="w-6 h-6 text-blue-600" />
                   <CardTitle className="text-xl">
                     {isAr ? 'محفظة العقود البحرية' : 'Offshore Marine Contract Portfolio'}

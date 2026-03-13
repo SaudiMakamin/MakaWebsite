@@ -1,0 +1,87 @@
+TASK: Perform one highly precise additive-only surgical update on the “Makamin Offshore Saudi Ltd (MOS)” page.
+
+CRITICAL SURGICAL RULE:
+Add ONE new box/section only.
+Do NOT modify, remove, reorder, rewrite, or replace any existing content already present on the page.
+Do NOT alter any table currently on the page.
+Do NOT change any vessel row currently displayed.
+Do NOT change Entity Overview, Operational Scope, Main Client, Fleet Registry, Contract Portfolio, Offshore Activity, Fleet Capabilities, Offshore & Marine Services, or Group Overview.
+This is a pure additive insertion only.
+
+ARCHITECTURE RULES:
+- Respect the existing SPA architecture.
+- Do NOT modify routing, backend, server files, build config, navigation, shared layout, or shared architecture.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Modify ONLY the specific page file for Makamin Offshore Saudi Ltd (MOS).
+- Preserve current EN/AR behavior and RTL/LTR behavior exactly as implemented.
+- Do NOT alter any other company/entity page.
+
+OBJECTIVE:
+Add ONE new section titled:
+
+Marine Project & Contract Notes
+
+PLACEMENT:
+Insert this new box in the most natural place on the same page:
+- preferably AFTER “Offshore Fleet Registry”
+- and BEFORE “Offshore Marine Contract Portfolio”
+
+If the current page structure makes that exact placement difficult, insert it as close as possible to that position without changing any existing section order beyond adding this one new block.
+
+DESIGN RULES:
+- Reuse the exact same card/section visual language already used on this page.
+- Match existing spacing, typography, border radius, and padding.
+- Do NOT introduce a new design system.
+- Use a clean compact table inside the box.
+- If responsive overflow is needed, keep it local to this new table only.
+
+SECTION CONTENT:
+Title:
+Marine Project & Contract Notes
+
+Use a table with exactly these columns:
+| Vessel / Project | Note Type | Details |
+
+Use exactly these 6 rows:
+
+| POSH Pelican | Contract / Litigation Note | Associated with POSH v Makamin litigation in Singapore. |
+| Jaya Pearl / MOS IES Pearl | Joint Venture Note | Operated within the MOS-IES joint venture structure. |
+| Ansar 3 | Historical Note | Originally associated with Bakri Navigation before operation within the Makamin Offshore network. |
+| Makamin 1 | Operational Note | Used as an interceptor security vessel within offshore security operations. |
+| Belait Barakah | Project Note | Used in security and accommodation vessel support operations. |
+| Zakher Crest | Operational Note | Associated with offshore security and marine logistics support activity. |
+
+IMPORTANT CONTENT RULES:
+- Add the section exactly as specified above.
+- Do NOT add financial values.
+- Do NOT add any extra rows.
+- Do NOT rewrite the notes.
+- Do NOT expand the legal wording beyond the exact sentence provided.
+- Do NOT merge this content into an existing table.
+- Do NOT convert it into bullets; it must remain a table inside its own dedicated box.
+
+NON-DESTRUCTIVE RULE:
+The current page content is the protected baseline.
+Nothing currently on the page may be removed or changed.
+This task succeeds only if the new box is added while every existing section remains untouched.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. Exactly one new section was added.
+2. The new section title is “Marine Project & Contract Notes”.
+3. The new section contains exactly 3 columns and exactly 6 rows.
+4. It is placed after Offshore Fleet Registry and before Offshore Marine Contract Portfolio, or as close as possible without disturbing existing sections.
+5. No existing content was changed.
+6. No current vessel rows or current tables were modified.
+7. No other company/entity pages changed.
+8. No route/path/slug/navigation behavior changed.
+9. No architecture changes were introduced.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
