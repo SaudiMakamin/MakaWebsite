@@ -1,0 +1,91 @@
+
+https://www.makamin.com.sa/petroleum-services
+
+
+
+TASK: Surgical content correction for ONLY the company page of “Makamin Petroleum Services Company” without affecting any other company, route, layout, or shared architecture.
+
+ARCHITECTURE RULES:
+- Respect existing SPA architecture.
+- Do NOT modify routing, build config, backend, server files, or shared structural files.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Safe areas only: the specific company page/component content and client/src/lib/i18n.ts if translations are used.
+- Preserve bilingual behavior (English/Arabic) and RTL/LTR compatibility.
+- Do not rename or alter any other company/entity.
+
+OBJECTIVE:
+Update ONLY the “Makamin Petroleum Services Company” entity/page content.
+
+
+
+
+CHANGE 1 — CORRECT COMPANY NAME:
+Replace the incorrect company name:
+“Makamin Petroleum Services Company”
+
+With the correct official name:
+“Makamin Petroleum Services Co (MPS)”
+
+Apply this replacement ONLY in all places related to this specific entity/page, including:
+- page title
+- hero/title section
+- entity overview heading/text
+- any local metadata or labels tied to this exact entity
+- matching translation entries for this exact page/entity only
+
+Do NOT change any other company names.
+
+CHANGE 2 — EXPAND OWNERSHIP / ENTITY OVERVIEW CONTENT:
+On the same page, in the “Entity Overview” box, keep the structure/design unchanged but update the content to clearly state the ownership split.
+
+Use the corrected company name everywhere in this section.
+
+Required English content:
+
+Entity Overview
+Makamin Petroleum Services Co (MPS)
+
+Makamin Petroleum Services Co (MPS) is the primary operating entity within the Makamin Group. The company serves as the executive arm of the group, managing operations across multiple divisions serving the oil and gas sector.
+
+Ownership Structure:
+90% privately owned by Makamin Saudi Holding Company for Oil and Gas Services.
+10% privately owned by MAKAMIN PETROLEUM SERVICES CO. W.L.L, Kingdom of Bahrain, Commercial Registration No. 72626-1.
+
+If the page has Arabic translation support, add the equivalent Arabic translation in i18n for this same entity only, with accurate wording and without changing other entries.
+
+Required Arabic meaning:
+نظرة عامة على الكيان
+شركة مكامن لخدمات النفط البترولية المحدودة (MPS)
+
+تُعد شركة مكامن لخدمات النفط البترولية المحدودة (MPS) الكيان التشغيلي الرئيسي ضمن مجموعة مكامن، وتمثل الذراع التنفيذي للمجموعة، حيث تدير العمليات عبر عدة قطاعات تخدم قطاع النفط والغاز.
+
+هيكل الملكية:
+90% ملكية خاصة لشركة مكامن السعودية القابضة لخدمات النفط والغاز.
+10% ملكية خاصة لشركة MAKAMIN PETROLEUM SERVICES CO. W.L.L المسجلة في مملكة البحرين، رقم السجل التجاري 72626-1.
+
+IMPORTANT EXECUTION RULES:
+- First inspect how this page is implemented and follow the existing pattern.
+- If text is hardcoded in the page/component, edit only that file.
+- If text is sourced from client/src/lib/i18n.ts or a local data object, update only the exact keys/record for this entity.
+- Do NOT refactor.
+- Do NOT move files.
+- Do NOT alter navigation arrays unless this exact entity label appears there and refers specifically to this same page.
+- Do NOT modify other entity pages or shared content blocks used by other companies unless they are explicitly scoped to this entity only.
+- Preserve styling and component layout exactly as-is.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. The corrected name appears everywhere for this entity/page only.
+2. The Entity Overview box contains the expanded ownership text.
+3. No other company/entity content changed.
+4. No route/path/slug/navigation behavior changed.
+5. No architecture changes were introduced.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”

@@ -27,8 +27,8 @@ export default function PetroleumServices() {
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
       <SemanticMetadata
         page="group"
-        title="Makamin Petroleum Services Company | Saudi Makamin"
-        description="Makamin Petroleum Services Company — the primary operating entity of the Makamin Group, managing pipeline, drilling, geoscience, inspection, staffing, and supply chain operations."
+        title="Makamin Petroleum Services Co (MPS) | Saudi Makamin"
+        description="Makamin Petroleum Services Co (MPS) — the primary operating entity of the Makamin Group, managing pipeline, drilling, geoscience, inspection, staffing, and supply chain operations."
       />
       <EnhancedSecurity />
 
@@ -46,7 +46,7 @@ export default function PetroleumServices() {
               </div>
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                  {isAr ? 'شركة مكامن للخدمات البترولية' : 'Makamin Petroleum Services Company'}
+                  {isAr ? 'شركة مكامن لخدمات النفط البترولية المحدودة (MPS)' : 'Makamin Petroleum Services Co (MPS)'}
                 </h1>
                 <p className="text-lg text-amber-200">
                   {isAr ? 'الكيان التشغيلي الرئيسي لمجموعة مكامن' : 'Primary Operating Entity — Makamin Group'}
@@ -66,19 +66,31 @@ export default function PetroleumServices() {
                   {isAr ? 'نبذة عن الكيان' : 'Entity Overview'}
                 </Badge>
                 <CardTitle className="text-2xl">
-                  {isAr ? 'شركة مكامن للخدمات البترولية' : 'Makamin Petroleum Services Company'}
+                  {isAr ? 'شركة مكامن لخدمات النفط البترولية المحدودة (MPS)' : 'Makamin Petroleum Services Co (MPS)'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   {isAr
-                    ? 'شركة مكامن للخدمات البترولية هي الكيان التشغيلي الرئيسي في مجموعة مكامن. تمثل الشركة الذراع التنفيذي للمجموعة وتدير العمليات عبر أقسام متعددة تخدم قطاع النفط والغاز.'
-                    : 'Makamin Petroleum Services Company is the primary operating entity within the Makamin Group. The company serves as the executive arm of the group, managing operations across multiple divisions serving the oil and gas sector.'}
+                    ? 'تُعد شركة مكامن لخدمات النفط البترولية المحدودة (MPS) الكيان التشغيلي الرئيسي ضمن مجموعة مكامن، وتمثل الذراع التنفيذي للمجموعة، حيث تدير العمليات عبر عدة قطاعات تخدم قطاع النفط والغاز.'
+                    : 'Makamin Petroleum Services Co (MPS) is the primary operating entity within the Makamin Group. The company serves as the executive arm of the group, managing operations across multiple divisions serving the oil and gas sector.'}
                 </p>
                 <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
-                  <p className="text-sm text-amber-800 font-medium">
-                    {isAr ? 'هيكل الملكية: 90% + 10%' : 'Ownership Structure: 90% + 10%'}
+                  <p className="text-sm text-amber-800 font-medium mb-2">
+                    {isAr ? 'هيكل الملكية:' : 'Ownership Structure:'}
                   </p>
+                  <ul className="text-sm text-amber-900 space-y-1">
+                    <li>
+                      {isAr
+                        ? '90% ملكية خاصة لشركة مكامن السعودية القابضة لخدمات النفط والغاز.'
+                        : '90% privately owned by Makamin Saudi Holding Company for Oil and Gas Services.'}
+                    </li>
+                    <li>
+                      {isAr
+                        ? '10% ملكية خاصة لشركة MAKAMIN PETROLEUM SERVICES CO. W.L.L المسجلة في مملكة البحرين، رقم السجل التجاري 72626-1.'
+                        : '10% privately owned by MAKAMIN PETROLEUM SERVICES CO. W.L.L, Kingdom of Bahrain, Commercial Registration No. 72626-1.'}
+                    </li>
+                  </ul>
                 </div>
               </CardContent>
             </Card>
