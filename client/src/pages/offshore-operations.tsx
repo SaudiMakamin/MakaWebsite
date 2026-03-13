@@ -113,6 +113,94 @@ export default function OffshoreOperations() {
             <Card className="mb-8">
               <CardHeader>
                 <div className="flex items-center gap-3">
+                  <Waves className="w-6 h-6 text-blue-600" />
+                  <CardTitle className="text-xl">
+                    {isAr ? 'سجل الأسطول البحري' : 'Offshore Fleet Registry'}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left border-collapse">
+                    <thead>
+                      <tr className="bg-blue-50 border-b border-blue-200">
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'السفينة' : 'Vessel'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">IMO</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'المالك / المدير' : 'Owner / Manager'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'المشغّل' : 'Operator'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'نوع السفينة' : 'Vessel Type'}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { vessel: 'Jaya Centurion', imo: '9548017', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
+                        { vessel: 'Jaya Chieftain', imo: '9532874', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
+                        { vessel: 'Jaya Concordia', imo: '9527465', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
+                        { vessel: 'Arkstar Voyager', imo: '9527582', owner: 'Arkstar Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
+                        { vessel: 'POSH Pelican', imo: '9648635', owner: 'POSH Semco (PACC Offshore)', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel' },
+                        { vessel: 'Belait Barakah', imo: '9430569', owner: 'Belait Shipping', operator: 'Makamin Offshore', type: isAr ? 'سفينة إقامة / دعم' : 'Accommodation / Support Vessel' },
+                        { vessel: 'Zakher Crest', imo: '9545194', owner: 'Zakher Marine Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel' },
+                        { vessel: 'Makamin 1', imo: '—', owner: 'Makamin Petroleum Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة أمن اعتراضية' : 'Interceptor Security Vessel' },
+                        { vessel: 'Ansar 3', imo: '—', owner: 'Makamin Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دورية' : 'Patrol Vessel' },
+                        { vessel: 'Jaya Pearl', imo: '9594171', owner: 'MOS-IES Joint Venture', operator: 'MOS IES Pearl', type: isAr ? 'سفينة بحرية' : 'Offshore Vessel' },
+                      ].map((row, i) => (
+                        <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-3 py-2 font-medium text-gray-900 border-b border-gray-100 whitespace-nowrap">{row.vessel}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.imo}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.owner}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.operator}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.type}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="mb-8">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <FileText className="w-6 h-6 text-blue-600" />
+                  <CardTitle className="text-xl">
+                    {isAr ? 'محفظة العقود البحرية' : 'Offshore Marine Contract Portfolio'}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left border-collapse">
+                    <thead>
+                      <tr className="bg-blue-50 border-b border-blue-200">
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'فئة العقد' : 'Contract Category'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'قيمة العقد' : 'Contract Value'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'ملاحظات' : 'Notes'}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { category: isAr ? 'عقود سفن دعم المنصات' : 'Platform Support Vessel Contracts', value: 'SAR ***,***,***', notes: isAr ? '3 سفن تعمل في حقول أرامكو البحرية' : '3 vessels operating in Aramco offshore fields' },
+                        { category: isAr ? 'عقد تأجير Arkstar Voyager' : 'Arkstar Voyager Charter Contract', value: 'SAR ***,******', notes: isAr ? 'عمليات دعم بحرية' : 'Offshore support operations' },
+                        { category: isAr ? 'عقد تأجير POSH Pelican' : 'POSH Pelican Charter Contract', value: 'SAR ***,***,***', notes: isAr ? 'دعم منصات بحرية' : 'Offshore platform support' },
+                        { category: isAr ? 'خدمات المساعدات الملاحية (AtoN)' : 'Navigational Aids Services (AtoN)', value: 'SAR***,***,***', notes: isAr ? 'خدمات صيانة الملاحة البحرية' : 'Marine navigation maintenance services' },
+                        { category: isAr ? 'عقود سفن الإقامة الأمنية' : 'Security Accommodation Vessel Contracts', value: 'SAR ***,***,***', notes: isAr ? 'دعم الإقامة البحري' : 'Offshore accommodation support' },
+                        { category: isAr ? 'عقود سفن الأمن الاعتراضية' : 'Interceptor Security Vessel Contracts', value: 'SAR ***,***,***', notes: isAr ? 'عمليات الدورية الأمنية الساحلية' : 'Coastal security patrol operations' },
+                      ].map((row, i) => (
+                        <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-3 py-2 font-medium text-gray-900 border-b border-gray-100">{row.category}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.value}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.notes}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="mb-8">
+              <CardHeader>
+                <div className="flex items-center gap-3">
                   <Ship className="w-6 h-6 text-blue-600" />
                   <CardTitle className="text-xl">
                     {isAr ? 'النشاط البحري' : 'Offshore Activity'}

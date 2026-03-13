@@ -1,0 +1,108 @@
+TASK: Add two new informational boxes to ONLY the “Makamin Offshore Saudi Ltd (MOS)” page, with zero impact on routing, shared architecture, or existing content blocks.
+
+ARCHITECTURE RULES:
+- Respect the current SPA architecture and existing page structure.
+- Do NOT modify routing, backend, server, build config, navigation, shared layout, or shared data structures.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Modify ONLY the specific Offshore page file currently used for this page.
+- Preserve EN/AR behavior and RTL/LTR behavior exactly as currently implemented.
+- Do NOT alter any other company/entity page.
+
+FIRST STEP:
+Inspect the current Offshore page implementation and identify the exact safe insertion point.
+Use the existing page’s current card/section UI pattern.
+Do NOT refactor the page.
+Do NOT move files.
+Do NOT create a new shared component unless absolutely required (avoid it).
+
+OBJECTIVE:
+Add TWO new boxes/sections on the “Makamin Offshore Saudi Ltd (MOS)” page:
+
+1) Offshore Fleet Registry
+2) Offshore Marine Contract Portfolio
+
+PLACEMENT:
+- Insert both new boxes BELOW the existing “Entity Overview” box.
+- Place them BEFORE the existing next section(s), such as “Offshore Activity”.
+- Keep all current content unchanged.
+- This must be additive only.
+
+DESIGN RULES:
+- Reuse the existing card/container visual pattern already used on this page.
+- Match existing spacing, padding, border radius, header style, and typography.
+- If the page already uses a small section badge/title style (like Entity Overview), reuse it.
+- Do NOT introduce a new design language.
+- Tables must be readable and aligned with existing page style.
+- If responsive handling is already present in the page, follow the same pattern.
+- If necessary for mobile safety, allow horizontal overflow inside the table container only, without affecting the rest of the page.
+
+SECTION 1:
+Title:
+Offshore Fleet Registry
+
+Add a clear table with these columns exactly:
+| Vessel | IMO | Owner / Manager | Operator | Vessel Type |
+
+Use these rows exactly:
+
+| Jaya Centurion | 9548017 | MMA Offshore / Mermaid Marine | Makamin Offshore | Platform Support Vessel |
+| Jaya Chieftain | 9532874 | MMA Offshore / Mermaid Marine | Makamin Offshore | Platform Support Vessel |
+| Jaya Concordia | 9527465 | MMA Offshore / Mermaid Marine | Makamin Offshore | Platform Support Vessel |
+| Arkstar Voyager | 9527582 | Arkstar Offshore | Makamin Offshore | Platform Support Vessel |
+| POSH Pelican | 9648635 | POSH Semco (PACC Offshore) | Makamin Offshore | Offshore Support Vessel |
+| Belait Barakah | 9430569 | Belait Shipping | Makamin Offshore | Accommodation / Support Vessel |
+| Zakher Crest | 9545194 | Zakher Marine Services | Makamin Offshore | Offshore Support Vessel |
+| Makamin 1 | — | Makamin Petroleum Services | Makamin Offshore | Interceptor Security Vessel |
+| Ansar 3 | — | Makamin Offshore | Makamin Offshore | Patrol Vessel |
+| Jaya Pearl | 9594171 | MOS-IES Joint Venture | MOS IES Pearl | Offshore Vessel |
+
+SECTION 2:
+Title:
+Offshore Marine Contract Portfolio
+
+Add a compact table with these columns exactly:
+| Contract Category | Contract Value | Notes |
+
+Use these rows exactly:
+
+| Platform Support Vessel Contracts | SAR ***,***,*** | 3 vessels operating in Aramco offshore fields |
+| Arkstar Voyager Charter Contract | SAR ***,****** | Offshore support operations |
+| POSH Pelican Charter Contract | SAR ***,***,*** | Offshore platform support |
+| Navigational Aids Services (AtoN) | SAR***,***,*** | Marine navigation maintenance services |
+| Security Accommodation Vessel Contracts | SAR ***,***,*** | Offshore accommodation support |
+| Interceptor Security Vessel Contracts | SAR ***,***,*** | Coastal security patrol operations |
+
+CONTENT RULES:
+- Add the new sections exactly as provided.
+- Do NOT “correct”, normalize, or reinterpret the provided contract values or labels.
+- Preserve the asterisk masking exactly as written.
+- Do NOT add inferred values.
+- Do NOT remove existing content from the page.
+
+IMPLEMENTATION RULES:
+- Keep this change surgical and additive only.
+- Prefer using the page’s existing card/section markup pattern.
+- If there is already a table-like style or grid style in the page, extend that pattern.
+- If not, create only the minimum local markup/classes needed inside this page file.
+- Do NOT create shared utilities or global CSS unless absolutely unavoidable.
+- Do NOT modify the current Entity Overview box content.
+- Do NOT change the current Offshore Activity section content.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. Two new sections were added only to the Offshore page.
+2. They appear below Entity Overview and before Offshore Activity.
+3. Existing page content remains unchanged.
+4. No other company/entity pages changed.
+5. No route/path/slug/navigation behavior changed.
+6. No architecture changes were introduced.
+7. The tables contain all rows and columns exactly as specified.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
