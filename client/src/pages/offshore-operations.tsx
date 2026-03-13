@@ -35,7 +35,7 @@ export default function OffshoreOperations() {
       <SemanticMetadata
         page="group"
         title="Makamin Offshore Saudi Ltd (MOS) | Saudi Makamin"
-        description="Makamin Offshore Saudi Ltd — a 51% Makamin-owned offshore entity providing marine services, diving operations, underwater engineering, and fleet support for oil and gas operations."
+        description="Makamin Offshore Saudi Ltd (MOS) — a 51% Makamin-owned offshore entity providing marine services, diving operations, underwater engineering, and fleet support for oil and gas operations."
       />
       <EnhancedSecurity />
 
@@ -49,7 +49,7 @@ export default function OffshoreOperations() {
             <HeroLogo size="lg" />
             <img src={mosLogoPath} alt="Makamin Offshore Saudi (MOS)" className="h-16 sm:h-20 w-auto mx-auto mb-6 drop-shadow-lg" />
             <h1 className="text-4xl md:text-5xl font-bold mb-3">
-              {isAr ? 'شركة مكامن البحرية السعودية المحدودة' : 'Makamin Offshore Saudi Ltd'}
+              {isAr ? 'شركة مكامن أوفشور السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd (MOS)'}
             </h1>
             <p className="text-lg text-blue-200 mb-4">
               {isAr ? 'MOS — كيان بحري ضمن مجموعة مكامن' : 'MOS — Marine Entity — Makamin Group'}
@@ -67,16 +67,16 @@ export default function OffshoreOperations() {
                   {isAr ? 'نبذة عن الكيان' : 'Entity Overview'}
                 </Badge>
                 <CardTitle className="text-2xl">
-                  {isAr ? 'شركة مكامن البحرية السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd (MOS)'}
+                  {isAr ? 'شركة مكامن أوفشور السعودية المحدودة (MOS)' : 'Makamin Offshore Saudi Ltd (MOS)'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   {isAr
-                    ? 'شركة مكامن البحرية السعودية المحدودة (MOS) هي كيان بحري متخصص ضمن مجموعة مكامن، تمتلك فيها مكامن حصة 51%. تركز الشركة على العمليات البحرية وخدمات الدعم البحري لقطاع النفط والغاز.'
-                    : 'Makamin Offshore Saudi Ltd (MOS) is a specialized marine entity within the Makamin Group, with Makamin holding a 51% ownership stake. The company focuses on offshore operations and marine support services for the oil and gas sector.'}
+                    ? 'تُعد شركة مكامن أوفشور السعودية المحدودة (MOS) كيانًا بحريًا متخصصًا ضمن مجموعة مكامن. وتركز الشركة على العمليات البحرية وخدمات الدعم البحري لقطاع النفط والغاز.'
+                    : 'Makamin Offshore Saudi Ltd (MOS) is a specialized marine entity within the Makamin Group. The company focuses on offshore operations and marine support services for the oil and gas sector.'}
                 </p>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
                     <p className="text-sm text-blue-700 font-medium">
                       {isAr ? 'ملكية مكامن: 51%' : 'Makamin Ownership: 51%'}
@@ -86,6 +86,26 @@ export default function OffshoreOperations() {
                     <p className="text-sm text-gray-500 mb-1">{isAr ? 'السجل التجاري' : 'Commercial Registration'}</p>
                     <p className="text-lg font-semibold text-gray-900">2050077238</p>
                   </div>
+                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <p className="text-sm text-gray-500 mb-1">
+                      {isAr ? 'Offshoreworks Global (L) Ltd (OWG)' : 'Offshoreworks Global (L) Ltd (OWG)'}
+                    </p>
+                    <p className="text-lg font-semibold text-gray-900">41%</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <p className="text-sm text-gray-500 mb-1">
+                      {isAr ? 'رقم سجل OWG' : 'OWG Commercial Registration No.'}
+                    </p>
+                    <p className="text-lg font-semibold text-gray-900">LL07924</p>
+                  </div>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex items-start gap-3">
+                  <FileText className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <p className="text-sm text-blue-800">
+                    {isAr
+                      ? 'وذلك بموجب العقد الموثق بتاريخ 20/9/2010.'
+                      : 'Pursuant to the documented contract dated 20/9/2010.'}
+                  </p>
                 </div>
               </CardContent>
             </Card>

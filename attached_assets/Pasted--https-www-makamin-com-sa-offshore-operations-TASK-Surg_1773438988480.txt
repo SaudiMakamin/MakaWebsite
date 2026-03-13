@@ -1,0 +1,114 @@
+
+
+https://www.makamin.com.sa/offshore-operations
+
+TASK: Surgical content update for ONLY the page of “Makamin Offshore Saudi Ltd” without affecting any other entity, route, layout, or shared architecture.
+
+ARCHITECTURE RULES:
+- Respect the existing SPA architecture.
+- Do NOT modify routing, build config, backend, server files, or shared structural files.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Safe area only: the specific page/component for Offshore Saudi Ltd, and only if needed the exact local content source for this entity.
+- Preserve bilingual behavior (EN/AR) and RTL/LTR compatibility.
+- Do not rename or alter any other company/entity.
+
+FIRST STEP:
+Inspect how the Offshore page is currently implemented and follow the existing pattern exactly.
+- If hardcoded in the page component, edit only that file.
+- If driven by local data specific to this entity, update only the exact record for this entity.
+- Do NOT refactor or move files.
+
+OBJECTIVE:
+Update ONLY the “Makamin Offshore Saudi Ltd” entity/page.
+
+CHANGE 1 — CORRECT COMPANY NAME:
+Replace the company name on this specific page only:
+
+From:
+Makamin Offshore Saudi Ltd
+
+To:
+Makamin Offshore Saudi Ltd (MOS)
+
+Apply this replacement ONLY where it belongs to this exact entity/page, including:
+- page title / metadata
+- hero title
+- entity overview heading/title
+- overview paragraph where the entity name appears
+- any local labels tied specifically to this page
+
+Do NOT change any other company names.
+
+CHANGE 2 — EXPAND THE INFO INSIDE THE ENTITY OVERVIEW BOX:
+Keep the existing design/layout unchanged.
+Keep all new information inside the same overview box/card.
+Update the box content so it clearly includes:
+- official company name with (MOS)
+- Makamin ownership 51%
+- Commercial Registration: 2050077238
+- 41% owned by Offshoreworks Global (L) Ltd (OWG)
+- Commercial Registration No. LL07924
+- a clear note indicating that this is pursuant to the documented contract dated 20/9/2010
+
+Required English content to place inside the overview box:
+
+Entity Overview
+Makamin Offshore Saudi Ltd (MOS)
+
+Makamin Offshore Saudi Ltd (MOS) is a specialized marine entity within the Makamin Group. The company focuses on offshore operations and marine support services for the oil and gas sector.
+
+Ownership Structure:
+- Makamin ownership: 51%
+- 41% owned by Offshoreworks Global (L) Ltd (OWG)
+- Commercial Registration: 2050077238
+- Offshoreworks Global (L) Ltd (OWG) Commercial Registration No.: LL07924
+
+Documented Basis:
+Pursuant to the documented contract dated 20/9/2010.
+
+If the page already has Arabic hardcoded content, update the Arabic side as well in the same pattern, without touching other pages.
+
+Required Arabic meaning:
+
+نظرة عامة على الكيان
+شركة مكامن أوفشور السعودية المحدودة (MOS)
+
+تُعد شركة مكامن أوفشور السعودية المحدودة (MOS) كيانًا بحريًا متخصصًا ضمن مجموعة مكامن. وتركز الشركة على العمليات البحرية وخدمات الدعم البحري لقطاع النفط والغاز.
+
+هيكل الملكية:
+- ملكية مكامن: 51%
+- 41% مملوكة لشركة Offshoreworks Global (L) Ltd (OWG)
+- السجل التجاري: 2050077238
+- رقم سجل شركة Offshoreworks Global (L) Ltd (OWG): LL07924
+
+الأساس التوثيقي:
+وذلك بموجب العقد الموثق بتاريخ 20/9/2010.
+
+IMPORTANT EXECUTION RULES:
+- Keep the change surgical and content-only.
+- Do NOT alter card/component structure unless absolutely necessary to fit the added lines.
+- If an icon already exists for ownership / registration / note rows, reuse existing UI pattern.
+- If adding a small note icon is necessary for the contract note, use the lightest existing icon pattern already used in the page/component. Do not introduce a new design system or new complex UI.
+- Do NOT modify dropdown menus, navigation labels, routes, or other entity pages unless this exact entity label appears locally and specifically belongs to this same page.
+- Preserve styling, spacing, and component layout as much as possible.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. The corrected name “Makamin Offshore Saudi Ltd (MOS)” appears in all places for this entity/page only.
+2. The overview box contains the added ownership details including the 41% ownership.
+3. The overview box contains both registration numbers:
+   - 2050077238
+   - LL07924
+4. The overview box contains the documented contract note dated 20/9/2010.
+5. No other company/entity content changed.
+6. No route/path/slug/navigation behavior changed.
+7. No architecture changes were introduced.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
