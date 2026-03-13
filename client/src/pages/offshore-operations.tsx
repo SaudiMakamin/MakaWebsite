@@ -71,10 +71,15 @@ export default function OffshoreOperations() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 leading-relaxed mb-4">
+                <p className="text-gray-700 leading-relaxed mb-3">
                   {isAr
                     ? 'تُعد شركة مكامن أوفشور السعودية المحدودة (MOS) كيانًا بحريًا متخصصًا ضمن مجموعة مكامن. وتركز الشركة على العمليات البحرية وخدمات الدعم البحري لقطاع النفط والغاز.'
                     : 'Makamin Offshore Saudi Ltd (MOS) is a specialized marine entity within the Makamin Group. The company focuses on offshore operations and marine support services for the oil and gas sector.'}
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  {isAr
+                    ? 'تشغّل شركة مكامن أوفشور السعودية المحدودة (MOS) واحدة من أكثر محافظ الدعم البحري والخدمات البحرية تنوعًا في خدمة عمليات أرامكو السعودية في الخليج العربي، وتشمل سفن دعم المنصات، وسفن مناولة المراسي والإمداد والقطر، وسفن دعم الملاحة، وزوارق الدوريات الأمنية البحرية، ووحدات اللوجستيات البحرية.'
+                    : 'Makamin Offshore Saudi Ltd (MOS) operates one of the most diversified offshore marine support portfolios serving Saudi Aramco operations in the Arabian Gulf, including platform support vessels, anchor handling tug supply vessels, navigation support vessels, offshore security patrol boats, and marine logistics units.'}
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
@@ -110,6 +115,52 @@ export default function OffshoreOperations() {
               </CardContent>
             </Card>
 
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <Card>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                    <CardTitle className="text-lg">
+                      {isAr ? 'النطاق التشغيلي' : 'Operational Scope'}
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {[
+                      { en: 'Offshore vessel chartering', ar: 'تأجير السفن البحرية' },
+                      { en: 'Marine logistics', ar: 'اللوجستيات البحرية' },
+                      { en: 'Aids to Navigation (AtoN)', ar: 'وسائل المساعدة الملاحية (AtoN)' },
+                      { en: 'Offshore security vessels', ar: 'سفن الأمن البحري' },
+                      { en: 'Offshore crew supply', ar: 'توفير الأطقم البحرية' },
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                        {isAr ? item.ar : item.en}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <Ship className="w-5 h-5 text-blue-600" />
+                    <CardTitle className="text-lg">
+                      {isAr ? 'العميل الرئيسي' : 'Main Client'}
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <p className="text-sm text-blue-700 font-medium">
+                      {isAr ? 'إدارة الخدمات البحرية في أرامكو السعودية' : 'Saudi Aramco Marine Department'}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
             <Card className="mb-8">
               <CardHeader>
                 <div className="flex items-center gap-3">
@@ -129,20 +180,22 @@ export default function OffshoreOperations() {
                         <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'المالك / المدير' : 'Owner / Manager'}</th>
                         <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'المشغّل' : 'Operator'}</th>
                         <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'نوع السفينة' : 'Vessel Type'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'العقد' : 'Contract'}</th>
+                        <th className="px-3 py-2 font-semibold text-blue-800">{isAr ? 'الحالة' : 'Status'}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
-                        { vessel: 'Jaya Centurion', imo: '9548017', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
-                        { vessel: 'Jaya Chieftain', imo: '9532874', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
-                        { vessel: 'Jaya Concordia', imo: '9527465', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
-                        { vessel: 'Arkstar Voyager', imo: '9527582', owner: 'Arkstar Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel' },
-                        { vessel: 'POSH Pelican', imo: '9648635', owner: 'POSH Semco (PACC Offshore)', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel' },
-                        { vessel: 'Belait Barakah', imo: '9430569', owner: 'Belait Shipping', operator: 'Makamin Offshore', type: isAr ? 'سفينة إقامة / دعم' : 'Accommodation / Support Vessel' },
-                        { vessel: 'Zakher Crest', imo: '9545194', owner: 'Zakher Marine Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel' },
-                        { vessel: 'Makamin 1', imo: '—', owner: 'Makamin Petroleum Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة أمن اعتراضية' : 'Interceptor Security Vessel' },
-                        { vessel: 'Ansar 3', imo: '—', owner: 'Makamin Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دورية' : 'Patrol Vessel' },
-                        { vessel: 'Jaya Pearl', imo: '9594171', owner: 'MOS-IES Joint Venture', operator: 'MOS IES Pearl', type: isAr ? 'سفينة بحرية' : 'Offshore Vessel' },
+                        { vessel: 'Jaya Centurion', imo: '9548017', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'Jaya Chieftain', imo: '9532874', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'Jaya Concordia', imo: '9527465', owner: 'MMA Offshore / Mermaid Marine', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'Arkstar Voyager', imo: '9527582', owner: 'Arkstar Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم المنصات' : 'Platform Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'POSH Pelican', imo: '9648635', owner: 'POSH Semco (PACC Offshore)', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel', contract: isAr ? 'عقد أرامكو' : 'Aramco Charter', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'Belait Barakah', imo: '9430569', owner: 'Belait Shipping', operator: 'Makamin Offshore', type: isAr ? 'سفينة إقامة / دعم' : 'Accommodation / Support Vessel', contract: isAr ? 'عقد أمني' : 'Security Contract', status: isAr ? 'مكتمل' : 'Completed' },
+                        { vessel: 'Zakher Crest', imo: '9545194', owner: 'Zakher Marine Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة دعم بحرية' : 'Offshore Support Vessel', contract: '—', status: '—' },
+                        { vessel: 'Makamin 1', imo: '—', owner: 'Makamin Petroleum Services', operator: 'Makamin Offshore', type: isAr ? 'سفينة أمن اعتراضية' : 'Interceptor Security Vessel', contract: '—', status: '—' },
+                        { vessel: 'Ansar 3', imo: '—', owner: 'Makamin Offshore', operator: 'Makamin Offshore', type: isAr ? 'سفينة دورية' : 'Patrol Vessel', contract: '—', status: '—' },
+                        { vessel: 'Jaya Pearl', imo: '9594171', owner: 'MOS-IES Joint Venture', operator: 'MOS IES Pearl', type: isAr ? 'سفينة بحرية' : 'Offshore Vessel', contract: '—', status: '—' },
                       ].map((row, i) => (
                         <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                           <td className="px-3 py-2 font-medium text-gray-900 border-b border-gray-100 whitespace-nowrap">{row.vessel}</td>
@@ -150,6 +203,8 @@ export default function OffshoreOperations() {
                           <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.owner}</td>
                           <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.operator}</td>
                           <td className="px-3 py-2 text-gray-600 border-b border-gray-100">{row.type}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.contract}</td>
+                          <td className="px-3 py-2 text-gray-600 border-b border-gray-100 whitespace-nowrap">{row.status}</td>
                         </tr>
                       ))}
                     </tbody>

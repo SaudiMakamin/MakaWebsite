@@ -1,0 +1,152 @@
+TASK: Perform a surgical additive enhancement on ONLY the “Makamin Offshore Saudi Ltd (MOS)” page, preserving all existing content exactly as currently implemented.
+
+CRITICAL RULE:
+This is an additive-only update.
+Do NOT remove, overwrite, or alter any existing information already added to the page during previous surgical updates.
+All currently existing information must remain intact.
+
+ARCHITECTURE RULES:
+- Respect the existing SPA architecture.
+- Do NOT modify routing, backend, server files, build config, navigation, shared layout, or shared architecture.
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Modify ONLY the specific page file for Makamin Offshore Saudi Ltd (MOS).
+- Preserve existing EN/AR behavior and RTL/LTR behavior exactly as currently implemented.
+- Do NOT alter any other company/entity page.
+
+FIRST STEP:
+Inspect the current page implementation and identify the exact safe insertion points.
+Follow the page’s current local structure and styling pattern.
+Do NOT refactor.
+Do NOT move files.
+Do NOT create shared components.
+
+OBJECTIVE:
+Apply the following additive enhancements to the Makamin Offshore Saudi Ltd (MOS) page only:
+
+1) Add a stronger introductory paragraph inside the Entity Overview section, or directly beneath the current overview paragraph, without removing the current existing paragraph.
+2) Add a new small box/section titled “Operational Scope”.
+3) Add a new small box/section titled “Main Client”.
+4) Upgrade the existing “Offshore Fleet Registry” table by adding missing useful columns/information only, without deleting existing rows and without removing existing content already present on the page.
+5) Do NOT add contract values anywhere.
+
+CONTENT RULES:
+
+A) STRONGER INTRODUCTORY PARAGRAPH
+Add this paragraph inside Entity Overview or directly beneath it, while preserving all current overview content:
+
+Makamin Offshore Saudi Ltd (MOS) operates one of the most diversified offshore marine support portfolios serving Saudi Aramco operations in the Arabian Gulf, including platform support vessels, anchor handling tug supply vessels, navigation support vessels, offshore security patrol boats, and marine logistics units.
+
+If Arabic content exists in the same pattern, add a matching Arabic paragraph without removing any current Arabic text:
+
+تشغّل شركة مكامن أوفشور السعودية المحدودة (MOS) واحدة من أكثر محافظ الدعم البحري والخدمات البحرية تنوعًا في خدمة عمليات أرامكو السعودية في الخليج العربي، وتشمل سفن دعم المنصات، وسفن مناولة المراسي والإمداد والقطر، وسفن دعم الملاحة، وزوارق الدوريات الأمنية البحرية، ووحدات الخدمات واللوجستيات البحرية.
+
+B) NEW SMALL BOX: Operational Scope
+Add a new small box/section using the same card/section design language already used on the page.
+
+Title:
+Operational Scope
+
+Include these items exactly:
+- Offshore vessel chartering
+- Marine logistics
+- Aids to Navigation (AtoN)
+- Offshore security vessels
+- Offshore crew supply
+
+If Arabic side exists in the page pattern, add equivalent Arabic items:
+- تأجير السفن البحرية
+- اللوجستيات البحرية
+- وسائل المساعدة الملاحية (AtoN)
+- سفن الأمن البحري
+- توفير الأطقم البحرية
+
+C) NEW SMALL BOX: Main Client
+Add a new small box/section using the same page style.
+
+Title:
+Main Client
+
+Value:
+Saudi Aramco Marine Department
+
+If Arabic side exists in the same pattern:
+العميل الرئيسي
+إدارة الخدمات البحرية في أرامكو السعودية
+
+D) UPGRADE EXISTING OFFSHORE FLEET REGISTRY TABLE
+Do NOT delete the current table.
+Do NOT remove current rows.
+Do NOT replace existing information destructively.
+
+Upgrade the current Fleet Registry table only if missing information can be added safely in place.
+Preferred enhancement:
+Add useful columns, while preserving all current rows and current data.
+
+Target enhanced columns:
+| Vessel | IMO | Type | Owner / Manager | Operator | Contract | Status |
+
+Use the following data where applicable, but do not delete existing rows already on the page. Merge carefully and conservatively:
+
+| Jaya Centurion | 9548017 | AHTS DP2 | MMA Offshore / Mermaid Marine | Makamin Offshore | Aramco Charter | Completed |
+| Jaya Chieftain | 9532874 | AHTS DP2 | MMA Offshore / Mermaid Marine | Makamin Offshore | Aramco Charter | Completed |
+| Jaya Concordia | 9527465 | AHTS DP2 | MMA Offshore / Mermaid Marine | Makamin Offshore | Aramco Charter | Completed |
+| Arkstar Voyager | 9527582 | PSV DP2 | Arkstar Offshore | Makamin Offshore | Aramco Charter | Completed |
+| POSH Pelican | 9648635 | PSV DP2 | POSH Semco (PACC Offshore) | Makamin Offshore | Aramco Charter | Completed |
+| Belait Barakah | 9430569 | Accommodation Vessel | Belait Shipping | Makamin Offshore | Security Contract | Completed |
+
+For the remaining already-existing rows that do not have newly provided Contract/Status/Type data, preserve them and leave the additional fields blank, em dash, or equivalent existing-safe placeholder rather than inventing values:
+- Zakher Crest
+- Makamin 1
+- Ansar 3
+- Jaya Pearl
+
+IMPORTANT FLEET RULES:
+- Preserve existing vessel names exactly as currently present on the page unless there is an exact match and only additional fields are being appended.
+- Do NOT remove rows currently present.
+- Do NOT invent missing IMO / Contract / Status / Type values for rows not fully specified.
+- Do NOT downgrade any currently displayed information.
+
+E) DO NOT ADD CONTRACT VALUES
+- Do NOT add any monetary contract values.
+- Do NOT alter the existing contract portfolio section except to leave it unchanged.
+
+PLACEMENT RULES:
+- Keep all existing content exactly as is.
+- Add the stronger paragraph in Entity Overview or directly below its current text.
+- Place the new small boxes in the most natural local position on the same page, preferably below Entity Overview and before Offshore Fleet Registry, if spacing/layout allows and if this does not disturb existing content.
+- Preserve page order and styling consistency.
+
+DESIGN RULES:
+- Reuse the existing card/box/section pattern already used on this page.
+- Match current spacing, typography, radius, and border style.
+- If lists are used elsewhere, follow the same pattern.
+- If table overflow handling is needed on small screens, keep it local to the table container only.
+- Do NOT introduce a new design system.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. All existing current page information remains intact.
+2. A stronger introductory paragraph was added without removing the old overview text.
+3. A new Operational Scope box was added.
+4. A new Main Client box was added.
+5. The Fleet Registry table was upgraded only additively.
+6. No existing fleet rows were deleted.
+7. No contract values were added.
+8. No other company/entity pages changed.
+9. No route/path/slug/navigation behavior changed.
+10. No architecture changes were introduced.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
+
+NON-DESTRUCTIVE FLEET RULE:
+The existing Offshore Fleet Registry table is the source baseline and must be preserved.
+Do NOT remove, rename, reorder, or replace any existing vessel row already present on the page.
+Only append new columns or fill additional fields for the exact same existing rows where verified data was provided.
+If any proposed vessel naming differs from the current page, keep the current page naming unchanged and only enrich the row with additional verified fields where safely mappable.
