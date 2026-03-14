@@ -107,14 +107,14 @@ export default function OffshoreOperations() {
                         Historical Corporate Records – Offshoreworks Entities (Labuan, Malaysia)
                       </p>
                       <div className="bg-white rounded p-3 border border-gray-100 space-y-1">
-                        <p className="text-xs font-semibold text-gray-800">Offshoreworks Global (L) Ltd</p>
+                        <p className="text-xs font-semibold text-blue-700">Offshoreworks Global (L) Ltd</p>
                         <p className="text-xs text-gray-600">Registration Number: LL04173</p>
                         <p className="text-xs text-gray-600">Jurisdiction: Labuan International Business &amp; Financial Centre, Malaysia</p>
                         <p className="text-xs text-gray-600">Incorporation Date: 30 March 2004</p>
                         <p className="text-xs text-gray-600">Registered Office: Brumby Centre, Lot 42, Jalan Muhibbah, Federal Territory of Labuan, 87000, Malaysia</p>
                       </div>
                       <div className="bg-white rounded p-3 border border-gray-100 space-y-1">
-                        <p className="text-xs font-semibold text-gray-800">Offshoreworks Middle East (L) Ltd</p>
+                        <p className="text-xs font-semibold text-blue-700">Offshoreworks Middle East (L) Ltd</p>
                         <p className="text-xs text-gray-600">Registration Number: LL07924</p>
                         <p className="text-xs text-gray-600">Jurisdiction: Labuan International Business &amp; Financial Centre, Malaysia</p>
                         <p className="text-xs text-gray-600">Incorporation Date: 5 November 2010</p>

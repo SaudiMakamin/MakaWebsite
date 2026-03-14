@@ -1,0 +1,57 @@
+TASK: Perform one tiny surgical visual refinement on ONLY the existing OWG historical corporate records box on the “Makamin Offshore Saudi Ltd (MOS)” page.
+
+CRITICAL RULE:
+Do NOT change content.
+Do NOT change layout structure.
+Do NOT modify any other section or box.
+This is a style-only refinement for the entity subheadings inside the existing OWG box.
+
+OBJECTIVE:
+Inside the existing OWG historical corporate records box, make the entity name:
+
+Offshoreworks Global (L) Ltd
+
+visually clearer by styling it:
+- blue
+- bold
+
+Apply this only to the entity heading text itself, not to the descriptive lines below it.
+
+OPTIONAL CONSISTENCY RULE:
+If the second entity heading already exists in the same visual pattern:
+
+Offshoreworks Middle East (L) Ltd
+
+apply the same styling to it as well, so both company headings inside the box remain visually consistent.
+
+IMPORTANT:
+- Do NOT recolor the registration number lines.
+- Do NOT recolor the jurisdiction, incorporation date, or registered office lines.
+- Do NOT change font size dramatically.
+- Do NOT affect neighboring cards or page-wide typography.
+- Reuse existing local text color classes already used on the page if possible.
+- Prefer a subtle blue consistent with the page design system.
+- Preserve readability and current spacing.
+
+NON-DESTRUCTIVE RULES:
+- Do NOT change the box content.
+- Do NOT change the box position.
+- Do NOT change ownership data.
+- Do NOT change any table.
+- Do NOT change metadata.
+- Do NOT change routing or architecture.
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. The text “Offshoreworks Global (L) Ltd” is blue and bold.
+2. If applied, “Offshoreworks Middle East (L) Ltd” matches the same style.
+3. No other content or section changed.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
