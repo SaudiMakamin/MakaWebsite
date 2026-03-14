@@ -97,11 +97,36 @@ export default function OffshoreOperations() {
                     </p>
                     <p className="text-lg font-semibold text-gray-900">49%</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 md:col-span-2">
                     <p className="text-sm text-gray-500 mb-1">
                       {isAr ? 'رقم سجل OWG' : 'OWG Commercial Registration No.'}
                     </p>
-                    <p className="text-lg font-semibold text-gray-900">LL07924</p>
+                    <p className="text-lg font-semibold text-gray-900 mb-3">LL07924</p>
+                    <div className="border-t border-gray-200 pt-3 space-y-3">
+                      <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                        Historical Corporate Records – Offshoreworks Entities (Labuan, Malaysia)
+                      </p>
+                      <div className="bg-white rounded p-3 border border-gray-100 space-y-1">
+                        <p className="text-xs font-semibold text-gray-800">Offshoreworks Global (L) Ltd</p>
+                        <p className="text-xs text-gray-600">Registration Number: LL04173</p>
+                        <p className="text-xs text-gray-600">Jurisdiction: Labuan International Business &amp; Financial Centre, Malaysia</p>
+                        <p className="text-xs text-gray-600">Incorporation Date: 30 March 2004</p>
+                        <p className="text-xs text-gray-600">Registered Office: Brumby Centre, Lot 42, Jalan Muhibbah, Federal Territory of Labuan, 87000, Malaysia</p>
+                      </div>
+                      <div className="bg-white rounded p-3 border border-gray-100 space-y-1">
+                        <p className="text-xs font-semibold text-gray-800">Offshoreworks Middle East (L) Ltd</p>
+                        <p className="text-xs text-gray-600">Registration Number: LL07924</p>
+                        <p className="text-xs text-gray-600">Jurisdiction: Labuan International Business &amp; Financial Centre, Malaysia</p>
+                        <p className="text-xs text-gray-600">Incorporation Date: 5 November 2010</p>
+                        <p className="text-xs text-gray-600">Registered Office: Lot A020, Level 1, Podium Level, Financial Park, Jalan Merdeka, Federal Territory of Labuan, 87000, Malaysia</p>
+                      </div>
+                      <div className="bg-white rounded p-3 border border-gray-100 space-y-1">
+                        <p className="text-xs font-semibold text-gray-700 mb-1">Notes:</p>
+                        <p className="text-xs text-gray-600">Both entities were incorporated under the Labuan Companies framework in Malaysia.</p>
+                        <p className="text-xs text-gray-600">Offshoreworks Global (L) Ltd appears historically in offshore marine charter structures linked to regional oil &amp; gas support operations.</p>
+                        <p className="text-xs text-gray-600">Offshoreworks Middle East (L) Ltd was later incorporated and subsequently associated with the MOS joint venture structure.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex items-start gap-3">

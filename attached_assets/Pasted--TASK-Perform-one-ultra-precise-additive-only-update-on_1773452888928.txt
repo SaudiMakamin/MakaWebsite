@@ -1,0 +1,109 @@
+
+-----------
+TASK: Perform one ultra-precise additive-only update on the “Makamin Offshore Saudi Ltd (MOS)” page.
+
+CRITICAL RULE:
+Modify ONLY the existing information box/card currently showing:
+
+OWG Commercial Registration No.
+LL07924
+
+Do NOT modify any other part of the page.
+Do NOT change layout structure outside this one box.
+Do NOT alter ownership percentages, names, overview text, tables, notes, sections, metadata, or navigation.
+This is a single-box content expansion only.
+
+ARCHITECTURE RULES:
+- Respect the existing SPA architecture.
+- Modify ONLY the specific page file for Makamin Offshore Saudi Ltd (MOS).
+- Do NOT touch client/src/App.tsx, server/routes.ts, vite.config.ts, server/vite.ts, package.json, drizzle.config.ts.
+- Do NOT refactor.
+- Do NOT move files.
+- Do NOT create shared components.
+- Do NOT alter any other page.
+
+OBJECTIVE:
+Expand the existing OWG information box/card that currently contains:
+- OWG Commercial Registration No.
+- LL07924
+
+Keep this same box in the same position.
+Do NOT create a new separate box for this content.
+Add the following information INSIDE the SAME BOX, in a clean readable stacked format.
+
+BOX TITLE:
+Keep the current title if it already reads:
+OWG Commercial Registration No.
+
+CONTENT TO DISPLAY INSIDE THE SAME BOX:
+
+LL07924
+
+Historical Corporate Records – Offshoreworks Entities (Labuan, Malaysia)
+
+Offshoreworks Global (L) Ltd
+Registration Number: LL04173
+Jurisdiction: Labuan International Business & Financial Centre, Malaysia
+Incorporation Date: 30 March 2004
+Registered Office: Brumby Centre, Lot 42, Jalan Muhibbah, Federal Territory of Labuan, 87000, Malaysia
+
+Offshoreworks Middle East (L) Ltd
+Registration Number: LL07924
+Jurisdiction: Labuan International Business & Financial Centre, Malaysia
+Incorporation Date: 5 November 2010
+Registered Office: Lot A020, Level 1, Podium Level, Financial Park, Jalan Merdeka, Federal Territory of Labuan, 87000, Malaysia
+
+Notes:
+Both entities were incorporated under the Labuan Companies framework in Malaysia.
+Offshoreworks Global (L) Ltd appears historically in offshore marine charter structures linked to regional oil & gas support operations.
+Offshoreworks Middle East (L) Ltd was later incorporated and subsequently
+
+IMPORTANT CONTENT RULES:
+- Add the text exactly as provided above.
+- Do NOT rewrite, shorten, summarize, or interpret the text.
+- Do NOT remove the existing LL07924 display.
+- Do NOT move this information into another card.
+- Do NOT create a modal, accordion, tooltip, or popup.
+- Keep everything inside the same existing OWG card.
+
+DESIGN RULES:
+- Preserve the current page structure exactly.
+- Preserve the current card grid/layout outside this box.
+- Expand only this card vertically as needed.
+- Reuse the existing visual style already used by the page.
+- Keep formatting readable with line breaks and small grouped blocks.
+- If needed, reduce text size slightly inside this one card only to preserve readability.
+- Do NOT affect neighboring cards except natural height alignment if required by the existing layout.
+
+NON-DESTRUCTIVE RULES:
+- Do NOT change:
+  - Makamin Ownership: 51%
+  - Offshoreworks Global (L) Ltd (OWG): 49%
+  - Commercial Registration 2050077238
+  - contract date note
+  - Operational Scope
+  - Main Client
+  - Offshore Fleet Registry
+  - Marine Project & Contract Notes
+  - Offshore Marine Contract Portfolio
+  - Offshore Activity
+  - Fleet Capabilities
+  - any title, route, or metadata
+
+VERIFICATION:
+After editing, verify by code inspection only:
+1. Only the existing OWG card was expanded.
+2. LL07924 remains visible in that same card.
+3. The added historical corporate records text appears inside the same card.
+4. No new section or separate box was created.
+5. No other page content changed.
+6. No architecture or routing was changed.
+
+OUTPUT FORMAT:
+Return a concise implementation report with:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any potential risk
+E. Confirmation architecture was preserved
+F. State clearly: “Verified via code inspection only”
