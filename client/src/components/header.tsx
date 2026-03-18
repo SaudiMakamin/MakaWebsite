@@ -53,7 +53,7 @@ export default function Header() {
   ];
 
   const newsDropdown = [
-    { path: '/media-coverage', label: 'Media Coverage', labelAr: 'صدى مكامن', icon: Layers },
+    { path: '/media-coverage', label: 'Media Milestones', labelAr: 'صدى مكامن', icon: Layers },
   ];
 
   const shareholderDropdown = [
