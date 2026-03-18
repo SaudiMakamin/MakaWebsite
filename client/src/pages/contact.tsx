@@ -1,81 +1,31 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Phone, Printer, Mail, Globe, Clock, AlertTriangle } from 'lucide-react';
+import { MapPin, Mail, Globe, AlertTriangle, Phone, Copy, Check } from 'lucide-react';
 import { useLanguageContext } from '@/components/language-provider';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
-import { useToast } from '@/hooks/use-toast';
-import { useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
 
 import makaminFlags from '@assets/hero-carousel-3_1753109091165.jpg';
 import HeroLogo from '@/components/hero-logo';
 
 export default function Contact() {
-  const { t, language } = useLanguageContext();
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: '',
-    subject: '',
-    message: ''
-  });
+  const { language } = useLanguageContext();
+  const isAr = language === 'ar';
+  const [copied, setCopied] = useState(false);
 
-  const submitMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      // Simulate successful form submission for static deployment
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log('📧 Contact form data:', data);
-          resolve({ success: true });
-        }, 1000);
-      });
-    },
-    onSuccess: () => {
-      toast({
-        title: language === 'ar' ? "تم إرسال الرسالة بنجاح" : "Message sent successfully",
-        description: language === 'ar' ? "سنتواصل معك قريباً" : "We'll get back to you soon",
-      });
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        company: '',
-        subject: '',
-        message: ''
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: language === 'ar' ? "خطأ في إرسال الرسالة" : "Failed to send message",
-        description: language === 'ar' ? "يرجى المحاولة مرة أخرى" : "Please try again",
-        variant: "destructive",
-      });
-    }
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    submitMutation.mutate(formData);
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('info@makamin.com.sa');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <div className="min-h-screen">
       <SemanticMetadata page="contact" />
       <EnhancedSecurity />
-      {/* Hero Section with Makamin Flags Background */}
-      <section 
+
+      <section
         className="relative py-20 overflow-hidden"
         style={{
           backgroundImage: `url(${makaminFlags})`,
@@ -84,397 +34,330 @@ export default function Contact() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
-        
-        {/* Animated wind particles */}
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0">
           {Array.from({ length: 15 }).map((_, i) => (
             <div
               key={i}
               className="absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
+                left: `${(i * 7.3) % 100}%`,
+                top: `${(i * 6.7) % 100}%`,
+                animationDelay: `${i * 0.2}s`,
+                animationDuration: `${3 + (i % 3) * 0.7}s`
               }}
             />
           ))}
         </div>
-
-        {/* Wave motion lines */}
-        <div className="absolute inset-0">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              style={{
-                left: '0',
-                right: '0',
-                top: `${20 + i * 15}%`,
-                transform: `translateX(${Math.sin(i * 0.5) * 20}px)`,
-                animation: `wave 4s ease-in-out infinite ${i * 0.5}s`
-              }}
-            />
-          ))}
-        </div>
-
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="text-center">
             <HeroLogo size="md" />
-
-            {/* Contact Us Title with Cinematic Effects */}
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20 max-w-4xl mx-auto">
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
-                {t('contactTitle')}
+                {isAr ? 'تواصل مع مكامن' : 'Contact Makamin'}
               </h1>
-              <div className="h-1 w-32 bg-gradient-to-r from-makamin-blue to-white mx-auto mb-6 rounded-full"></div>
-              <p className="text-xl lg:text-2xl text-white/90 font-medium drop-shadow-lg">
-                {language === 'ar' ? (
-                  <>
-                    المقر الرئيسي - الرياض<br />
-                    <span className="text-lg text-blue-200">مجمع كناري، المملكة العربية السعودية</span>
-                  </>
-                ) : (
-                  <>
-                    Headquarters - Riyadh<br />
-                    <span className="text-lg text-blue-200">Canary Complex, Saudi Arabia</span>
-                  </>
-                )}
+              <div className="h-1 w-32 bg-gradient-to-r from-makamin-blue to-white mx-auto mb-6 rounded-full" />
+              <p className="text-lg text-white/90 mb-3 leading-relaxed">
+                {isAr
+                  ? 'نرحب بالاستفسارات التجارية وفرص الشراكة وطلبات الإعلام والتواصل العام عبر القنوات الرسمية لمكامن.'
+                  : "We welcome business inquiries, partnership opportunities, media requests, and general communication through Makamin's official contact channels."}
+              </p>
+              <p className="text-base text-blue-200 leading-relaxed">
+                {isAr
+                  ? 'للاستفسارات العامة، يرجى استخدام بريدنا الإلكتروني الرسمي أدناه. للشؤون المتخصصة، يمكنكم التواصل مع الإدارة المعنية مباشرة.'
+                  : 'For general inquiries, please use our official email below. For specialized matters, you may contact the relevant department directly.'}
               </p>
             </div>
           </div>
         </div>
-
-        <style>{`
-          @keyframes wave {
-            0%, 100% { transform: translateX(0px) scaleX(1); }
-            50% { transform: translateX(20px) scaleX(1.1); }
-          }
-        `}</style>
       </section>
 
       <section className="py-16">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+
+          {/* 1. General Inquiries */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold makamin-blue mb-4">
+              {isAr ? 'الاستفسارات العامة' : 'General Inquiries'}
+            </h2>
             <Card className="shadow-lg border border-gray-100">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold makamin-blue mb-6">
-                  {t('sendMessage')}
-                </h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <Label htmlFor="firstName" className="text-makamin-gray">
-                        {t('firstName')}
-                      </Label>
-                      <Input
-                        id="firstName"
-                        type="text"
-                        value={formData.firstName}
-                        onChange={(e) => handleInputChange('firstName', e.target.value)}
-                        className="mt-2"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName" className="text-makamin-gray">
-                        {t('lastName')}
-                      </Label>
-                      <Input
-                        id="lastName"
-                        type="text"
-                        value={formData.lastName}
-                        onChange={(e) => handleInputChange('lastName', e.target.value)}
-                        className="mt-2"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-makamin-gray">
-                      {t('email')}
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="mt-2"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="company" className="text-makamin-gray">
-                      {t('company')}
-                    </Label>
-                    <Input
-                      id="company"
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
-                      className="mt-2"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="subject" className="text-makamin-gray">
-                      {t('subject')}
-                    </Label>
-                    <Select value={formData.subject} onValueChange={(value) => handleInputChange('subject', value)}>
-                      <SelectTrigger className="mt-2">
-                        <SelectValue placeholder={t('subject')} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="general">{t('generalInquiry')}</SelectItem>
-                        <SelectItem value="business">{t('businessPartnership')}</SelectItem>
-                        <SelectItem value="career">{t('careerOpportunities')}</SelectItem>
-                        <SelectItem value="technical">{t('technicalSupport')}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label htmlFor="message" className="text-makamin-gray">
-                      {t('message')}
-                    </Label>
-                    <Textarea
-                      id="message"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      className="mt-2"
-                      required
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-makamin-blue hover:bg-blue-600"
-                    disabled={submitMutation.isPending}
-                  >
-                    {submitMutation.isPending ? t('loading') : t('sendBtn')}
+                <p className="text-makamin-gray mb-5">
+                  {isAr
+                    ? 'للاستفسارات التجارية وفرص الشراكة والتواصل العام، يرجى التواصل معنا عبر بريدنا الإلكتروني الرسمي:'
+                    : 'For business inquiries, partnership opportunities, and general communication, please contact us via our official email:'}
+                </p>
+                <a
+                  href="mailto:info@makamin.com.sa"
+                  className="text-2xl font-semibold makamin-blue hover:text-blue-600 block mb-6"
+                >
+                  info@makamin.com.sa
+                </a>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild className="bg-makamin-blue hover:bg-blue-600">
+                    <a href="mailto:info@makamin.com.sa">
+                      <Mail className="w-4 h-4 mr-2" />
+                      {isAr ? 'إرسال بريد إلكتروني' : 'Send Email'}
+                    </a>
                   </Button>
-                </form>
+                  <Button
+                    variant="outline"
+                    onClick={handleCopyEmail}
+                    className="border-makamin-blue text-makamin-blue hover:bg-blue-50"
+                  >
+                    {copied
+                      ? <Check className="w-4 h-4 mr-2" />
+                      : <Copy className="w-4 h-4 mr-2" />}
+                    {copied
+                      ? (isAr ? 'تم النسخ!' : 'Copied!')
+                      : (isAr ? 'نسخ البريد' : 'Copy Email')}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
+          </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8 contact-information contact-info-block" data-contact-info>
-              {/* Main Office */}
-              <Card className="shadow-lg border border-gray-100">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold makamin-blue mb-6">
-                    {language === 'ar' ? 'المقر الرئيسي - الرياض' : 'Headquarters - Riyadh'}
-                  </h3>
+          {/* 2. Headquarters */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold makamin-blue mb-4">
+              {isAr ? 'المقر الرئيسي - الرياض' : 'Headquarters – Riyadh'}
+            </h2>
+            <Card className="shadow-lg border border-gray-100">
+              <CardContent className="p-8">
+                <p className="text-sm text-gray-500 mb-5">
+                  {isAr
+                    ? 'المعلومات الرسمية للمقر الرئيسي لمكامن في الرياض.'
+                    : 'Official headquarters information for Makamin in Riyadh.'}
+                </p>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-makamin-light p-2 rounded-lg flex-shrink-0">
+                    <MapPin className="h-5 w-5 makamin-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold makamin-blue mb-1">
+                      {isAr ? 'العنوان' : 'Address'}
+                    </h4>
+                    <p className="text-makamin-gray">
+                      {isAr ? (
+                        <>الرياض – مجمع كناري<br />المملكة العربية السعودية</>
+                      ) : (
+                        <>Riyadh – Canary Complex<br />Saudi Arabia</>
+                      )}
+                    </p>
+                    <div className="flex items-center gap-3 mt-3">
+                      <a
+                        href="https://share.google/dlRaeCu6u4gJMBMvM"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-makamin-blue hover:text-blue-600 text-sm"
+                      >
+                        {isAr ? 'عرض على الخريطة' : 'View on Map'}
+                      </a>
+                      <span className="text-xs text-gray-400">|</span>
+                      <a
+                        href="/headquarters"
+                        className="text-makamin-blue hover:text-blue-600 text-sm"
+                      >
+                        {isAr ? 'صفحة المقر الكاملة' : 'Full Headquarters Page'}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4 mt-5 pt-5 border-t border-gray-100">
+                  <div className="bg-makamin-light p-2 rounded-lg flex-shrink-0">
+                    <Globe className="h-5 w-5 makamin-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold makamin-blue mb-1">
+                      {isAr ? 'الموقع الإلكتروني' : 'Website'}
+                    </h4>
+                    <a
+                      href="https://www.makamin.com.sa"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-makamin-blue hover:text-blue-600"
+                    >
+                      www.makamin.com.sa
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* 3. Department Contacts */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold makamin-blue mb-4">
+              {isAr ? 'جهات الاتصال بالأقسام' : 'Department Contacts'}
+            </h2>
+            <Card className="shadow-lg border border-gray-100">
+              <CardContent className="p-8">
+                <p className="text-makamin-gray mb-5">
+                  {isAr
+                    ? 'للاستفسارات المتخصصة، يرجى التواصل مع الجهة المعنية أدناه.'
+                    : 'For specialized inquiries, please use the relevant contact below.'}
+                </p>
+                <div className="space-y-1">
+                  {[
+                    { label: isAr ? 'التوظيف' : 'Careers', email: 'careers@makamin.com.sa' },
+                    { label: isAr ? 'الإعلام' : 'Media', email: 'media@makamin.com.sa' },
+                    { label: isAr ? 'الاستثمار' : 'Investment', email: 'invest@makamin.com.sa' },
+                    { label: isAr ? 'التقارير' : 'Reports', email: 'report@makamin.com.sa' },
+                    { label: isAr ? 'الدعم الإلكتروني' : 'Web Support', email: 'web@makamin.com.sa' },
+                  ].map(({ label, email }) => (
+                    <div
+                      key={email}
+                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                    >
+                      <span className="text-makamin-gray font-medium text-sm">{label}</span>
+                      <a
+                        href={`mailto:${email}`}
+                        className="text-makamin-blue hover:text-blue-600 text-sm"
+                      >
+                        {email}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400 mt-4">
+                  {isAr
+                    ? 'للاستفسارات العامة، يُفضَّل التواصل عبر info@makamin.com.sa للحصول على رد أسرع.'
+                    : 'For the fastest response, general inquiries should be directed to info@makamin.com.sa.'}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* 4. Emergency Contact */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold text-red-700 mb-4">
+              {isAr ? 'اتصال الطوارئ' : 'Emergency Contact'}
+            </h2>
+            <Card className="bg-red-50 border border-red-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="text-red-600 text-sm mb-3">
+                      {isAr
+                        ? 'لدعم العمليات البحرية العاجلة:'
+                        : 'For urgent offshore operations support:'}
+                    </p>
+                    <a
+                      href="tel:+966563308727"
+                      className="text-red-700 font-semibold text-lg hover:text-red-800 flex items-center gap-2"
+                    >
+                      <Phone className="h-4 w-4 flex-shrink-0" />
+                      24/7 Emergency Line: +966 56 330 8727
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* 5. Saudi Arabia Branches */}
+          <div className="mb-10">
+            <details className="group">
+              <summary className="cursor-pointer list-none flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold makamin-blue">
+                  {isAr ? 'الفروع السعودية' : 'Saudi Arabia Branches'}
+                </h2>
+                <span className="text-makamin-blue text-sm group-open:hidden select-none">
+                  {isAr ? '▼ عرض' : '▼ Show'}
+                </span>
+                <span className="text-makamin-blue text-sm hidden group-open:inline select-none">
+                  {isAr ? '▲ إخفاء' : '▲ Hide'}
+                </span>
+              </summary>
+              <Card className="shadow-sm border border-gray-100">
+                <CardContent className="p-6">
+                  <div className="space-y-3">
+                    {[
+                      isAr ? 'فرع الخبر – رقم السجل: 2051038139' : 'Khobar Branch – CR: 2051038139',
+                      isAr ? 'مكامن للخدمات البترولية – رقم السجل: 2050048513' : 'Makamin Petroleum Services – CR: 2050048513',
+                      isAr ? 'مكامن أوف شور السعودية – رقم السجل: 2050077238' : 'Makamin Offshore Saudi – CR: 2050077238',
+                      isAr ? 'فرع الدمام – عمليات إقليمية' : 'Dammam Branch – Regional Operations',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-makamin-blue rounded-full flex-shrink-0" />
+                        <span className="text-makamin-gray text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </details>
+          </div>
+
+          {/* 6. International Branches */}
+          <div className="mb-10">
+            <details className="group">
+              <summary className="cursor-pointer list-none flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold makamin-blue">
+                  {isAr ? 'الفروع الدولية' : 'International Branches'}
+                </h2>
+                <span className="text-makamin-blue text-sm group-open:hidden select-none">
+                  {isAr ? '▼ عرض' : '▼ Show'}
+                </span>
+                <span className="text-makamin-blue text-sm hidden group-open:inline select-none">
+                  {isAr ? '▲ إخفاء' : '▲ Hide'}
+                </span>
+              </summary>
+              <Card className="shadow-sm border border-gray-100">
+                <CardContent className="p-6">
                   <div className="space-y-4">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-makamin-light p-2 rounded-lg">
-                        <MapPin className="h-5 w-5 makamin-blue" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold makamin-blue mb-1">{t('address')}</h4>
-                        <p className="text-makamin-gray">
-                          {language === 'ar' ? (
-                            <>
-                              الرياض – مجمع كناري<br />
-                              المملكة العربية السعودية
-                            </>
-                          ) : (
-                            <>
-                              Riyadh – Canary Complex<br />
-                              Saudi Arabia
-                            </>
-                          )}
-                        </p>
-                        <div className="flex space-x-4 mt-2">
-                          <a 
-                            href="https://share.google/dlRaeCu6u4gJMBMvM" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-makamin-blue hover:text-blue-600 text-sm"
-                          >
-                            {language === 'ar' ? 'عرض على الخريطة' : 'View on Map'}
-                          </a>
-                          <span className="text-xs text-gray-500">|</span>
-                          <a 
-                            href="/headquarters" 
-                            className="text-makamin-blue hover:text-blue-600 text-sm"
-                          >
-                            {language === 'ar' ? 'صفحة المقر الكاملة' : 'Full Headquarters Page'}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-makamin-light p-2 rounded-lg">
-                        <Globe className="h-5 w-5 makamin-blue" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold makamin-blue mb-1">{t('website')}</h4>
-                        <a 
-                          href="https://www.makamin.com.sa" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-makamin-blue hover:text-blue-600"
-                        >
-                          www.makamin.com.sa
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-makamin-light p-2 rounded-lg">
-                        <Mail className="h-5 w-5 makamin-blue" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold makamin-blue mb-1">{language === 'ar' ? 'دليل البريد الإلكتروني' : 'Email Directory'}</h4>
-                        <div className="space-y-2 text-sm">
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'الإدارة العامة:' : 'General Management:'}</span>
-                            <a href="mailto:info@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              info@makamin.com.sa
-                            </a>
-                          </div>
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'التوظيف:' : 'Careers:'}</span>
-                            <a href="mailto:careers@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              careers@makamin.com.sa
-                            </a>
-                          </div>
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'الإعلام:' : 'Media:'}</span>
-                            <a href="mailto:media@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              media@makamin.com.sa
-                            </a>
-                          </div>
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'الاستثمار:' : 'Investment:'}</span>
-                            <a href="mailto:invest@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              invest@makamin.com.sa
-                            </a>
-                          </div>
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'الشكاوى:' : 'Reports:'}</span>
-                            <a href="mailto:report@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              report@makamin.com.sa
-                            </a>
-                          </div>
-                          <div>
-                            <span className="text-makamin-gray">{language === 'ar' ? 'الدعم الفني:' : 'Web Support:'}</span>
-                            <a href="mailto:web@makamin.com.sa" className="text-makamin-blue hover:text-blue-600 ml-2">
-                              web@makamin.com.sa
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Saudi Arabia Branches */}
-              <Card className="shadow-lg border border-gray-100">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold makamin-blue mb-6">
-                    {language === 'ar' ? 'الفروع السعودية' : 'Saudi Arabia Branches'}
-                  </h3>
-                  <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-makamin-blue rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'فرع الخبر - رقم السجل: 2051038139' : 'Khobar Branch - CR: 2051038139'}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-makamin-blue rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'مكامن للخدمات البترولية - رقم السجل: 2050048513' : 'Makamin Petroleum Services - CR: 2050048513'}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-makamin-blue rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'مكامن أوف شور السعودية - رقم السجل: 2050077238' : 'Makamin Offshore Saudi - CR: 2050077238'}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-makamin-blue rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'فرع الدمام - عمليات إقليمية' : 'Dammam Branch - Regional Operations'}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* International Branches */}
-              <Card className="shadow-lg border border-gray-100">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold makamin-blue mb-6">
-                    {language === 'ar' ? 'الفروع الدولية' : 'International Branches'}
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'البحرين - مكامن البحرين للاستثمار' : 'Bahrain - Makamin Bahrain Investment'}</span>
+                      <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0" />
+                      <span className="text-makamin-gray text-sm">
+                        {isAr ? 'البحرين — مكامن البحرين للاستثمار' : 'Bahrain — Makamin Bahrain Investment'}
+                      </span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <div className="flex-1">
-                        <span className="text-makamin-gray font-semibold block">
-                          {language === 'ar' ? 'ماليزيا - مكامن أوف شور (ماليزيا) المحدودة' : 'Malaysia - Makamin Offshore (Malaysia) Ltd.'}
+                      <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 mt-1.5" />
+                      <div>
+                        <span className="text-makamin-gray font-semibold text-sm block">
+                          {isAr ? 'ماليزيا — مكامن أوف شور (ماليزيا) المحدودة' : 'Malaysia — Makamin Offshore (Malaysia) Ltd.'}
                         </span>
-                        <div className="text-sm text-gray-600 mt-1 space-y-1">
+                        <div className="text-xs text-gray-500 mt-1 space-y-0.5">
                           <div>Suite 33.01, Level 33, The Gardens North Tower</div>
                           <div>Mid Valley City, Lingkaran Syed Putra</div>
                           <div>59200 Kuala Lumpur, Malaysia</div>
-                          <a 
-                            href="https://www.google.com/maps/place/The+Gardens+Mall/@3.1188459,101.6756449,17z" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-makamin-blue hover:text-blue-600 text-xs inline-block mt-2"
-                          >
-                            {language === 'ar' ? 'عرض في Google Maps' : 'View on Google Maps'}
-                          </a>
-                          <span className="text-xs text-gray-500 mx-2">|</span>
-                          <a 
-                            href="/malaysia" 
-                            className="text-makamin-blue hover:text-blue-600 text-xs"
-                          >
-                            {language === 'ar' ? 'صفحة الفرع الكاملة' : 'Full Branch Page'}
-                          </a>
+                          <div className="flex items-center gap-3 mt-2">
+                            <a
+                              href="https://www.google.com/maps/place/The+Gardens+Mall/@3.1188459,101.6756449,17z"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-makamin-blue hover:text-blue-600"
+                            >
+                              {isAr ? 'عرض في Google Maps' : 'View on Google Maps'}
+                            </a>
+                            <span className="text-gray-300">|</span>
+                            <a href="/malaysia" className="text-makamin-blue hover:text-blue-600">
+                              {isAr ? 'صفحة الفرع الكاملة' : 'Full Branch Page'}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'الإمارات العربية المتحدة' : 'United Arab Emirates'}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'الصين' : 'China'}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-makamin-gray">{language === 'ar' ? 'الكويت' : 'Kuwait'}</span>
-                    </div>
+                    {[
+                      isAr ? 'الإمارات العربية المتحدة' : 'United Arab Emirates',
+                      isAr ? 'الصين' : 'China',
+                      isAr ? 'الكويت' : 'Kuwait',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0" />
+                        <span className="text-makamin-gray text-sm">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Emergency Contact */}
-              <Card className="bg-red-50 border border-red-200">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-red-700 mb-4 flex items-center">
-                    <AlertTriangle className="h-5 w-5 mr-2" />
-                    {language === 'ar' ? 'اتصال الطوارئ' : 'Emergency Contact'}
-                  </h3>
-                  <p className="text-red-600 text-sm mb-2">
-                    {language === 'ar' ? 
-                      'لدعم العمليات البحرية العاجلة:' : 
-                      'For urgent offshore operations support:'
-                    }
-                  </p>
-                  <p className="text-red-700 font-semibold">24/7 Emergency Line: +966 56 330 8727</p>
-                </CardContent>
-              </Card>
-            </div>
+            </details>
           </div>
+
         </div>
       </section>
-
-      {/* الشعار موجود في Header - بدون تكرار */}
     </div>
   );
 }

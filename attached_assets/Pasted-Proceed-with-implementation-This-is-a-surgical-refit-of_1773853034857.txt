@@ -1,0 +1,220 @@
+Proceed with implementation.
+
+This is a surgical refit of the existing Contact page based on the approved content structure and your inspection findings.
+
+PRIMARY GOAL:
+Replace the current broken form-based Contact page with a clear institutional contact page centered on Makamin’s official contact channels, while preserving architecture and minimizing change surface.
+
+INSPECTION CONTEXT YOU ALREADY CONFIRMED:
+- The current page includes a broken form with fake success behavior only
+- submitMutation currently uses timeout/console behavior and does not perform real delivery
+- the broken form and its related imports/state/handlers should be removed completely
+- valid information blocks already present on the page include:
+  - Hero
+  - Headquarters
+  - Department email directory
+  - Saudi Arabia branches
+  - International branches
+  - Emergency contact
+
+EXECUTION RULES:
+1. Keep changes local to the existing Contact page and its directly related presentation/content logic.
+2. Preserve route behavior, site navigation behavior, overall architecture, header, footer, and page metadata behavior.
+3. Do not touch backend, server config, mail services, deployment config, or unrelated pages.
+4. Do not introduce new libraries.
+5. Do not expand scope into backend form implementation.
+6. Remove the current broken form entirely. Do not restyle it or leave placeholder form UI behind.
+
+PAGE STRUCTURE TO IMPLEMENT:
+
+1) HERO SECTION
+Keep the existing Hero structure/design language as much as possible, but update the Hero copy to the approved content below.
+
+Title:
+Contact Makamin
+
+Intro:
+We welcome business inquiries, partnership opportunities, media requests, and general communication through Makamin’s official contact channels.
+
+Supporting line:
+For general inquiries, please use our official email below. For specialized matters, you may contact the relevant department directly.
+
+Requirements:
+- Clean institutional tone
+- No oversized promotional wording
+- No contact form in hero
+- Do not leave old hero wording in place if it differs from the approved copy
+
+2) PRIMARY CONTACT SECTION
+This becomes the main action area of the page and must visually replace the broken form entirely.
+
+Section title:
+General Inquiries
+
+Copy:
+For business inquiries, partnership opportunities, and general communication, please contact us via our official email:
+
+Primary email:
+info@makamin.com.sa
+
+Primary CTAs:
+- Send Email
+- Copy Email
+
+Additional approved micro-enhancement:
+- Add a secondary CTA: Call Headquarters
+
+Behavior:
+- Send Email opens the user’s default mail app via mailto:
+- Copy Email copies info@makamin.com.sa to clipboard
+- The visible email text itself should also be clickable via mailto:
+- Call Headquarters should use tel: only if a reliable headquarters phone number already exists in the current page data/content; if no reliable HQ phone is present, do not invent one and report that clearly in the final report
+
+3) HEADQUARTERS SECTION
+Section title:
+Headquarters – Riyadh
+
+Content:
+Address
+Riyadh – Canary Complex
+Saudi Arabia
+
+Links:
+- View on Map
+- Full Headquarters Page
+
+Optional supporting line:
+Official headquarters information for Makamin in Riyadh.
+
+Requirements:
+- Reuse existing valid links if already present
+- Do not invent destination URLs
+- Keep this section high in hierarchy, directly after General Inquiries
+
+4) DEPARTMENT CONTACTS SECTION
+Section title:
+Department Contacts
+
+Section intro:
+For specialized inquiries, please use the relevant contact below.
+
+Items:
+- Careers — careers@makamin.com.sa
+- Media — media@makamin.com.sa
+- Investment — invest@makamin.com.sa
+- Reports — report@makamin.com.sa
+- Web Support — web@makamin.com.sa
+
+Additional approved micro-enhancement:
+Add a small helper line:
+For the fastest response, general inquiries should be directed to info@makamin.com.sa.
+
+Requirements:
+- Keep this section visually secondary to the main info@ contact
+- Use a clean list or compact cards
+- Do not give these the same prominence as the primary contact block
+
+5) EMERGENCY CONTACT SECTION
+Section title:
+Emergency Contact
+
+Copy:
+For urgent offshore operations support:
+
+24/7 Emergency Line: +966 56 330 8727
+
+Requirements:
+- Keep this section visually highlighted with refined corporate alert styling
+- Do not place it above the main contact block
+- Make the phone number clickable with tel:
+- It should be more noticeable than regular branch listings
+
+6) SAUDI ARABIA BRANCHES SECTION
+Section title:
+Saudi Arabia Branches
+
+Items:
+- Khobar Branch – CR: 2051038139
+- Makamin Petroleum Services – CR: 2050048513
+- Makamin Offshore Saudi – CR: 2050077238
+- Dammam Branch – Regional Operations
+
+Requirements:
+- Keep compact
+- Prefer simple list or structured compact cards
+- Keep visually secondary to the main contact section
+- If practical with minimal change, make this section collapsible or visually compressed
+
+7) INTERNATIONAL BRANCHES SECTION
+Section title:
+International Branches
+
+Items:
+- Bahrain — Makamin Bahrain Investment
+- Malaysia — Makamin Offshore (Malaysia) Ltd.
+  Suite 33.01, Level 33, The Gardens North Tower
+  Mid Valley City, Lingkaran Syed Putra
+  59200 Kuala Lumpur, Malaysia
+- United Arab Emirates
+- China
+- Kuwait
+
+Links for Malaysia:
+- View on Google Maps
+- Full Branch Page
+
+Requirements:
+- Malaysia may be the only expanded detailed branch
+- Keep other international locations concise
+- If practical with minimal change, make this section collapsible or visually compressed
+- Reuse existing valid links if already present; do not invent URLs
+
+8) FOOTER
+Keep the existing global site footer unchanged.
+
+REMOVE COMPLETELY
+Delete the entire broken form section and all related visible UI and logic, including:
+- Send us a Message
+- First Name
+- Last Name
+- Email field
+- Company field
+- Subject field
+- Message field
+- Send Message button
+- fake success submission behavior
+- form-related state/handlers/imports that become unused
+
+VISUAL HIERARCHY
+Keep the page hierarchy in this order:
+1. General Inquiries
+2. Headquarters
+3. Department Contacts
+4. Emergency Contact
+5. Saudi Arabia Branches
+6. International Branches
+
+LAYOUT GUIDANCE
+- It is acceptable to move the page into a cleaner stacked / single-column hierarchy if that improves clarity
+- Do not over-constrain the width if that harms readability of headquarters or branch content
+- Prioritize clear vertical hierarchy over aggressive narrowing
+- Preserve existing design language where possible
+
+VALIDATION BEFORE FINISHING
+Check:
+- no import errors
+- no JSX/TS errors
+- no leftover broken form UI
+- mailto links are correct
+- clipboard copy action works
+- tel links are valid where used
+- no broken route behavior
+- no architecture changes
+
+FINAL REPORT FORMAT
+A. Files modified
+B. What behavior changed
+C. What behavior remained unchanged
+D. Any potential risk
+E. Confirmation that architecture was preserved
+F. Whether verification was by code inspection only or local run/build
