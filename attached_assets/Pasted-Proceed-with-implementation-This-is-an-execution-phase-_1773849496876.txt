@@ -1,0 +1,176 @@
+Proceed with implementation.
+
+This is an execution-phase surgical refit of client/src/pages/media-coverage.tsx only, unless a directly related local component inside the same page path must be minimally adjusted.
+
+EXECUTION SCOPE:
+- Keep the route /media-coverage unchanged
+- Keep architecture unchanged
+- Do not touch App routing, backend, config, or deployment files
+- Do not introduce new libraries
+- Do not expand scope beyond this page
+
+IMPLEMENT THE FOLLOWING:
+
+1) Replace the current hero content and structure with an institutional version.
+
+Use:
+Title: Makamin’s Key Media Milestones
+
+Intro:
+Economic and industry media coverage of Makamin’s journey reflects its position as a leading Saudi company in the oil and gas services sector, built through a combination of strong foundations, international partnerships, investment in technology, and major operational contracts.
+
+Supporting line:
+From a strong-capital launch to international partnerships, technology investment, and major operational contracts, this page highlights the most prominent media milestones that have reflected Makamin’s growth and position in the energy sector.
+
+Counter label:
+7 Key Milestones
+
+Remove old promotional wording and any exaggerated framing.
+
+2) Replace the current filter bar model.
+
+Remove the current primary interface based on:
+- search input
+- year filter
+- generic category dropdown
+
+Replace with simple category tabs:
+- All Milestones
+- Foundation & Growth
+- International Partnerships
+- Technology & Innovation
+- Contracts & Operational Achievements
+
+Tabs should filter the displayed milestone cards.
+Keep implementation simple and local.
+
+3) Replace the current 11-item primary article grid with exactly 7 approved key milestones.
+
+Render exactly these 7 cards in this exact order:
+
+Card 01
+Year: 2007
+Badge: Foundation
+Title: Launching with Strong Strategic Capital
+Description:
+Makamin launched with a capital of SAR 1.2 billion, a step that reflected a clear ambition to build a leading national entity in oil and gas services, capable of competing regionally and internationally from the outset.
+Source: Al Bayan
+Link: https://www.albayan.ae/economy/2007-10-08-1.796958
+Category: Foundation & Growth
+
+Card 02
+Year: 2007
+Badge: International Partnership
+Title: International Partnership with China’s Shengli to Advance Knowledge Transfer
+Description:
+Makamin strengthened its position through a strategic partnership with China’s Shengli, aimed at transferring advanced technologies, localizing industrial knowledge, and enhancing research and study capabilities in the energy field.
+Source: Al Jazirah
+Link: https://www.al-jazirah.com/2007/20071104/ec9.htm
+Category: International Partnerships
+
+Card 03
+Year: 2009
+Badge: Technology Investment
+Title: Strategic Technology Investment through Switzerland’s Spectraseis
+Description:
+Makamin took an advanced step toward innovation by acquiring a stake in Switzerland’s Spectraseis, a company specialized in geophysical exploration technologies, reflecting Makamin’s direction toward supporting exploration activities with advanced technical solutions.
+Source: Aleqtisadiah
+Link: https://www.aleqt.com/2009/03/08/article_202491.html
+Category: Technology & Innovation
+
+Card 04
+Year: 2009
+Badge: Regional Expansion
+Title: Establishing an International Alliance for Middle East Expansion
+Description:
+The partnership with Spectraseis resulted in the establishment of a joint venture in Dhahran aimed at providing advanced geophysical solutions across Middle East markets, strengthening Makamin’s role as a regional hub for advanced technical services.
+Source: Offshore Magazine
+Link: https://www.offshore-mag.com/business-briefs/company-news/article/16786726/spectraseis-saudi-makamin-jv-to-target-middle-east
+Category: International Partnerships
+
+Card 05
+Year: 2011
+Badge: Operational Contract
+Title: Securing Major Operational Contracts with Saudi Aramco
+Description:
+Makamin achieved an important operational milestone by securing contracts with Saudi Aramco, including a SAR 260 million contract as well as another contract for geological and geophysical data analysis, reflecting the confidence of major entities in its operational capabilities.
+Source: Alaan
+Link: https://www.alaan.cc/article/72722/
+Category: Contracts & Operational Achievements
+
+Card 06
+Year: 2017
+Badge: Technology Transformation
+Title: Adopting Advanced Technology Solutions through the Aerodyne Partnership
+Description:
+As part of its technology transformation path, Makamin entered into a partnership with Aerodyne to provide drone solutions for the oil and marine services sectors, enhancing operational efficiency and raising standards of safety and innovation.
+Source: GISUser
+Link: https://gisuser.com/2017/08/aerodyne-group-announces-collaboration-with-leading-middle-east-offshore-service-provider/
+Category: Technology & Innovation
+
+Card 07
+Year: 2018
+Badge: Capability Development
+Title: Establishing an Advanced Technical Laboratory in Partnership with Digitalcore
+Description:
+Makamin strengthened its research and technical capabilities through the establishment of a specialized core imaging laboratory in Dhahran in partnership with Digitalcore, reflecting its commitment to knowledge localization and technical capability development.
+Source: Oil Review Middle East
+Link: https://oilreviewmiddleeast.com/information-technology/makamin-and-digitalcore-jv-to-establish-core-imaging-laboratory
+Category: Technology & Innovation
+
+4) Card rendering rules:
+- each card should contain only:
+  - year
+  - badge
+  - title
+  - short description
+  - source
+  - CTA
+- CTA label must be: Read Coverage
+- links must open in a new tab
+- source should appear subtly below description
+- keep card heights visually balanced
+- do not keep the current HIGH / MEDIUM / STRATEGIC system
+- do not keep the current search/year/category controls
+- do not rely on the existing single-image Aerodyne treatment as a featured visual pattern unless required for layout consistency; keep the grid visually consistent
+
+5) Add a section after the main grid:
+
+Title:
+Strategic Summary
+
+Copy:
+These milestones show that Makamin was not built merely as a service company, but as a strategic platform that brings together investment, technology, international partnerships, and operational capability, reinforcing its position as a trusted player in the energy sector inside and outside the Kingdom.
+
+6) If preserving the remaining non-core items is straightforward and low risk, place them in a visually lighter secondary section after Strategic Summary:
+
+Title:
+Additional Coverage
+
+Copy:
+This section includes additional media coverage related to Makamin’s journey and is presented as a supporting archive alongside the approved key milestones.
+
+This archive must not visually compete with the main milestones section.
+If implementing this archive cleanly would increase risk or scope, report that and keep focus on the 7 key milestones only.
+
+7) Preserve:
+- existing page route
+- overall site layout
+- existing header/footer
+- existing animation/style system where safe
+- architecture and file boundaries
+
+8) Validation before finalizing:
+- check imports
+- check JSX/TS integrity
+- check tab filtering logic
+- check all 7 external links
+- confirm no unintended route or architecture changes
+
+Return final report in this format:
+A. Files modified
+B. What behavior changed
+C. What behavior remained unchanged
+D. Any potential risk
+E. Confirmation that architecture was preserved
+F. Whether verification was by code inspection only or local run/build
