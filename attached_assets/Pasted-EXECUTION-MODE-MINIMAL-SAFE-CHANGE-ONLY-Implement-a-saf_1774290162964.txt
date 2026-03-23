@@ -1,0 +1,98 @@
+EXECUTION MODE — MINIMAL SAFE CHANGE ONLY
+
+Implement a safe replacement of the current shareholder update page.
+
+Do NOT change architecture.
+Do NOT change routing.
+Do NOT change backend unless explicitly required.
+Do NOT touch unrelated files.
+Preserve the existing public route for the page.
+
+Goal:
+Replace the current marketing-heavy / partially fake shareholder update page with a simple, high-trust gateway page that directs users to the official Google Apps Script shareholder portal.
+
+Primary file to edit:
+- client/src/pages/update-shareholder.tsx
+
+Do not edit any other file unless absolutely required.
+If another file is required, stop and state why before changing it.
+
+Requirements:
+
+1) Keep the same route and page slug
+- Preserve the existing /update-shareholder route
+- Preserve existing metadata usage if already present
+
+2) Remove the current misleading experience from this page
+Remove from the rendered UI:
+- hero image / decorative marketing presentation
+- promotional badges
+- digital certificates preview
+- blockchain / VIP / priority / governance marketing blocks
+- all placeholder upload areas
+- any “Coming Soon” upload text
+- any fake or non-functional document upload UI
+- any ownership fields that imply live editable workflow on this page
+
+3) Replace with a clean institutional gateway page
+The new page should contain:
+
+A. Page title
+Arabic:
+تحديث بيانات المساهمين
+
+B. Intro text
+Arabic:
+هذه الخدمة مخصصة لتقديم أو تحديث بيانات المساهمين عبر البوابة الرسمية المعتمدة.
+تخضع جميع الطلبات والمرفقات للمراجعة والتحقق قبل الاعتماد.
+
+C. Three action cards/buttons
+- تقديم طلب جديد
+  Link to:
+  https://script.google.com/a/makamin.com.sa/macros/s/AKfycbzGQXo23-Ua3T8FYROZ-8bWDoZHY9GFMhqpuF0hU1v9NYqL_iCQrHDWXxrTML1Vs8MV/exec?page=submit
+
+- متابعة طلب سابق
+  Link to:
+  https://script.google.com/a/makamin.com.sa/macros/s/AKfycbzGQXo23-Ua3T8FYROZ-8bWDoZHY9GFMhqpuF0hU1v9NYqL_iCQrHDWXxrTML1Vs8MV/exec?page=track
+
+- دخول الإدارة
+  Link to:
+  https://script.google.com/a/makamin.com.sa/macros/s/AKfycbzGQXo23-Ua3T8FYROZ-8bWDoZHY9GFMhqpuF0hU1v9NYqL_iCQrHDWXxrTML1Vs8MV/exec?page=admin
+
+D. Official note section
+Arabic:
+ملاحظات مهمة
+- بعض البيانات تخضع للمراجعة قبل الاعتماد النهائي.
+- سيتم إشعار مقدم الطلب بنتيجة المراجعة بعد استكمال التحقق.
+- في حال وجود استفسار، يرجى التواصل عبر القنوات الرسمية للشركة.
+
+4) Visual direction
+- Formal, minimal, high-trust
+- No emojis
+- No glassmorphism
+- No childish styling
+- No dashed decorative cards
+- Clean spacing
+- Executive/institutional feel
+- Arabic-first layout
+- Responsive on mobile and desktop
+
+5) Technical constraints
+- Reuse existing project patterns and components if already suitable
+- Keep change surface minimal
+- Do not introduce new libraries
+- Do not add backend dependencies
+- Do not call old shareholder submit APIs from this page anymore
+- No fake form fields
+- No upload widgets
+
+6) Output required after implementation
+Return:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any risk
+E. Confirmation that route and architecture were preserved
+
+Also include:
+“Verified via code inspection only.”
