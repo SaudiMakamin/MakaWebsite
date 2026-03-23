@@ -1,0 +1,59 @@
+Your integration direction is approved in principle.
+
+Proceed only under these six mandatory conditions before implementation. These are not optional details.
+
+1) Google endpoint mode must be confirmed first
+Confirm explicitly whether the current Google Apps Script already exposes a real external doPost(e) JSON endpoint.
+If it does not, then the Google side must be adapted first.
+Do not start Makamin-side relay implementation against assumptions.
+
+2) Secret authentication is mandatory
+The Google endpoint must not accept unauthenticated public requests.
+Implement or confirm a server-to-server secret token validation mechanism.
+The token must be sent from Makamin backend only, never from frontend.
+Reject all requests with missing or invalid token.
+
+3) File size limits must be defined before coding
+Because files will be base64-encoded and forwarded as JSON, payload size inflation must be accounted for.
+Before implementation, define:
+- max size per PDF
+- max total payload size
+- max number of files
+Do not proceed with undefined limits.
+
+4) Partial-failure policy must be specified
+Define exact behavior for these cases before coding:
+- Drive upload succeeds but Sheet write fails
+- Sheet write succeeds but email fails
+- one file succeeds and another fails
+Return-state policy must be explicit.
+At minimum, clarify when submission is considered successful and when emailSent must be false.
+
+5) Google must be the only system of record
+Makamin local disk and PostgreSQL must not remain the authoritative source for production submissions.
+If PostgreSQL is retained, it must be clearly limited to audit/debug logging only, not final truth.
+If temporary buffering is required in backend memory, that is acceptable.
+Final source of truth must be Google only.
+
+6) Frontend contract must remain stable
+The Makamin frontend must continue to receive a clean, stable response contract.
+At minimum preserve:
+- success
+- requestId
+- status
+- emailSent
+For tracking, preserve the requirement:
+- requestId
+AND
+- email or mobile
+If Google response shape differs, normalize it in backend before returning to frontend.
+
+Before writing code, return a revised implementation brief covering exactly:
+A. confirmed Google endpoint mode
+B. auth/token design
+C. file size limits
+D. partial-failure policy
+E. whether PostgreSQL remains only as audit log or is removed from flow
+F. exact Makamin files to be changed
+
+Do not begin implementation until all six conditions are answered explicitly.
