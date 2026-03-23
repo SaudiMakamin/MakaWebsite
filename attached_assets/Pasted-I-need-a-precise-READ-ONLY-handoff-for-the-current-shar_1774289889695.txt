@@ -1,0 +1,72 @@
+I need a precise READ-ONLY handoff for the current shareholder update page implementation.
+
+Do not modify any code.
+Do not refactor anything.
+Do not summarize vaguely.
+Extract the exact implementation details and return the real file contents/locations.
+
+Task:
+Identify the page used for the public URL related to shareholder update on the Makamin website, and provide a precise technical handoff.
+
+Required output:
+
+1) Route mapping
+- The exact frontend route/path for the shareholder update page
+- The file that registers this route
+- Any related router setup files
+- The exact component/page file rendered by this route
+
+2) Page source files
+Provide the exact file paths and full contents of:
+- The main page/component for the shareholder update page
+- Any directly imported child components used only or mainly by this page
+- Any shared layout wrapper used by this page
+- Any styles, constants, content, config, or data files directly controlling this page
+- Any i18n/translation keys used by this page
+
+3) Backend/API dependency mapping
+- List any API calls, hooks, loaders, actions, fetch calls, mutations, or form handlers used by this page
+- Show the exact files where those APIs are defined
+- Show request endpoints, payload shape, and expected response shape if available
+- If there is no backend connection, say clearly: NO BACKEND CONNECTION FOUND
+
+4) Form and upload logic
+- Identify whether this page contains a real submit flow
+- Identify whether file upload is actually implemented or placeholder-only
+- Show the exact file(s) that handle upload logic, if any
+- If “coming soon” or placeholder text exists, provide the exact source file and exact text
+
+5) Content and UI structure
+Describe the page structure exactly as implemented:
+- hero section
+- cards
+- form sections
+- ownership section
+- documents section
+- badges / marketing blocks / CTA blocks
+- footer or surrounding sections included on the same page
+
+6) External links and integrations
+- Any external URL used by this page
+- Any Google Apps Script / Google Form / third-party integration already linked
+- Any environment variables or config values affecting this page
+
+7) Safe replacement scope
+Based on the current codebase, identify the MINIMAL set of files required if we want to replace this page with a simpler high-trust gateway page that links to the new Google Apps Script portal.
+Do not implement it.
+Only list the files that would need editing.
+
+Output format:
+- Start with “ARCHITECTURE FACTS”
+- Then “FILES”
+- Then “DEPENDENCIES”
+- Then “RISKS”
+- Then “MINIMAL SAFE EDIT SCOPE”
+
+Important rules:
+- Be exact
+- Use real file paths
+- Quote exact strings where relevant
+- Do not omit files because they seem unimportant
+- If something is uncertain, write exactly: UNCERTAIN
+- If multiple shareholder-related pages exist, list all of them and explain which one powers the live route
