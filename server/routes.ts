@@ -216,16 +216,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         const shareholder = await storage.createShareholder(shareholderData);
 
-        // Attempt email — non-blocking
-        sendShareholderConfirmation({
+        // Attempt email — await result to include in response
+        const emailResult = await sendShareholderConfirmation({
           toEmail: body.email,
           fullName: body.fullName,
           requestId,
-        }).then(r => {
-          if (!r.sent) console.log("Email not sent:", r.reason);
         });
+        if (!emailResult.sent) console.log("Email not sent:", emailResult.reason);
 
-        res.json({ success: true, requestId, id: shareholder.id });
+        res.json({
+          success: true,
+          requestId,
+          id: shareholder.id,
+          status: "تم الاستلام",
+          emailSent: emailResult.sent,
+        });
       } catch (error) {
         console.error("Shareholder submit error:", error);
         res.status(500).json({ success: false, message: "Submission failed. Please try again." });

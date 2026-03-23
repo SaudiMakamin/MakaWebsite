@@ -83,7 +83,7 @@ export default function ShareholderSubmit() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [successId, setSuccessId] = useState<string | null>(null);
+  const [successData, setSuccessData] = useState<{ requestId: string; emailSent: boolean } | null>(null);
   const [serverError, setServerError] = useState('');
 
   const mainDocRef = useRef<HTMLInputElement>(null);
@@ -145,7 +145,7 @@ export default function ShareholderSubmit() {
       const res = await fetch('/api/shareholder/submit', { method: 'POST', body: fd });
       const data = await res.json();
       if (data.success) {
-        setSuccessId(data.requestId);
+        setSuccessData({ requestId: data.requestId, emailSent: data.emailSent === true });
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setServerError(data.message || (isAr ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.'));
@@ -157,40 +157,66 @@ export default function ShareholderSubmit() {
     }
   };
 
-  if (successId) {
+  if (successData) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4" dir={isAr ? 'rtl' : 'ltr'}>
         <SemanticMetadata page="update-shareholder" title="Request Submitted | Saudi Makamin Holding" description="" />
-        <div className="bg-white border border-gray-200 rounded-lg p-10 max-w-lg w-full text-center">
-          <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-5" />
-          <h1 className="text-xl font-bold text-gray-900 mb-3">
-            {isAr ? 'تم استلام طلبكم بنجاح' : 'Request Received Successfully'}
-          </h1>
-          <div className="bg-gray-50 border border-gray-200 rounded-md px-6 py-4 my-5">
-            <p className="text-xs text-gray-500 mb-1">{isAr ? 'الرقم المرجعي' : 'Reference Number'}</p>
-            <p className="text-2xl font-bold text-blue-700 tracking-wide">{successId}</p>
+        <div className="bg-white border border-gray-200 rounded-lg p-10 max-w-lg w-full">
+          <div className="flex justify-center mb-6">
+            <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
-          <p className="text-sm text-gray-600 leading-relaxed mb-2">
-            {isAr
-              ? 'سيتم مراجعة الطلب من قبل الإدارة المختصة.'
-              : 'Your request will be reviewed by the relevant administrative team.'}
+
+          <p className="text-lg font-bold text-gray-900 text-center mb-5">
+            {isAr ? 'تم استلام طلبكم بنجاح.' : 'Your request has been received successfully.'}
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed mb-7">
-            {isAr
-              ? 'يرجى الاحتفاظ بالرقم المرجعي لاستخدامه عند المتابعة.'
-              : 'Please keep the reference number for use when tracking your request.'}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+
+          <div className="bg-gray-50 border border-gray-200 rounded-md px-6 py-4 mb-5 text-center">
+            <p className="text-xs text-gray-500 mb-1">
+              {isAr ? 'الرقم المرجعي' : 'Reference Number'}
+            </p>
+            <p className="text-xl font-bold text-blue-700 tracking-widest">
+              {successData.requestId}
+            </p>
+          </div>
+
+          <div className="space-y-2 mb-6 text-center">
+            <p className="text-sm text-gray-700 leading-relaxed">
+              {isAr
+                ? 'سيتم مراجعة الطلب من قبل الإدارة المختصة.'
+                : 'The request will be reviewed by the relevant administrative team.'}
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              {isAr
+                ? 'يرجى الاحتفاظ بالرقم المرجعي لاستخدامه عند المتابعة.'
+                : 'Please keep the reference number for use when tracking your request.'}
+            </p>
+            {successData.emailSent && (
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {isAr
+                  ? 'تم إرسال إشعار إلى بريدكم الإلكتروني المسجل.'
+                  : 'A confirmation has been sent to your registered email address.'}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-3">
             <Link href="/shareholder/track">
-              <Button variant="outline" className="text-sm w-full sm:w-auto">
+              <Button className="w-full bg-blue-700 hover:bg-blue-800 text-white text-sm">
                 {isAr ? 'متابعة الطلب' : 'Track Request'}
               </Button>
             </Link>
-            <Link href="/update-shareholder">
-              <Button variant="ghost" className="text-sm text-gray-500 w-full sm:w-auto">
-                {isAr ? 'العودة للبوابة' : 'Back to Portal'}
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              className="w-full text-sm"
+              onClick={() => {
+                setSuccessData(null);
+                setForm(initialForm);
+                setErrors({});
+                setServerError('');
+              }}
+            >
+              {isAr ? 'تقديم طلب جديد' : 'Submit a New Request'}
+            </Button>
           </div>
         </div>
       </div>
