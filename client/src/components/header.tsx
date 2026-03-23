@@ -57,6 +57,7 @@ export default function Header() {
   ];
 
   const shareholderDropdown = [
+    { path: '/update-shareholder', label: 'Shareholder Update Portal', labelAr: 'بوابة تحديث المساهمين', icon: UserCheck },
     { path: '/investor-relations', label: 'Strategic Shareholders', labelAr: 'المساهمون الاستراتيجيون', icon: Users },
     { path: '/news', label: 'Governance News', labelAr: 'أخبار الحوكمة', icon: Building2 },
   ];
