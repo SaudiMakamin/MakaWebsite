@@ -40,15 +40,32 @@ export async function relaySubmitToGas(fields: Record<string, string | boolean>)
     if (!response.ok) {
       const text = await response.text().catch(() => "(unreadable)");
       console.error(`GAS relay: HTTP ${response.status} — ${text}`);
-      return { success: false, error: `GAS returned HTTP ${response.status}` };
+      const errorCode = response.status === 413
+        ? "upstream_payload_too_large"
+        : response.status >= 500
+          ? "upstream_server_error"
+          : "upstream_rejected";
+      return { success: false, error: errorCode };
     }
 
     const data = await response.json() as GasSubmitResult;
+
+    // Defensive: success=true with no requestId is an invalid response — reject it
+    if (data.success === true && !data.requestId?.trim()) {
+      console.error("GAS relay: success=true but requestId missing or empty — treating as failure");
+      return { success: false, error: "upstream_missing_requestid" };
+    }
+
     return data;
   } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error("GAS relay network error:", msg);
-    return { success: false, error: msg };
+    // Classify error type for logging; never expose raw upstream details to caller
+    const raw = err instanceof Error ? err.message : String(err);
+    if (raw.includes("abort") || raw.toLowerCase().includes("timeout")) {
+      console.error("GAS relay: request timed out");
+      return { success: false, error: "upstream_timeout" };
+    }
+    console.error("GAS relay network error:", raw);
+    return { success: false, error: "upstream_network" };
   }
 }
 
