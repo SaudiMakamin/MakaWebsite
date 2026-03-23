@@ -1,0 +1,95 @@
+READ-ONLY VERIFICATION ONLY.
+
+The flow was already tested internally and worked successfully.
+This verification step is not to re-test the product concept.
+It is to confirm that the actual implemented code matches the reported behavior in the critical areas.
+
+Do not modify code.
+Do not summarize generally.
+Show exact proof from the implemented code.
+
+Return only the following:
+
+1) SUCCESS UI PROOF
+Show the exact code snippet from the submit page that renders the post-submission success state.
+It must include:
+- the Arabic success title
+- the displayed reference number
+- the review notice
+- the conditional email notification line (if implemented)
+- the buttons/links for follow-up and new submission
+
+Provide:
+- exact file path
+- exact snippet only
+
+2) SUBMIT RESPONSE PROOF
+Show the exact backend code snippet for the submit endpoint response payload after successful submission.
+It must show whether the response returns:
+- success
+- requestId
+- status
+- emailSent
+and any other returned fields.
+
+Provide:
+- exact file path
+- exact snippet only
+
+3) TRACKING PROOF
+Show the exact backend and frontend snippets proving that tracking requires:
+- requestId
+AND
+- email or mobile
+not requestId alone.
+
+Provide:
+- exact file paths
+- exact snippets only
+
+4) FILE UPLOAD PROOF
+Show the exact backend snippet that handles uploaded files, including:
+- middleware used
+- allowed file type validation
+- storage location/path
+- any file size limits if present
+
+Provide:
+- exact file path
+- exact snippet only
+
+5) EMAIL PROOF
+Show the exact code snippet for email sending integration.
+Clarify from code only:
+- whether email sending is active
+- what environment variables are required
+- what happens when the email key is missing
+- whether the UI claims email was sent when emailSent=false
+
+Provide:
+- exact file paths
+- exact snippets only
+
+6) ROUTE PROOF
+Show the exact route registration snippets for:
+- /update-shareholder
+- /shareholder/submit
+- /shareholder/track
+
+Provide:
+- exact file path
+- exact snippet only
+
+OUTPUT FORMAT:
+- SUCCESS UI PROOF
+- SUBMIT RESPONSE PROOF
+- TRACKING PROOF
+- FILE UPLOAD PROOF
+- EMAIL PROOF
+- ROUTE PROOF
+
+No high-level narrative.
+No broad summary.
+Use exact code excerpts only.
+If any point cannot be proven from code, write exactly:
+NOT PROVEN FROM CODE
