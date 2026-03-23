@@ -58,7 +58,7 @@ export default function Header() {
 
   const shareholderDropdown = [
     { path: '/investor-relations', label: 'Strategic Shareholders', labelAr: 'المساهمون الاستراتيجيون', icon: Users },
-    { path: '/news', label: 'Corporate Governance', labelAr: 'حوكمة الشركات', icon: Building2 },
+    { path: '/news', label: 'Governance News', labelAr: 'أخبار الحوكمة', icon: Building2 },
   ];
 
   const navItems = [
