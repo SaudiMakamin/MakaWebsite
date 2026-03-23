@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1f3a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2d3561;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1f3a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c5a66e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="50" fill="#4a90e2" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="80" fill="#c5a66e" opacity="0.1"/>
+  <path d="M0,350 Q300,300 600,350 T1200,350" stroke="#4a90e2" stroke-width="2" opacity="0.3" fill="none"/>
+  
+  <!-- Logo Space (will be dynamically replaced) -->
+  <rect x="450" y="180" width="300" height="150" fill="rgba(255,255,255,0.1)" stroke="#c5a66e" stroke-width="2" rx="10"/>
+  <text x="600" y="265" text-anchor="middle" fill="#c5a66e" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    MAKAMIN LOGO
+  </text>
+  
+  <!-- Company Name -->
+  <text x="600" y="380" text-anchor="middle" fill="url(#textGradient)" font-family="Arial, sans-serif" font-size="36" font-weight="bold">
+    مكامن السعودية القابضة
+  </text>
+  <text x="600" y="420" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28">
+    Makamin Saudi Holding
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="470" text-anchor="middle" fill="#b0b9c3" font-family="Arial, sans-serif" font-size="20">
+    استثمارات وخدمات النفط والغاز | رأس مال 1.2 مليار ريال
+  </text>
+  
+  <!-- Website -->
+  <text x="600" y="520" text-anchor="middle" fill="#c5a66e" font-family="Arial, sans-serif" font-size="18">
+    makamin.com.sa
+  </text>
+  
+  <!-- Border -->
+  <rect x="2" y="2" width="1196" height="626" fill="none" stroke="url(#textGradient)" stroke-width="4" rx="15"/>
+</svg>

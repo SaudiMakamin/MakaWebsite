@@ -1,0 +1,8 @@
+Contact: security@makamin.com.sa
+Expires: 2026-12-31T23:59:59.000Z
+Acknowledgments: https://makamin.com.sa/security-acknowledgments
+Preferred-Languages: ar, en
+Canonical: https://makamin.com.sa/.well-known/security.txt
+
+# Security information for Saudi Makamin Holding Company
+# مكامن السعودية القابضة - معلومات الأمان

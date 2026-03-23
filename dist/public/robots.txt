@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /royal-dashboard
+Disallow: /update-shareholder
+Sitemap: https://makamin.com.sa/sitemap.xml

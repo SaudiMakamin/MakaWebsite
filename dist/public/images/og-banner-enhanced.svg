@@ -1,0 +1,78 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1419;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a365d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d4a66;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="textGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c5a66e;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Grid Pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Main Content Container -->
+  <rect x="80" y="120" width="1040" height="390" rx="15" fill="#000000" opacity="0.3" stroke="url(#textGold)" stroke-width="2"/>
+  
+  <!-- Company Logo Area -->
+  <circle cx="950" cy="250" r="80" fill="url(#textGold)" opacity="0.8"/>
+  <text x="950" y="265" font-family="Arial Black, sans-serif" font-size="24" font-weight="bold" fill="#0f1419" text-anchor="middle">
+    مكامن
+  </text>
+  
+  <!-- Main Company Name -->
+  <text x="120" y="200" font-family="Arial Black, sans-serif" font-size="56" font-weight="bold" fill="#ffffff" filter="url(#glow)">
+    MAKAMIN
+  </text>
+  
+  <!-- Arabic Company Name -->
+  <text x="120" y="250" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="url(#textGold)" dir="rtl">
+    شركة مكامن السعودية القابضة
+  </text>
+  
+  <!-- Capital and Services -->
+  <text x="120" y="310" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#ffffff">
+    Capital: SAR 1.2 Billion • Oil &amp; Gas Services
+  </text>
+  
+  <!-- Arabic Services -->
+  <text x="120" y="350" font-family="Arial, sans-serif" font-size="24" fill="url(#textGold)">
+    رأس المال 1.2 مليار ريال • خدمات النفط والغاز
+  </text>
+  
+  <!-- Website and Contact -->
+  <text x="120" y="420" font-family="Arial, sans-serif" font-size="26" font-weight="500" fill="#ffffff" opacity="0.9">
+    🌐 makamin.com.sa
+  </text>
+  
+  <!-- Established -->
+  <text x="120" y="460" font-family="Arial, sans-serif" font-size="20" fill="url(#textGold)" opacity="0.8">
+    Established 2008 • تأسست عام 2008
+  </text>
+  
+  <!-- Saudi Flag Colors Accent -->
+  <rect x="80" y="520" width="1040" height="8" fill="url(#textGold)"/>
+  <rect x="80" y="532" width="1040" height="8" fill="#006c35"/>
+</svg>
