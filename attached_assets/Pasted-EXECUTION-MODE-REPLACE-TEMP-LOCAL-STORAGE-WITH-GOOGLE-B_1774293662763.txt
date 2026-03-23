@@ -1,0 +1,96 @@
+EXECUTION MODE — REPLACE TEMP LOCAL STORAGE WITH GOOGLE BACKEND AS SYSTEM OF RECORD
+
+We now have the final architecture decision:
+
+The Makamin website must remain the public-facing frontend for shareholder submission and tracking.
+But the system of record must be the existing Google backend:
+- file storage in Google Drive
+- data storage in Google Sheet / Google workflow
+- official company email notifications from the existing Google-based process
+- reference number generation from the Google workflow
+
+Do not expose Google URLs to users.
+Do not break the current website routes.
+Do not redesign architecture.
+Implement the smallest safe backend integration to make Google the final source of truth.
+
+TARGET ARCHITECTURE
+Frontend:
+- /update-shareholder
+- /shareholder/submit
+- /shareholder/track
+
+Makamin backend:
+- receives website submission
+- forwards payload and files to the Google backend securely
+- receives the result from Google
+- returns a clean response to the frontend
+
+Google backend remains responsible for:
+- request ID generation
+- Google Drive file storage
+- Google Sheet data storage
+- company email notification
+- official tracking data source
+
+REQUIRED CHANGES
+
+1) Submission flow
+Replace the current final persistence logic so that shareholder submissions are no longer stored as the final source of truth in local uploads/PostgreSQL.
+Instead, the backend must submit the full request to the existing Google shareholder system.
+
+The full logical dataset must match the original Google form exactly, including files.
+
+2) Success response
+The website success state must use the response returned from the Google backend.
+It must display:
+- requestId
+- status
+- success message
+- email notification line only if actually confirmed by backend result
+
+3) Tracking flow
+Replace or connect the current tracking logic so the website tracking page reads from the Google-backed system of record.
+Tracking must still require:
+- requestId
+AND
+- email or mobile
+
+Do not expose any direct Google public URLs.
+
+4) Files
+Uploaded files must end up in Google Drive through the backend integration.
+Local disk storage must not remain the final production storage.
+Temporary buffering is acceptable only if required during relay, but Google Drive must be the final destination.
+
+5) Email
+Use the existing Google-based company email workflow as the official notification mechanism if it is already implemented there.
+Do not keep SendGrid as the primary path if the official system is already Google-based.
+Do not fake email success.
+
+6) Data duplication
+Avoid keeping two conflicting systems of record.
+If PostgreSQL/local storage is still needed temporarily for compatibility, clearly separate:
+- temporary/internal
+vs
+- final source of truth = Google backend
+
+BEFORE IMPLEMENTATION, RETURN:
+A. exact integration plan
+B. whether the current Google Apps Script endpoints can accept multipart/form-data with files directly
+C. if not, what minimal adaptation is required on the Google side
+D. which files in the Makamin project must change
+E. what will remain unchanged
+
+AFTER IMPLEMENTATION, RETURN:
+A. Files modified
+B. Exact behavior changed
+C. Whether Google is now the system of record
+D. Whether local storage is still used anywhere
+E. Any remaining risk
+F. Confirmation that public users never see Google URLs
+
+Mandatory rule:
+Do not keep local disk uploads as the final production destination.
+Do not keep PostgreSQL as the authoritative source if Google is the intended final authoritative system.
+Verified via code inspection only.
