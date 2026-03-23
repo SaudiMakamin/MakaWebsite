@@ -1,0 +1,56 @@
+READ FIRST, THEN IMPLEMENT MINIMAL SAFE ARCHITECTURAL EXTENSION.
+
+Goal:
+Keep all shareholder-facing flows under Makamin domain and stop exposing any Google Apps Script URLs to end users.
+
+Current problem:
+The gateway page currently links directly to Google Apps Script pages. This exposes the underlying implementation and reduces institutional trust.
+
+Required target architecture:
+- User-facing pages must stay inside the Makamin app/domain
+- Google Apps Script must become backend-only infrastructure
+- No direct script.google.com URLs in the public UI
+
+Implement only the minimal safe changes required.
+
+Phase 1 scope:
+1) Create internal Makamin pages for:
+- shareholder submit
+- shareholder track
+- shareholder success confirmation
+
+2) Public routes must remain under the current site routing pattern.
+Use the existing architecture and routing conventions already used in this project.
+
+3) Build a backend integration layer in the existing server only if required:
+- submit endpoint
+- track endpoint
+- upload endpoint if files are supported
+These endpoints may call Google Apps Script / Google services internally, but that integration must not be exposed in the frontend.
+
+4) Remove all direct public links to:
+- script.google.com
+- google script exec URLs
+from the user-facing React pages.
+
+5) After successful submission, show a Makamin-native success state:
+- confirmation message
+- reference number
+- notice that an email was sent to the registered email address
+
+6) Preserve architecture:
+- do not migrate frameworks
+- do not redesign routing
+- do not touch unrelated files
+- do not change deployment model
+
+Before implementation, first return:
+A. Minimal file plan
+B. Which frontend files must be created or edited
+C. Which backend files must be created or edited
+D. Whether file upload can be proxied safely through the current backend
+E. Any risks or blockers
+
+Important:
+Do not implement a fake shell.
+The Makamin pages must be real working pages, while Google remains hidden as backend infrastructure only.

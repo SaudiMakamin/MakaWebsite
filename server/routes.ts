@@ -99,6 +99,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Public status lookup — returns limited fields only, no PII
+  app.get("/api/shareholder/status/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id) || id <= 0) {
+        return res.json({ found: false });
+      }
+      const shareholder = await storage.getShareholderById(id);
+      if (!shareholder) {
+        return res.json({ found: false });
+      }
+      res.json({
+        found: true,
+        id: shareholder.id,
+        receivedAt: shareholder.createdAt,
+        status: shareholder.status,
+      });
+    } catch {
+      res.status(500).json({ found: false });
+    }
+  });
+
   // Get all shareholders (for admin use)
   app.get("/api/shareholders", async (req, res) => {
     try {

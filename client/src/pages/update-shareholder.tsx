@@ -1,29 +1,21 @@
 import { useLanguageContext } from '@/components/language-provider';
+import { Link } from 'wouter';
+import { FileText, Search } from 'lucide-react';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
-import { ExternalLink, FileText, Search, Lock } from 'lucide-react';
-
-const GAS_BASE =
-  'https://script.google.com/a/makamin.com.sa/macros/s/AKfycbzGQXo23-Ua3T8FYROZ-8bWDoZHY9GFMhqpuF0hU1v9NYqL_iCQrHDWXxrTML1Vs8MV/exec';
 
 const actions = [
   {
     labelAr: 'تقديم طلب جديد',
     labelEn: 'Submit New Request',
-    href: `${GAS_BASE}?page=submit`,
+    href: '/shareholder/submit',
     Icon: FileText,
   },
   {
     labelAr: 'متابعة طلب سابق',
     labelEn: 'Track Existing Request',
-    href: `${GAS_BASE}?page=track`,
+    href: '/shareholder/track',
     Icon: Search,
-  },
-  {
-    labelAr: 'دخول الإدارة',
-    labelEn: 'Administration Access',
-    href: `${GAS_BASE}?page=admin`,
-    Icon: Lock,
   },
 ];
 
@@ -71,21 +63,16 @@ export default function UpdateShareholder() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
             {actions.map(({ labelAr, labelEn, href, Icon }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-6 text-center hover:border-blue-500 hover:shadow-sm transition-all group"
-              >
-                <Icon className="w-6 h-6 text-blue-700" />
-                <span className="font-semibold text-gray-800 text-sm leading-snug">
-                  {isAr ? labelAr : labelEn}
-                </span>
-                <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-blue-500 transition-colors" />
-              </a>
+              <Link key={href} href={href}>
+                <a className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer">
+                  <Icon className="w-6 h-6 text-blue-700" />
+                  <span className="font-semibold text-gray-800 text-sm leading-snug">
+                    {isAr ? labelAr : labelEn}
+                  </span>
+                </a>
+              </Link>
             ))}
           </div>
 

@@ -24,6 +24,8 @@ const NewsIndex = lazy(() => import('./pages/news/NewsIndex'));
 const NewsArticlePage = lazy(() => import('./pages/news/NewsArticle'));
 const Contact = lazy(() => import('@/pages/contact'));
 const UpdateShareholder = lazy(() => import('@/pages/update-shareholder'));
+const ShareholderSubmit = lazy(() => import('@/pages/shareholder-submit'));
+const ShareholderTrack = lazy(() => import('@/pages/shareholder-track'));
 const RoyalShareholderDashboard = lazy(() => import('@/pages/royal-shareholder-dashboard'));
 const NotFound = lazy(() => import('@/pages/not-found'));
 const GroupOverview = lazy(() => import('@/pages/group-overview'));
@@ -69,6 +71,8 @@ function Router() {
       <Route path="/news" component={NewsIndex} />
       <Route path="/news/:slug" component={NewsArticlePage} />
       <Route path="/update-shareholder" component={UpdateShareholder} />
+      <Route path="/shareholder/submit" component={ShareholderSubmit} />
+      <Route path="/shareholder/track" component={ShareholderTrack} />
       <Route path="/royal-dashboard" component={RoyalShareholderDashboard} />
       <Route path="/contact" component={Contact} />
       <Route path="/services/pipeline-industrial" component={PipelineIndustrialServices} />
