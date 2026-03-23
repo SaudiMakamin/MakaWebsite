@@ -1,0 +1,402 @@
+EXECUTION MODE — SURGICAL FORM PARITY WITH ORIGINAL GOOGLE SHAREHOLDER SYSTEM
+
+You must rebuild the website shareholder submission flow so it matches the original Google Apps Script form exactly:
+- field by field
+- section by section
+- validation by validation
+- behavior by behavior
+- tracking logic by tracking logic
+with no guessing and no simplification.
+
+Do not redesign architecture.
+Do not refactor unrelated code.
+Do not touch unrelated pages.
+Do not change deployment model.
+Preserve existing routing architecture and keep public flows under Makamin site/app only.
+
+SOURCE OF TRUTH
+Use the already extracted original Google form/spec as the exact source of truth.
+Replicate it faithfully inside the website app.
+
+GOAL
+Make the website submission flow behave like the original Google workflow, while keeping Google hidden from end users.
+If email notification can be implemented safely with the current project stack, implement it.
+If not, do not fake it — return the blocker clearly.
+
+REQUIRED FRONTEND TARGETS
+The Makamin website must provide these real working pages:
+- /update-shareholder
+- /shareholder/submit
+- /shareholder/track
+
+Do not expose any script.google.com or Google Apps Script public URLs in the UI.
+
+==================================================
+1) SUBMIT PAGE — EXACT FORM PARITY
+==================================================
+
+Rebuild client/src/pages/shareholder-submit.tsx so it matches the original form structure exactly in this exact section order:
+
+SECTION 1 — نوع المساهم
+Field:
+- shareholderType
+  type: select
+  required: yes
+  options exactly:
+    - فرد سعودي
+    - فرد خليجي
+    - شركة سعودية
+    - شركة خليجية
+    - شركة أجنبية
+
+SECTION 2 — بيانات التعريف
+Fields:
+- fullName
+  label: الاسم الكامل / الاسم القانوني للشركة
+  type: text
+  required: yes
+
+- idOrCr
+  label: رقم الهوية / الإقامة / جواز السفر / السجل التجاري
+  type: text
+  required: yes
+
+- nationalityOrCountry
+  label: الجنسية / دولة التأسيس
+  type: text
+  required: yes
+
+- dateOfBirth
+  label: تاريخ الميلاد (للأفراد فقط)
+  type: date
+  required: no
+  behavior: visible for all unless existing form pattern strongly supports conditional display; do not invent hidden logic unless safely implemented
+
+- authorizedPerson
+  label: اسم المفوض / ممثل الشركة
+  type: text
+  required: no
+
+- authorizedPersonId
+  label: رقم هوية المفوض / إقامته / جوازه
+  type: text
+  required: no
+
+- mobile
+  label: رقم الجوال
+  type: text
+  required: yes
+
+- email
+  label: البريد الإلكتروني
+  type: email
+  required: yes
+
+- address
+  label: العنوان
+  type: textarea
+  required: yes
+
+SECTION 3 — بيانات المساهمة
+Fields:
+- founderShareholder
+  label: هل أنت من المساهمين المؤسسين؟
+  type: select
+  required: yes
+  options exactly:
+    - Yes
+    - No
+
+- sharesNumber
+  label: عدد الأسهم رقمًا
+  type: number
+  required: yes
+
+- sharesWords
+  label: عدد الأسهم كتابة
+  type: text
+  required: yes
+
+- paidAmount
+  label: القيمة المدفوعة
+  type: number
+  required: yes
+
+- currency
+  label: العملة
+  type: text
+  required: yes
+  default value exactly:
+    - ريال سعودي
+
+SECTION 4 — البيانات البنكية
+Fields:
+- bankName
+  label: اسم البنك
+  type: text
+  required: yes
+
+- accountName
+  label: اسم صاحب الحساب
+  type: text
+  required: yes
+
+- iban
+  label: IBAN
+  type: text
+  required: yes
+
+- bankCountry
+  label: دولة البنك
+  type: text
+  required: yes
+
+SECTION 5 — نوع التحديث المطلوب
+Checkbox fields:
+- updateMobile
+- updateEmail
+- updateAddress
+- updateBank
+- updateShareholding
+
+Use clear Arabic labels for each checkbox.
+
+SECTION 6 — المرفقات
+Fields:
+- mainDocument
+  label: الهوية / السجل التجاري / مستند التأسيس
+  type: file
+  required: yes
+  accepted types: PDF only
+
+- bankDocument
+  label: شهادة الآيبان / خطاب بنكي
+  type: file
+  required: yes
+  accepted types: PDF only
+
+- supportDocument
+  label: مستندات داعمة أخرى
+  type: file
+  required: no
+  accepted types: PDF only
+
+SECTION 7 — ملاحظات وإقرار
+Fields:
+- notes
+  label: ملاحظات إضافية
+  type: textarea
+  required: no
+
+- declaration
+  label: أقر بصحة البيانات والمستندات المرفقة وأتحمل مسؤولية صحتها
+  type: checkbox
+  required: yes
+
+==================================================
+2) VALIDATION — MATCH ORIGINAL BEHAVIOR
+==================================================
+
+Implement validation so the following are required before submission:
+- shareholderType
+- fullName
+- idOrCr
+- nationalityOrCountry
+- mobile
+- email
+- address
+- founderShareholder
+- sharesNumber
+- sharesWords
+- paidAmount
+- currency
+- bankName
+- accountName
+- iban
+- bankCountry
+- mainDocument
+- bankDocument
+- declaration
+
+Also validate:
+- email format
+- mobile is non-empty and reasonably valid
+- uploaded files are PDF only
+
+Do not invent extra business rules unless clearly necessary for the current stack.
+Do not silently drop validation.
+
+==================================================
+3) BACKEND / DATA PARITY
+==================================================
+
+Make the website backend accept and persist the same logical dataset as the original Google system.
+
+Required logical payload keys:
+- shareholderType
+- fullName
+- idOrCr
+- nationalityOrCountry
+- dateOfBirth
+- authorizedPerson
+- authorizedPersonId
+- mobile
+- email
+- address
+- founderShareholder
+- sharesNumber
+- sharesWords
+- paidAmount
+- currency
+- bankName
+- accountName
+- iban
+- bankCountry
+- updateMobile
+- updateEmail
+- updateAddress
+- updateBank
+- updateShareholding
+- notes
+- mainDocument
+- bankDocument
+- supportDocument
+- declaration
+
+If the current DB schema does not yet support all these fields:
+- extend it minimally and safely
+- do not break existing data
+- preserve current architecture
+
+If file upload storage is not safely implemented yet:
+- implement it only if it can be done safely with the current project patterns
+- otherwise stop and report blocker exactly
+- do not fake successful upload
+
+==================================================
+4) REQUEST ID / STATUS / SUCCESS STATE
+==================================================
+
+Match the original workflow semantics as closely as possible.
+
+On successful submission:
+- generate or preserve a reference number pattern equivalent to:
+  REQ-YYYYMMDD-######
+
+- default status must be Arabic:
+  تم الاستلام
+
+- show a Makamin-native success state inside the website
+  It must clearly display:
+  - success confirmation
+  - reference number
+  - note that the request is under review
+
+Use accurate Arabic wording similar to:
+تم استلام طلبكم بنجاح.
+الرقم المرجعي: {{requestId}}
+سيتم مراجعة الطلب من قبل الإدارة المختصة.
+يرجى الاحتفاظ بالرقم المرجعي لاستخدامه عند المتابعة.
+
+Do not claim email was sent unless email sending is truly implemented and working in code.
+
+==================================================
+5) TRACK PAGE — MATCH ORIGINAL LOGIC
+==================================================
+
+Rebuild client/src/pages/shareholder-track.tsx so tracking matches the original Google logic:
+
+Tracking must require:
+- requestId
+AND
+- either email or mobile
+
+Do not allow tracking by requestId alone.
+
+Public tracking response must be minimal and must not expose PII.
+Return only the minimum safe fields needed for the user, such as:
+- found
+- requestId
+- status
+- submittedAt
+- shareholderMessage if available and safe
+
+Use Arabic-first institutional wording.
+
+==================================================
+6) EMAIL NOTIFICATION — IMPLEMENT ONLY IF REAL
+==================================================
+
+If the current project can safely send email using the existing stack and deployment model, implement real notification after successful submission:
+- send confirmation to the applicant email
+- optionally send internal notice to company address if such pattern already exists safely
+
+Email content must be formal and accurate.
+Include at minimum:
+- request received confirmation
+- reference number
+- note that the request is under review
+
+If real email sending cannot be implemented safely right now:
+- do not fake it in UI
+- do not claim email was sent
+- return exact blocker and what is missing
+
+==================================================
+7) UI DIRECTION
+==================================================
+
+Use Arabic-first, institutional, high-trust presentation.
+No childish styling.
+No marketing badges.
+No decorative gimmicks.
+No fake widgets.
+No placeholder upload areas.
+No misleading text.
+
+The submit page must feel like a formal shareholder service form.
+
+==================================================
+8) ROUTING / FILE SAFETY
+==================================================
+
+Preserve existing route architecture.
+Preserve /update-shareholder.
+Keep change surface minimal.
+
+Only edit files that are truly required.
+Before editing, inspect current relevant files first.
+
+Likely relevant files may include:
+- client/src/pages/shareholder-submit.tsx
+- client/src/pages/shareholder-track.tsx
+- client/src/pages/update-shareholder.tsx
+- client/src/App.tsx
+- server/routes.ts
+- any schema/storage file actually required for safe persistence
+But do not assume — inspect first.
+
+==================================================
+9) REQUIRED REPORTING
+==================================================
+
+Before implementation, return:
+A. exact file plan
+B. exact schema/storage changes required
+C. whether real file upload is possible safely right now
+D. whether real email notification is possible safely right now
+E. any blocker
+
+After implementation, return:
+A. Files modified
+B. Exact behavior changed
+C. What remained unchanged
+D. Any remaining risk
+E. Confirmation that architecture and routes were preserved
+
+Mandatory honesty rule:
+If upload was not implemented, say so clearly.
+If email was not implemented, say so clearly.
+If something could not be matched exactly, list every mismatch explicitly.
+
+Verified via code inspection only.

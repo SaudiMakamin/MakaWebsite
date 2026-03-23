@@ -33,20 +33,47 @@ export const newsArticles = pgTable("news_articles", {
 });
 
 export const shareholders = pgTable("shareholders", {
+  // ── existing columns (preserved exactly) ──────────────────────────────────
   id: serial("id").primaryKey(),
   fullName: text("full_name").notNull(),
   email: text("email").notNull(),
-  idNumber: text("id_number").notNull(),
-  nationality: text("nationality").notNull(),
-  phoneNumber: text("phone_number").notNull(),
-  birthDate: text("birth_date"),
+  idNumber: text("id_number").notNull(),         // reused as idOrCr
+  nationality: text("nationality").notNull(),     // reused as nationalityOrCountry
+  phoneNumber: text("phone_number").notNull(),    // reused as mobile
+  birthDate: text("birth_date"),                  // reused as dateOfBirth
   ownershipPercentage: text("ownership_percentage").default("0.00%"),
   certificateNumber: text("certificate_number"),
   joinDate: text("join_date").default("2008-01-01"),
   notes: text("notes"),
-  status: text("status").default("pending"), // pending, approved, rejected
+  status: text("status").default("تم الاستلام"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
+
+  // ── new columns (all nullable — existing rows unaffected) ─────────────────
+  requestId: text("request_id"),                  // REQ-YYYYMMDD-######
+  shareholderType: text("shareholder_type"),
+  authorizedPerson: text("authorized_person"),
+  authorizedPersonId: text("authorized_person_id"),
+  address: text("address"),
+  founderShareholder: text("founder_shareholder"),
+  sharesNumber: text("shares_number"),
+  sharesWords: text("shares_words"),
+  paidAmount: text("paid_amount"),
+  currency: text("currency").default("ريال سعودي"),
+  bankName: text("bank_name"),
+  accountName: text("account_name"),
+  iban: text("iban"),
+  bankCountry: text("bank_country"),
+  updateMobile: boolean("update_mobile"),
+  updateEmail: boolean("update_email"),
+  updateAddress: boolean("update_address"),
+  updateBank: boolean("update_bank"),
+  updateShareholding: boolean("update_shareholding"),
+  declaration: boolean("declaration"),
+  mainDocumentPath: text("main_document_path"),
+  bankDocumentPath: text("bank_document_path"),
+  supportDocumentPath: text("support_document_path"),
+  shareholderMessage: text("shareholder_message"),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({

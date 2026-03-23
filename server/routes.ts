@@ -4,9 +4,32 @@ import { z } from "zod";
 import fs from "node:fs";
 import path from "node:path";
 import rateLimit from "express-rate-limit";
+import multer from "multer";
 import { storage } from "./storage";
 import { insertContactMessageSchema, insertShareholderSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
+import { sendShareholderConfirmation } from "./email";
+
+const uploadDir = path.join(process.cwd(), "uploads", "shareholder");
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
+const multerUpload = multer({
+  dest: uploadDir,
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    if (file.mimetype === "application/pdf" || file.originalname.toLowerCase().endsWith(".pdf")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only PDF files are accepted"));
+    }
+  },
+});
+
+function generateRequestId(): string {
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+  const rand = Math.floor(100000 + Math.random() * 900000);
+  return `REQ-${date}-${rand}`;
+}
 
 const contactRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -117,6 +140,129 @@ export async function registerRoutes(app: Express): Promise<Server> {
         status: shareholder.status,
       });
     } catch {
+      res.status(500).json({ found: false });
+    }
+  });
+
+  // Full shareholder submission with file uploads
+  app.post(
+    "/api/shareholder/submit",
+    shareholderWriteRateLimit,
+    multerUpload.fields([
+      { name: "mainDocument", maxCount: 1 },
+      { name: "bankDocument", maxCount: 1 },
+      { name: "supportDocument", maxCount: 1 },
+    ]),
+    async (req, res) => {
+      try {
+        const body = req.body as Record<string, string>;
+        const files = req.files as Record<string, Express.Multer.File[]> | undefined;
+
+        const required = [
+          "shareholderType","fullName","idOrCr","nationalityOrCountry",
+          "mobile","email","address","founderShareholder",
+          "sharesNumber","sharesWords","paidAmount","currency",
+          "bankName","accountName","iban","bankCountry",
+        ];
+        const missing = required.filter(k => !body[k]?.trim());
+        if (missing.length) {
+          return res.status(400).json({ success: false, message: "Missing required fields", missing });
+        }
+        if (!files?.mainDocument?.[0]) {
+          return res.status(400).json({ success: false, message: "mainDocument is required" });
+        }
+        if (!files?.bankDocument?.[0]) {
+          return res.status(400).json({ success: false, message: "bankDocument is required" });
+        }
+        if (body.declaration !== "true") {
+          return res.status(400).json({ success: false, message: "Declaration must be accepted" });
+        }
+
+        const requestId = generateRequestId();
+
+        const shareholderData = {
+          fullName: body.fullName,
+          email: body.email,
+          idNumber: body.idOrCr,
+          nationality: body.nationalityOrCountry,
+          phoneNumber: body.mobile,
+          birthDate: body.dateOfBirth || null,
+          notes: body.notes || null,
+          status: "تم الاستلام",
+          requestId,
+          shareholderType: body.shareholderType,
+          authorizedPerson: body.authorizedPerson || null,
+          authorizedPersonId: body.authorizedPersonId || null,
+          address: body.address,
+          founderShareholder: body.founderShareholder,
+          sharesNumber: body.sharesNumber,
+          sharesWords: body.sharesWords,
+          paidAmount: body.paidAmount,
+          currency: body.currency,
+          bankName: body.bankName,
+          accountName: body.accountName,
+          iban: body.iban,
+          bankCountry: body.bankCountry,
+          updateMobile: body.updateMobile === "true",
+          updateEmail: body.updateEmail === "true",
+          updateAddress: body.updateAddress === "true",
+          updateBank: body.updateBank === "true",
+          updateShareholding: body.updateShareholding === "true",
+          declaration: true,
+          mainDocumentPath: files?.mainDocument?.[0]?.filename || null,
+          bankDocumentPath: files?.bankDocument?.[0]?.filename || null,
+          supportDocumentPath: files?.supportDocument?.[0]?.filename || null,
+        };
+
+        const shareholder = await storage.createShareholder(shareholderData);
+
+        // Attempt email — non-blocking
+        sendShareholderConfirmation({
+          toEmail: body.email,
+          fullName: body.fullName,
+          requestId,
+        }).then(r => {
+          if (!r.sent) console.log("Email not sent:", r.reason);
+        });
+
+        res.json({ success: true, requestId, id: shareholder.id });
+      } catch (error) {
+        console.error("Shareholder submit error:", error);
+        res.status(500).json({ success: false, message: "Submission failed. Please try again." });
+      }
+    }
+  );
+
+  // Track shareholder request — requires requestId + email or mobile
+  app.post("/api/shareholder/track", shareholderStatusRateLimit, async (req, res) => {
+    try {
+      const schema = z.object({
+        requestId: z.string().min(1),
+        email: z.string().email().optional(),
+        mobile: z.string().min(5).optional(),
+      }).refine(d => d.email || d.mobile, { message: "email or mobile is required" });
+
+      const parsed = schema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ found: false, message: parsed.error.issues[0].message });
+      }
+
+      const { requestId, email, mobile } = parsed.data;
+      const shareholder = await storage.findShareholderForTracking(requestId, email, mobile);
+
+      if (!shareholder) {
+        return res.json({ found: false });
+      }
+
+      res.json({
+        found: true,
+        requestId: shareholder.requestId,
+        status: shareholder.status,
+        submittedAt: shareholder.createdAt,
+        shareholderMessage: shareholder.shareholderMessage || null,
+      });
+    } catch (error) {
+      console.error("Track error:", error);
       res.status(500).json({ found: false });
     }
   });
