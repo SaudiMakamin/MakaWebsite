@@ -1,0 +1,91 @@
+EXECUTION MODE — CONNECT MAKAMIN BACKEND TO LIVE GOOGLE APPS SCRIPT SYSTEM OF RECORD
+
+The Google Apps Script side is now ready for backend relay integration.
+
+Live GAS deployment details:
+- GAS deployment ID: AKfycbzF2iEkRR6oy9zqMCtIjRav8vtFV24q_IpHY9jC9mSoaEQSOM7Eaa00SzsGHbweIaGX
+- GAS Web App URL: https://script.google.com/macros/s/AKfycbzF2iEkRR6oy9zqMCtIjRav8vtFV24q_IpHY9jC9mSoaEQSOM7Eaa00SzsGHbweIaGX/exec
+- Shared secret: Makamin_Relay_2026#X9p!4Qz7L
+
+Approved integration rules:
+1) Google is the final system of record
+   - Google Drive = final file storage
+   - Google Sheet / GAS workflow = final data source
+   - GAS = requestId generation
+   - GAS = official email notification path
+
+2) Public users must never see Google URLs
+
+3) Makamin backend must relay to GAS securely using JSON POST with:
+   - _secret
+   - action: "submit" | "track"
+
+4) Keep frontend routes unchanged:
+   - /update-shareholder
+   - /shareholder/submit
+   - /shareholder/track
+
+5) Keep frontend response contract stable
+   Submit response must provide at minimum:
+   - success
+   - requestId
+   - status
+   - emailSent
+
+6) Tracking must require:
+   - requestId
+   AND
+   - email or mobile
+
+7) Local disk uploads must not remain the final production destination
+
+8) PostgreSQL must not remain the authoritative source of truth
+   It may remain only as audit log if absolutely needed
+
+Use these exact backend environment values:
+- GAS_SUBMIT_URL = https://script.google.com/macros/s/AKfycbzF2iEkRR6oy9zqMCtIjRav8vtFV24q_IpHY9jC9mSoaEQSOM7Eaa00SzsGHbweIaGX/exec
+- MAKAMIN_GAS_SECRET = Makamin_Relay_2026#X9p!4Qz7L
+
+Required implementation scope:
+
+A. Update backend relay for submit
+- receive multipart/form-data from website
+- keep files in memory only
+- convert PDFs to base64
+- send JSON payload to GAS
+- return clean response to frontend
+
+B. Update backend relay for track
+- accept requestId + email or mobile
+- call GAS action "track"
+- return minimal safe response to frontend
+
+C. Remove local storage as final destination
+- do not keep filesystem as production file store
+- do not generate authoritative requestId locally
+- do not treat local DB row as final submission record
+
+D. Preserve current frontend behavior
+- submit success state in site must still show:
+  - confirmation
+  - requestId
+  - review notice
+  - conditional email notice if emailSent=true
+
+Google-side facts already confirmed:
+- The current GAS is a Web App and has a live /exec URL
+- The current GAS now supports JSON POST relay via doPost(e)
+- The Google business logic remains in GAS and should be reused, not redesigned
+
+Before coding, inspect current relevant files first and then implement only the minimal safe changes.
+
+After implementation, return:
+A. Files modified
+B. Exact behavior changed
+C. Whether Google is now the system of record
+D. Whether local disk is still used anywhere
+E. Whether PostgreSQL is still used anywhere and for what purpose
+F. Any remaining risk
+G. Confirmation that users never see Google URLs
+
+Verified via code inspection only.

@@ -38,3 +38,8 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_log_in_with_replit:1.0.0", "javascript_database:1.0.0", "javascript_sendgrid:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzF2iEkRR6oy9zqMCtIjRav8vtFV24q_IpHY9jC9mSoaEQSOM7Eaa00SzsGHbweIaGX/exec"

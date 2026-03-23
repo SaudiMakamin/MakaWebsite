@@ -6,16 +6,15 @@ import path from "node:path";
 import rateLimit from "express-rate-limit";
 import multer from "multer";
 import { storage } from "./storage";
-import { insertContactMessageSchema, insertShareholderSchema } from "@shared/schema";
+import { insertContactMessageSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
-import { sendShareholderConfirmation } from "./email";
+import { relaySubmitToGas, relayTrackToGas } from "./gas-relay";
 
-const uploadDir = path.join(process.cwd(), "uploads", "shareholder");
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-
+// Memory-only storage — files are buffered in RAM, converted to base64, then relayed to GAS.
+// No local disk writes for production submissions.
 const multerUpload = multer({
-  dest: uploadDir,
-  limits: { fileSize: 10 * 1024 * 1024 },
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 8 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
     if (file.mimetype === "application/pdf" || file.originalname.toLowerCase().endsWith(".pdf")) {
       cb(null, true);
@@ -24,12 +23,6 @@ const multerUpload = multer({
     }
   },
 });
-
-function generateRequestId(): string {
-  const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-  const rand = Math.floor(100000 + Math.random() * 900000);
-  return `REQ-${date}-${rand}`;
-}
 
 const contactRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -178,9 +171,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
           return res.status(400).json({ success: false, message: "Declaration must be accepted" });
         }
 
-        const requestId = generateRequestId();
+        // Encode PDFs to base64 for JSON relay to GAS (no disk writes)
+        const mainFile = files?.mainDocument?.[0];
+        const bankFile = files?.bankDocument?.[0];
+        const supportFile = files?.supportDocument?.[0];
 
-        const shareholderData = {
+        const gasPayload: Record<string, string | boolean> = {
+          // Identity & contact
+          shareholderType: body.shareholderType,
+          fullName: body.fullName,
+          idOrCr: body.idOrCr,
+          nationalityOrCountry: body.nationalityOrCountry,
+          dateOfBirth: body.dateOfBirth || "",
+          authorizedPerson: body.authorizedPerson || "",
+          authorizedPersonId: body.authorizedPersonId || "",
+          mobile: body.mobile,
+          email: body.email,
+          address: body.address,
+          // Shareholding
+          founderShareholder: body.founderShareholder,
+          sharesNumber: body.sharesNumber,
+          sharesWords: body.sharesWords,
+          paidAmount: body.paidAmount,
+          currency: body.currency,
+          // Bank
+          bankName: body.bankName,
+          accountName: body.accountName,
+          iban: body.iban,
+          bankCountry: body.bankCountry,
+          // Update checkboxes
+          updateMobile: body.updateMobile === "true",
+          updateEmail: body.updateEmail === "true",
+          updateAddress: body.updateAddress === "true",
+          updateBank: body.updateBank === "true",
+          updateShareholding: body.updateShareholding === "true",
+          // Notes
+          notes: body.notes || "",
+          // Files as base64
+          mainDocumentBase64: mainFile!.buffer.toString("base64"),
+          mainDocumentName: mainFile!.originalname,
+          bankDocumentBase64: bankFile!.buffer.toString("base64"),
+          bankDocumentName: bankFile!.originalname,
+          ...(supportFile ? {
+            supportDocumentBase64: supportFile.buffer.toString("base64"),
+            supportDocumentName: supportFile.originalname,
+          } : {}),
+        };
+
+        // Relay to Google — GAS is the system of record
+        const gasResult = await relaySubmitToGas(gasPayload);
+
+        if (!gasResult.success) {
+          console.error("GAS relay failed:", gasResult.error);
+          return res.status(502).json({
+            success: false,
+            message: "حدث خطأ في معالجة الطلب. يرجى المحاولة مرة أخرى.",
+          });
+        }
+
+        const requestId = gasResult.requestId ?? "";
+        const status = gasResult.status ?? "تم الاستلام";
+        const emailSent = gasResult.emailSent === true;
+
+        // Audit log to PostgreSQL — non-authoritative, non-blocking
+        storage.createShareholder({
           fullName: body.fullName,
           email: body.email,
           idNumber: body.idOrCr,
@@ -188,7 +242,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           phoneNumber: body.mobile,
           birthDate: body.dateOfBirth || null,
           notes: body.notes || null,
-          status: "تم الاستلام",
+          status,
           requestId,
           shareholderType: body.shareholderType,
           authorizedPerson: body.authorizedPerson || null,
@@ -209,27 +263,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           updateBank: body.updateBank === "true",
           updateShareholding: body.updateShareholding === "true",
           declaration: true,
-          mainDocumentPath: files?.mainDocument?.[0]?.filename || null,
-          bankDocumentPath: files?.bankDocument?.[0]?.filename || null,
-          supportDocumentPath: files?.supportDocument?.[0]?.filename || null,
-        };
-
-        const shareholder = await storage.createShareholder(shareholderData);
-
-        // Attempt email — await result to include in response
-        const emailResult = await sendShareholderConfirmation({
-          toEmail: body.email,
-          fullName: body.fullName,
-          requestId,
-        });
-        if (!emailResult.sent) console.log("Email not sent:", emailResult.reason);
+          mainDocumentPath: mainFile!.originalname,
+          bankDocumentPath: bankFile!.originalname,
+          supportDocumentPath: supportFile?.originalname ?? null,
+        }).catch(err => console.warn("Audit log write failed (non-critical):", err));
 
         res.json({
           success: true,
           requestId,
-          id: shareholder.id,
-          status: "تم الاستلام",
-          emailSent: emailResult.sent,
+          status,
+          emailSent,
         });
       } catch (error) {
         console.error("Shareholder submit error:", error);
@@ -239,6 +282,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   );
 
   // Track shareholder request — requires requestId + email or mobile
+  // Queries GAS (Google Sheet) as the system of record
   app.post("/api/shareholder/track", shareholderStatusRateLimit, async (req, res) => {
     try {
       const schema = z.object({
@@ -253,18 +297,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { requestId, email, mobile } = parsed.data;
-      const shareholder = await storage.findShareholderForTracking(requestId, email, mobile);
 
-      if (!shareholder) {
+      // Relay to GAS — Google Sheet is authoritative tracking source
+      const result = await relayTrackToGas(requestId, email, mobile);
+
+      if (!result.found) {
         return res.json({ found: false });
       }
 
       res.json({
         found: true,
-        requestId: shareholder.requestId,
-        status: shareholder.status,
-        submittedAt: shareholder.createdAt,
-        shareholderMessage: shareholder.shareholderMessage || null,
+        requestId: result.requestId ?? requestId,
+        status: result.status ?? "",
+        submittedAt: result.submittedAt ?? null,
+        shareholderMessage: result.shareholderMessage ?? null,
       });
     } catch (error) {
       console.error("Track error:", error);
