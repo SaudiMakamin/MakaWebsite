@@ -1,0 +1,118 @@
+A2 POC ONLY — DIRECT MAKAMIN UI → GOOGLE APPS SCRIPT
+
+This is a strict proof-of-concept only.
+Do NOT redesign the project.
+Do NOT touch deployment architecture.
+Do NOT use Replit in production.
+Do NOT use Vercel Functions.
+Do NOT use proxy/rewrite.
+Do NOT add Express middleware.
+Do NOT expand scope.
+
+Final decision:
+- A2 = first-choice POC only
+- B = immediate fallback if A2 fails
+- We are testing only one question:
+Can the Makamin frontend send a PDF directly from the browser to Google Apps Script successfully and safely enough to be usable?
+
+Goal of this POC:
+Create the smallest possible Makamin-side test page/flow that:
+- uses Makamin UI
+- collects only minimal fields
+- uploads exactly one PDF
+- submits directly from browser to Google Apps Script
+- receives a clear response
+- proves or disproves A2 quickly
+
+STRICT SCOPE:
+Implement only a minimal POC.
+No full production rollout.
+No full form migration.
+No backend changes.
+No Vercel API.
+No proxy.
+No Replit deployment dependency.
+No extra architectural experiments.
+
+POC FORM MUST INCLUDE ONLY:
+1) full name
+2) national ID or identity number
+3) one PDF file only
+4) submit button
+
+What I want you to do:
+
+1) Analyze the current Makamin shareholder frontend and identify the SMALLEST safe place to add this A2 POC without disturbing the current production flow.
+Possible examples:
+- temporary hidden test route
+- temporary dev/test-only page
+- isolated component
+Choose the lowest-risk option only.
+
+2) Implement a minimal Makamin-styled test page/component for this POC only.
+Requirements:
+- visually consistent with Makamin
+- no need to recreate the full shareholder page
+- one PDF upload only
+- simple validation only
+- no unnecessary polish
+
+3) Submit directly from the browser to the real Google Apps Script endpoint.
+Important:
+- no Makamin backend in the middle
+- no proxy
+- no Vercel API route
+- no Replit relay
+- direct browser → GAS only
+
+4) Handle only the minimum response states:
+- success
+- failed response
+- network/CORS failure
+Show the result clearly on screen.
+
+5) Instrument the POC for diagnosis.
+I need enough visibility to know whether failure is caused by:
+- browser-side file upload limitation
+- CORS
+- GAS response shape
+- request format mismatch
+Do this with minimal temporary logging only.
+No noisy logs.
+No secrets in logs.
+
+6) If direct browser → GAS requires a specific payload shape:
+- determine it from existing GAS expectations if available
+- otherwise create the smallest compatible request shape possible for the POC
+- do not redesign the GAS architecture
+
+7) Keep this POC isolated.
+Do not replace the current shareholder page.
+Do not wire this into production traffic.
+Do not remove existing code.
+Do not refactor unrelated files.
+
+8) After implementation, return exactly:
+
+A. files modified
+B. exact isolated route/page/component used for the POC
+C. exact request method and payload shape used to submit to GAS
+D. whether the upload is direct browser → GAS with zero intermediaries
+E. what success would look like
+F. what failure signatures would indicate:
+   - CORS problem
+   - file upload incompatibility
+   - GAS response mismatch
+G. how to test the POC manually
+H. confirmation that existing production shareholder flow was left unchanged
+
+Success criteria for this POC:
+- Makamin UI page exists
+- one PDF can be chosen
+- submit goes directly to GAS
+- response is visible
+- we can decisively judge whether A2 is viable
+
+Decision rule:
+If A2 works clearly, we continue.
+If A2 fails on direct upload/CORS/response handling, stop and recommend immediate transition to Plan B.

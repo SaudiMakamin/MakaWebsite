@@ -28,6 +28,7 @@ const ShareholderSubmit = lazy(() => import('@/pages/shareholder-submit'));
 const ShareholderTrack = lazy(() => import('@/pages/shareholder-track'));
 const RoyalShareholderDashboard = lazy(() => import('@/pages/royal-shareholder-dashboard'));
 const NotFound = lazy(() => import('@/pages/not-found'));
+const GasPocTest = lazy(() => import('@/pages/gas-poc-test'));
 const GroupOverview = lazy(() => import('@/pages/group-overview'));
 const MakaminHolding = lazy(() => import('@/pages/makamin-holding'));
 const PetroleumServices = lazy(() => import('@/pages/petroleum-services'));
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/update-shareholder" component={UpdateShareholder} />
       <Route path="/shareholder/submit" component={ShareholderSubmit} />
       <Route path="/shareholder/track" component={ShareholderTrack} />
+      <Route path="/dev/gas-poc" component={GasPocTest} />
       <Route path="/royal-dashboard" component={RoyalShareholderDashboard} />
       <Route path="/contact" component={Contact} />
       <Route path="/services/pipeline-industrial" component={PipelineIndustrialServices} />
