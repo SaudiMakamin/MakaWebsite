@@ -1,0 +1,87 @@
+FINAL SURGICAL FIX — APPROVED EXECUTION
+
+Implement only the two safest, highest-value fixes for the shareholder PDF submission flow.
+Do not redesign anything.
+Do not refactor unrelated code.
+Do not modify routing structure.
+Do not touch frontend unless absolutely required.
+Preserve all current URLs and architecture.
+
+Architectural baseline to preserve:
+- Makamin frontend remains public UI only
+- /update-shareholder stays unchanged
+- /api/shareholder/submit remains the submit path
+- Makamin backend remains a relay/protective layer
+- Google Apps Script remains the final upstream processor
+- No Google URL must be exposed to end users
+- PostgreSQL remains non-authoritative audit only
+
+EXECUTE ONLY THESE TWO CHANGES:
+
+1) GAS response hardening in server/gas-relay.ts
+Problem:
+The current code calls response.json() directly.
+If GAS returns HTML, redirect content, empty body, or malformed JSON, the code collapses into an ambiguous upstream_network failure.
+
+Required change:
+Before calling response.json(), inspect response.headers.get("content-type").
+If content-type does not include application/json:
+- read response.text()
+- log a short preview (max 300 chars)
+- return a controlled classified failure such as:
+  { success: false, error: "upstream_non_json" }
+
+Requirements:
+- keep successful behavior unchanged
+- do not expose raw upstream body to the frontend
+- log only on server side
+- preserve current requestId validation guard
+- do not change the response contract for successful submissions
+
+2) Route-scoped multer error handling in server/routes.ts
+Problem:
+Multer errors occur before the route handler try/catch.
+Oversized PDF or invalid file type can currently fall through to the global handler and produce unsanitized or inconsistent user responses.
+
+Required change:
+Add a route-scoped error-handling middleware for the shareholder submit endpoint only.
+It must catch:
+- LIMIT_FILE_SIZE
+- Only PDF files are accepted
+- other upload-stage errors
+
+Return clean Arabic JSON responses in this format:
+{ success: false, message: "..." }
+
+Suggested messages:
+- LIMIT_FILE_SIZE:
+  "حجم الملف يتجاوز الحد المسموح به (8 ميغابايت). يرجى ضغط الملف وإعادة المحاولة."
+- non-PDF:
+  "يُقبل ملف PDF فقط. يرجى التحقق من نوع الملف وإعادة المحاولة."
+- fallback upload error:
+  "حدث خطأ في رفع الملفات. يرجى المحاولة مرة أخرى."
+
+Requirements:
+- scope this only to /api/shareholder/submit
+- do not affect any other endpoint
+- do not change upload limits
+- do not change accepted file rules
+- do not change frontend behavior beyond cleaner error messages
+
+DO NOT IMPLEMENT THESE:
+- no routing changes
+- no Google Apps Script redesign
+- no payload format redesign
+- no DB redesign
+- no refactor of legacy endpoints unless strictly required for compilation
+- no frontend rewrites
+- no architecture changes
+
+After implementation, return exactly:
+
+A. Files modified
+B. Exact code behavior changed
+C. What remained unchanged
+D. Any risk still outside Makamin code
+E. Confirmation that architecture was preserved
+F. Confirmation that no Google URL is exposed to users

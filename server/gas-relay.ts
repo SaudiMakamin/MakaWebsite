@@ -48,6 +48,16 @@ export async function relaySubmitToGas(fields: Record<string, string | boolean>)
       return { success: false, error: errorCode };
     }
 
+    // Inspect content-type before parsing — GAS may return HTML on auth/config failure
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.includes("application/json")) {
+      const preview = await response.text().catch(() => "(unreadable)");
+      console.error(
+        `GAS relay: expected JSON but got "${contentType}" — preview: ${preview.slice(0, 300)}`
+      );
+      return { success: false, error: "upstream_non_json" };
+    }
+
     const data = await response.json() as GasSubmitResult;
 
     // Defensive: success=true with no requestId is an invalid response — reject it

@@ -281,6 +281,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   );
 
+  // Route-scoped multer error handler — submit endpoint only
+  // Multer errors bypass the route handler's try/catch; this catches them before the global handler.
+  app.use("/api/shareholder/submit", (err: any, _req: any, res: any, _next: any) => {
+    if (err?.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({
+        success: false,
+        message: "حجم الملف يتجاوز الحد المسموح به (8 ميغابايت). يرجى ضغط الملف وإعادة المحاولة.",
+      });
+    }
+    if (err?.message === "Only PDF files are accepted") {
+      return res.status(400).json({
+        success: false,
+        message: "يُقبل ملف PDF فقط. يرجى التحقق من نوع الملف وإعادة المحاولة.",
+      });
+    }
+    console.error("Shareholder upload error:", err?.message ?? err);
+    return res.status(500).json({
+      success: false,
+      message: "حدث خطأ في رفع الملفات. يرجى المحاولة مرة أخرى.",
+    });
+  });
+
   // Track shareholder request — requires requestId + email or mobile
   // Queries GAS (Google Sheet) as the system of record
   app.post("/api/shareholder/track", shareholderStatusRateLimit, async (req, res) => {
