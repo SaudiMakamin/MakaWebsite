@@ -8,8 +8,8 @@ packages = ["lsof"]
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
+build = ["bash", "-c", "npm run build && node_modules/.bin/esbuild server/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js --packages=external"]
+run = ["node", "dist/index.js"]
 
 [[ports]]
 localPort = 5000
