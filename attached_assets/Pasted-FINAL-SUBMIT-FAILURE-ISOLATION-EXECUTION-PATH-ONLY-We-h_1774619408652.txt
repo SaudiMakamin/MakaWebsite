@@ -1,0 +1,82 @@
+FINAL SUBMIT FAILURE ISOLATION — EXECUTION PATH ONLY
+
+We have confirmed that the frontend file-input bug is fixed.
+
+Current observed behavior:
+- Files are selected correctly
+- Required file validation no longer fails
+- User clicks Submit Request
+- Then the page shows:
+  "Connection failed. Please try again."
+
+This means the failure has moved past client-side file validation and now occurs during the actual submit request.
+
+Investigate ONLY the live submit execution path for this exact message.
+
+READ-ONLY ANALYSIS FIRST.
+Do not refactor.
+Do not redesign anything.
+Do not change architecture.
+
+I need exact isolation of where this message comes from.
+
+Investigate and report:
+
+1) In client/src/pages/shareholder-submit.tsx
+- Find the exact code path that produces:
+  "Connection failed. Please try again."
+- Show whether it comes from:
+  - fetch() throwing
+  - response not ok
+  - JSON parsing failure
+  - empty response
+  - generic catch block
+
+2) Trace the exact submit request flow
+- endpoint called
+- request method
+- request headers
+- body format
+- expected response format
+- exact frontend handling for:
+  - network error
+  - 4xx/5xx with JSON
+  - 4xx/5xx with non-JSON
+  - timeout
+  - aborted request
+
+3) In backend route /api/shareholder/submit
+Determine what response the frontend should receive for:
+- upstream_non_json
+- upstream_network
+- upstream_timeout
+- upstream_missing_requestid
+- multer errors
+- success case
+
+4) Determine whether the frontend currently masks backend error messages
+I want to know whether the page always converts some failures into:
+"Connection failed. Please try again."
+instead of showing the actual backend Arabic message.
+
+5) Determine the most likely live failure boundary now:
+- browser → Makamin backend
+- Makamin backend → GAS
+- backend response → frontend parsing
+
+6) Recommend the smallest possible diagnostic improvement only
+No broad changes.
+Only the minimal addition needed to reveal the exact live failure on the next test.
+Examples:
+- temporary console logging in frontend
+- temporary server log at route entry/exit
+- response status/content-type logging
+Choose the smallest safe option.
+
+Return exactly:
+A. exact source of the displayed message
+B. submit request handling path in frontend
+C. expected backend responses for each failure class
+D. most likely failure boundary now
+E. smallest diagnostic improvement
+F. files that would need modification only if approved
