@@ -1,0 +1,176 @@
+SURGICAL INVESTIGATION + FINAL HARDENING CONTEXT — MINIMAL CHANGE SURFACE ONLY
+
+You are investigating the Makamin shareholder submission flow for:
+
+https://www.makamin.com.sa/update-shareholder
+
+Current confirmed architecture baseline (treat this as established fact unless code proves a partial mismatch):
+
+- Google is the final source of truth for this flow
+- Google Drive stores uploaded files
+- Google Sheet stores submission data
+- Google Apps Script (GAS) handles reference generation, email, and tracking
+- Makamin website remains the public user-facing interface only
+- Public routes remain:
+  - /update-shareholder
+  - /shareholder/submit
+  - /shareholder/track
+- End users must not see Google URLs
+- Local file storage has already been removed from the intended flow
+- PostgreSQL is NOT the source of truth for this shareholder submission workflow
+
+Important operating rules:
+- READ-ONLY analysis first
+- Do not redesign architecture
+- Do not replace Google integration
+- Do not refactor unrelated code
+- Do not change routing unless absolutely proven necessary
+- Preserve all public behavior and URLs
+- Minimal, surgical, non-breaking changes only
+
+Primary issue to investigate:
+When testing the shareholder page, uploading a PDF results in an error.
+Your task is to determine the real failure point precisely within the CURRENT Google relay architecture.
+
+I want a deep code-based investigation of the full submit path, specifically for the current architecture above.
+
+Investigate and report on:
+
+1) Exact files involved in the current shareholder flow
+Trace every file directly or indirectly involved in:
+- /update-shareholder frontend page
+- upload UI/components
+- submit form logic
+- request construction
+- /shareholder/submit backend handler
+- relay logic to Google Apps Script
+- file encoding / multipart / base64 handling
+- Google Drive upload handoff
+- Sheet row creation handoff
+- tracking / requestId return path
+- frontend success/error rendering
+
+2) End-to-end execution path
+Trace the exact flow:
+User selects PDF
+→ frontend validation
+→ payload creation
+→ submit API call
+→ backend parsing
+→ GAS relay request
+→ GAS response handling
+→ backend response shaping
+→ frontend success/error display
+
+3) Identify the exact failure location for the PDF error
+Determine whether the failure is most likely in:
+- frontend validation
+- payload size
+- PDF MIME/type filtering
+- file-to-base64 conversion
+- request body limits
+- server parsing
+- relay timeout
+- GAS payload handling
+- Drive upload stage
+- GAS success/error response format
+- backend response validation
+- frontend interpretation of backend result
+
+4) Verify the current architecture matches the intended institutional design
+Check whether code actually reflects all of the following:
+- Google Drive is the real file destination
+- Google Sheet is the real data destination
+- GAS is the real reference/tracking/email layer
+- Makamin backend acts only as a controlled relay/protective layer
+- no Google URL is exposed to the user
+- no local file storage remains active in the submit path
+- PostgreSQL is not being used as truth for this workflow
+
+If any part does not match, mark it clearly.
+
+5) Inspect especially for PDF-specific failure causes
+Check:
+- accepted MIME list
+- extension checks
+- max file size enforcement
+- JSON/body parser size limits
+- upstream GAS size limits
+- base64 expansion impact
+- timeout behavior
+- file array/document array handling
+- empty file edge cases
+- malformed response handling
+- silent catch blocks
+- success=true with missing requestId
+- blank/undefined requestId reaching frontend
+
+6) Secret and environment handling review
+Confirm whether:
+- MAKAMIN_GAS_SECRET is read from environment only
+- no hardcoded secret exists anywhere
+- no exposed secret exists in client code
+- required env vars for the relay are clearly identified
+List every environment variable required for this flow.
+
+7) Defensive response validation review
+Inspect the submit relay path and determine whether this condition is already protected:
+- if GAS returns success=true but requestId is missing, blank, null, or invalid,
+  the backend must treat it as an invalid upstream response and return a controlled server error.
+Report whether this guard already exists, partially exists, or is missing.
+
+8) User-safe error handling review
+Inspect whether current backend behavior safely masks upstream internals.
+Specifically determine how the app currently behaves if GAS fails due to:
+- payload too large
+- timeout
+- upstream script failure
+- malformed upstream response
+- missing requestId
+- Drive/Sheet-side failure
+
+I want to know:
+- what raw details may currently leak
+- what the frontend currently receives
+- what message the user sees
+- what minimal change is needed to make errors clean and user-safe
+
+9) Evidence-based conclusion only
+Do not guess.
+Support every conclusion with:
+- file names
+- function names
+- route names
+- env var names
+- exact validation locations
+- exact response handling locations
+- exact risk points
+
+10) Final report format
+Return your report in exactly this structure:
+
+A. Confirmed current architecture
+B. Files involved
+C. Exact end-to-end submit flow
+D. Where PDF handling occurs
+E. Where Google relay integration occurs
+F. Whether current code matches intended architecture
+G. Most likely PDF failure point (ranked by probability)
+H. Evidence from code
+I. Environment variables and secret handling status
+J. Defensive requestId validation status
+K. User-facing error handling status
+L. Minimal surgical fix recommendation
+M. Files that would need modification only if fix is approved
+N. Risks
+O. What remains unchanged
+
+11) After the analysis, provide a final hardening plan only, without implementing yet, limited to these minimal goals:
+- confirm secret comes only from environment
+- guard against success=true with blank/missing requestId
+- return clean user-safe backend errors for payload size / timeout / upstream failure
+- keep all other behavior unchanged
+- confirm that no user sees Google URLs
+
+Do not implement anything until the analysis is complete.
+Do not expand scope beyond this shareholder flow.
