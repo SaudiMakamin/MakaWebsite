@@ -76,6 +76,45 @@ const REQUIRED_TEXT = [
   'bankName','accountName','iban','bankCountry',
 ] as const;
 
+// Defined at module scope — prevents React remounting the hidden file input on every render
+const FileField = ({
+  label, required, refEl, name, docName, setDocName, error, isAr,
+}: {
+  label: string;
+  required: boolean;
+  refEl: React.RefObject<HTMLInputElement>;
+  name: string;
+  docName: string;
+  setDocName: (v: string) => void;
+  error?: string;
+  isAr: boolean;
+}) => (
+  <div>
+    <Label className="text-gray-700 font-medium text-sm">
+      {label}{required && ' *'}
+    </Label>
+    <div
+      className={`mt-1.5 flex items-center gap-3 border rounded-md px-4 py-3 bg-white cursor-pointer hover:bg-gray-50 transition ${error ? 'border-red-400' : 'border-gray-200'}`}
+      onClick={() => refEl.current?.click()}
+    >
+      <Paperclip className="w-4 h-4 text-gray-400 flex-shrink-0" />
+      <span className="text-sm text-gray-600 truncate">
+        {docName || (isAr ? 'انقر لاختيار ملف PDF' : 'Click to select a PDF file')}
+      </span>
+    </div>
+    <input
+      ref={refEl}
+      type="file"
+      name={name}
+      accept=".pdf,application/pdf"
+      className="hidden"
+      onChange={e => setDocName(e.target.files?.[0]?.name || '')}
+    />
+    {error && <p className="text-xs text-red-600 mt-1" data-error="true">{error}</p>}
+    <p className="text-xs text-gray-400 mt-1">{isAr ? 'PDF فقط — الحد الأقصى 10 ميغابايت' : 'PDF only — max 10 MB'}</p>
+  </div>
+);
+
 export default function ShareholderSubmit() {
   const { language } = useLanguageContext();
   const isAr = language === 'ar';
@@ -237,40 +276,6 @@ export default function ShareholderSubmit() {
     </div>
   );
 
-  const FileField = ({
-    label, required, refEl, name, docName, setDocName, errorKey,
-  }: {
-    label: string; required: boolean;
-    refEl: React.RefObject<HTMLInputElement>;
-    name: string; docName: string;
-    setDocName: (v: string) => void;
-    errorKey: string;
-  }) => (
-    <div>
-      <Label className="text-gray-700 font-medium text-sm">
-        {label}{required && ' *'}
-      </Label>
-      <div
-        className={`mt-1.5 flex items-center gap-3 border rounded-md px-4 py-3 bg-white cursor-pointer hover:bg-gray-50 transition ${errors[errorKey] ? 'border-red-400' : 'border-gray-200'}`}
-        onClick={() => refEl.current?.click()}
-      >
-        <Paperclip className="w-4 h-4 text-gray-400 flex-shrink-0" />
-        <span className="text-sm text-gray-600 truncate">
-          {docName || (isAr ? 'انقر لاختيار ملف PDF' : 'Click to select a PDF file')}
-        </span>
-      </div>
-      <input
-        ref={refEl}
-        type="file"
-        name={name}
-        accept=".pdf,application/pdf"
-        className="hidden"
-        onChange={e => setDocName(e.target.files?.[0]?.name || '')}
-      />
-      {err(errorKey)}
-      <p className="text-xs text-gray-400 mt-1">{isAr ? 'PDF فقط — الحد الأقصى 10 ميغابايت' : 'PDF only — max 10 MB'}</p>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gray-50" dir={isAr ? 'rtl' : 'ltr'}>
@@ -551,7 +556,8 @@ export default function ShareholderSubmit() {
                       name="mainDocument"
                       docName={mainDocName}
                       setDocName={setMainDocName}
-                      errorKey="mainDocument"
+                      error={errors.mainDocument}
+                      isAr={isAr}
                     />
 
                     <FileField
@@ -561,7 +567,8 @@ export default function ShareholderSubmit() {
                       name="bankDocument"
                       docName={bankDocName}
                       setDocName={setBankDocName}
-                      errorKey="bankDocument"
+                      error={errors.bankDocument}
+                      isAr={isAr}
                     />
 
                     <FileField
@@ -571,7 +578,8 @@ export default function ShareholderSubmit() {
                       name="supportDocument"
                       docName={supportDocName}
                       setDocName={setSupportDocName}
-                      errorKey="supportDocument"
+                      error={errors.supportDocument}
+                      isAr={isAr}
                     />
 
                   </div>
