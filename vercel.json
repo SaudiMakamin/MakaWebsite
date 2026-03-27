@@ -5,10 +5,6 @@
   "framework": null,
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://REPLIT_BACKEND_URL_PLACEHOLDER/api/:path*"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
