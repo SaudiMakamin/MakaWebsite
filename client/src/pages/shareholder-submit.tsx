@@ -189,7 +189,8 @@ export default function ShareholderSubmit() {
       } else {
         setServerError(data.message || (isAr ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.'));
       }
-    } catch {
+    } catch (err) {
+      console.error('[shareholder submit catch]', err);
       setServerError(isAr ? 'تعذّر الاتصال. يرجى المحاولة مرة أخرى.' : 'Connection failed. Please try again.');
     } finally {
       setSubmitting(false);

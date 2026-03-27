@@ -147,6 +147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       { name: "supportDocument", maxCount: 1 },
     ]),
     async (req, res) => {
+      console.log('[submit] handler reached');
       try {
         const body = req.body as Record<string, string>;
         const files = req.files as Record<string, Express.Multer.File[]> | undefined;
@@ -222,7 +223,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const gasResult = await relaySubmitToGas(gasPayload);
 
         if (!gasResult.success) {
-          console.error("GAS relay failed:", gasResult.error);
+          console.error("[submit] GAS relay failed:", gasResult.error);
           return res.status(502).json({
             success: false,
             message: "حدث خطأ في معالجة الطلب. يرجى المحاولة مرة أخرى.",
