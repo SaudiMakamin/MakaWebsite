@@ -1,0 +1,97 @@
+SURGICAL UI POLISH ONLY — KEEP THE WORKING GOOGLE SHAREHOLDER PORTAL ENGINE INTACT
+
+Final confirmed reality:
+The shareholder portal is already built, connected, and working successfully on Google Apps Script at its current submit page.
+We are NO LONGER changing architecture.
+We are NO LONGER trying Vercel API, Replit backend, proxy upload, or direct browser-to-GAS redesign.
+
+From this point forward:
+- Keep the current Google Apps Script portal logic intact
+- Keep the current Drive / Sheet / requestId / email flow intact
+- Do NOT touch the working backend flow unless a tiny UI-related fix is strictly required
+- Focus ONLY on making the current Google portal look and feel as close as possible to Makamin
+
+This is a SURGICAL UI/UX operation only.
+
+STRICT RULES:
+- Do not redesign the architecture
+- Do not replace the working Google submit flow
+- Do not reopen A2
+- Do not propose Vercel/Express/Replit backend solutions again
+- Do not change the business logic unless absolutely necessary for display/UX polish
+- Do not expand scope beyond the shareholder portal UI
+- Respect the existing working Google implementation
+
+Your task now:
+
+1) Inspect the current working Google shareholder portal completely
+I want a precise audit of:
+- page structure
+- sections
+- labels
+- spacing
+- colors
+- typography
+- logo/header treatment
+- upload field styling
+- button styling
+- success/failure message presentation
+- mobile behavior
+- Arabic presentation quality
+- what visually exposes it as “Google” instead of “Makamin”
+
+2) Compare it against the current Makamin shareholder page / Makamin site style
+Identify exactly:
+- what already feels close
+- what feels off
+- what is missing
+- what creates the strongest “this is not Makamin” impression
+
+3) Produce a minimal-change UI polish plan only
+I want the SMALLEST set of UI changes that gives the highest visual improvement.
+Prioritize:
+- header branding
+- spacing and section layout
+- field styling
+- button styling
+- typography
+- colors
+- visual consistency in Arabic
+Do NOT propose unnecessary redesign.
+
+4) Then implement only the smallest high-value UI improvements on the Google side
+Allowed scope:
+- HTML structure adjustments only where needed
+- CSS polish
+- text cleanup
+- layout refinement
+- success/error presentation cleanup
+- mobile spacing cleanup
+- branding polish
+Not allowed:
+- business flow changes
+- data schema changes
+- request handling redesign
+- storage redesign
+- tracking redesign unless purely visual
+- backend rewrites
+
+5) Preserve functionality
+After polish, the portal must still:
+- submit correctly
+- upload correctly
+- generate requestId correctly
+- keep the same working behavior
+
+6) Return exactly this report after implementation:
+
+A. Google-side files modified
+B. Visual changes made
+C. What functionality remained unchanged
+D. Any remaining visual mismatch with Makamin
+E. Any risk introduced
+F. Confirmation that the working portal engine was preserved
+
+Important framing:
+This is no longer an architecture project.
+This is now a precision branding and UI conformity pass on the already-working Google shareholder portal.
