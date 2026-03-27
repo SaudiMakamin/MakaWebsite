@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <base target="_top">
+  <style>
+    body{font-family:Arial,sans-serif;background:#f5f6f8;margin:0;padding:30px 15px;direction:rtl}
+    .container{max-width:900px;margin:auto;background:#fff;padding:30px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+    h1{text-align:center;margin-bottom:10px;font-size:28px}
+    .intro{text-align:center;color:#444;margin-bottom:25px;line-height:1.8}
+    h3{margin-top:28px;border-bottom:1px solid #e5e5e5;padding-bottom:8px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .full{grid-column:1 / -1}
+    label{display:block;font-size:14px;margin-bottom:6px;color:#333}
+    input,select,textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:14px}
+    textarea{min-height:110px;resize:vertical}
+    .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+    .check-item{background:#fafafa;border:1px solid #e5e5e5;border-radius:8px;padding:10px}
+    .check-item input{width:auto;margin-left:8px}
+    button{width:100%;padding:14px;background:#111;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;margin-top:20px}
+    button:disabled{opacity:.6;cursor:not-allowed}
+    .note{font-size:13px;color:#666;margin-top:8px}
+    #result{margin-top:20px;padding:18px;border-radius:10px;line-height:1.9;display:none}
+    .success{background:#f3f7f4;color:#1c3b24}
+    .error{background:#fff4f4;color:#8b1e1e}
+    .top-link{display:inline-block;margin-bottom:18px;color:#111;text-decoration:none}
+    .loading{opacity:.75;pointer-events:none}
+    .required-star{color:#b42318}
+    @media (max-width:768px){.grid,.checks{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="top-link" href="<?= appUrl ?>?page=portal">← العودة إلى بوابة المساهمين</a>
+
+    <h1>تقديم طلب تحديث بيانات المساهمين</h1>
+    <div class="intro">
+      يرجى استكمال النموذج التالي لتحديث واستكمال بيانات المساهمين، ورفع المستندات المطلوبة بصيغة PDF.<br>
+      سيخضع الطلب للمراجعة والتدقيق من قبل الإدارة المختصة في شركة مكامن السعودية لخدمات النفط والغاز (مساهمة مقفلة).
+    </div>
+
+    <form id="shareholderForm" onsubmit="return false;">
+      <h3>أولًا: نوع المساهم</h3>
+      <div class="grid">
+        <div class="full">
+          <label>نوع المساهم <span class="required-star">*</span></label>
+          <select id="shareholderType" required>
+            <option value="">اختر</option>
+            <option value="فرد سعودي">فرد سعودي</option>
+            <option value="فرد خليجي">فرد خليجي</option>
+            <option value="شركة سعودية">شركة سعودية</option>
+            <option value="شركة خليجية">شركة خليجية</option>
+            <option value="شركة أجنبية">شركة أجنبية</option>
+          </select>
+        </div>
+      </div>
+
+      <h3>ثانيًا: بيانات التعريف</h3>
+      <div class="grid">
+        <div>
+          <label>الاسم الكامل / الاسم القانوني للشركة <span class="required-star">*</span></label>
+          <input id="fullName" required>
+        </div>
+        <div>
+          <label>رقم الهوية / الإقامة / جواز السفر / السجل التجاري <span class="required-star">*</span></label>
+          <input id="idOrCr" required>
+        </div>
+        <div>
+          <label>الجنسية / دولة التأسيس <span class="required-star">*</span></label>
+          <input id="nationalityOrCountry" required>
+        </div>
+        <div>
+          <label>تاريخ الميلاد (للأفراد فقط)</label>
+          <input id="dateOfBirth" type="date">
+        </div>
+        <div>
+          <label>اسم المفوض / ممثل الشركة</label>
+          <input id="authorizedPerson">
+        </div>
+        <div>
+          <label>رقم هوية المفوض / إقامته / جوازه</label>
+          <input id="authorizedPersonId">
+        </div>
+        <div>
+          <label>رقم الجوال <span class="required-star">*</span></label>
+          <input id="mobile" required>
+        </div>
+        <div>
+          <label>البريد الإلكتروني <span class="required-star">*</span></label>
+          <input id="email" type="email" required>
+        </div>
+        <div class="full">
+          <label>العنوان <span class="required-star">*</span></label>
+          <textarea id="address" required></textarea>
+        </div>
+      </div>
+
+      <h3>ثالثًا: بيانات المساهمة</h3>
+      <div class="grid">
+        <div>
+          <label>هل أنت من المساهمين المؤسسين؟ <span class="required-star">*</span></label>
+          <select id="founderShareholder" required>
+            <option value="">اختر</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div>
+          <label>عدد الأسهم رقمًا <span class="required-star">*</span></label>
+          <input id="sharesNumber" type="number" min="0" step="1" required>
+        </div>
+        <div class="full">
+          <label>عدد الأسهم كتابة <span class="required-star">*</span></label>
+          <input id="sharesWords" required>
+        </div>
+        <div>
+          <label>القيمة المدفوعة <span class="required-star">*</span></label>
+          <input id="paidAmount" type="number" min="0" step="0.01" required>
+        </div>
+        <div>
+          <label>العملة <span class="required-star">*</span></label>
+          <input id="currency" value="ريال سعودي" required>
+        </div>
+      </div>
+
+      <h3>رابعًا: البيانات البنكية</h3>
+      <div class="grid">
+        <div>
+          <label>اسم البنك <span class="required-star">*</span></label>
+          <input id="bankName" required>
+        </div>
+        <div>
+          <label>اسم صاحب الحساب <span class="required-star">*</span></label>
+          <input id="accountName" required>
+        </div>
+        <div>
+          <label>IBAN <span class="required-star">*</span></label>
+          <input id="iban" required>
+        </div>
+        <div>
+          <label>دولة البنك <span class="required-star">*</span></label>
+          <input id="bankCountry" required>
+        </div>
+      </div>
+
+      <h3>خامسًا: نوع التحديث المطلوب</h3>
+      <div class="checks">
+        <label class="check-item"><input type="checkbox" id="updateMobile"> تحديث رقم الجوال</label>
+        <label class="check-item"><input type="checkbox" id="updateEmail"> تحديث البريد الإلكتروني</label>
+        <label class="check-item"><input type="checkbox" id="updateAddress"> تحديث العنوان</label>
+        <label class="check-item"><input type="checkbox" id="updateBank"> تحديث البيانات البنكية</label>
+        <label class="check-item"><input type="checkbox" id="updateShareholding"> تحديث بيانات المساهمة</label>
+      </div>
+
+      <h3>سادسًا: المرفقات (PDF فقط)</h3>
+      <div class="grid">
+        <div>
+          <label>الهوية / السجل التجاري / مستند التأسيس <span class="required-star">*</span></label>
+          <input id="mainDocument" type="file" accept="application/pdf,.pdf" required>
+        </div>
+        <div>
+          <label>شهادة الآيبان / خطاب بنكي <span class="required-star">*</span></label>
+          <input id="bankDocument" type="file" accept="application/pdf,.pdf" required>
+        </div>
+        <div class="full">
+          <label>مستندات داعمة أخرى (اختياري)</label>
+          <input id="supportDocument" type="file" accept="application/pdf,.pdf">
+        </div>
+      </div>
+
+      <h3>سابعًا: ملاحظات وإقرار</h3>
+      <div class="grid">
+        <div class="full">
+          <label>ملاحظات إضافية</label>
+          <textarea id="notes"></textarea>
+        </div>
+        <div class="full check-item">
+          <label>
+            <input type="checkbox" id="declaration" required>
+            أقر بصحة البيانات والمستندات المرفوعة وأوافق على مراجعتها والتحقق منها من قبل الشركة.
+          </label>
+        </div>
+      </div>
+
+      <button type="button" id="submitBtn" onclick="submitForm()">إرسال الطلب</button>
+      <div class="note">لن يتم قبول أي مرفقات بغير صيغة PDF.</div>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <script>
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function normalizeText(value) {
+      return String(value || "").trim();
+    }
+
+    function showResultSuccess(html) {
+      const result = document.getElementById("result");
+      result.className = "success";
+      result.style.display = "block";
+      result.innerHTML = html;
+    }
+
+    function showResultError(message) {
+      const result = document.getElementById("result");
+      result.className = "error";
+      result.style.display = "block";
+      result.innerHTML = escapeHtml(message || "حدث خطأ غير متوقع.");
+    }
+
+    function clearResult() {
+      const result = document.getElementById("result");
+      result.style.display = "none";
+      result.className = "";
+      result.innerHTML = "";
+    }
+
+    function setLoading(isLoading) {
+      const btn = document.getElementById("submitBtn");
+      const form = document.getElementById("shareholderForm");
+
+      btn.disabled = isLoading;
+      btn.textContent = isLoading ? "جاري إرسال الطلب..." : "إرسال الطلب";
+
+      if (isLoading) {
+        form.classList.add("loading");
+      } else {
+        form.classList.remove("loading");
+      }
+    }
+
+    function validatePdfFile(file, fieldLabel) {
+      if (!file) return true;
+
+      const name = String(file.name || "").toLowerCase();
+      const type = String(file.type || "").toLowerCase();
+
+      const isPdf = type === "application/pdf" || name.endsWith(".pdf");
+      if (!isPdf) {
+        throw new Error(fieldLabel + " يجب أن يكون بصيغة PDF فقط.");
+      }
+
+      return true;
+    }
+
+    async function fileToBase64(file) {
+      if (!file) return null;
+
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+          const raw = String(e.target.result || "");
+          const parts = raw.split(",");
+          const base64 = parts.length > 1 ? parts[1] : "";
+
+          resolve({
+            name: file.name,
+            mimeType: file.type || "application/pdf",
+            data: base64
+          });
+        };
+
+        reader.onerror = function() {
+          reject(new Error("تعذر قراءة الملف: " + (file.name || "")));
+        };
+
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function validateBeforeSubmit() {
+      const requiredFields = [
+        { id: "shareholderType", label: "نوع المساهم" },
+        { id: "fullName", label: "الاسم الكامل / الاسم القانوني للشركة" },
+        { id: "idOrCr", label: "رقم الهوية / السجل التجاري" },
+        { id: "nationalityOrCountry", label: "الجنسية / دولة التأسيس" },
+        { id: "mobile", label: "رقم الجوال" },
+        { id: "email", label: "البريد الإلكتروني" },
+        { id: "address", label: "العنوان" },
+        { id: "founderShareholder", label: "المساهم المؤسس" },
+        { id: "sharesNumber", label: "عدد الأسهم" },
+        { id: "sharesWords", label: "عدد الأسهم كتابة" },
+        { id: "paidAmount", label: "القيمة المدفوعة" },
+        { id: "currency", label: "العملة" },
+        { id: "bankName", label: "اسم البنك" },
+        { id: "accountName", label: "اسم صاحب الحساب" },
+        { id: "iban", label: "IBAN" },
+        { id: "bankCountry", label: "دولة البنك" }
+      ];
+
+      for (const field of requiredFields) {
+        const el = document.getElementById(field.id);
+        if (!el || !normalizeText(el.value)) {
+          throw new Error("الحقل مطلوب: " + field.label);
+        }
+      }
+
+      const email = normalizeText(document.getElementById("email").value);
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!emailOk) {
+        throw new Error("البريد الإلكتروني غير صالح.");
+      }
+
+      const mainDocument = document.getElementById("mainDocument").files[0];
+      const bankDocument = document.getElementById("bankDocument").files[0];
+      const supportDocument = document.getElementById("supportDocument").files[0];
+
+      if (!mainDocument) throw new Error("المستند الرئيسي مطلوب.");
+      if (!bankDocument) throw new Error("المستند البنكي مطلوب.");
+
+      validatePdfFile(mainDocument, "المستند الرئيسي");
+      validatePdfFile(bankDocument, "المستند البنكي");
+      if (supportDocument) validatePdfFile(supportDocument, "المستند الداعم");
+
+      if (!document.getElementById("declaration").checked) {
+        throw new Error("يجب الإقرار بصحة البيانات قبل الإرسال.");
+      }
+    }
+
+    async function submitForm() {
+      clearResult();
+
+      try {
+        validateBeforeSubmit();
+        setLoading(true);
+
+        const mainDocument = document.getElementById("mainDocument").files[0];
+        const bankDocument = document.getElementById("bankDocument").files[0];
+        const supportDocument = document.getElementById("supportDocument").files[0];
+
+        const data = {
+          shareholderType: normalizeText(document.getElementById("shareholderType").value),
+          fullName: normalizeText(document.getElementById("fullName").value),
+          idOrCr: normalizeText(document.getElementById("idOrCr").value),
+          nationalityOrCountry: normalizeText(document.getElementById("nationalityOrCountry").value),
+          dateOfBirth: normalizeText(document.getElementById("dateOfBirth").value),
+          authorizedPerson: normalizeText(document.getElementById("authorizedPerson").value),
+          authorizedPersonId: normalizeText(document.getElementById("authorizedPersonId").value),
+          mobile: normalizeText(document.getElementById("mobile").value),
+          email: normalizeText(document.getElementById("email").value),
+          address: normalizeText(document.getElementById("address").value),
+          founderShareholder: normalizeText(document.getElementById("founderShareholder").value),
+          sharesNumber: normalizeText(document.getElementById("sharesNumber").value),
+          sharesWords: normalizeText(document.getElementById("sharesWords").value),
+          paidAmount: normalizeText(document.getElementById("paidAmount").value),
+          currency: normalizeText(document.getElementById("currency").value),
+          bankName: normalizeText(document.getElementById("bankName").value),
+          accountName: normalizeText(document.getElementById("accountName").value),
+          iban: normalizeText(document.getElementById("iban").value),
+          bankCountry: normalizeText(document.getElementById("bankCountry").value),
+          updateMobile: document.getElementById("updateMobile").checked,
+          updateEmail: document.getElementById("updateEmail").checked,
+          updateAddress: document.getElementById("updateAddress").checked,
+          updateBank: document.getElementById("updateBank").checked,
+          updateShareholding: document.getElementById("updateShareholding").checked,
+          notes: normalizeText(document.getElementById("notes").value),
+          mainDocument: await fileToBase64(mainDocument),
+          bankDocument: await fileToBase64(bankDocument),
+          supportDocument: supportDocument ? await fileToBase64(supportDocument) : null
+        };
+
+        google.script.run
+          .withSuccessHandler(function(res) {
+            setLoading(false);
+
+            showResultSuccess(
+              "<strong>" + escapeHtml(res && res.message ? res.message : "تم إرسال الطلب بنجاح.") + "</strong><br>" +
+              "الرقم المرجعي للطلب: <strong>" + escapeHtml(res && res.requestId ? res.requestId : "") + "</strong>"
+            );
+
+            document.getElementById("shareholderForm").reset();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+          })
+          .withFailureHandler(function(err) {
+            setLoading(false);
+            showResultError("تعذر إرسال الطلب: " + (err && err.message ? err.message : "خطأ غير معروف."));
+          })
+          .submitForm(data);
+
+      } catch (e) {
+        setLoading(false);
+        showResultError(e && e.message ? e.message : "تعذر تجهيز الملفات أو إرسال الطلب.");
+      }
+    }
+  </script>
+</body>
+</html>
