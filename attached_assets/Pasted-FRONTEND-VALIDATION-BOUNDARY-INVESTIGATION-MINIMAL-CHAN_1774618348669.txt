@@ -1,0 +1,62 @@
+FRONTEND VALIDATION BOUNDARY INVESTIGATION — MINIMAL CHANGE ONLY
+
+We now have a concrete browser-side symptom on the shareholder submit page.
+
+Observed behavior:
+- A valid PDF file is selected successfully.
+- The filename appears visually inside all three upload fields.
+- File size is only 2.16 MB, so this is not a size-limit issue.
+- On submit, the required fields show:
+  "This document is required"
+  for:
+  - ID / CR / Incorporation Document
+  - IBAN Certificate / Bank Letter
+- The optional field:
+  - Other Supporting Documents
+  does not show the required error.
+
+Conclusion:
+This failure is happening before the backend/GAS path.
+The issue is likely in frontend form-state binding / validation for required upload fields.
+
+READ-ONLY ANALYSIS FIRST.
+Do not refactor.
+Do not redesign the upload UI.
+Do not change architecture.
+Inspect only the submit page upload binding and validation path.
+
+Investigate exactly:
+
+1) Which frontend component renders these 3 upload fields?
+2) Which state/form library is used for this page?
+   - react-hook-form?
+   - zod?
+   - local state?
+3) For each of the 3 fields, identify:
+   - field name
+   - schema key
+   - displayed filename source
+   - actual submitted value source
+4) Determine whether the UI is showing the filename from local component state while validation checks a different form key.
+5) Check whether the required fields expect:
+   - File
+   - File[]
+   - string
+   - uploaded metadata object
+   and whether the uploader is passing the correct type.
+6) Check whether setValue / register / Controller wiring is correct for:
+   - ID / CR / Incorporation Document
+   - IBAN Certificate / Bank Letter
+7) Compare those two required fields against:
+   - Other Supporting Documents
+   and explain why the optional field visually accepts the file but does not validate the same way.
+8) Check whether reusing the same PDF file in multiple inputs is blocked anywhere in code.
+9) Report the smallest possible fix only.
+
+Return exactly:
+A. frontend files involved
+B. exact validation schema for the 3 fields
+C. exact mismatch between displayed file and validated value
+D. whether the bug is in uploader component or form binding
+E. smallest surgical fix
+F. files to modify only if approved
