@@ -1,0 +1,126 @@
+أكيد. هذا نص إنجليزي دقيق ترسله لوكيل Replit، وأنا أبقي الشرح لك بالعربي.
+
+I need a **strict, factual status report** about the **`/update-shareholder`** page only inside the Makamin project on Replit.
+
+Do **not** give me general suggestions, redesign ideas, future architecture, or broad plans.
+I want a **surgical, reality-based report** of what was actually done, what currently works, and exactly where work stopped.
+
+Respond using **only** the following sections:
+
+## 1) Route status
+
+* Which file defines the `/update-shareholder` route?
+* Is the page actually connected to the routing system right now?
+* Does the route currently work without breaking the rest of navigation?
+
+## 2) Files touched
+
+List **every file** that was created or modified specifically for `update-shareholder`, and for each file state:
+
+* file name
+* new or modified
+* exact purpose
+
+## 3) UI status
+
+State exactly what has been built in the page:
+
+* Is it only a landing page?
+* Does it currently include:
+
+  * Submit New Request button
+  * Track Existing Request button
+  * real form
+  * success/failure messages
+  * file upload UI
+  * validation
+* What is visually present only, and what is functionally connected?
+
+## 4) Functional status
+
+I need the exact functional state:
+
+* Is there a real submit flow?
+* Is there a real backend handler?
+* Is there a real API endpoint connected?
+* Is there actual data persistence?
+* Is there actual attachment upload?
+* Is there actual request tracking?
+* What currently works **end-to-end**, and what is **UI only**?
+
+## 5) Integration status
+
+Is `update-shareholder` connected to any of the following?
+
+* Google Apps Script
+* Google Sheets
+* Google Drive
+* Express backend
+* local mock data
+
+If yes, specify exactly where and how.
+If not, say clearly: **No real integration exists**.
+
+## 6) Current blocking point
+
+What is the **actual last blocking point** where work stopped on `update-shareholder`?
+
+Answer directly, for example:
+
+* stopped at UI only
+* stopped at form wiring
+* stopped at upload
+* stopped at API
+* stopped at tracking
+* stopped at route integration
+* stopped at deployment
+* stopped because of mismatch between Replit and GAS
+
+## 7) What is real vs placeholder
+
+Separate the page state clearly into:
+
+### Real
+
+What is actually real and working now
+
+### Placeholder / Mock
+
+What is only visual, mocked, hardcoded, or not connected
+
+## 8) Exact next surgical step
+
+Based on the current state only:
+
+* what is the **single smallest surgical next step**
+* no refactor
+* no redesign
+* no architecture change
+* no scope expansion
+
+## 9) Risk note
+
+* Were any high-risk files touched?
+* Were app routes, navigation, or server config modified?
+* Is there anything that could affect parts of the website outside `update-shareholder`?
+
+## 10) Final truth summary
+
+End with exactly 5 short lines:
+
+* what was truly completed
+* what was not completed
+* where work stopped
+* what is still fake/mock
+* what the next surgical step is
+
+Important rules:
+
+* Do not guess
+* Do not say “probably”
+* Do not give future roadmap
+* Do not explain the whole architecture
+* Do not go outside `/update-shareholder`
+* If something is unknown, write only: **UNCERTAIN**
+
+بعد أن يرد عليك، أرسل لي رده كما هو، وأنا أحوله لك مباشرة إلى **تشخيص جراحي واضح**.
