@@ -8,7 +8,7 @@ packages = ["lsof"]
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["bash", "-c", "npm run build && node_modules/.bin/esbuild server/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js --packages=external"]
+build = ["sh", "-c", "bash -c \"npm install && npm run build && node_modules/.bin/esbuild server/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js --packages=external\""]
 run = ["node", "dist/index.js"]
 
 [[ports]]
