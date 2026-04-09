@@ -1,0 +1,78 @@
+Apply one more minimal surgical cleanup for the shareholder page flow only.
+
+## Required change
+
+The `/update-shareholder` page should now act only as a lightweight gateway for **Submit New Request**, which already redirects directly to the live GAS form.
+
+Remove or hide the **"Track Existing Request"** action from the page, and identify any shareholder-related runtime behavior in Replit that is still consuming resources unnecessarily.
+
+## Goal
+
+Since shareholder submission has effectively been moved to Google Apps Script, Replit should no longer keep unnecessary active logic, handlers, or runtime paths related to shareholder flows that are no longer being used from the UI.
+
+## Rules
+
+* Do not redesign the page
+* Do not refactor architecture
+* Do not touch unrelated site features
+* Do not delete files unless I explicitly ask
+* Do not make broad backend changes
+* Keep everything minimal, isolated, and reversible
+
+## What I need from you
+
+Please do the following only:
+
+### 1) UI reduction
+
+* Remove or hide the **Track Existing Request** button/card from `client/src/pages/update-shareholder.tsx`
+* Keep the **Submit New Request** button unchanged
+* Preserve the rest of the page layout as much as possible
+
+### 2) Resource / runtime separation audit
+
+Identify any shareholder-related logic that may still consume Replit resources unnecessarily, including for example:
+
+* active backend routes
+* relay handlers
+* API endpoints
+* tracking handlers
+* submission handlers
+* imports that trigger shareholder-related server logic
+* anything still wired into runtime for shareholder flow even though the UI no longer uses it
+
+### 3) Minimal isolation recommendation
+
+For each shareholder-related runtime piece you find, classify it as one of these:
+
+* **Keep active**
+* **Safe to disable from runtime**
+* **Leave untouched for now**
+
+Be precise and conservative.
+
+### 4) Minimal action only
+
+If there is a **single small safe step** that can reduce unnecessary Replit resource usage for shareholder features **without risking the rest of the website**, do it.
+
+If not, do not force changes. Just report the truth.
+
+## Report back with
+
+* exact file modified
+* exact old behavior
+* exact new behavior
+* whether Track Existing Request was removed from UI
+* which shareholder-related runtime/backend pieces still exist
+* which of them are actually still consuming runtime resources
+* what was left untouched
+* whether any other files had to be touched
+
+## Important
+
+This is a minimal surgical reduction only.
+
+Do not expand scope.
+Do not redesign.
+Do not continue the old Replit submission architecture.
+Do not remove backend code aggressively unless it is clearly unused and safe to detach.

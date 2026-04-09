@@ -1,25 +1,9 @@
 import { useLanguageContext } from '@/components/language-provider';
-import { Link } from 'wouter';
-import { FileText, Search } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
 
-const actions = [
-  {
-    labelAr: 'تقديم طلب جديد',
-    labelEn: 'Submit New Request',
-    href: 'https://script.google.com/macros/s/AKfycbzsx3zC2sx2Yv_XLoUX2TO1rDXlmT3oxyvyh8XDqucs2kfDlkr5vXQOxyehNFZ3z1WS/exec',
-    external: true,
-    Icon: FileText,
-  },
-  {
-    labelAr: 'متابعة طلب سابق',
-    labelEn: 'Track Existing Request',
-    href: '/shareholder/track',
-    external: false,
-    Icon: Search,
-  },
-];
+const GAS_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzsx3zC2sx2Yv_XLoUX2TO1rDXlmT3oxyvyh8XDqucs2kfDlkr5vXQOxyehNFZ3z1WS/exec';
 
 const notesAr = [
   'بعض البيانات تخضع للمراجعة قبل الاعتماد النهائي.',
@@ -65,30 +49,16 @@ export default function UpdateShareholder() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-            {actions.map(({ labelAr, labelEn, href, external, Icon }) => (
-              external ? (
-                <a
-                  key={href}
-                  href={href}
-                  className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer"
-                >
-                  <Icon className="w-6 h-6 text-blue-700" />
-                  <span className="font-semibold text-gray-800 text-sm leading-snug">
-                    {isAr ? labelAr : labelEn}
-                  </span>
-                </a>
-              ) : (
-                <Link key={href} href={href}>
-                  <a className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer">
-                    <Icon className="w-6 h-6 text-blue-700" />
-                    <span className="font-semibold text-gray-800 text-sm leading-snug">
-                      {isAr ? labelAr : labelEn}
-                    </span>
-                  </a>
-                </Link>
-              )
-            ))}
+          <div className="mb-12">
+            <a
+              href={GAS_SUBMIT_URL}
+              className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all cursor-pointer max-w-xs mx-auto"
+            >
+              <FileText className="w-6 h-6 text-blue-700" />
+              <span className="font-semibold text-gray-800 text-sm leading-snug">
+                {isAr ? 'تقديم طلب جديد' : 'Submit New Request'}
+              </span>
+            </a>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-lg p-6">
