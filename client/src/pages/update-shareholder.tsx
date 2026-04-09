@@ -8,13 +8,15 @@ const actions = [
   {
     labelAr: 'تقديم طلب جديد',
     labelEn: 'Submit New Request',
-    href: '/shareholder/submit',
+    href: 'https://script.google.com/macros/s/AKfycbzsx3zC2sx2Yv_XLoUX2TO1rDXlmT3oxyvyh8XDqucs2kfDlkr5vXQOxyehNFZ3z1WS/exec',
+    external: true,
     Icon: FileText,
   },
   {
     labelAr: 'متابعة طلب سابق',
     labelEn: 'Track Existing Request',
     href: '/shareholder/track',
+    external: false,
     Icon: Search,
   },
 ];
@@ -64,15 +66,28 @@ export default function UpdateShareholder() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-            {actions.map(({ labelAr, labelEn, href, Icon }) => (
-              <Link key={href} href={href}>
-                <a className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer">
+            {actions.map(({ labelAr, labelEn, href, external, Icon }) => (
+              external ? (
+                <a
+                  key={href}
+                  href={href}
+                  className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer"
+                >
                   <Icon className="w-6 h-6 text-blue-700" />
                   <span className="font-semibold text-gray-800 text-sm leading-snug">
                     {isAr ? labelAr : labelEn}
                   </span>
                 </a>
-              </Link>
+              ) : (
+                <Link key={href} href={href}>
+                  <a className="flex flex-col items-center gap-3 bg-white border border-gray-200 rounded-lg p-8 text-center hover:border-blue-500 hover:shadow-sm transition-all group cursor-pointer">
+                    <Icon className="w-6 h-6 text-blue-700" />
+                    <span className="font-semibold text-gray-800 text-sm leading-snug">
+                      {isAr ? labelAr : labelEn}
+                    </span>
+                  </a>
+                </Link>
+              )
             ))}
           </div>
 
