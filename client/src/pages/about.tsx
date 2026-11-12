@@ -4,7 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { Target, Eye, Drill, Search, Settings, Wrench, Building, Cog, Users, Globe, DollarSign, Calendar, MapPin, ChevronDown, ChevronRight, Award, Shield, Zap, TrendingUp, CheckCircle, Heart, User, Crown, Briefcase, Star, ArrowRight, ExternalLink, Phone, Mail, LinkedinIcon, Twitter, Linkedin, Ship, Compass, Package } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguageContext } from '@/components/language-provider';
 import SemanticMetadata from '@/components/semantic-metadata';
 import EnhancedSecurity from '@/components/enhanced-security';
@@ -12,6 +14,21 @@ import AnimatedCounter from '@/components/animated-counter';
 import { AnimatedDrillIcon, AnimatedShipIcon, AnimatedPipelineIcon, AnimatedOilRigIcon } from '@/components/animated-svg-icons';
 import HeroLogo from '@/components/hero-logo';
 import campLayoutPath from '@assets/makamin-oyun-camp-location-map-al-ahsa.jpg_1773067827094.jpg';
+
+function DetailDisclosure({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="details" className="border-slate-700/70">
+        <AccordionTrigger className="rounded-md text-start text-sm font-semibold text-cyan-300 hover:no-underline focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+          {label}
+        </AccordionTrigger>
+        <AccordionContent className="text-sm leading-relaxed">
+          {children}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
 
 export default function About() {
   const { language } = useLanguageContext();
@@ -320,7 +337,7 @@ export default function About() {
       <motion.section 
         id="overview"
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden"
         style={{ y }}
       >
         {/* Cinematic Makamin Flag Background */}
@@ -444,7 +461,7 @@ export default function About() {
       {/* Executive Statistics */}
       <motion.section 
         ref={statsRef}
-        className="py-20 bg-slate-800/50 backdrop-blur-sm"
+        className="py-8 md:py-10 bg-slate-800/50 backdrop-blur-sm"
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
@@ -474,31 +491,31 @@ export default function About() {
       </motion.section>
 
       {/* Company Information Section */}
-      <section id="company" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section id="company" className="py-6 md:py-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'معلومات الشركة' : 'Company Information'}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700"
+              className="bg-slate-800/50 rounded-2xl p-5 md:p-6 border border-slate-700"
             >
-              <h3 className="text-xl font-bold text-cyan-400 mb-6">
+              <h3 className="text-xl font-bold text-cyan-400 mb-4">
                 {language === 'ar' ? 'البيانات الأساسية' : 'Key Facts'}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {[
                   { k: language === 'ar' ? 'الاسم الرسمي' : 'Official Name', v: language === 'ar' ? 'شركة مكامن السعودية القابضة لخدمات النفط والغاز' : 'Saudi Makamin Holding Company for Oil & Gas Services' },
                   { k: language === 'ar' ? 'تاريخ التأسيس' : 'Date of Establishment', v: language === 'ar' ? '24 مايو 2008م' : 'May 24, 2008' },
@@ -519,12 +536,12 @@ export default function About() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700"
+              className="bg-slate-800/50 rounded-2xl p-5 md:p-6 border border-slate-700"
             >
-              <h3 className="text-xl font-bold text-cyan-400 mb-6">
+              <h3 className="text-xl font-bold text-cyan-400 mb-4">
                 {language === 'ar' ? 'قطاعات العمل' : 'Business Sectors'}
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {[
                   language === 'ar' ? 'خدمات الأنابيب والصناعة' : 'Pipeline & Industrial Services',
                   language === 'ar' ? 'خدمات الحفر' : 'Drilling Services',
@@ -556,7 +573,7 @@ export default function About() {
       {/* Animated Timeline Section */}
       <motion.section 
         ref={timelineRef}
-        className="py-32 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 relative overflow-hidden"
+        className="py-6 md:py-10 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M50%2050m-40%200a40%2040%200%201%201%2080%200a40%2040%200%201%201%20-80%200%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
         
@@ -565,7 +582,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: timelineInView ? 1 : 0, y: timelineInView ? 0 : 30 }}
             transition={{ duration: 1 }}
-            className="text-center mb-20"
+            className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
               {language === 'ar' ? 'المحطات الرئيسية' : 'Company Milestones'}
@@ -588,7 +605,7 @@ export default function About() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
                 animate={{ opacity: timelineInView ? 1 : 0, x: timelineInView ? 0 : (index % 2 === 0 ? -100 : 100) }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className={`relative flex items-center mb-20 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                className={`relative flex items-center mb-6 md:mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Timeline Node */}
                 <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full border-4 border-slate-800 z-10 flex items-center justify-center">
@@ -597,16 +614,20 @@ export default function About() {
                 
                 {/* Content */}
                 <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16 ml-16 md:ml-0' : 'md:pl-16 ml-16 md:ml-0'}`}>
-                  <div className={`bg-gradient-to-r ${event.color} p-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300`}>
-                    <div className="bg-slate-900/90 backdrop-blur-sm rounded-2xl p-6">
-                      <div className="flex items-center gap-4 mb-4">
+                  <div className={`bg-gradient-to-r ${event.color} p-4 md:p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-300`}>
+                    <div className="bg-slate-900/90 backdrop-blur-sm rounded-2xl p-4 md:p-5">
+                      <div className="flex items-center gap-3 mb-3">
                         <span className="text-2xl font-bold text-cyan-400">{event.year}</span>
                         <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
                           {event.impact}
                         </Badge>
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-4">{event.title}</h3>
-                      <p className="text-slate-300 text-lg leading-relaxed mb-6">{event.description}</p>
+                      <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
+                      <DetailDisclosure
+                        label={`${event.year} — ${language === 'ar' ? 'تفاصيل المحطة' : 'Milestone details'}`}
+                      >
+                        <p className="text-slate-300 leading-relaxed">{event.description}</p>
+                      </DetailDisclosure>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-3xl font-bold text-white">{event.metrics.value}</span>
@@ -624,32 +645,32 @@ export default function About() {
       </motion.section>
 
       {/* Vision, Mission & Objectives */}
-      <section id="vision" className="py-24 bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-900">
+      <section id="vision" className="py-6 md:py-10 bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'الرؤية والرسالة والأهداف' : 'Vision, Mission & Objectives'}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0 }}
-              className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-3xl p-8 text-center"
+              className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-3xl p-5 md:p-6 text-center"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 mx-auto">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-4 mx-auto">
                 <Eye className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {language === 'ar' ? 'الرؤية' : 'Vision'}
               </h3>
               <p className="text-slate-300 leading-relaxed">
@@ -664,12 +685,12 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border border-emerald-500/30 rounded-3xl p-8 text-center"
+              className="bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border border-emerald-500/30 rounded-3xl p-5 md:p-6 text-center"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-6 mx-auto">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full mb-4 mx-auto">
                 <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {language === 'ar' ? 'الرسالة' : 'Mission'}
               </h3>
               <p className="text-slate-300 leading-relaxed">
@@ -684,12 +705,12 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 rounded-3xl p-8 text-center"
+              className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 rounded-3xl p-5 md:p-6 text-center"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 mx-auto">
+              <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-4 mx-auto">
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {language === 'ar' ? 'الأهداف' : 'Objectives'}
               </h3>
               <ul className="text-slate-300 space-y-2 text-sm text-left">
@@ -715,14 +736,14 @@ export default function About() {
       <motion.section 
         id="management"
         ref={leadershipRef}
-        className="py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
+        className="py-6 md:py-10 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
       >
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: leadershipInView ? 1 : 0, y: leadershipInView ? 0 : 30 }}
             transition={{ duration: 1 }}
-            className="text-center mb-20"
+            className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {language === 'ar' ? 'القيادة العليا لشركة مكامن السعودية القابضة لخدمات النفط والغاز' : 'Executive Leadership of Saudi Makamin Holding Company for Oil & Gas Services'}
@@ -735,13 +756,13 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-16 mb-20">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
             {/* CEO Section */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: leadershipInView ? 1 : 0, x: leadershipInView ? 0 : -50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl"
+              className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-5 md:p-6 shadow-2xl"
             >
               <div className="flex items-center gap-6 mb-6">
                 <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-cyan-500 shadow-2xl">
@@ -768,20 +789,22 @@ export default function About() {
                   <p className="text-slate-400 text-sm mt-1">{leadership.ceo.subtitle}</p>
                 </div>
               </div>
-              <p className="text-slate-300 leading-relaxed mb-6">{leadership.ceo.bio}</p>
-              <div className="mt-6 pt-6 border-t border-slate-700">
-                <h4 className="text-lg font-semibold text-white mb-3">
-                  {language === 'ar' ? 'ملامح القيادة' : 'Leadership Traits'}
-                </h4>
-                <ul className="space-y-2">
-                  {leadership.ceo.keyTraits.map((trait, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
-                      <span className="text-slate-300 text-sm">{trait}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية وملامح القيادة' : 'Biography and leadership traits'}>
+                <p className="text-slate-300 leading-relaxed mb-4">{leadership.ceo.bio}</p>
+                <div className="pt-4 border-t border-slate-700">
+                  <h4 className="text-lg font-semibold text-white mb-3">
+                    {language === 'ar' ? 'ملامح القيادة' : 'Leadership Traits'}
+                  </h4>
+                  <ul className="space-y-2">
+                    {leadership.ceo.keyTraits.map((trait, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
+                        <span className="text-slate-300 text-sm">{trait}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </DetailDisclosure>
             </motion.div>
 
             {/* Board of Directors */}
@@ -789,7 +812,7 @@ export default function About() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: leadershipInView ? 1 : 0, x: leadershipInView ? 0 : 50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl"
+              className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-5 md:p-6 shadow-2xl"
             >
               <div className="flex items-center gap-6 mb-6">
                 <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
@@ -804,15 +827,17 @@ export default function About() {
               </div>
               
               {/* Legal Description */}
-              <div className="bg-slate-800/50 rounded-xl p-4 mb-6">
-                <p className="text-slate-300 text-sm leading-relaxed mb-3">{leadership.board.legalNote}</p>
-                <p className="text-slate-400 text-xs">{leadership.board.electionNote}</p>
+              <div className="bg-slate-800/50 rounded-xl px-4 mb-4">
+                <DetailDisclosure label={language === 'ar' ? 'التفاصيل القانونية والانتخابية' : 'Legal and election details'}>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-3">{leadership.board.legalNote}</p>
+                  <p className="text-slate-400 text-xs">{leadership.board.electionNote}</p>
+                </DetailDisclosure>
               </div>
 
               {/* Board Members */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {leadership.board.members.map((member, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-xl hover:bg-slate-700/50 transition-colors">
+                  <div key={i} className="flex items-center gap-3 p-2.5 bg-slate-800/30 rounded-xl hover:bg-slate-700/50 transition-colors">
                     <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-slate-600">
                       {/* CEO - Adel Ayed ALNOOB */}
                       {(member.name.includes('عادل عايض النوب') || member.name.includes('Adel Ayed ALNOOB')) && (
@@ -894,15 +919,15 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: leadershipInView ? 1 : 0, y: leadershipInView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl mb-16"
+            className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-5 md:p-6 shadow-2xl mb-8 md:mb-10"
           >
             <h3 className="text-2xl font-bold text-white mb-6 text-center">
               {leadership.committees.title}
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-5">
               {leadership.committees.list.map((committee, i) => (
-                <div key={i} className="bg-slate-800/50 rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div key={i} className="bg-slate-800/50 rounded-xl p-4">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                       <Settings className="w-5 h-5 text-white" />
                     </div>
@@ -911,7 +936,9 @@ export default function About() {
                       <p className="text-slate-400 text-xs">{committee.head}</p>
                     </div>
                   </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">{committee.description}</p>
+                  <DetailDisclosure label={language === 'ar' ? 'تفاصيل اللجنة' : 'Committee details'}>
+                    <p className="text-slate-300 text-sm leading-relaxed">{committee.description}</p>
+                  </DetailDisclosure>
                 </div>
               ))}
             </div>
@@ -937,7 +964,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: leadershipInView ? 1 : 0, y: leadershipInView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl p-8 border border-blue-500/30"
+            className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl p-5 md:p-6 border border-blue-500/30"
           >
             <div className="text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6">
@@ -955,7 +982,7 @@ export default function About() {
       <motion.section 
         id="core-committees"
         data-committees
-        className="py-32 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
+        className="py-6 md:py-10 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
       >
         <div className="container mx-auto px-4 lg:px-8 about-executive-committee">
           <motion.div
@@ -963,7 +990,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-20"
+            className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {language === 'ar' ? 'اللجان الاستراتيجية المستقلة (2025–2029)' : 'Independent Strategic Committees (2025–2029)'}
@@ -990,7 +1017,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          <div className="space-y-16">
+          <div className="space-y-8 md:space-y-10">
 
 
             {/* Executive Committee */}
@@ -999,10 +1026,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-slate-700 committee"
+              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-5 md:p-6 shadow-2xl border border-slate-700 committee"
               data-committee="executive"
             >
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-5">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                   <Crown className="w-8 h-8 text-white" />
                 </div>
@@ -1016,9 +1043,9 @@ export default function About() {
                 </div>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Chairman */}
-                <div className="grid md:grid-cols-3 gap-6 bg-slate-800/30 rounded-2xl p-6">
+                <div className="grid md:grid-cols-3 gap-4 bg-slate-800/30 rounded-2xl p-4">
                   <div className="md:col-span-1">
                     <div className="text-center">
                       <motion.img 
@@ -1041,25 +1068,27 @@ export default function About() {
                   </div>
                   
                   <div className="md:col-span-2">
-                    <p className="text-slate-300 leading-relaxed text-sm mb-3">
-                      {language === 'ar' ? 
-                        'تنفيذي طاقة متميز مع أكثر من عقدين من القيادة التحويلية في منطقة الخليج، م. حمد القحطاني يشغل حالياً منصب الرئيس التنفيذي لشركة بيت الطاقة القابضة (سابقاً عارف للطاقة). يحمل ماجستير إدارة أعمال في المالية من مدرسة ماستريخت للإدارة وبكالوريوس في الهندسة الميكانيكية من الجامعة الكاثوليكية الأمريكية، يجمع بين البصيرة الاستراتيجية والإتقان التقني.' :
-                        'A distinguished energy executive with over two decades of transformative leadership in the Gulf region, Eng. Hamad Al-Qahtani currently serves as CEO of The Energy House Holding Company (formerly AREF Energy). Holding an MBA in Finance from Maastricht School of Management and a BASc in Mechanical Engineering from The Catholic University of America, he combines strategic foresight with technical mastery.'
-                      }
-                    </p>
-                    <p className="text-slate-400 text-xs">
-                      {language === 'ar' ? 
-                        'طوال مسيرته المهنية، قاد كيانات رئيسية مثل إنفيتا الكويت وشركة الفنادق الكويتية، رائداً في إعادة الهيكلة واسعة النطاق والتوسعات الدولية والمفاوضات عالية المخاطر. متخصص في إدارة التغيير واللوجستيات واستراتيجية الاستثمار، م. القحطاني معروف بقدرته النادرة على تحويل العمليات الراكدة إلى محركات نمو.' :
-                        'Throughout his career, he has led major entities such as Invita Kuwait and Kuwait Hotels Company, spearheading large-scale restructuring, international expansions, and high-stakes negotiations. A specialist in change management, logistics, and investment strategy, Eng. Al-Qahtani is known for his rare ability to turn stagnant operations into growth engines.'
-                      }
-                    </p>
+                    <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية التفصيلية' : 'Full biography'}>
+                      <p className="text-slate-300 leading-relaxed text-sm mb-3" data-description>
+                        {language === 'ar' ?
+                          'تنفيذي طاقة متميز مع أكثر من عقدين من القيادة التحويلية في منطقة الخليج، م. حمد القحطاني يشغل حالياً منصب الرئيس التنفيذي لشركة بيت الطاقة القابضة (سابقاً عارف للطاقة). يحمل ماجستير إدارة أعمال في المالية من مدرسة ماستريخت للإدارة وبكالوريوس في الهندسة الميكانيكية من الجامعة الكاثوليكية الأمريكية، يجمع بين البصيرة الاستراتيجية والإتقان التقني.' :
+                          'A distinguished energy executive with over two decades of transformative leadership in the Gulf region, Eng. Hamad Al-Qahtani currently serves as CEO of The Energy House Holding Company (formerly AREF Energy). Holding an MBA in Finance from Maastricht School of Management and a BASc in Mechanical Engineering from The Catholic University of America, he combines strategic foresight with technical mastery.'
+                        }
+                      </p>
+                      <p className="text-slate-400 text-xs">
+                        {language === 'ar' ?
+                          'طوال مسيرته المهنية، قاد كيانات رئيسية مثل إنفيتا الكويت وشركة الفنادق الكويتية، رائداً في إعادة الهيكلة واسعة النطاق والتوسعات الدولية والمفاوضات عالية المخاطر. متخصص في إدارة التغيير واللوجستيات واستراتيجية الاستثمار، م. القحطاني معروف بقدرته النادرة على تحويل العمليات الراكدة إلى محركات نمو.' :
+                          'Throughout his career, he has led major entities such as Invita Kuwait and Kuwait Hotels Company, spearheading large-scale restructuring, international expansions, and high-stakes negotiations. A specialist in change management, logistics, and investment strategy, Eng. Al-Qahtani is known for his rare ability to turn stagnant operations into growth engines.'
+                        }
+                      </p>
+                    </DetailDisclosure>
                   </div>
                 </div>
 
                 {/* Members */}
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-4">
                   {/* Dr. Khaled Hamdan Alsaif */}
-                  <div className="bg-slate-800/30 rounded-2xl p-6">
+                  <div className="bg-slate-800/30 rounded-2xl p-4">
                     <div className="flex items-center gap-4 mb-4">
                       <motion.img 
                         src="/attached_assets/Khaled Hamdan Alsaif_1752784084514.png" 
@@ -1080,16 +1109,18 @@ export default function About() {
                         </p>
                       </div>
                     </div>
-                    <p className="text-slate-300 text-xs leading-relaxed">
-                      {language === 'ar' ? 
-                        'قوة في القيادة الاستراتيجية والتميز التشغيلي، د. خالد السيف يجلب أكثر من 35 عاماً من الخبرة الفائقة في قطاعات النفط والطاقة الكويتية. كرئيس تنفيذي سابق ونائب رئيس مجلس إدارة نابيسكو، حوّل المسار المالي للشركة - نامياً الإيرادات من أقل من 5 مليون دينار كويتي إلى أكثر من 35 مليون دينار كويتي.' :
-                        'A powerhouse of strategic leadership and operational excellence, Dr. Khaled Alsaif brings over 35 years of unmatched experience in Kuwait\'s oil and energy sectors. As former CEO and Deputy Chairman of NAPESCO, he transformed the company\'s financial trajectory—growing revenues from under KD 5 million to over KD 35 million.'
-                      }
-                    </p>
+                      <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية التفصيلية' : 'Full biography'}>
+                        <p className="text-slate-300 text-xs leading-relaxed">
+                          {language === 'ar' ?
+                            'قوة في القيادة الاستراتيجية والتميز التشغيلي، د. خالد السيف يجلب أكثر من 35 عاماً من الخبرة الفائقة في قطاعات النفط والطاقة الكويتية. كرئيس تنفيذي سابق ونائب رئيس مجلس إدارة نابيسكو، حوّل المسار المالي للشركة - نامياً الإيرادات من أقل من 5 مليون دينار كويتي إلى أكثر من 35 مليون دينار كويتي.' :
+                            'A powerhouse of strategic leadership and operational excellence, Dr. Khaled Alsaif brings over 35 years of unmatched experience in Kuwait\'s oil and energy sectors. As former CEO and Deputy Chairman of NAPESCO, he transformed the company\'s financial trajectory—growing revenues from under KD 5 million to over KD 35 million.'
+                          }
+                        </p>
+                      </DetailDisclosure>
                   </div>
 
                   {/* Mohammad Jassim Ibrahim Alfawaz */}
-                  <div className="bg-slate-800/30 rounded-2xl p-6">
+                  <div className="bg-slate-800/30 rounded-2xl p-4">
                     <div className="flex items-center gap-4 mb-4">
                       <motion.img 
                         src="/attached_assets/Mohammad Jassim Ibrahim Alfawaz_1752784084515.png" 
@@ -1110,12 +1141,14 @@ export default function About() {
                         </p>
                       </div>
                     </div>
-                    <p className="text-slate-300 text-xs leading-relaxed">
-                      {language === 'ar' ? 
-                        'محمد الفواز تنفيذي ديناميكي وصاحب رؤية مع أكثر من عقدين من القيادة التنفيذية عبر الطاقة وخدمات حقول النفط والطيران المدني. كمؤسس مشارك ورئيس مجلس إدارة ريماس الشرق وخدمات حقول النفط الشرق الأوسط، بنى مؤسسات مرنة متعددة الملايين عبر الكويت والسعودية والإمارات.' :
-                        'Mohammad Alfawaz is a dynamic and visionary executive with over two decades of C-level leadership spanning energy, oilfield services, and national aviation. As Co-founder and Chairman of Remas East and Middle East Oilfield Services, he built resilient multi-million-dollar enterprises across Kuwait, Saudi Arabia, and the UAE.'
-                      }
-                    </p>
+                      <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية التفصيلية' : 'Full biography'}>
+                        <p className="text-slate-300 text-xs leading-relaxed">
+                          {language === 'ar' ?
+                            'محمد الفواز تنفيذي ديناميكي وصاحب رؤية مع أكثر من عقدين من القيادة التنفيذية عبر الطاقة وخدمات حقول النفط والطيران المدني. كمؤسس مشارك ورئيس مجلس إدارة ريماس الشرق وخدمات حقول النفط الشرق الأوسط، بنى مؤسسات مرنة متعددة الملايين عبر الكويت والسعودية والإمارات.' :
+                            'Mohammad Alfawaz is a dynamic and visionary executive with over two decades of C-level leadership spanning energy, oilfield services, and national aviation. As Co-founder and Chairman of Remas East and Middle East Oilfield Services, he built resilient multi-million-dollar enterprises across Kuwait, Saudi Arabia, and the UAE.'
+                          }
+                        </p>
+                      </DetailDisclosure>
                   </div>
                 </div>
               </div>
@@ -1127,10 +1160,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-slate-700 committee"
+              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-5 md:p-6 shadow-2xl border border-slate-700 committee"
               data-committee="projects"
             >
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-5">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
                   <Drill className="w-8 h-8 text-white" />
                 </div>
@@ -1141,9 +1174,9 @@ export default function About() {
                 </div>
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Member */}
-                <div className="bg-slate-800/30 rounded-2xl p-6">
+                <div className="bg-slate-800/30 rounded-2xl p-4">
                   <div className="flex items-center gap-4 mb-4">
                     <motion.img 
                       src="/attached_assets/Ibrahim Ahmed Sabti Alghamdi_1752784084513.png" 
@@ -1164,20 +1197,22 @@ export default function About() {
                       </p>
                     </div>
                   </div>
-                  <p className="text-slate-300 text-xs leading-relaxed mb-3">
-                    {language === 'ar' ? 
-                      'م. إبراهيم الغامدي أسطورة في هندسة البترول مع 37 عاماً من الخدمة المتميزة في أرامكو السعودية، عبر الحفر البري والبحري واللوجستيات والبحث والتطوير والتطوير الحقلي الاستراتيجي. سيد العمليات عالية المخاطر، قاد استعادة الكوارث لانفجار بئر عين دار-30 - محارباً الحرائق وتنفيذ آبار الإغاثة واستعادة السيطرة الكاملة.' :
-                      'Eng. Ibrahim Alghamdi is a petroleum engineering legend with 37 years of elite service in Saudi Aramco, spanning onshore and offshore drilling, logistics, R&D, and strategic field development. A master of high-risk operations, he led the disaster recovery of Ain Dar Well-30 blowout—fighting fires, executing relief wells, and restoring full control.'
-                    }
-                  </p>
-                  <div className="bg-slate-900/50 rounded-lg p-3">
-                    <p className="text-slate-400 text-xs">
+                  <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية والتفاصيل' : 'Biography and details'}>
+                    <p className="text-slate-300 text-xs leading-relaxed mb-3">
                       {language === 'ar' ? 
-                        'من رئيس منصة حفر إلى مدير هندسة الإصلاح، الغامدي قاد أدواراً قيادية متعددة، بما في ذلك المدير بالإنابة للاستكشاف وكبير العلماء في بحث وتطوير أرامكو ومشرف مشاريع ضخمة مثل غاز الحرض ومنيفة. • خبيران نخبة (غير مسميان)' :
-                        'From rig foreman to Director of Workover Engineering, Alghamdi commanded multiple leadership roles, including Acting Director for Exploration, Chief Scientist in Aramco\'s R&D, and Superintendent of mega projects like Haradh Gas and Manifa. • Two Elite Experts (unnamed)'
+                        'م. إبراهيم الغامدي أسطورة في هندسة البترول مع 37 عاماً من الخدمة المتميزة في أرامكو السعودية، عبر الحفر البري والبحري واللوجستيات والبحث والتطوير والتطوير الحقلي الاستراتيجي. سيد العمليات عالية المخاطر، قاد استعادة الكوارث لانفجار بئر عين دار-30 - محارباً الحرائق وتنفيذ آبار الإغاثة واستعادة السيطرة الكاملة.' :
+                        'Eng. Ibrahim Alghamdi is a petroleum engineering legend with 37 years of elite service in Saudi Aramco, spanning onshore and offshore drilling, logistics, R&D, and strategic field development. A master of high-risk operations, he led the disaster recovery of Ain Dar Well-30 blowout—fighting fires, executing relief wells, and restoring full control.'
                       }
                     </p>
-                  </div>
+                    <div className="bg-slate-900/50 rounded-lg p-3">
+                      <p className="text-slate-400 text-xs">
+                        {language === 'ar' ?
+                          'من رئيس منصة حفر إلى مدير هندسة الإصلاح، الغامدي قاد أدواراً قيادية متعددة، بما في ذلك المدير بالإنابة للاستكشاف وكبير العلماء في بحث وتطوير أرامكو ومشرف مشاريع ضخمة مثل غاز الحرض ومنيفة. • خبيران نخبة (غير مسميان)' :
+                          'From rig foreman to Director of Workover Engineering, Alghamdi commanded multiple leadership roles, including Acting Director for Exploration, Chief Scientist in Aramco\'s R&D, and Superintendent of mega projects like Haradh Gas and Manifa. • Two Elite Experts (unnamed)'
+                        }
+                      </p>
+                    </div>
+                  </DetailDisclosure>
                 </div>
               </div>
             </motion.div>
@@ -1188,10 +1223,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-slate-700 committee"
+              className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-5 md:p-6 shadow-2xl border border-slate-700 committee"
               data-committee="legal"
             >
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-5">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center">
                   <Briefcase className="w-8 h-8 text-white" />
                 </div>
@@ -1205,73 +1240,77 @@ export default function About() {
                 </div>
               </div>
               
-              <div className="bg-slate-800/30 rounded-2xl p-6">
-                <p className="text-slate-300 leading-relaxed text-sm mb-6" data-description>
-                  Makamin's <strong className="text-white">Administrative and Legal Committee</strong> is the company's permanent body responsible for ensuring full compliance with Saudi laws and regulations, overseeing all legal and administrative matters, and reviewing strategic contracts and agreements.
-                </p>
-                
-                <p className="text-slate-300 leading-relaxed text-sm mb-6">
-                  This committee comprises a comprehensive legal and regulatory team:
-                </p>
+              <div className="bg-slate-800/30 rounded-2xl px-4">
+                <DetailDisclosure label="Committee mandate and legal team">
+                  <div className="space-y-4">
+                    <p className="text-slate-300 leading-relaxed text-sm mb-6" data-description>
+                      Makamin's <strong className="text-white">Administrative and Legal Committee</strong> is the company's permanent body responsible for ensuring full compliance with Saudi laws and regulations, overseeing all legal and administrative matters, and reviewing strategic contracts and agreements.
+                    </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">6 Saudi legal counsels</strong></span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">2 independent law firms</strong> (local)</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">1 international law firm</strong> based in Malaysia</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">1 UAE-based law firm</strong></span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">1 Kuwaiti-based law firm</strong></span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">6 Certified Public Accountants (CPAs)</strong></span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <div className="flex items-center gap-2">
-                        <img 
-                          src="/attached_assets/kpmg-logo-1_1753201810753.webp" 
-                          alt="KPMG Logo"
-                          className="h-5 object-contain"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <span className="text-slate-300 text-sm">external audit and compliance support</span>
+                    <p className="text-slate-300 leading-relaxed text-sm mb-6">
+                      This committee comprises a comprehensive legal and regulatory team:
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">6 Saudi legal counsels</strong></span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">2 independent law firms</strong> (local)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">1 international law firm</strong> based in Malaysia</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">1 UAE-based law firm</strong></span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">1 Kuwaiti-based law firm</strong></span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">6 Certified Public Accountants (CPAs)</strong></span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                          <div className="flex items-center gap-2">
+                            <img
+                              src="/attached_assets/kpmg-logo-1_1753201810753.webp"
+                              alt="KPMG Logo"
+                              className="h-5 object-contain"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <span className="text-slate-300 text-sm">external audit and compliance support</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">13 licensed government relations officers</strong> (GR officers)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                          <span className="text-slate-300 text-sm"><strong className="text-white">3 retired criminal investigation officers</strong></span>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">13 licensed government relations officers</strong> (GR officers)</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <span className="text-slate-300 text-sm"><strong className="text-white">3 retired criminal investigation officers</strong></span>
+
+                    <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
+                      <p className="text-purple-200 text-sm font-semibold text-center">
+                        This committee is responsible for safeguarding Makamin's legal, regulatory, and contractual compliance across Saudi Arabia and the GCC.
+                      </p>
                     </div>
                   </div>
-                </div>
-
-                <div className="bg-purple-900/30 rounded-lg p-4 border border-purple-500/30">
-                  <p className="text-purple-200 text-sm font-semibold text-center">
-                    This committee is responsible for safeguarding Makamin's legal, regulatory, and contractual compliance across Saudi Arabia and the GCC.
-                  </p>
-                </div>
+                </DetailDisclosure>
               </div>
             </motion.div>
           </div>
@@ -1279,14 +1318,14 @@ export default function About() {
       </motion.section>
 
       {/* Expandable Services Section */}
-      <section className="py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-6 md:py-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-20"
+            className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
               {language === 'ar' ? 'أقسام الأعمال' : 'Business Divisions'}
@@ -1299,7 +1338,7 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {departments.map((dept, index) => (
               <motion.div
                 key={dept.id}
@@ -1312,8 +1351,8 @@ export default function About() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-2xl">
-                      <CardHeader className="pb-4">
-                        <div className="flex items-center gap-4 mb-4">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-3 mb-2">
                           <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                             <dept.animatedIcon className="w-8 h-8 text-white" />
                           </div>
@@ -1414,14 +1453,14 @@ export default function About() {
       <section
         id="goals"
         ref={valuesRef}
-        className="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
+        className="py-6 md:py-10 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"
       >
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: valuesInView ? 1 : 0, y: valuesInView ? 0 : 30 }}
             transition={{ duration: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'الأهداف والقيم' : 'Goals & Values'}
@@ -1433,7 +1472,7 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 max-w-6xl mx-auto">
             {[
               {
                 icon: Award,
@@ -1476,9 +1515,9 @@ export default function About() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: valuesInView ? 1 : 0, y: valuesInView ? 0 : 30 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className={`bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border ${value.border} hover:scale-105 transition-all duration-300 text-center`}
+                className={`bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-4 border ${value.border} hover:scale-105 transition-all duration-300 text-center`}
               >
-                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r ${value.color} mb-4`}>
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${value.color} mb-3`}>
                   <value.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{value.title}</h3>
@@ -1490,14 +1529,14 @@ export default function About() {
       </section>
 
       {/* Organizational Chart Section */}
-      <section id="orgchart" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section id="orgchart" className="py-6 md:py-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'الهيكل التنظيمي' : 'Organizational Chart'}
@@ -1514,7 +1553,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-6 border border-blue-500/30 text-center mb-8"
+              className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-4 border border-blue-500/30 text-center mb-5"
             >
               <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-3 mx-auto">
                 <Crown className="w-7 h-7 text-white" />
@@ -1524,7 +1563,7 @@ export default function About() {
               </h3>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="grid md:grid-cols-3 gap-3 mb-4">
               {[
                 { title: language === 'ar' ? 'المدير المالي (CFO)' : 'CFO', icon: DollarSign, color: 'from-green-500 to-emerald-500' },
                 { title: language === 'ar' ? 'الشؤون القانونية' : 'Legal', icon: Shield, color: 'from-purple-500 to-indigo-500' },
@@ -1536,7 +1575,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 text-center"
+                  className="bg-slate-800/50 rounded-xl p-3 border border-slate-700 text-center"
                 >
                   <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r ${dept.color} mb-2`}>
                     <dept.icon className="w-5 h-5 text-white" />
@@ -1546,7 +1585,7 @@ export default function About() {
               ))}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="grid md:grid-cols-2 gap-3 mb-4">
               {[
                 { title: language === 'ar' ? 'المستودعات واللوجستيات' : 'Warehouse & Logistics', icon: Package },
                 { title: language === 'ar' ? 'المحاسبة' : 'Accounting', icon: DollarSign },
@@ -1559,7 +1598,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.1 }}
-                  className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 flex items-center gap-3"
+                  className="bg-slate-800/50 rounded-xl p-3 border border-slate-700 flex items-center gap-3"
                 >
                   <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-700 flex-shrink-0">
                     <dept.icon className="w-5 h-5 text-cyan-400" />
@@ -1572,7 +1611,7 @@ export default function About() {
             <h3 className="text-lg font-bold text-cyan-400 mb-4 text-center">
               {language === 'ar' ? 'الأقسام التشغيلية' : 'Operational Departments'}
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
                 { title: language === 'ar' ? 'قسم الأنابيب' : 'Pipeline Department', icon: Settings },
                 { title: language === 'ar' ? 'قسم الحفر' : 'Drilling Department', icon: Drill },
@@ -1586,7 +1625,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 + i * 0.1 }}
-                  className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-4 border border-cyan-500/20 flex items-center gap-3"
+                  className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-3 border border-cyan-500/20 flex items-center gap-3"
                 >
                   <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex-shrink-0">
                     <dept.icon className="w-5 h-5 text-cyan-400" />
@@ -1600,26 +1639,26 @@ export default function About() {
       </section>
 
       {/* Workshop / Camp Locations Section */}
-      <section id="locations" className="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
+      <section id="locations" className="py-6 md:py-10 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {language === 'ar' ? 'مواقع الورش والمعسكرات' : 'Workshop & Camp Locations'}
             </h2>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto space-y-12">
+          <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-800/50 rounded-3xl p-8 md:p-10 border border-slate-700"
+              className="bg-slate-800/50 rounded-3xl p-4 md:p-6 border border-slate-700"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex-shrink-0">
@@ -1635,17 +1674,18 @@ export default function About() {
                 </div>
               </div>
 
-              <p className="text-slate-300 leading-relaxed mb-8">
-                {language === 'ar'
-                  ? 'يعمل معسكر مكامن عيون كمنشأة دعم تشغيلي للأنشطة الميدانية والخدمات الصناعية وأعمال التفتيش واللوجستيات المرتبطة بعمليات مكامن في قطاع النفط والغاز بالمنطقة الشرقية. يدعم المعسكر مجموعة واسعة من المتطلبات التشغيلية عبر خدمات الأنابيب ودعم الحفر والتفتيش الصناعي والهندسة الميدانية.'
-                  : 'Makamin Oyun Camp serves as an operational support facility for field activities, industrial services, inspection work, and project logistics associated with Makamin\'s oil and gas operations in the Eastern Province of Saudi Arabia. The camp supports a range of operational requirements across pipeline services, drilling support, industrial inspection, and field engineering activities.'}
-              </p>
+              <div className="mb-3">
+                <DetailDisclosure label={language === 'ar' ? 'نبذة عن المعسكر' : 'Camp overview'}>
+                  <p className="text-slate-300 leading-relaxed">
+                    {language === 'ar'
+                      ? 'يعمل معسكر مكامن عيون كمنشأة دعم تشغيلي للأنشطة الميدانية والخدمات الصناعية وأعمال التفتيش واللوجستيات المرتبطة بعمليات مكامن في قطاع النفط والغاز بالمنطقة الشرقية. يدعم المعسكر مجموعة واسعة من المتطلبات التشغيلية عبر خدمات الأنابيب ودعم الحفر والتفتيش الصناعي والهندسة الميدانية.'
+                      : 'Makamin Oyun Camp serves as an operational support facility for field activities, industrial services, inspection work, and project logistics associated with Makamin\'s oil and gas operations in the Eastern Province of Saudi Arabia. The camp supports a range of operational requirements across pipeline services, drilling support, industrial inspection, and field engineering activities.'}
+                  </p>
+                </DetailDisclosure>
+              </div>
 
-              <h4 className="text-xl font-bold text-white mb-6">
-                {language === 'ar' ? 'المرافق التشغيلية للمعسكر' : 'Camp Operational Facilities'}
-              </h4>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+              <DetailDisclosure label={language === 'ar' ? 'المرافق التشغيلية للمعسكر' : 'Camp Operational Facilities'}>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-5">
                 {[
                   {
                     category: language === 'ar' ? 'مناطق التفتيش والاختبار' : 'Inspection & Testing Areas',
@@ -1702,7 +1742,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-slate-900/50 rounded-xl p-5 border border-slate-700/50"
+                    className="bg-slate-900/50 rounded-xl p-3 border border-slate-700/50"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r ${facility.color} flex-shrink-0`}>
@@ -1720,7 +1760,8 @@ export default function About() {
                     </ul>
                   </motion.div>
                 ))}
-              </div>
+                </div>
+              </DetailDisclosure>
 
               <h4 className="text-xl font-bold text-white mb-4">
                 {language === 'ar' ? 'مخطط المعسكر' : 'Camp Layout'}
@@ -1734,7 +1775,7 @@ export default function About() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="rounded-2xl overflow-hidden border border-slate-600 bg-white mb-8"
+                className="rounded-2xl overflow-hidden border border-slate-600 bg-white mb-5"
               >
                 <img
                   src={campLayoutPath}
