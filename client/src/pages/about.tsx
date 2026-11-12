@@ -166,15 +166,26 @@ export default function About() {
   const leadership = {
     ceo: {
       name: language === 'ar' ? 'الأستاذ عادل عايض النوب' : 'Mr. Adel Ayed ALNOOB',
-      title: language === 'ar' ? 'الرئيس التنفيذي - تم تعيينه بقرار الجمعية العمومية (2025)' : 'Chief Executive Officer – Appointed by General Assembly Decision (2025)',
-      subtitle: language === 'ar' ? 'عضو مجلس الإدارة • الممثل النظامي المعتمد بحكم قضائي' : 'Board Member • Legally Authorized Representative by Judicial Decree',
-      photo: '/attached_assets/ADEL AYED ALNOOB_1752885031070.jpg',
-      bio: language === 'ar' ? 
-        'تنفيذ خطة إنقاذ شاملة خلال المرحلة الانتقالية (2020–2025) • تمكين انعقاد أول جمعية عمومية نظامية بعد تعثر دام 6 سنوات • إرساء مبادئ الشفافية والمساءلة المالية • قيادة التوافق مع نظام الشركات الجديد • تطوير استراتيجية الشراكات مع أرامكو السعودية والشركات الخليجية' :
-        'Implementing comprehensive rescue plan during transitional period (2020–2025) • Enabling first general assembly after 6-year stagnation • Establishing transparency and financial accountability • Leading compliance with new corporate law • Developing strategic partnerships with Saudi Aramco and Gulf companies',
-      keyTraits: language === 'ar' ? 
+      title: language === 'ar' ? 'الرئيس التنفيذي - تم تعيينه بقرار الجمعية العمومية (2025)' : 'Chairman of the Board & Chief Executive Officer (2025)',
+      subtitle: language === 'ar' ? 'عضو مجلس الإدارة • الممثل النظامي المعتمد بحكم قضائي' : 'Shareholder • Judicially Authorized Representative by Court Decree',
+      photo: '/attached_assets/adel-alnoob-pic_1794490617351.png',
+      bio: language === 'ar' ?
+        ['تنفيذ خطة إنقاذ شاملة خلال المرحلة الانتقالية (2020–2025) • تمكين انعقاد أول جمعية عمومية نظامية بعد تعثر دام 6 سنوات • إرساء مبادئ الشفافية والمساءلة المالية • قيادة التوافق مع نظام الشركات الجديد • تطوير استراتيجية الشراكات مع أرامكو السعودية والشركات الخليجية'] :
+        [
+          "A shareholder of Saudi Makamin Holding Company, Mr. Adel Ayed ALNOOB has played a leading role in the company's institutional recovery and restructuring efforts during the transitional period (2020–2025).",
+          'His leadership contributed to restoring corporate governance, enabling the first General Assembly after six years of institutional stagnation, strengthening financial transparency and accountability, and advancing compliance with the Saudi Companies Law.',
+          "He continues to support the company's strategic development through engagement with Saudi Aramco and leading companies across the Gulf region."
+        ],
+      keyTraits: language === 'ar' ?
         ['تنفيذ خطة إنقاذ شاملة خلال المرحلة الانتقالية', 'تمكين انعقاد أول جمعية عمومية نظامية بعد تعثر دام 6 سنوات', 'إرساء مبادئ الشفافية والمساءلة المالية', 'قيادة التوافق مع نظام الشركات الجديد', 'تطوير استراتيجية الشراكات مع أرامكو السعودية والشركات الخليجية'] :
-        ['Comprehensive rescue plan execution during transitional period', 'Enabling first general assembly after 6-year stagnation', 'Establishing transparency and financial accountability principles', 'Leading compliance with new corporate law', 'Developing strategic partnerships with Saudi Aramco and Gulf companies']
+        [],
+      achievements: [
+        { label: 'Shareholder Commitment', description: 'Safeguarding shareholder interests and supporting long-term corporate stability.' },
+        { label: 'Institutional Recovery', description: 'Leading restructuring and recovery initiatives throughout the 2020–2025 transitional period.' },
+        { label: 'Corporate Governance', description: 'Facilitating the first General Assembly after six years of inactivity.' },
+        { label: 'Transparency & Compliance', description: 'Strengthening financial accountability and alignment with the Saudi Companies Law.' },
+        { label: 'Strategic Development', description: 'Pursuing business relationships and cooperation opportunities with Saudi Aramco and Gulf energy-sector companies.' }
+      ]
     },
     board: {
       title: language === 'ar' ? 'مجلس الإدارة (2025–2029)' : 'Board of Directors (2025–2029)',
@@ -765,7 +776,7 @@ export default function About() {
               className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-5 md:p-6 shadow-2xl"
             >
               <div className="flex items-center gap-6 mb-6">
-                <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-cyan-500 shadow-2xl">
+                <div className="relative w-24 h-24 shrink-0 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-cyan-500 shadow-2xl">
                   <img 
                     src={leadership.ceo.photo}
                     alt={leadership.ceo.name}
@@ -790,18 +801,29 @@ export default function About() {
                 </div>
               </div>
               <DetailDisclosure label={language === 'ar' ? 'السيرة الذاتية وملامح القيادة' : 'Biography and leadership traits'}>
-                <p className="text-slate-300 leading-relaxed mb-4">{leadership.ceo.bio}</p>
+                {leadership.ceo.bio.map((paragraph, i) => (
+                  <p key={i} className="text-slate-300 leading-relaxed mb-4">{paragraph}</p>
+                ))}
                 <div className="pt-4 border-t border-slate-700">
                   <h4 className="text-lg font-semibold text-white mb-3">
-                    {language === 'ar' ? 'ملامح القيادة' : 'Leadership Traits'}
+                    {language === 'ar' ? 'ملامح القيادة' : 'Leadership Achievements & Contributions'}
                   </h4>
                   <ul className="space-y-2">
-                    {leadership.ceo.keyTraits.map((trait, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
-                        <span className="text-slate-300 text-sm">{trait}</span>
-                      </li>
-                    ))}
+                    {language === 'ar'
+                      ? leadership.ceo.keyTraits.map((trait, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
+                          <span className="text-slate-300 text-sm">{trait}</span>
+                        </li>
+                      ))
+                      : leadership.ceo.achievements.map((achievement, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
+                          <span className="text-slate-300 text-sm">
+                            <strong className="text-white">{achievement.label}:</strong> {achievement.description}
+                          </span>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </DetailDisclosure>
@@ -842,7 +864,7 @@ export default function About() {
                       {/* CEO - Adel Ayed ALNOOB */}
                       {(member.name.includes('عادل عايض النوب') || member.name.includes('Adel Ayed ALNOOB')) && (
                         <img 
-                          src="/attached_assets/ADEL AYED ALNOOB_1752885031070.jpg"
+                          src="/attached_assets/adel-alnoob-pic_1794490617351.png"
                           alt={member.name}
                           className="w-full h-full object-cover object-center"
                           loading="lazy"
