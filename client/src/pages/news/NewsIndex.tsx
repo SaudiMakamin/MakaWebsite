@@ -7,57 +7,15 @@ import { Input } from "@/components/ui/input";
 import { useLanguageContext } from "@/components/language-provider";
 import { allNews } from "./newsData";
 import { Link } from "wouter";
-import { useState, useEffect } from "react";
-import { upsertLinkTag, upsertMetaTag, upsertJsonLd } from "../../lib/seo";
+import { useState } from "react";
+import { indexMetadata, newsImageDetails } from "./newsSeo";
+import { useNewsMetadata } from "./useNewsMetadata";
 
 export default function NewsIndex() {
   const { language } = useLanguageContext();
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const base = "https://www.makamin.com.sa";
-    const url = `${base}/news`;
-
-    document.title = "Makamin News | Makamin Saudi Holding";
-
-    upsertMetaTag('meta[name="description"]', {
-      name: "description",
-      content: "Latest news and corporate governance announcements from Makamin Saudi Holding Company for Oil & Gas Services."
-    });
-
-    upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
-
-    upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "website" });
-    upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: "Makamin News" });
-    upsertMetaTag('meta[property="og:description"]', {
-      property: "og:description",
-      content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
-    });
-    upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
-
-    upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
-    upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: "Makamin News" });
-    upsertMetaTag('meta[name="twitter:description"]', {
-      name: "twitter:description",
-      content: "Latest news and corporate governance announcements from Makamin Saudi Holding."
-    });
-
-    upsertMetaTag('meta[property="og:image"]', {
-      property: "og:image",
-      content: "https://makamin.com.sa/og-image.jpg"
-    });
-    upsertMetaTag('meta[name="twitter:image"]', {
-      name: "twitter:image",
-      content: "https://makamin.com.sa/og-image.jpg"
-    });
-
-    upsertJsonLd("news-index", {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Makamin News",
-      url
-    });
-  }, []);
+  useNewsMetadata(indexMetadata(language), language, false);
 
   const filtered = allNews.filter((n) => {
     if (!search) return true;
@@ -78,41 +36,50 @@ export default function NewsIndex() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <section className="py-20 border-b border-slate-700">
+    <div
+      lang={language}
+      dir={language === "ar" ? "rtl" : "ltr"}
+      className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+    >
+      <section className="py-12 sm:py-14 border-b border-slate-700">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-10"
           >
-            <Badge className="mb-6 bg-[#c5a66e]/20 text-[#c5a66e] border-[#c5a66e]/30 px-4 py-2">
+            <Badge className="mb-4 bg-[#c5a66e]/20 text-[#c5a66e] border-[#c5a66e]/30 px-4 py-2">
               {language === "ar" ? "مركز الأخبار" : "News Center"}
             </Badge>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
               {language === "ar" ? "أخبار مكامن" : "Makamin News"}
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto">
               {language === "ar"
                 ? "آخر الأخبار والتطورات في شركة مكامن السعودية القابضة"
                 : "Latest news and developments from Makamin Saudi Holding"}
             </p>
           </motion.div>
 
-          <div className="max-w-xl mx-auto relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <div className="max-w-xl mx-auto relative" dir={language === "ar" ? "rtl" : "ltr"}>
+            <Search
+              aria-hidden="true"
+              className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400`}
+            />
             <Input
+              aria-label={language === "ar" ? "بحث في الأخبار" : "Search news"}
+              dir={language === "ar" ? "rtl" : "ltr"}
               placeholder={language === "ar" ? "بحث في الأخبار..." : "Search news..."}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 bg-slate-800/60 border-slate-600 text-white placeholder:text-slate-400"
+              className={`w-full h-12 ${language === "ar" ? "!pr-10 !pl-4 text-right" : "pl-10 pr-4 text-left"} bg-slate-800/60 border-slate-600 text-white placeholder:text-slate-400`}
             />
           </div>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-10 sm:py-12">
         <div className="container mx-auto px-4 max-w-6xl">
           {filtered.length === 0 ? (
             <div className="text-center py-20">
@@ -121,7 +88,7 @@ export default function NewsIndex() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 lg:gap-8">
               {filtered.map((item, index) => (
                 <motion.div
                   key={item.slug}
@@ -130,37 +97,54 @@ export default function NewsIndex() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link href={`/news/${item.slug}`}>
-                    <Card className="bg-slate-800/50 border-slate-700 hover:border-[#c5a66e]/50 transition-all duration-300 cursor-pointer group h-full overflow-hidden">
-                      {item.image && (
-                        <div className="relative h-48 overflow-hidden">
+                  <Link
+                    href={`/news/${item.slug}`}
+                    className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a66e] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                  >
+                    <Card className="bg-slate-800/50 border-slate-700 hover:border-[#c5a66e]/50 transition-colors duration-300 cursor-pointer group flex h-full !flex-col overflow-hidden rounded-xl">
+                      <div className="h-44 sm:h-48 bg-slate-900/50 overflow-hidden">
+                        {item.image ? (
                           <img
                             src={item.image}
                             alt={language === "ar" ? item.titleAr || item.title : item.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            width={newsImageDetails[item.image]?.width}
+                            height={newsImageDetails[item.image]?.height}
+                            className="h-full w-full object-contain"
                             loading="lazy"
                           />
-                          <div className="absolute top-3 left-3">
-                            <Badge className="bg-[#c5a66e] text-white text-xs">
-                              {language === "ar" ? item.categoryAr || item.category : item.category}
-                            </Badge>
-                          </div>
+                        ) : (
+                          <div
+                            aria-hidden="true"
+                            className="h-full w-full bg-gradient-to-br from-slate-800 via-slate-700/40 to-slate-900"
+                          />
+                        )}
+                      </div>
+                      <CardContent className="flex flex-1 !flex-col p-5 sm:p-6">
+                        <Badge className="mb-3 self-start border border-[#c5a66e]/30 bg-[#c5a66e]/15 text-[#c5a66e] text-xs">
+                          {language === "ar" ? item.categoryAr || item.category : item.category}
+                        </Badge>
+                        <div
+                          className="mb-3 flex !flex-row items-center gap-2 text-sm text-slate-400"
+                          dir={language === "ar" ? "rtl" : "ltr"}
+                        >
+                          <Calendar aria-hidden="true" className="h-4 w-4 shrink-0" />
+                          <time dateTime={item.date}>{formatDate(item.date)}</time>
                         </div>
-                      )}
-                      <CardContent className="p-6">
-                        <div className="flex items-center text-sm text-slate-400 mb-3">
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {formatDate(item.date)}
-                        </div>
-                        <h2 className="text-xl font-bold text-white mb-3 group-hover:text-[#c5a66e] transition-colors line-clamp-2">
+                        <h2 className="mb-3 min-w-0 break-words text-lg font-bold leading-snug text-white transition-colors group-hover:text-[#c5a66e] sm:text-xl">
                           {language === "ar" ? item.titleAr || item.title : item.title}
                         </h2>
-                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3 mb-4">
+                        <p className="mb-5 min-w-0 break-words text-sm leading-relaxed text-slate-400 line-clamp-3">
                           {language === "ar" ? item.excerptAr || item.excerpt : item.excerpt}
                         </p>
-                        <span className="text-[#c5a66e] text-sm font-semibold inline-flex items-center group-hover:gap-2 transition-all">
+                        <span
+                          className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-[#c5a66e] transition-all group-hover:gap-2"
+                          dir={language === "ar" ? "rtl" : "ltr"}
+                        >
                           {language === "ar" ? "اقرأ المزيد" : "Read More"}
-                          <ArrowRight className="w-4 h-4 ml-1" />
+                          <ArrowRight
+                            aria-hidden="true"
+                            className={`h-4 w-4 ${language === "ar" ? "rotate-180" : ""}`}
+                          />
                         </span>
                       </CardContent>
                     </Card>

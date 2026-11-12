@@ -1,0 +1,150 @@
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import path from "node:path";
+import http from "node:http";
+import { createHash } from "node:crypto";
+import { articleImagePaths, articleMetadata, NEWS_BASE, newsUrl } from "../client/src/pages/news/newsSeo";
+import type { NewsItem } from "../client/src/pages/news/newsData";
+
+// Offline HTTP harness for the documented subset of Vercel routes used here.
+// This is NOT a claim that a deployment or Vercel's production edge was tested.
+const root = process.cwd();
+const output = path.join(root, "dist/public");
+const news = JSON.parse(await fs.readFile("client/src/content/news.json", "utf8")) as NewsItem[];
+const config = JSON.parse(await fs.readFile("vercel.json", "utf8"));
+const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[c]!);
+const hash = (b: Buffer) => createHash("sha256").update(b).digest("hex");
+assert.equal(await fs.readFile("client/src/content/news.json", "utf8"), await fs.readFile("content/news.json", "utf8"));
+const documentHashes = new Set<string>();
+for (const n of news) {
+  const html = await fs.readFile(path.join(output, `news/${n.slug}/index.html`), "utf8");
+  const meta = articleMetadata(n);
+  assert(html.includes(`<title>${esc(meta.title)}</title>`), n.slug);
+  assert(html.includes(`content="${esc(meta.description)}"`));
+  assert.equal((html.match(/rel="canonical"/g) || []).length, 1);
+  assert(html.includes(`rel="canonical" href="${newsUrl(n.slug)}"`));
+  assert(html.includes(`<time datetime="${n.date}">`));
+  assert(!html.includes("hreflang"));
+  const schemaTags = Array.from(html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g));
+  assert.equal(schemaTags.length, 1);
+  const schema = JSON.parse(schemaTags[0][1]);
+  assert.equal(schema["@type"], "NewsArticle");
+  assert.equal(schema.headline, n.title);
+  assert.equal(schema.datePublished, n.date);
+  assert.equal(schema.url, newsUrl(n.slug));
+  assert(!("dateModified" in schema));
+  assert(!("author" in schema));
+  const normalizedBody = (n.contentHtml || "").replace(/\bsrc=(["'])(\/[^"']+)\1/g,
+    (_all, quote, src) => `src=${quote}${new URL(src, NEWS_BASE).href}${quote}`);
+  assert(html.includes(normalizedBody), `Entire approved body missing: ${n.slug}`);
+  assert(html.includes('href="/news"'));
+  for (const name of ["og:title", "og:description", "og:url", "twitter:title", "twitter:description"]) {
+    assert.equal((html.match(new RegExp(`(?:property|name)="${name}"`, "g")) || []).length, 1);
+  }
+  for (const src of articleImagePaths(n)) {
+    const source = src.startsWith("/attached_assets/") ? src.slice(1) : `client/public${src}`;
+    const original = await fs.readFile(source);
+    assert.equal(hash(original), hash(await fs.readFile(path.join(output, src.slice(1)))), `Changed/missing image ${src}`);
+  }
+  for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)) await fs.access(path.join(output, match[1]));
+  documentHashes.add(hash(Buffer.from(html)));
+  console.log(`PASS initial HTML + canonical + social + schema + entire body + exact images: ${n.slug}`);
+}
+assert.equal(documentHashes.size, 7, "Article documents must be unique");
+const index = await fs.readFile(path.join(output, "news/index.html"), "utf8");
+for (const n of news) assert(index.includes(`href="/news/${n.slug}"`));
+assert.equal((index.match(/href="\/news\/[a-z0-9-]+"/g) || []).length, 7);
+for (const file of await fs.readdir("client/public", { recursive: true })) {
+  const name = String(file);
+  if ((await fs.stat(path.join("client/public", name))).isFile()) {
+    assert.equal(hash(await fs.readFile(path.join("client/public", name))), hash(await fs.readFile(path.join(output, name))), `Lost public asset: ${name}`);
+  }
+}
+const sitemap = await fs.readFile(path.join(output, "sitemap.xml"), "utf8");
+const rss = await fs.readFile(path.join(output, "rss.xml"), "utf8");
+assert(sitemap.startsWith('<?xml version="1.0"'));
+assert(rss.startsWith('<?xml version="1.0"'));
+assert.equal((rss.match(/<item>/g) || []).length, 7);
+assert(!rss.includes("<pubDate>"), "Do not invent publication times");
+for (const n of news) {
+  assert(sitemap.includes(`<loc>${newsUrl(n.slug)}</loc>`));
+  assert(rss.includes(`<dc:date>${n.date}</dc:date>`));
+}
+console.log("PASS index has seven crawlable links; sitemap/RSS coverage; all public assets preserved");
+
+const types: Record<string, string> = { ".html": "text/html; charset=utf-8", ".xml": "application/xml", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".txt": "text/plain" };
+async function fileExists(url: string) {
+  try { return (await fs.stat(path.join(output, decodeURIComponent(url)))).isFile(); } catch { return false; }
+}
+const server = http.createServer(async (req, res) => {
+  try {
+    const pathname = new URL(req.url || "/", "http://localhost").pathname;
+    let destination: string | undefined;
+    let status = 200;
+    for (const rule of config.routes) {
+      if (rule.handle === "filesystem") {
+        if (await fileExists(pathname)) { destination = pathname; break; }
+        continue;
+      }
+      const re = new RegExp(rule.src);
+      if (!re.test(pathname)) continue;
+      for (const [k, v] of Object.entries(rule.headers || {})) res.setHeader(k, String(v));
+      if (rule.continue) continue;
+      destination = pathname.replace(re, rule.dest);
+      status = rule.status || 200;
+      break;
+    }
+    if (!destination) { res.writeHead(404).end(); return; }
+    const target = path.resolve(output, `.${decodeURIComponent(destination)}`);
+    if (!target.startsWith(output + path.sep)) { res.writeHead(400).end(); return; }
+    const body = await fs.readFile(target);
+    if (!res.hasHeader("Content-Type")) res.setHeader("Content-Type", types[path.extname(target)] || "application/octet-stream");
+    res.writeHead(status).end(body);
+  } catch { res.writeHead(404).end(); }
+});
+const port = Number(process.env.NEWS_TEST_PORT || 5001);
+await new Promise<void>((resolve) => server.listen(port, "127.0.0.1", resolve));
+try {
+  const base = `http://127.0.0.1:${port}`;
+  for (const n of news) {
+    for (const suffix of ["", "/"]) {
+      const r = await fetch(`${base}/news/${n.slug}${suffix}`);
+      assert.equal(r.status, 200);
+      assert((await r.text()).includes(esc(n.title)));
+    }
+    for (const src of articleImagePaths(n)) {
+      const r = await fetch(base + encodeURI(src));
+      assert.equal(r.status, 200, src);
+      assert(r.headers.get("content-type")?.startsWith("image/"), src);
+      const b = Buffer.from(await r.arrayBuffer());
+      assert(b[0] === 137 || b[0] === 255, src);
+    }
+  }
+  for (const url of ["/news/not-a-real-article", "/news/first-board-meeting-2026-02-12/extra"]) {
+    const r = await fetch(base + url);
+    assert.equal(r.status, 404);
+    assert((await r.text()).includes('content="noindex, follow"'));
+  }
+  for (const url of ["/", "/about", "/services", "/makamin-holding", "/petroleum-services", "/investor-relations", "/update-shareholder", "/shareholder-submit", "/royal-dashboard"]) {
+    const r = await fetch(base + url);
+    assert.equal(r.status, 200, url);
+    assert((await r.text()).includes('<div id="root"></div>'), `Non-news fallback changed: ${url}`);
+  }
+  for (const [url, type] of [["/sitemap.xml", "application/xml"], ["/rss.xml", "application/rss+xml"]]) {
+    const r = await fetch(base + url);
+    assert.equal(r.status, 200);
+    assert(r.headers.get("content-type")?.startsWith(type));
+    assert((await r.text()).startsWith("<?xml"));
+  }
+  assert.equal((await fetch(base + "/news")).status, 200);
+  console.log("PASS offline documented Vercel-route HTTP tests: 7 articles, 404s, XML MIME, exact images, 9 non-news routes");
+  console.log("NOT VERIFIED: actual Vercel edge/deployment routing (no deployment performed)");
+} catch (error) {
+  server.close();
+  throw error;
+}
+if (process.argv.includes("--serve")) {
+  console.log(`NEWS_C1_BROWSER_READY http://127.0.0.1:${port}`);
+} else {
+  server.close();
+}

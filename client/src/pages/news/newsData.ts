@@ -10,8 +10,18 @@ export type NewsItem = {
   excerpt?: string;
   excerptAr?: string;
   image?: string;
+  gallery?: NewsPhoto[];
   contentHtml?: string;
   contentHtmlAr?: string;
+};
+
+export type NewsPhoto = {
+  id: string;
+  src: string;
+  alt: string;
+  altAr: string;
+  caption: string;
+  captionAr: string;
 };
 
 export const allNews = (news as NewsItem[])

@@ -1,12 +1,43 @@
 {
   "version": 2,
-  "buildCommand": "npm run build && mkdir -p dist/public/attached_assets && cp -R attached_assets/* dist/public/attached_assets/ 2>/dev/null || true",
+  "buildCommand": "npm run build && mkdir -p dist/public/attached_assets && cp -R attached_assets/* dist/public/attached_assets/",
   "outputDirectory": "dist/public",
   "framework": null,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "^/sitemap\\.xml$",
+      "headers": { "Content-Type": "application/xml; charset=utf-8" },
+      "continue": true
+    },
+    {
+      "src": "^/rss\\.xml$",
+      "headers": { "Content-Type": "application/rss+xml; charset=utf-8" },
+      "continue": true
+    },
+    {
+      "src": "^/images/news/(judicial-supervisor|shareholder-update-portal)\\.jpg$",
+      "headers": { "Content-Type": "image/png" },
+      "continue": true
+    },
+    {
+      "src": "^/news/?$",
+      "dest": "/news/index.html"
+    },
+    {
+      "src": "^/news/(first-board-meeting-2026-02-12|second-notice-shareholder-update-2025-12-03|successful-ega-major-shareholders|extraordinary-general-assembly-invitation-2025|makamin-general-assembly-ministry-commerce-2025|temporary-judicial-supervisor-appointment|shareholder-update-portal-launch)/?$",
+      "dest": "/news/$1/index.html"
+    },
+    {
+      "src": "^/news(?:/.*)?$",
+      "dest": "/news/not-found.html",
+      "status": 404
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { SEOPerformanceOptimizer } from '@/lib/seo-performance';
-import { Switch, Route } from 'wouter';
+import { Switch, Route, useLocation } from 'wouter';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './lib/queryClient';
 import { Toaster } from '@/components/ui/toaster';
@@ -99,6 +99,12 @@ function Router() {
   );
 }
 
+function GlobalSEOOutsideNews() {
+  const [location] = useLocation();
+  if (location === "/news" || location.startsWith("/news/")) return null;
+  return <><SEOHeadTags /><SEOHead /><AdvancedSEO /></>;
+}
+
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   
@@ -115,9 +121,7 @@ function App() {
             <SplashScreen onComplete={() => setShowSplash(false)} />
           ) : (
             <div className="min-h-screen">
-              <SEOHeadTags />
-              <SEOHead />
-              <AdvancedSEO />
+              <GlobalSEOOutsideNews />
               <Header />
               <main>
                 <Suspense fallback={<div className="min-h-screen" />}>
