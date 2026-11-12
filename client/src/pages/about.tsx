@@ -1241,7 +1241,7 @@ export default function About() {
               </div>
               
               <div className="bg-slate-800/30 rounded-2xl px-4">
-                <DetailDisclosure label="Committee mandate and legal team">
+                <DetailDisclosure label={language === 'ar' ? 'اختصاصات اللجنة والفريق القانوني' : 'Committee mandate and legal team'}>
                   <div className="space-y-4">
                     <p className="text-slate-300 leading-relaxed text-sm mb-6" data-description>
                       Makamin's <strong className="text-white">Administrative and Legal Committee</strong> is the company's permanent body responsible for ensuring full compliance with Saudi laws and regulations, overseeing all legal and administrative matters, and reviewing strategic contracts and agreements.
