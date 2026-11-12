@@ -1,74 +1,56 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, User, Clock, Share2, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useLanguageContext } from "@/components/language-provider";
+import { useToast } from "@/hooks/use-toast";
 import { getNewsBySlug, allNews } from "./newsData";
 import { Link, useParams } from "wouter";
-import { upsertLinkTag, upsertMetaTag, upsertJsonLd, removeTag } from "../../lib/seo";
+import { articleMetadata, newsImageDetails } from "./newsSeo";
+import { useNewsMetadata } from "./useNewsMetadata";
 
 export default function NewsArticlePage() {
   const { language } = useLanguageContext();
   const params = useParams<{ slug: string }>();
   const article = getNewsBySlug(params.slug || "");
+  const { toast } = useToast();
+  const [manualShareFallback, setManualShareFallback] = useState<{ slug: string; url: string } | null>(null);
+
+  useNewsMetadata(
+    article ? articleMetadata(article, language) : {
+      title: `${language === "ar" ? "المقال غير موجود" : "Article Not Found"} | Makamin News`,
+      description: language === "ar" ? "عذراً، لم يتم العثور على المقال المطلوب." : "Sorry, the requested article could not be found.",
+    },
+    language, !!article, !article,
+  );
 
   useEffect(() => {
-    if (!article) return;
+    const scrollToPhoto = () => {
+      const rawId = window.location.hash.slice(1);
+      if (!rawId) return;
 
-    const base = "https://www.makamin.com.sa";
-    const url = `${base}/news/${article.slug}`;
+      let id: string;
+      try {
+        id = decodeURIComponent(rawId);
+      } catch {
+        return;
+      }
 
-    const title = `${article.title} | Makamin News`;
-    const description = (article.excerpt || "Makamin News update.").slice(0, 180);
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    };
 
-    document.title = title;
+    const frame = window.requestAnimationFrame(scrollToPhoto);
+    window.addEventListener("hashchange", scrollToPhoto);
 
-    upsertMetaTag('meta[name="description"]', {
-      name: "description",
-      content: description
-    });
-
-    upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: url });
-
-    upsertMetaTag('meta[property="og:type"]', { property: "og:type", content: "article" });
-    upsertMetaTag('meta[property="og:title"]', { property: "og:title", content: title });
-    upsertMetaTag('meta[property="og:description"]', { property: "og:description", content: description });
-    upsertMetaTag('meta[property="og:url"]', { property: "og:url", content: url });
-
-    upsertMetaTag('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
-    upsertMetaTag('meta[name="twitter:title"]', { name: "twitter:title", content: title });
-    upsertMetaTag('meta[name="twitter:description"]', { name: "twitter:description", content: description });
-
-    if (article.image) {
-      upsertMetaTag('meta[property="og:image"]', { property: "og:image", content: `${base}${article.image}` });
-      upsertMetaTag('meta[name="twitter:image"]', { name: "twitter:image", content: `${base}${article.image}` });
-    } else {
-      removeTag('meta[property="og:image"]');
-      removeTag('meta[name="twitter:image"]');
-    }
-
-    upsertJsonLd("news-article", {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      headline: article.title,
-      datePublished: article.date,
-      dateModified: article.date,
-      mainEntityOfPage: url,
-      url,
-      author: {
-        "@type": "Organization",
-        name: "Makamin Saudi Holding Company for Oil & Gas Services"
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "Makamin Saudi Holding Company for Oil & Gas Services"
-      },
-      ...(article.image ? { image: [`${base}${article.image}`] } : {})
-    });
-  }, [article]);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", scrollToPhoto);
+    };
+  }, [article?.slug]);
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
@@ -100,6 +82,11 @@ export default function NewsArticlePage() {
     );
   }
 
+  const canonicalArticleUrl = `https://www.makamin.com.sa/news/${encodeURIComponent(article.slug)}`;
+  const photos = article.gallery || [];
+  const heroPhoto = photos.find((photo) => photo.id === "photo-group");
+  const galleryPhotos = photos.filter((photo) => photo.id !== "photo-group");
+
   const html = DOMPurify.sanitize(
     language === "ar"
       ? article.contentHtmlAr || article.contentHtml || ""
@@ -109,6 +96,55 @@ export default function NewsArticlePage() {
   const related = allNews
     .filter((n) => n.slug !== article.slug && n.category === article.category)
     .slice(0, 3);
+
+  const handleShareArticle = async () => {
+    const title = language === "ar" ? article.titleAr || article.title : article.title;
+    const url = new URL(
+      `/news/${encodeURIComponent(article.slug)}`,
+      "https://www.makamin.com.sa",
+    ).href;
+
+    setManualShareFallback(null);
+
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({ title, url });
+        toast({
+          title: language === "ar" ? "تمت مشاركة المقال" : "Article shared",
+        });
+        return;
+      } catch (error) {
+        if (
+          typeof error === "object" &&
+          error !== null &&
+          "name" in error &&
+          error.name === "AbortError"
+        ) {
+          return;
+        }
+      }
+    }
+
+    try {
+      if (typeof navigator.clipboard?.writeText !== "function") {
+        throw new Error("Clipboard API unavailable");
+      }
+      await navigator.clipboard.writeText(url);
+      toast({
+        title: language === "ar" ? "تم نسخ رابط المقال" : "Article link copied",
+      });
+    } catch {
+      setManualShareFallback({ slug: article.slug, url });
+      toast({
+        title: language === "ar" ? "تعذر نسخ الرابط" : "Unable to copy the link",
+        description:
+          language === "ar"
+            ? "حدد رابط المقال أدناه وانسخه يدويًا."
+            : "Select and copy the article URL below.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -151,13 +187,49 @@ export default function NewsArticlePage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <img
-                src={article.image}
-                alt={language === "ar" ? article.titleAr || article.title : article.title}
-                className="w-full h-auto max-h-[500px] object-cover rounded-xl border border-slate-700"
-                loading="lazy"
-                decoding="async"
-              />
+              <figure id={heroPhoto?.id || "photo-group"} className="scroll-mt-24">
+                <a
+                  href={article.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={
+                    language === "ar"
+                      ? `فتح الصورة بالحجم الكامل: ${heroPhoto?.captionAr || article.titleAr || article.title}`
+                      : `Open full-size photo: ${heroPhoto?.caption || article.title}`
+                  }
+                >
+                  <img
+                    src={article.image}
+                    alt={
+                      language === "ar"
+                        ? heroPhoto?.altAr || article.titleAr || article.title
+                        : heroPhoto?.alt || article.title
+                    }
+                    width={newsImageDetails[article.image]?.width}
+                    height={newsImageDetails[article.image]?.height}
+                    className="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                {heroPhoto && (
+                  <figcaption
+                    dir={language === "ar" ? "rtl" : "ltr"}
+                    className="mt-3 text-sm text-slate-300"
+                  >
+                    <p>{language === "ar" ? heroPhoto.captionAr : heroPhoto.caption}</p>
+                    <Button asChild variant="ghost" size="icon" className="mt-2 text-[#c5a66e]">
+                      <a
+                        href={`${canonicalArticleUrl}#${heroPhoto.id}`}
+                        aria-label={language === "ar" ? `رابط مشاركة الصورة: ${heroPhoto.captionAr}` : `Share photo: ${heroPhoto.caption}`}
+                        title={language === "ar" ? "نسخ أو مشاركة رابط الصورة من قائمة الرابط" : "Copy or share photo link from the link menu"}
+                      >
+                        <Share2 className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    </Button>
+                  </figcaption>
+                )}
+              </figure>
             </motion.div>
           </div>
         </section>
@@ -182,6 +254,68 @@ export default function NewsArticlePage() {
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
 
+                {galleryPhotos.length > 0 && (
+                  <section
+                    aria-labelledby="meeting-photos-heading"
+                    dir={language === "ar" ? "rtl" : "ltr"}
+                    className="mt-12"
+                  >
+                    <h2
+                      id="meeting-photos-heading"
+                      className="mb-6 text-2xl font-bold text-white"
+                    >
+                      {language === "ar" ? "صور من الاجتماع" : "Photos from the meeting"}
+                    </h2>
+                    <div className={`grid grid-cols-1 gap-6 ${galleryPhotos.length > 1 ? "md:grid-cols-2" : ""}`}>
+                      {galleryPhotos.map((photo) => {
+                        const caption =
+                          language === "ar" ? photo.captionAr : photo.caption;
+
+                        return (
+                          <figure
+                            key={photo.id}
+                            id={photo.id}
+                            className="scroll-mt-24 min-w-0"
+                          >
+                            <a
+                              href={photo.src}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={
+                                language === "ar"
+                                  ? `فتح الصورة بالحجم الكامل: ${caption}`
+                                  : `Open full-size photo: ${caption}`
+                              }
+                            >
+                              <img
+                                src={photo.src}
+                                alt={language === "ar" ? photo.altAr : photo.alt}
+                                width={photo.id === "photo-meeting-composite" ? 1080 : 1200}
+                                height={photo.id === "photo-meeting-composite" ? 1920 : 1600}
+                                className="block h-auto w-full rounded-lg border border-slate-700"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </a>
+                            <figcaption className="mt-3 text-sm text-slate-300">
+                              <p>{caption}</p>
+                              <Button asChild variant="ghost" size="icon" className="mt-2 text-[#c5a66e]">
+                                <a
+                                  href={`${canonicalArticleUrl}#${photo.id}`}
+                                  aria-label={language === "ar" ? `رابط مشاركة الصورة: ${caption}` : `Share photo: ${caption}`}
+                                  title={language === "ar" ? "نسخ أو مشاركة رابط الصورة من قائمة الرابط" : "Copy or share photo link from the link menu"}
+                                >
+                                  <Share2 className="h-4 w-4" aria-hidden="true" />
+                                </a>
+                              </Button>
+                            </figcaption>
+                          </figure>
+                        );
+                      })}
+                    </div>
+                  </section>
+                )}
+
                 <div className="mt-16 pt-8 border-t border-slate-700">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="text-sm text-slate-400">
@@ -189,11 +323,38 @@ export default function NewsArticlePage() {
                         ? `نُشر في ${formatDate(article.date)}`
                         : `Published on ${formatDate(article.date)}`}
                     </div>
-                    <Button variant="outline" size="sm" className="border-slate-600 text-slate-300">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="border-slate-600 text-slate-300"
+                      onClick={handleShareArticle}
+                    >
                       <Share2 className="w-4 h-4 mr-2" />
                       {language === "ar" ? "مشاركة المقال" : "Share Article"}
                     </Button>
                   </div>
+                  {manualShareFallback?.slug === article.slug && (
+                    <div
+                      className="mt-4 space-y-2"
+                      dir={language === "ar" ? "rtl" : "ltr"}
+                    >
+                      <p className="text-sm text-slate-400">
+                        {language === "ar"
+                          ? "انسخ رابط المقال يدويًا:"
+                          : "Copy the article link manually:"}
+                      </p>
+                      <Input
+                        type="url"
+                        readOnly
+                        value={manualShareFallback.url}
+                        aria-label={language === "ar" ? "رابط المقال" : "Article URL"}
+                        onFocus={(event) => event.currentTarget.select()}
+                        dir="ltr"
+                        className="text-left"
+                      />
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
