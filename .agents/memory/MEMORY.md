@@ -1,0 +1,1 @@
+- [Makamin Replit boundary](replit-production-boundary.md) — Keep Replit clean and lightweight without affecting GitHub or the published Vercel site.
