@@ -24,7 +24,7 @@
       "dest": "/news/index.html"
     },
     {
-      "src": "^/news/(first-board-meeting-2026-02-12|second-notice-shareholder-update-2025-12-03|successful-ega-major-shareholders|extraordinary-general-assembly-invitation-2025|makamin-general-assembly-ministry-commerce-2025|temporary-judicial-supervisor-appointment|shareholder-update-portal-launch)/?$",
+      "src": "^/news/([a-z0-9-]+)/?$",
       "dest": "/news/$1/index.html"
     },
     {

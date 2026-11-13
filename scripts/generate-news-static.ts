@@ -9,21 +9,72 @@ const source = await fs.readFile(path.join(root, "client/src/content/news.json")
 if (source !== await fs.readFile(path.join(root, "content/news.json"), "utf8")) {
   throw new Error("News JSON sources differ; refusing to publish inconsistent content.");
 }
-const news = (JSON.parse(source) as NewsItem[]).slice().sort((a, b) => b.date.localeCompare(a.date));
-if (news.length !== 7 || new Set(news.map((n) => n.slug)).size !== 7) throw new Error("Expected exactly seven existing news records.");
-const config = JSON.parse(await fs.readFile(path.join(root, "vercel.json"), "utf8"));
-for (const article of news) {
-  if (!/^[a-z0-9-]+$/.test(article.slug) || !/^\d{4}-\d{2}-\d{2}$/.test(article.date)) throw new Error("Invalid article slug/date.");
-  if (!config.routes?.some((r: { src?: string; dest?: string }) =>
-    r.src && new RegExp(r.src).test(`/news/${article.slug}`) &&
-    `/news/${article.slug}`.replace(new RegExp(r.src), r.dest || "") === `/news/${article.slug}/index.html`)) {
-    throw new Error(`Vercel has no explicit static route for ${article.slug}`);
+const parsed: unknown = JSON.parse(source);
+if (!Array.isArray(parsed) || parsed.length === 0) {
+  throw new Error("News data must be a nonempty array.");
+}
+const nonemptyString = (value: unknown) => typeof value === "string" && value.trim().length > 0;
+const optionalStrings = ["titleAr", "category", "categoryAr", "excerpt", "excerptAr", "image", "contentHtml", "contentHtmlAr"] as const;
+const news = parsed.map((value, index) => {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`News record ${index + 1} must be an object.`);
   }
+  const article = value as Record<string, unknown>;
+  for (const field of ["slug", "title", "date"] as const) {
+    if (!nonemptyString(article[field])) throw new Error(`News record ${index + 1} requires a nonempty ${field}.`);
+  }
+  if (!/^[a-z0-9-]+$/.test(article.slug as string)) {
+    throw new Error(`Invalid article slug: ${String(article.slug)}`);
+  }
+  const date = article.date as string;
+  const parsedDate = new Date(`${date}T00:00:00Z`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== date) {
+    throw new Error(`Invalid article date for ${article.slug}: ${date}`);
+  }
+  for (const field of optionalStrings) {
+    if (article[field] !== undefined && typeof article[field] !== "string") {
+      throw new Error(`Invalid ${field} for ${article.slug}; expected a string when provided.`);
+    }
+  }
+  if (article.gallery !== undefined) {
+    if (!Array.isArray(article.gallery)) throw new Error(`Invalid gallery for ${article.slug}; expected an array.`);
+    for (const [photoIndex, photo] of article.gallery.entries()) {
+      if (!photo || typeof photo !== "object" || Array.isArray(photo)) {
+        throw new Error(`Invalid gallery photo ${photoIndex + 1} for ${article.slug}.`);
+      }
+      for (const field of ["id", "src", "alt", "altAr", "caption", "captionAr"] as const) {
+        if (!nonemptyString((photo as Record<string, unknown>)[field])) {
+          throw new Error(`Gallery photo ${photoIndex + 1} for ${article.slug} requires ${field}.`);
+        }
+      }
+    }
+  }
+  return article as unknown as NewsItem;
+}).sort((a, b) => b.date.localeCompare(a.date));
+const slugs = news.map((article) => article.slug);
+if (new Set(slugs).size !== slugs.length) throw new Error("News article slugs must be unique.");
+const config = JSON.parse(await fs.readFile(path.join(root, "vercel.json"), "utf8"));
+const articleRoute = config.routes?.find((route: { src?: string; dest?: string }) =>
+  route.src === "^/news/([a-z0-9-]+)/?$" && route.dest === "/news/$1/index.html");
+if (!articleRoute) throw new Error("Vercel must route valid News slugs to their generated static index.html.");
+for (const article of news) {
   for (const html of [article.contentHtml, article.contentHtmlAr]) {
     if (/<\s*(script|iframe|object|embed)\b|\bon\w+\s*=|javascript:/i.test(html || "")) {
       throw new Error(`Unsafe article markup in ${article.slug}; editorial review required.`);
     }
   }
+}
+const verifiedImages = new Map<string, Buffer>();
+for (const src of new Set(news.flatMap(articleImagePaths))) {
+  if (!/^\/(?:images|attached_assets)\/[^?#]+$/.test(src) || src.includes("..") || src.includes("\\")) {
+    throw new Error(`Unsupported news image: ${src}`);
+  }
+  const input = path.join(root, src.startsWith("/attached_assets/") ? src.slice(1) : `client/public${src}`);
+  const bytes = await fs.readFile(input);
+  if (bytes.length < 8 || !(bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) || (bytes[0] === 255 && bytes[1] === 216))) {
+    throw new Error(`News asset is not a PNG/JPEG image: ${src}`);
+  }
+  verifiedImages.set(src, bytes);
 }
 
 const esc = (value: string) => value.replace(/[&<>"']/g, (c) =>
@@ -184,15 +235,9 @@ await write("rss.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.
 ${news.map((n) => `<item><title>${esc(n.title)}</title><link>${esc(newsUrl(n.slug))}</link><guid isPermaLink="true">${esc(newsUrl(n.slug))}</guid><dc:date>${n.date}</dc:date><description>${esc(n.excerpt || n.title)}</description></item>`).join("\n")}
 </channel></rss>`);
 
-for (const src of new Set(news.flatMap(articleImagePaths))) {
-  if (!/^\/(?:images|attached_assets)\//.test(src) || src.includes("..")) throw new Error(`Unsupported news image: ${src}`);
-  const input = path.join(root, src.startsWith("/attached_assets/") ? src.slice(1) : `client/public${src}`);
-  const bytes = await fs.readFile(input); // Missing assets must fail the build.
-  if (bytes.length < 8 || !(bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) || (bytes[0] === 255 && bytes[1] === 216))) {
-    throw new Error(`News asset is not a PNG/JPEG image: ${src}`);
-  }
+for (const [src, bytes] of verifiedImages) {
   const dest = path.join(output, src.slice(1));
   await fs.mkdir(path.dirname(dest), { recursive: true });
-  await fs.copyFile(input, dest);
+  await fs.writeFile(dest, bytes);
 }
 console.log(`Generated News index, ${news.length} articles, news 404, sitemap and RSS; required image bytes verified and copied unchanged.`);
