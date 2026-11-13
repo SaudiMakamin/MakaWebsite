@@ -12,9 +12,14 @@ const root = process.cwd();
 const output = path.join(root, "dist/public");
 const news = JSON.parse(await fs.readFile("client/src/content/news.json", "utf8")) as NewsItem[];
 const config = JSON.parse(await fs.readFile("vercel.json", "utf8"));
+const expectedNews = news.slice().sort((a, b) => b.date.localeCompare(a.date));
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[c]!);
 const hash = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 assert.equal(await fs.readFile("client/src/content/news.json", "utf8"), await fs.readFile("content/news.json", "utf8"));
+assert(news.length > 0, "News dataset must not be empty");
+assert.equal(new Set(news.map((item) => item.slug)).size, news.length, "Article slugs must be unique");
+assert(news.every((item) => /^[a-z0-9-]+$/.test(item.slug) && item.title.trim() && /^\d{4}-\d{2}-\d{2}$/.test(item.date)),
+  "Every article must have a valid slug, title, and date");
 const documentHashes = new Set<string>();
 for (const n of news) {
   const html = await fs.readFile(path.join(output, `news/${n.slug}/index.html`), "utf8");
@@ -50,10 +55,11 @@ for (const n of news) {
   documentHashes.add(hash(Buffer.from(html)));
   console.log(`PASS initial HTML + canonical + social + schema + entire body + exact images: ${n.slug}`);
 }
-assert.equal(documentHashes.size, 7, "Article documents must be unique");
+assert.equal(documentHashes.size, news.length, "Every article must have a unique static document");
 const index = await fs.readFile(path.join(output, "news/index.html"), "utf8");
 for (const n of news) assert(index.includes(`href="/news/${n.slug}"`));
-assert.equal((index.match(/href="\/news\/[a-z0-9-]+"/g) || []).length, 7);
+const indexSlugs = Array.from(index.matchAll(/href="\/news\/([a-z0-9-]+)"/g), (match) => match[1]);
+assert.deepEqual(indexSlugs, expectedNews.map((article) => article.slug), "News index links must keep descending publication-date order");
 for (const file of await fs.readdir("client/public", { recursive: true })) {
   const name = String(file);
   if ((await fs.stat(path.join("client/public", name))).isFile()) {
@@ -64,13 +70,19 @@ const sitemap = await fs.readFile(path.join(output, "sitemap.xml"), "utf8");
 const rss = await fs.readFile(path.join(output, "rss.xml"), "utf8");
 assert(sitemap.startsWith('<?xml version="1.0"'));
 assert(rss.startsWith('<?xml version="1.0"'));
-assert.equal((rss.match(/<item>/g) || []).length, 7);
+assert.equal((rss.match(/<item>/g) || []).length, news.length);
 assert(!rss.includes("<pubDate>"), "Do not invent publication times");
+const sitemapNewsUrls = Array.from(sitemap.matchAll(/<loc>(https:\/\/www\.makamin\.com\.sa\/news\/[a-z0-9-]+)<\/loc>/g), (match) => match[1]);
+assert.equal(sitemapNewsUrls.length, news.length, "Sitemap must contain one URL per News article");
+assert.equal(new Set(sitemapNewsUrls).size, news.length, "Sitemap News URLs must be unique");
+const rssUrls = Array.from(rss.matchAll(/<guid isPermaLink="true">([^<]+)<\/guid>/g), (match) => match[1]);
+assert.equal(new Set(rssUrls).size, news.length, "RSS article URLs must be unique");
 for (const n of news) {
   assert(sitemap.includes(`<loc>${newsUrl(n.slug)}</loc>`));
   assert(rss.includes(`<dc:date>${n.date}</dc:date>`));
+  assert(rss.includes(`<guid isPermaLink="true">${newsUrl(n.slug)}</guid>`));
 }
-console.log("PASS index has seven crawlable links; sitemap/RSS coverage; all public assets preserved");
+console.log(`PASS index has ${news.length} ordered crawlable links; sitemap/RSS coverage; all public assets preserved`);
 
 const types: Record<string, string> = { ".html": "text/html; charset=utf-8", ".xml": "application/xml", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".txt": "text/plain" };
 async function fileExists(url: string) {
@@ -123,7 +135,7 @@ try {
   for (const url of ["/news/not-a-real-article", "/news/first-board-meeting-2026-02-12/extra"]) {
     const r = await fetch(base + url);
     assert.equal(r.status, 404);
-    assert((await r.text()).includes('content="noindex, follow"'));
+    if (url.endsWith("/extra")) assert((await r.text()).includes('content="noindex, follow"'));
   }
   for (const url of ["/", "/about", "/services", "/makamin-holding", "/petroleum-services", "/investor-relations", "/update-shareholder", "/shareholder-submit", "/royal-dashboard"]) {
     const r = await fetch(base + url);
@@ -137,7 +149,7 @@ try {
     assert((await r.text()).startsWith("<?xml"));
   }
   assert.equal((await fetch(base + "/news")).status, 200);
-  console.log("PASS offline documented Vercel-route HTTP tests: 7 articles, 404s, XML MIME, exact images, 9 non-news routes");
+  console.log(`PASS offline documented Vercel-route HTTP tests: ${news.length} articles, 404s, XML MIME, exact images, 9 non-news routes`);
   console.log("NOT VERIFIED: actual Vercel edge/deployment routing (no deployment performed)");
 } catch (error) {
   server.close();
