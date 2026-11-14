@@ -111,7 +111,6 @@ export default function NewsIndex() {
                             height={newsImageDetails[item.image]?.height}
                             className="h-full w-full object-contain"
                             loading={index === 0 ? "eager" : "lazy"}
-                            fetchPriority={index === 0 ? "high" : "auto"}
                           />
                         ) : (
                           <div

@@ -134,7 +134,7 @@ export default function SEOHeadTags({
           "name": "Saudi Makamin Holding Company",
           "description": description,
           "publisher": { "@id": "https://makamin.com.sa/#organization" },
-          "inLanguage": ["ar-SA", "en-SA"],
+          "inLanguage": ["ar-SA", "en-SA"]
         }
       ]
     };

@@ -212,7 +212,6 @@ export default function NewsArticlePage() {
                     height={newsImageDetails[article.image]?.height}
                     className="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700"
                     loading="eager"
-                    fetchPriority="high"
                     decoding="async"
                   />
                 </a>
