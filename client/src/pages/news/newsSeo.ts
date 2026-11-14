@@ -15,6 +15,8 @@ export const newsImageDetails: Record<string, { width: number; height: number; t
   "/attached_assets/1_1773266909528.png": { width: 540, height: 960, type: "image/png" },
   "/images/news/judicial-supervisor.jpg": { width: 1536, height: 1024, type: "image/png" },
   "/images/news/shareholder-update-portal.jpg": { width: 1280, height: 720, type: "image/png" },
+  "/images/news/makamin-board-meeting-al-khobar-2026-10-04-hero.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-board-meeting-al-khobar-2026-10-04-inside.png": { width: 1080, height: 1920, type: "image/png" },
 };
 
 export function articleImagePaths(article: NewsItem) {
