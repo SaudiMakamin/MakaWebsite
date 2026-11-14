@@ -5,11 +5,16 @@ export type NewsItem = {
   title: string;
   titleAr?: string;
   date: string;
+  dateLabel?: string;
+  dateLabelAr?: string;
+  dateIsEventEndSortOnly?: boolean;
   category?: string;
   categoryAr?: string;
   excerpt?: string;
   excerptAr?: string;
   image?: string;
+  galleryTitle?: string;
+  galleryTitleAr?: string;
   gallery?: NewsPhoto[];
   contentHtml?: string;
   contentHtmlAr?: string;

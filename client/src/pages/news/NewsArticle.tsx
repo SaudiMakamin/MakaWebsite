@@ -82,6 +82,9 @@ export default function NewsArticlePage() {
     );
   }
 
+  const displayDate = article.dateIsEventEndSortOnly
+    ? language === "ar" ? article.dateLabelAr : article.dateLabel
+    : formatDate(article.date);
   const canonicalArticleUrl = `https://www.makamin.com.sa/news/${encodeURIComponent(article.slug)}`;
   const photos = article.gallery || [];
   const heroPhoto = photos.find((photo) => photo.id === "photo-group");
@@ -168,7 +171,7 @@ export default function NewsArticlePage() {
               </Badge>
               <span className="text-slate-400 text-sm flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                {formatDate(article.date)}
+                {displayDate}
               </span>
             </div>
 
@@ -264,7 +267,9 @@ export default function NewsArticlePage() {
                       id="meeting-photos-heading"
                       className="mb-6 text-2xl font-bold text-white"
                     >
-                      {language === "ar" ? "صور من الاجتماع" : "Photos from the meeting"}
+                      {language === "ar"
+                        ? article.galleryTitleAr || "صور من الاجتماع"
+                        : article.galleryTitle || "Photos from the meeting"}
                     </h2>
                     <div className={`grid grid-cols-1 gap-6 ${galleryPhotos.length > 1 ? "md:grid-cols-2" : ""}`}>
                       {galleryPhotos.map((photo) => {
@@ -290,8 +295,8 @@ export default function NewsArticlePage() {
                               <img
                                 src={photo.src}
                                 alt={language === "ar" ? photo.altAr : photo.alt}
-                                width={photo.id === "photo-meeting-composite" ? 1080 : 1200}
-                                height={photo.id === "photo-meeting-composite" ? 1920 : 1600}
+                                width={newsImageDetails[photo.src]?.width}
+                                height={newsImageDetails[photo.src]?.height}
                                 className="block h-auto w-full rounded-lg border border-slate-700"
                                 loading="lazy"
                                 decoding="async"
@@ -319,9 +324,11 @@ export default function NewsArticlePage() {
                 <div className="mt-16 pt-8 border-t border-slate-700">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="text-sm text-slate-400">
-                      {language === "ar"
-                        ? `نُشر في ${formatDate(article.date)}`
-                        : `Published on ${formatDate(article.date)}`}
+                      {article.dateIsEventEndSortOnly
+                        ? displayDate
+                        : language === "ar"
+                          ? `نُشر في ${formatDate(article.date)}`
+                          : `Published on ${formatDate(article.date)}`}
                     </div>
                     <Button
                       type="button"

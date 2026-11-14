@@ -77,14 +77,17 @@ for (const article of news) {
   const gallery = (article.gallery || []).filter((p) => p.id !== "photo-group");
   const body = (article.contentHtml || "").replace(/\bsrc=(["'])(\/[^"']+)\1/g, (_all, quote, src) => `src=${quote}${deploymentImagePath(src)}${quote}`);
   const dateLabel = new Date(`${article.date}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+  const dateMarkup = article.dateIsEventEndSortOnly
+    ? esc(article.dateLabel || "")
+    : `<time datetime="${article.date}">${esc(dateLabel)}</time>`;
   const content = `<main class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
     <article class="container mx-auto px-4 lg:px-8 max-w-4xl py-16">
       <a href="/news" class="text-slate-400">Back to News</a>
-      <p class="mt-6 text-slate-400">${esc(article.category || "")} · <time datetime="${article.date}">${esc(dateLabel)}</time></p>
+      <p class="mt-6 text-slate-400">${esc(article.category || "")} · ${dateMarkup}</p>
       <h1 class="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">${esc(article.title)}</h1>
       ${article.image ? photoHtml(article.image, hero?.alt || article.title, hero) : ""}
       <div class="prose prose-lg prose-invert max-w-none mt-8">${body}</div>
-      ${gallery.length ? `<section aria-label="Photos from the meeting" class="mt-12"><h2 class="mb-6 text-2xl font-bold">Photos from the meeting</h2>${gallery.map((p) => photoHtml(p.src, p.alt, p)).join("")}</section>` : ""}
+      ${gallery.length ? `<section aria-label="${esc(article.galleryTitle || "Photos from the meeting")}" class="mt-12"><h2 class="mb-6 text-2xl font-bold">${esc(article.galleryTitle || "Photos from the meeting")}</h2>${gallery.map((p) => photoHtml(p.src, p.alt, p)).join("")}</section>` : ""}
     </article></main>`;
   await write(`news/${article.slug}/index.html`, documentHtml(articleMetadata(article), content, true));
 }
@@ -146,7 +149,12 @@ await write("news/index.html", documentHtml(index, `${indexHeader}
   <section class="py-10 sm:py-12"><div class="container mx-auto px-4 max-w-6xl">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 lg:gap-8">${news.map((n) => {
     const dimensions = n.image ? newsImageDetails[n.image] : undefined;
-    const date = new Date(`${n.date}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+    const date = n.dateIsEventEndSortOnly
+      ? n.dateLabel || ""
+      : new Date(`${n.date}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+    const dateMarkup = n.dateIsEventEndSortOnly
+      ? esc(date)
+      : `<time datetime="${n.date}">${esc(date)}</time>`;
     const photo = n.image
       ? `<img src="${esc(deploymentImagePath(n.image))}" alt="${esc(n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="lazy" />`
       : '<div aria-hidden="true" class="h-full w-full bg-gradient-to-br from-slate-800 via-slate-700/40 to-slate-900"></div>';
@@ -155,7 +163,7 @@ await write("news/index.html", documentHtml(index, `${indexHeader}
         <div class="h-44 sm:h-48 bg-slate-900/50 overflow-hidden">${photo}</div>
         <div class="flex flex-1 flex-col p-5 sm:p-6">
           <span class="mb-3 self-start rounded-full border border-[#c5a66e]/30 bg-[#c5a66e]/15 px-2.5 py-0.5 text-xs text-[#c5a66e]">${esc(n.category || "")}</span>
-          <time class="mb-3 text-sm text-slate-400" datetime="${n.date}">${esc(date)}</time>
+          <span class="mb-3 text-sm text-slate-400">${dateMarkup}</span>
           <h2 class="mb-3 min-w-0 break-words text-lg font-bold leading-snug text-white sm:text-xl">${esc(n.title)}</h2>
           <p class="mb-5 min-w-0 break-words text-sm leading-relaxed text-slate-400 line-clamp-3">${esc(n.excerpt || "")}</p>
           <span class="mt-auto text-sm font-semibold text-[#c5a66e]">Read More</span>
@@ -181,7 +189,7 @@ await write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmln
 await write("rss.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>Makamin News</title><link>${newsUrl()}</link><description>${esc(index.description)}</description><language>en</language>
 <atom:link href="${NEWS_BASE}/rss.xml" rel="self" type="application/rss+xml"/>
-${news.map((n) => `<item><title>${esc(n.title)}</title><link>${esc(newsUrl(n.slug))}</link><guid isPermaLink="true">${esc(newsUrl(n.slug))}</guid><dc:date>${n.date}</dc:date><description>${esc(n.excerpt || n.title)}</description></item>`).join("\n")}
+${news.map((n) => `<item><title>${esc(n.title)}</title><link>${esc(newsUrl(n.slug))}</link><guid isPermaLink="true">${esc(newsUrl(n.slug))}</guid>${n.dateIsEventEndSortOnly ? "" : `<dc:date>${n.date}</dc:date>`}<description>${esc(n.excerpt || n.title)}</description></item>`).join("\n")}
 </channel></rss>`);
 
 for (const src of new Set(news.flatMap(articleImagePaths))) {
