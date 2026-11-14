@@ -5,7 +5,7 @@ import http from "node:http";
 import { createHash } from "node:crypto";
 import { articleImagePaths, articleMetadata, NEWS_BASE, newsUrl } from "../client/src/pages/news/newsSeo";
 import type { NewsItem } from "../client/src/pages/news/newsData";
-import { assertNewsRouteSlugs } from "./news-static-contract";
+import { assertNewsRouteContract } from "./news-static-contract";
 
 // Offline HTTP harness for the documented subset of Vercel routes used here.
 // This is NOT a claim that a deployment or Vercel's production edge was tested.
@@ -18,7 +18,7 @@ const hash = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 assert.equal(await fs.readFile("client/src/content/news.json", "utf8"), await fs.readFile("content/news.json", "utf8"));
 assert(news.length > 0, "Authoritative News source data must contain at least one article");
 assert.equal(new Set(news.map((article) => article.slug)).size, news.length, "News slugs must be unique");
-assertNewsRouteSlugs(news, config);
+assertNewsRouteContract(news, config);
 const documentHashes = new Set<string>();
 for (const n of news) {
   const html = await fs.readFile(path.join(output, `news/${n.slug}/index.html`), "utf8");
@@ -109,9 +109,11 @@ const server = http.createServer(async (req, res) => {
       }
       const re = new RegExp(rule.src);
       if (!re.test(pathname)) continue;
+      const rewrittenDestination = pathname.replace(re, rule.dest || "");
+      if (rule.check && !(await fileExists(rewrittenDestination))) continue;
       for (const [k, v] of Object.entries(rule.headers || {})) res.setHeader(k, String(v));
       if (rule.continue) continue;
-      destination = pathname.replace(re, rule.dest);
+      destination = rewrittenDestination;
       status = rule.status || 200;
       break;
     }
@@ -127,6 +129,21 @@ const port = Number(process.env.NEWS_TEST_PORT || 5001);
 await new Promise<void>((resolve) => server.listen(port, "127.0.0.1", resolve));
 try {
   const base = `http://127.0.0.1:${port}`;
+  const unlistedSlug = "unlisted-routing-probe";
+  assert(!news.some((article) => article.slug === unlistedSlug), "Routing probe slug must not be present in source data");
+  const unlistedDirectory = path.join(output, "news", unlistedSlug);
+  await fs.mkdir(unlistedDirectory, { recursive: true });
+  await fs.writeFile(path.join(unlistedDirectory, "index.html"), "<h1>Unlisted routing probe</h1>");
+  try {
+    for (const suffix of ["", "/"]) {
+      const response = await fetch(`${base}/news/${unlistedSlug}${suffix}`);
+      assert.equal(response.status, 200, "A generated article without a hand-maintained route must resolve");
+      assert((await response.text()).includes("Unlisted routing probe"));
+    }
+  } finally {
+    await fs.rm(unlistedDirectory, { recursive: true, force: true });
+  }
+  console.log("PASS dynamic News route serves an unlisted generated article with and without trailing slash");
   for (const n of news) {
     for (const suffix of ["", "/"]) {
       const r = await fetch(`${base}/news/${n.slug}${suffix}`);
@@ -141,10 +158,12 @@ try {
       assert(b[0] === 137 || b[0] === 255, src);
     }
   }
-  for (const url of ["/news/not-a-real-article", "/news/first-board-meeting-2026-02-12/extra"]) {
+  for (const url of ["/news/missing-routing-probe", "/news/first-board-meeting-2026-02-12/extra"]) {
     const r = await fetch(base + url);
     assert.equal(r.status, 404);
-    assert((await r.text()).includes('content="noindex, follow"'));
+    const body = await r.text();
+    assert(body.includes('content="noindex, follow"'));
+    assert(body.includes("Article Not Found"));
   }
   for (const url of ["/", "/about", "/services", "/makamin-holding", "/petroleum-services", "/investor-relations", "/update-shareholder", "/shareholder-submit", "/royal-dashboard"]) {
     const r = await fetch(base + url);

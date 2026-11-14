@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { articleMetadata, articleImagePaths, indexMetadata, NEWS_BASE, newsUrl, newsImageDetails, publicImageUrl } from "../client/src/pages/news/newsSeo";
 import type { NewsItem, NewsPhoto } from "../client/src/pages/news/newsData";
-import { assertNewsRouteSlugs } from "./news-static-contract";
+import { assertNewsRouteContract } from "./news-static-contract";
 
 const root = process.cwd();
 const output = path.join(root, "dist/public");
@@ -15,14 +15,9 @@ if (!news.length || new Set(news.map((n) => n.slug)).size !== news.length) {
   throw new Error("News source data must contain at least one record with a unique slug.");
 }
 const config = JSON.parse(await fs.readFile(path.join(root, "vercel.json"), "utf8"));
-assertNewsRouteSlugs(news, config);
+assertNewsRouteContract(news, config);
 for (const article of news) {
   if (!/^[a-z0-9-]+$/.test(article.slug) || !/^\d{4}-\d{2}-\d{2}$/.test(article.date)) throw new Error("Invalid article slug/date.");
-  if (!config.routes?.some((r: { src?: string; dest?: string }) =>
-    r.src && new RegExp(r.src).test(`/news/${article.slug}`) &&
-    `/news/${article.slug}`.replace(new RegExp(r.src), r.dest || "") === `/news/${article.slug}/index.html`)) {
-    throw new Error(`Vercel has no explicit static route for ${article.slug}`);
-  }
   for (const html of [article.contentHtml, article.contentHtmlAr]) {
     if (/<\s*(script|iframe|object|embed)\b|\bon\w+\s*=|javascript:/i.test(html || "")) {
       throw new Error(`Unsafe article markup in ${article.slug}; editorial review required.`);
