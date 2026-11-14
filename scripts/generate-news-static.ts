@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { articleMetadata, articleImagePaths, indexMetadata, NEWS_BASE, newsUrl, newsImageDetails, publicImageUrl } from "../client/src/pages/news/newsSeo";
 import type { NewsItem, NewsPhoto } from "../client/src/pages/news/newsData";
+import { assertNewsRouteSlugs } from "./news-static-contract";
 
 const root = process.cwd();
 const output = path.join(root, "dist/public");
@@ -10,8 +11,11 @@ if (source !== await fs.readFile(path.join(root, "content/news.json"), "utf8")) 
   throw new Error("News JSON sources differ; refusing to publish inconsistent content.");
 }
 const news = (JSON.parse(source) as NewsItem[]).slice().sort((a, b) => b.date.localeCompare(a.date));
-if (news.length !== 7 || new Set(news.map((n) => n.slug)).size !== 7) throw new Error("Expected exactly seven existing news records.");
+if (!news.length || new Set(news.map((n) => n.slug)).size !== news.length) {
+  throw new Error("News source data must contain at least one record with a unique slug.");
+}
 const config = JSON.parse(await fs.readFile(path.join(root, "vercel.json"), "utf8"));
+assertNewsRouteSlugs(news, config);
 for (const article of news) {
   if (!/^[a-z0-9-]+$/.test(article.slug) || !/^\d{4}-\d{2}-\d{2}$/.test(article.date)) throw new Error("Invalid article slug/date.");
   if (!config.routes?.some((r: { src?: string; dest?: string }) =>
@@ -29,6 +33,7 @@ for (const article of news) {
 const esc = (value: string) => value.replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[c]!);
 const jsonLd = (value: object) => JSON.stringify(value).replace(/</g, "\\u003c");
+const deploymentImagePath = (src: string) => new URL(src, NEWS_BASE).pathname;
 const shell = await fs.readFile(path.join(output, "index.html"), "utf8");
 if (!/<div id="root"><\/div>/.test(shell)) throw new Error("Unexpected Vite root markup; refusing to generate disconnected pages.");
 const baseShell = shell
@@ -68,14 +73,14 @@ function photoHtml(src: string, alt: string, photo?: NewsPhoto) {
   const dims = newsImageDetails[src];
   const dimensions = dims ? ` width="${dims.width}" height="${dims.height}"` : "";
   return `<figure${photo ? ` id="${esc(photo.id)}"` : ""} class="scroll-mt-24">
-    <a href="${esc(publicImageUrl(src))}" target="_blank" rel="noopener noreferrer"><img src="${esc(publicImageUrl(src))}" alt="${esc(alt)}"${dimensions} class="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700" /></a>
+    <a href="${esc(deploymentImagePath(src))}" target="_blank" rel="noopener noreferrer"><img src="${esc(deploymentImagePath(src))}" alt="${esc(alt)}"${dimensions} class="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700" /></a>
     ${photo ? `<figcaption class="mt-3 text-sm text-slate-300">${esc(photo.caption)}</figcaption>` : ""}
   </figure>`;
 }
 for (const article of news) {
   const hero = article.gallery?.find((p) => p.id === "photo-group");
   const gallery = (article.gallery || []).filter((p) => p.id !== "photo-group");
-  const body = (article.contentHtml || "").replace(/\bsrc=(["'])(\/[^"']+)\1/g, (_all, quote, src) => `src=${quote}${publicImageUrl(src)}${quote}`);
+  const body = (article.contentHtml || "").replace(/\bsrc=(["'])(\/[^"']+)\1/g, (_all, quote, src) => `src=${quote}${deploymentImagePath(src)}${quote}`);
   const dateLabel = new Date(`${article.date}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   const content = `<main class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
     <article class="container mx-auto px-4 lg:px-8 max-w-4xl py-16">
@@ -148,7 +153,7 @@ await write("news/index.html", documentHtml(index, `${indexHeader}
     const dimensions = n.image ? newsImageDetails[n.image] : undefined;
     const date = new Date(`${n.date}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
     const photo = n.image
-      ? `<img src="${esc(publicImageUrl(n.image))}" alt="${esc(n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="lazy" />`
+      ? `<img src="${esc(deploymentImagePath(n.image))}" alt="${esc(n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="lazy" />`
       : '<div aria-hidden="true" class="h-full w-full bg-gradient-to-br from-slate-800 via-slate-700/40 to-slate-900"></div>';
     return `<article class="flex h-full flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50">
       <a href="/news/${n.slug}" class="flex h-full flex-col">

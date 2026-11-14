@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "vite build && tsx scripts/generate-news-static.ts",
+    "verify:news-static": "npm run build && tsx scripts/verify-news-static.ts",
+    "verify:news-preview": "npm run build && tsx scripts/verify-news-static.ts --preview",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@google-cloud/storage": "^7.16.0",
     "@hookform/resolvers": "^3.10.0",
     "@neondatabase/serverless": "^0.10.4",
     "@radix-ui/react-accordion": "^1.2.4",
@@ -98,5 +99,10 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vite": "^6.0.3"
+  },
+  "overrides": {
+    "express": {
+      "proxy-addr": "2.0.8"
+    }
   }
 }
