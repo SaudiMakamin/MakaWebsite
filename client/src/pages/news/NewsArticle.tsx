@@ -211,7 +211,8 @@ export default function NewsArticlePage() {
                     width={newsImageDetails[article.image]?.width}
                     height={newsImageDetails[article.image]?.height}
                     className="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                   />
                 </a>

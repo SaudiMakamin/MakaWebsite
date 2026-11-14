@@ -92,11 +92,6 @@ app.use((req, res, next) => {
     res.sendFile('client/public/robots.txt', { root: process.cwd() });
   });
   
-  app.get('/sitemap.xml', (req, res) => {
-    res.setHeader('Content-Type', 'application/xml');
-    res.sendFile('client/public/sitemap.xml', { root: process.cwd() });
-  });
-  
   // Google site verification
   app.get('/google-site-verification.html', (req, res) => {
     res.setHeader('Content-Type', 'text/html');

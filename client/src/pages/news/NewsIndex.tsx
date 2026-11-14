@@ -15,7 +15,7 @@ export default function NewsIndex() {
   const { language } = useLanguageContext();
   const [search, setSearch] = useState("");
 
-  useNewsMetadata(indexMetadata(language), language, false);
+  useNewsMetadata(indexMetadata(language, allNews[0]), language, false);
 
   const filtered = allNews.filter((n) => {
     if (!search) return true;
@@ -110,7 +110,8 @@ export default function NewsIndex() {
                             width={newsImageDetails[item.image]?.width}
                             height={newsImageDetails[item.image]?.height}
                             className="h-full w-full object-contain"
-                            loading="lazy"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            fetchPriority={index === 0 ? "high" : "auto"}
                           />
                         ) : (
                           <div

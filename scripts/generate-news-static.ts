@@ -64,11 +64,12 @@ async function write(relative: string, value: string) {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, value);
 }
-function photoHtml(src: string, alt: string, photo?: NewsPhoto) {
+function photoHtml(src: string, alt: string, photo?: NewsPhoto, eager = false) {
   const dims = newsImageDetails[src];
   const dimensions = dims ? ` width="${dims.width}" height="${dims.height}"` : "";
+  const loading = eager ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
   return `<figure${photo ? ` id="${esc(photo.id)}"` : ""} class="scroll-mt-24">
-    <a href="${esc(deploymentImagePath(src))}" target="_blank" rel="noopener noreferrer"><img src="${esc(deploymentImagePath(src))}" alt="${esc(alt)}"${dimensions} class="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700" /></a>
+    <a href="${esc(deploymentImagePath(src))}" target="_blank" rel="noopener noreferrer"><img src="${esc(deploymentImagePath(src))}" alt="${esc(alt)}"${dimensions}${loading} decoding="async" class="mx-auto block w-full max-w-[560px] h-auto rounded-xl border border-slate-700" /></a>
     ${photo ? `<figcaption class="mt-3 text-sm text-slate-300">${esc(photo.caption)}</figcaption>` : ""}
   </figure>`;
 }
@@ -85,13 +86,13 @@ for (const article of news) {
       <a href="/news" class="text-slate-400">Back to News</a>
       <p class="mt-6 text-slate-400">${esc(article.category || "")} · ${dateMarkup}</p>
       <h1 class="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">${esc(article.title)}</h1>
-      ${article.image ? photoHtml(article.image, hero?.alt || article.title, hero) : ""}
+       ${article.image ? photoHtml(article.image, hero?.alt || article.title, hero, true) : ""}
       <div class="prose prose-lg prose-invert max-w-none mt-8">${body}</div>
       ${gallery.length ? `<section aria-label="${esc(article.galleryTitle || "Photos from the meeting")}" class="mt-12"><h2 class="mb-6 text-2xl font-bold">${esc(article.galleryTitle || "Photos from the meeting")}</h2>${gallery.map((p) => photoHtml(p.src, p.alt, p)).join("")}</section>` : ""}
     </article></main>`;
   await write(`news/${article.slug}/index.html`, documentHtml(articleMetadata(article), content, true));
 }
-const index = indexMetadata();
+const index = indexMetadata("en", news[0]);
 // Reuse the header's existing Vite-built logo; do not copy or alter image bytes.
 const logo = (await fs.readdir(path.join(output, "assets"))).find((name) =>
   /^logo mkamin_1752524503536-[^.]+\.png$/.test(name));
@@ -156,7 +157,7 @@ await write("news/index.html", documentHtml(index, `${indexHeader}
       ? esc(date)
       : `<time datetime="${n.date}">${esc(date)}</time>`;
     const photo = n.image
-      ? `<img src="${esc(deploymentImagePath(n.image))}" alt="${esc(n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="lazy" />`
+      ? `<img src="${esc(deploymentImagePath(n.image))}" alt="${esc(n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="${n === news[0] ? "eager" : "lazy"}"${n === news[0] ? ' fetchpriority="high"' : ""} decoding="async" />`
       : '<div aria-hidden="true" class="h-full w-full bg-gradient-to-br from-slate-800 via-slate-700/40 to-slate-900"></div>';
     return `<article class="flex h-full flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50">
       <a href="/news/${n.slug}" class="flex h-full flex-col">

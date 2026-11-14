@@ -9,6 +9,7 @@ import { storage } from "./storage";
 import { insertContactMessageSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
 import { relaySubmitToGas, relayTrackToGas } from "./gas-relay";
+import { articleImagePaths, NEWS_BASE, newsUrl, publicImageUrl } from "../client/src/pages/news/newsSeo";
 
 // Memory-only storage — files are buffered in RAM, converted to base64, then relayed to GAS.
 // No local disk writes for production submissions.
@@ -55,6 +56,10 @@ function readNews() {
   return Array.isArray(list) ? list : [];
 }
 
+const escXml = (value: unknown) => String(value ?? "").replace(/[&<>"']/g, (character) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[character]!,
+);
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Domain middleware for custom domain handling
   app.use(domainRedirectMiddleware);
@@ -80,6 +85,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/news", (_req, res) => {
     res.json(readNews());
+  });
+
+  app.get(["/news/:slug", "/news/*"], (req, res, next) => {
+    const match = req.path.match(/^\/news\/([a-z0-9-]+)\/?$/);
+    const isKnownArticle = match && readNews().some((article: { slug: string }) => article.slug === match[1]);
+    if (isKnownArticle) return next();
+
+    fs.readFile(path.join(process.cwd(), "client", "index.html"), "utf8", (error, html) => {
+      if (error) return next(error);
+
+      let robotsMetaAdded = false;
+      const noindexHtml = html.replace(
+        /<meta\b[^>]*\bname=["'](?:robots|googlebot|bingbot)["'][^>]*>/gi,
+        () => {
+          if (robotsMetaAdded) return "";
+          robotsMetaAdded = true;
+          return '<meta name="robots" content="noindex, follow" />';
+        },
+      );
+      const responseHtml = robotsMetaAdded
+        ? noindexHtml
+        : noindexHtml.replace("</head>", '<meta name="robots" content="noindex, follow" />\n</head>');
+      res.status(404).type("html").send(responseHtml);
+    });
   });
 
   // Get featured news article
@@ -493,7 +522,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.get("/sitemap.xml", (_req, res) => {
-    const base = "https://makamin.com.sa";
+    const base = NEWS_BASE;
     const news = readNews();
 
     const staticPages = [
@@ -529,45 +558,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `${base}/media-coverage`
     ];
 
-    const staticXml = staticPages.map((u) => `<url><loc>${u}</loc></url>`).join("\n");
-    const newsXml = news.map((n: any) => `<url><loc>${base}/news/${n.slug}</loc><lastmod>${n.date}</lastmod></url>`).join("\n");
+    const staticXml = staticPages.map((url) => `<url><loc>${escXml(url)}</loc></url>`).join("\n");
+    const newsXml = news.map((article: any) => {
+      const lastmod = article.dateIsEventEndSortOnly ? "" : `<lastmod>${escXml(article.date)}</lastmod>`;
+      const images = articleImagePaths(article)
+        .map((image) => `<image:image><image:loc>${escXml(publicImageUrl(image))}</image:loc></image:image>`)
+        .join("");
+      return `<url><loc>${escXml(newsUrl(article.slug))}</loc>${lastmod}${images}</url>`;
+    }).join("\n");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${staticXml}
 ${newsXml}
 </urlset>`;
 
-    res.setHeader("Content-Type", "application/xml");
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
     res.send(xml);
   });
 
   app.get("/rss.xml", (_req, res) => {
-    const base = "https://makamin.com.sa";
     const news = readNews();
 
     const sorted = [...news].sort((a: any, b: any) => b.date.localeCompare(a.date));
 
-    const escXml = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-
-    const items = sorted.map((n: any) => {
-      const d = new Date(n.date + "T00:00:00Z");
-      const pubDate = d.toUTCString();
-      const desc = n.excerpt || "Makamin News update.";
-      return `<item><title>${escXml(n.title)}</title><link>${base}/news/${n.slug}</link><guid>${base}/news/${n.slug}</guid><pubDate>${pubDate}</pubDate><description>${escXml(desc)}</description></item>`;
+    const items = sorted.map((article: any) => {
+      const url = newsUrl(article.slug);
+      const date = article.dateIsEventEndSortOnly ? "" : `<dc:date>${escXml(article.date)}</dc:date>`;
+      return `<item><title>${escXml(article.title)}</title><link>${escXml(url)}</link><guid isPermaLink="true">${escXml(url)}</guid>${date}<description>${escXml(article.excerpt || article.title)}</description></item>`;
     }).join("\n");
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>Makamin News</title>
-<link>${base}/news</link>
+<link>${newsUrl()}</link>
 <description>Latest news and corporate governance announcements from Makamin Saudi Holding.</description>
+<language>en</language>
+<atom:link href="${NEWS_BASE}/rss.xml" rel="self" type="application/rss+xml"/>
 ${items}
 </channel>
 </rss>`;
 
-    res.setHeader("Content-Type", "application/rss+xml");
+    res.setHeader("Content-Type", "application/rss+xml; charset=utf-8");
     res.send(rss);
   });
 

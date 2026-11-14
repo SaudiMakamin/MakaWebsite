@@ -135,14 +135,6 @@ export default function SEOHeadTags({
           "description": description,
           "publisher": { "@id": "https://makamin.com.sa/#organization" },
           "inLanguage": ["ar-SA", "en-SA"],
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://makamin.com.sa/search?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          }
         }
       ]
     };

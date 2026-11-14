@@ -62,14 +62,19 @@ export function articleMetadata(article: NewsItem, language: "en" | "ar" = "en")
   };
 }
 
-export function indexMetadata(language: "en" | "ar" = "en") {
+export function indexMetadata(language: "en" | "ar" = "en", featuredArticle?: NewsItem) {
   const headline = language === "ar" ? "أخبار مكامن" : "Makamin News";
   const description = language === "ar"
     ? "آخر الأخبار والتطورات في شركة مكامن السعودية القابضة"
     : "Latest news and developments from Makamin Saudi Holding";
+  const featuredPhoto = featuredArticle?.gallery?.find((photo) => photo.src === featuredArticle.image);
   return {
     title: `${headline} | Makamin Saudi Holding`,
     headline, description, url: newsUrl(),
+    image: featuredArticle?.image ? publicImageUrl(featuredArticle.image) : undefined,
+    imageAlt: language === "ar"
+      ? featuredPhoto?.altAr || featuredArticle?.titleAr || featuredArticle?.title
+      : featuredPhoto?.alt || featuredArticle?.title,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", name: headline, url: newsUrl(), inLanguage: language },
   };
 }

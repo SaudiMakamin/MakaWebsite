@@ -254,12 +254,4 @@ export const websiteStructuredData = {
       "url": "https://makamin.com.sa/images/makamin-social-preview.jpg"
     }
   },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://www.google.com/search?q=site:makamin.com.sa+{search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
 };
