@@ -128,7 +128,11 @@ export default function NewsIndex() {
                           dir={language === "ar" ? "rtl" : "ltr"}
                         >
                           <Calendar aria-hidden="true" className="h-4 w-4 shrink-0" />
-                          <time dateTime={item.date}>{formatDate(item.date)}</time>
+                          {item.dateIsEventEndSortOnly ? (
+                            <span>{language === "ar" ? item.dateLabelAr : item.dateLabel}</span>
+                          ) : (
+                            <time dateTime={item.date}>{formatDate(item.date)}</time>
+                          )}
                         </div>
                         <h2 className="mb-3 min-w-0 break-words text-lg font-bold leading-snug text-white transition-colors group-hover:text-[#c5a66e] sm:text-xl">
                           {language === "ar" ? item.titleAr || item.title : item.title}

@@ -1,2 +1,3 @@
 - [Makamin Replit boundary](replit-production-boundary.md) — Keep Replit clean and lightweight without affecting GitHub or the published Vercel site.
 - [News Preview image URLs](news-preview-image-urls.md) — Rendered News images must resolve on the current deployment; keep canonical metadata on the production domain.
+- [News event-date handling](news-event-date-handling.md) — Keep event-end sort dates separate from publication dates and visible month/year labels.

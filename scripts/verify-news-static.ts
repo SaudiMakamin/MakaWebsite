@@ -27,14 +27,22 @@ for (const n of news) {
   assert(html.includes(`content="${esc(meta.description)}"`));
   assert.equal((html.match(/rel="canonical"/g) || []).length, 1);
   assert(html.includes(`rel="canonical" href="${newsUrl(n.slug)}"`));
-  assert(html.includes(`<time datetime="${n.date}">`));
+  if (n.dateIsEventEndSortOnly) {
+    assert(!("datePublished" in meta.schema!));
+    assert(html.includes(n.dateLabel || ""));
+    assert(!html.includes(`datetime="${n.date}"`));
+  } else {
+    assert(html.includes(`<time datetime="${n.date}">`));
+    assert.equal((meta.schema as { datePublished?: string }).datePublished, n.date);
+  }
   assert(!html.includes("hreflang"));
   const schemaTags = Array.from(html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g));
   assert.equal(schemaTags.length, 1);
   const schema = JSON.parse(schemaTags[0][1]);
   assert.equal(schema["@type"], "NewsArticle");
   assert.equal(schema.headline, n.title);
-  assert.equal(schema.datePublished, n.date);
+  if (n.dateIsEventEndSortOnly) assert(!("datePublished" in schema));
+  else assert.equal(schema.datePublished, n.date);
   assert.equal(schema.url, newsUrl(n.slug));
   assert(!("dateModified" in schema));
   assert(!("author" in schema));
@@ -72,7 +80,12 @@ const generatedArticleSlugs = (await fs.readdir(path.join(output, "news"), { wit
   .sort();
 assert.deepEqual(generatedArticleSlugs, news.map((article) => article.slug).sort(), "Generated article pages must match source data exactly");
 const index = await fs.readFile(path.join(output, "news/index.html"), "utf8");
-for (const n of news) assert(index.includes(`href="/news/${n.slug}"`));
+for (const n of news) {
+  assert(index.includes(`href="/news/${n.slug}"`));
+  assert(index.includes(esc(n.title)));
+  assert(index.includes(esc(n.excerpt || n.title)));
+  if (n.dateIsEventEndSortOnly) assert(index.includes(esc(n.dateLabel || "")));
+}
 assert.equal((index.match(/href="\/news\/[a-z0-9-]+"/g) || []).length, news.length);
 for (const file of await fs.readdir("client/public", { recursive: true })) {
   const name = String(file);
@@ -89,7 +102,8 @@ assert.equal((sitemap.match(/<loc>https:\/\/www\.makamin\.com\.sa\/news\/[^<]+<\
 assert(!rss.includes("<pubDate>"), "Do not invent publication times");
 for (const n of news) {
   assert(sitemap.includes(`<loc>${newsUrl(n.slug)}</loc>`));
-  assert(rss.includes(`<dc:date>${n.date}</dc:date>`));
+  if (n.dateIsEventEndSortOnly) assert(!rss.includes(`<dc:date>${n.date}</dc:date>`));
+  else assert(rss.includes(`<dc:date>${n.date}</dc:date>`));
 }
 console.log(`PASS index has ${news.length} crawlable links; sitemap/RSS coverage; all public assets preserved`);
 

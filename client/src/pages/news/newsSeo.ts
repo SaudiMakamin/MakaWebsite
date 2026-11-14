@@ -17,6 +17,11 @@ export const newsImageDetails: Record<string, { width: number; height: number; t
   "/images/news/shareholder-update-portal.jpg": { width: 1280, height: 720, type: "image/png" },
   "/images/news/makamin-board-meeting-al-khobar-2026-10-04-hero.png": { width: 960, height: 540, type: "image/png" },
   "/images/news/makamin-board-meeting-al-khobar-2026-10-04-inside.png": { width: 1080, height: 1920, type: "image/png" },
+  "/images/news/makamin-tuwaiq-employment-program-133-interviews-2026-11-hero.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-01.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-02.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-03.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-04.png": { width: 960, height: 540, type: "image/png" },
 };
 
 export function articleImagePaths(article: NewsItem) {
@@ -43,7 +48,7 @@ export function articleMetadata(article: NewsItem, language: "en" | "ar" = "en")
       "@type": "NewsArticle",
       headline,
       description,
-      datePublished: article.date,
+      ...(article.dateIsEventEndSortOnly ? {} : { datePublished: article.date }),
       mainEntityOfPage: url,
       url,
       inLanguage: language,
