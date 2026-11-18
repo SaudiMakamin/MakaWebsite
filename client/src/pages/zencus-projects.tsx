@@ -180,12 +180,15 @@ export default function ZencusProjectsPage() {
           <ProjectFilters
             searchTerm={searchTerm}
             onSearchChange={setSearchTerm}
+            resultCount={filtered.length}
             filters={[
               {
+                key: 'category',
+                label: 'All Categories',
+                labelAr: 'جميع الفئات',
                 value: selectedCategory,
                 onChange: setSelectedCategory,
                 options: categories,
-                placeholder: isAr ? 'الفئة' : 'Category',
               },
             ]}
             variant="dark"

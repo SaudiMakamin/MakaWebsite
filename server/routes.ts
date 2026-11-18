@@ -6,7 +6,7 @@ import path from "node:path";
 import rateLimit from "express-rate-limit";
 import multer from "multer";
 import { storage } from "./storage";
-import { insertContactMessageSchema } from "@shared/schema";
+import { insertContactMessageSchema, insertShareholderSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
 import { relaySubmitToGas, relayTrackToGas } from "./gas-relay";
 import {
