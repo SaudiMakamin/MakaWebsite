@@ -12,7 +12,7 @@ import { getNewsBySlug, allNews } from "./newsData";
 import { Link, useParams } from "wouter";
 import {
   articleMetadata,
-  BOARD_RESOLUTION_NEWS_SLUG,
+  isBilingualNewsArticle,
   localizedArticleMetadata,
   localizedNewsUrl,
   newsImageDetails,
@@ -25,7 +25,7 @@ export default function NewsArticlePage({ languageOverride }: { languageOverride
   const { language: contextLanguage } = useLanguageContext();
   const params = useParams<{ slug: string }>();
   const article = getNewsBySlug(params.slug || "");
-  const bilingualArticle = article?.slug === BOARD_RESOLUTION_NEWS_SLUG;
+  const bilingualArticle = !!article && isBilingualNewsArticle(article.slug);
   const language = languageOverride || (bilingualArticle ? "en" : contextLanguage);
   const { toast } = useToast();
   const [manualShareFallback, setManualShareFallback] = useState<{ slug: string; url: string } | null>(null);

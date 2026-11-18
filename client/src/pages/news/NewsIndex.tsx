@@ -8,7 +8,7 @@ import { useLanguageContext } from "@/components/language-provider";
 import { allNews } from "./newsData";
 import { Link } from "wouter";
 import { useState } from "react";
-import { BOARD_RESOLUTION_NEWS_SLUG, indexMetadata, localizedNewsUrl, newsImageDetails } from "./newsSeo";
+import { indexMetadata, isBilingualNewsArticle, localizedNewsUrl, newsImageDetails } from "./newsSeo";
 import { useNewsMetadata } from "./useNewsMetadata";
 
 export default function NewsIndex() {
@@ -98,7 +98,7 @@ export default function NewsIndex() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link
-                    href={item.slug === BOARD_RESOLUTION_NEWS_SLUG
+                    href={isBilingualNewsArticle(item.slug)
                       ? localizedNewsUrl(language, item.slug)
                       : `/news/${item.slug}`}
                     className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a66e] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"

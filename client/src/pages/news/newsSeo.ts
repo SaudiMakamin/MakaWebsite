@@ -5,6 +5,12 @@ export const newsUrl = (slug?: string) =>
   `${NEWS_BASE}/news${slug ? `/${encodeURIComponent(slug)}` : ""}`;
 export type NewsLanguage = "en" | "ar";
 export const BOARD_RESOLUTION_NEWS_SLUG = "makamin-board-resolution-management-rights-2025-04-08";
+export const JAYA_PEARL_NEWS_SLUG = "makamin-pearl-vessel-investment-review-2026-06-13";
+export const BILINGUAL_NEWS_SLUGS = new Set([
+  BOARD_RESOLUTION_NEWS_SLUG,
+  JAYA_PEARL_NEWS_SLUG,
+]);
+export const isBilingualNewsArticle = (slug: string) => BILINGUAL_NEWS_SLUGS.has(slug);
 export const localizedNewsUrl = (language: NewsLanguage, slug: string) =>
   `${NEWS_BASE}/${language}/news/${encodeURIComponent(slug)}`;
 export const publicImageUrl = (path: string) => new URL(path, NEWS_BASE).href;
@@ -27,6 +33,7 @@ export const newsImageDetails: Record<string, { width: number; height: number; t
   "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-03.png": { width: 960, height: 540, type: "image/png" },
   "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-04.png": { width: 960, height: 540, type: "image/png" },
   "/images/news/makamin-adel-alnoob-board-resolution-2025-04-08.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-pearl-vessel-investment-review-2026-06-13.png": { width: 960, height: 540, type: "image/png" },
 };
 
 export function articleImagePaths(article: NewsItem) {

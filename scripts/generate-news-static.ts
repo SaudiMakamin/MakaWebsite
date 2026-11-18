@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { articleMetadata, articleImagePaths, indexMetadata, NEWS_BASE, newsUrl, localizedNewsUrl, localizedArticleMetadata, BOARD_RESOLUTION_NEWS_SLUG, newsImageDetails, publicImageUrl } from "../client/src/pages/news/newsSeo";
+import { articleMetadata, articleImagePaths, indexMetadata, NEWS_BASE, newsUrl, localizedNewsUrl, localizedArticleMetadata, isBilingualNewsArticle, newsImageDetails, publicImageUrl } from "../client/src/pages/news/newsSeo";
 import type { NewsItem, NewsPhoto } from "../client/src/pages/news/newsData";
 import { assertNewsRouteContract } from "./news-static-contract";
 
@@ -101,40 +101,42 @@ for (const article of news) {
       <div class="prose prose-lg prose-invert max-w-none mt-8">${body}</div>
       ${gallery.length ? `<section aria-label="${esc(article.galleryTitle || "Photos from the meeting")}" class="mt-12"><h2 class="mb-6 text-2xl font-bold">${esc(article.galleryTitle || "Photos from the meeting")}</h2>${gallery.map((p) => photoHtml(p.src, p.alt, p)).join("")}</section>` : ""}
     </article></main>`;
-  const metadata = article.slug === BOARD_RESOLUTION_NEWS_SLUG
+  const metadata = isBilingualNewsArticle(article.slug)
     ? localizedArticleMetadata(article, "en")
     : articleMetadata(article);
   await write(`news/${article.slug}/index.html`, documentHtml(metadata, content, true));
 }
-const bilingualArticle = news.find((article) => article.slug === BOARD_RESOLUTION_NEWS_SLUG);
-if (!bilingualArticle) {
-  throw new Error(`Required bilingual article is missing: ${BOARD_RESOLUTION_NEWS_SLUG}`);
+const bilingualArticles = news.filter((article) => isBilingualNewsArticle(article.slug));
+if (!bilingualArticles.length) {
+  throw new Error("At least one approved bilingual News article is required.");
 }
-for (const language of ["ar", "en"] as const) {
-  const isArabic = language === "ar";
-  const metadata = localizedArticleMetadata(bilingualArticle, language);
-  const localizedTitle = isArabic ? bilingualArticle.titleAr : bilingualArticle.title;
-  const localizedCategory = isArabic ? bilingualArticle.categoryAr : bilingualArticle.category;
-  const localizedBody = (isArabic ? bilingualArticle.contentHtmlAr : bilingualArticle.contentHtml) || "";
-  const localizedAlt = isArabic
-    ? bilingualArticle.imageAltAr || localizedTitle || ""
-    : bilingualArticle.imageAlt || localizedTitle || "";
-  const articleBody = localizedBody.replace(/\bsrc=(["'])(\/[^"']+)\1/g,
-    (_all, quote, src) => `src=${quote}${deploymentImagePath(src)}${quote}`);
-  const dateLabel = new Date(`${bilingualArticle.date}T00:00:00Z`).toLocaleDateString(
-    isArabic ? "ar-SA" : "en-US",
-    { year: "numeric", month: "long", day: "numeric", timeZone: "UTC", calendar: "gregory" },
-  );
-  const content = `<main dir="${isArabic ? "rtl" : "ltr"}" class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-    <article class="container mx-auto px-4 lg:px-8 max-w-4xl py-16">
-      <a href="/news" class="text-slate-400">${isArabic ? "العودة إلى الأخبار" : "Back to News"}</a>
-      <p class="mt-6 text-slate-400">${esc(localizedCategory || "")} · <time datetime="${bilingualArticle.date}">${esc(dateLabel)}</time></p>
-      <h1 class="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">${esc(localizedTitle || "")}</h1>
-      ${bilingualArticle.image ? photoHtml(bilingualArticle.image, localizedAlt, undefined, true) : ""}
-      <div class="prose prose-lg prose-invert max-w-none mt-8">${articleBody}</div>
-    </article></main>`;
-  await write(`${language}/news/${bilingualArticle.slug}/index.html`,
-    documentHtml(metadata, content, true, false, language));
+for (const bilingualArticle of bilingualArticles) {
+  for (const language of ["ar", "en"] as const) {
+    const isArabic = language === "ar";
+    const metadata = localizedArticleMetadata(bilingualArticle, language);
+    const localizedTitle = isArabic ? bilingualArticle.titleAr : bilingualArticle.title;
+    const localizedCategory = isArabic ? bilingualArticle.categoryAr : bilingualArticle.category;
+    const localizedBody = (isArabic ? bilingualArticle.contentHtmlAr : bilingualArticle.contentHtml) || "";
+    const localizedAlt = isArabic
+      ? bilingualArticle.imageAltAr || localizedTitle || ""
+      : bilingualArticle.imageAlt || localizedTitle || "";
+    const articleBody = localizedBody.replace(/\bsrc=(["'])(\/[^"']+)\1/g,
+      (_all, quote, src) => `src=${quote}${deploymentImagePath(src)}${quote}`);
+    const dateLabel = new Date(`${bilingualArticle.date}T00:00:00Z`).toLocaleDateString(
+      isArabic ? "ar-SA" : "en-US",
+      { year: "numeric", month: "long", day: "numeric", timeZone: "UTC", calendar: "gregory" },
+    );
+    const content = `<main dir="${isArabic ? "rtl" : "ltr"}" class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <article class="container mx-auto px-4 lg:px-8 max-w-4xl py-16">
+        <a href="/news" class="text-slate-400">${isArabic ? "العودة إلى الأخبار" : "Back to News"}</a>
+        <p class="mt-6 text-slate-400">${esc(localizedCategory || "")} · <time datetime="${bilingualArticle.date}">${esc(dateLabel)}</time></p>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">${esc(localizedTitle || "")}</h1>
+        ${bilingualArticle.image ? photoHtml(bilingualArticle.image, localizedAlt, undefined, true) : ""}
+        <div class="prose prose-lg prose-invert max-w-none mt-8">${articleBody}</div>
+      </article></main>`;
+    await write(`${language}/news/${bilingualArticle.slug}/index.html`,
+      documentHtml(metadata, content, true, false, language));
+  }
 }
 const index = indexMetadata("en", news[0]);
 // Reuse the header's existing Vite-built logo; do not copy or alter image bytes.
@@ -204,7 +206,7 @@ await write("news/index.html", documentHtml(index, `${indexHeader}
       ? `<img src="${esc(deploymentImagePath(n.image))}" alt="${esc(n.imageAlt || n.title)}"${dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : ""} class="h-full w-full object-contain" loading="${n === news[0] ? "eager" : "lazy"}"${n === news[0] ? ' fetchpriority="high"' : ""} decoding="async" />`
       : '<div aria-hidden="true" class="h-full w-full bg-gradient-to-br from-slate-800 via-slate-700/40 to-slate-900"></div>';
     return `<article class="flex h-full flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50">
-      <a href="${n.slug === BOARD_RESOLUTION_NEWS_SLUG ? localizedNewsUrl("en", n.slug).replace(NEWS_BASE, "") : `/news/${n.slug}`}" class="flex h-full flex-col">
+      <a href="${isBilingualNewsArticle(n.slug) ? localizedNewsUrl("en", n.slug).replace(NEWS_BASE, "") : `/news/${n.slug}`}" class="flex h-full flex-col">
         <div class="h-44 sm:h-48 bg-slate-900/50 overflow-hidden">${photo}</div>
         <div class="flex flex-1 flex-col p-5 sm:p-6">
           <span class="mb-3 self-start rounded-full border border-[#c5a66e]/30 bg-[#c5a66e]/15 px-2.5 py-0.5 text-xs text-[#c5a66e]">${esc(n.category || "")}</span>
@@ -226,12 +228,13 @@ const staticList = server.match(/const staticPages = \[([\s\S]*?)\];/)?.[1];
 const staticPaths = [...(staticList || "").matchAll(/`\$\{base\}([^`]*)`/g)].map((m) => m[1]);
 if (!staticPaths.length) throw new Error("Cannot preserve the existing non-news sitemap inventory.");
 const staticXml = staticPaths.map((p) => `<url><loc>${esc(NEWS_BASE + p)}</loc></url>`);
-const articleXml = news.filter((n) => n.slug !== BOARD_RESOLUTION_NEWS_SLUG)
+const articleXml = news.filter((n) => !isBilingualNewsArticle(n.slug))
   .map((n) => `<url><loc>${esc(newsUrl(n.slug))}</loc>${articleImagePaths(n).map((p) =>
   `<image:image><image:loc>${esc(publicImageUrl(p))}</image:loc></image:image>`).join("")}</url>`);
-const localizedArticleXml = (["ar", "en"] as const).map((language) =>
-  `<url><loc>${esc(localizedNewsUrl(language, bilingualArticle.slug))}</loc>${articleImagePaths(bilingualArticle).map((p) =>
-    `<image:image><image:loc>${esc(publicImageUrl(p))}</image:loc></image:image>`).join("")}</url>`);
+const localizedArticleXml = bilingualArticles.flatMap((article) =>
+  (["ar", "en"] as const).map((language) =>
+    `<url><loc>${esc(localizedNewsUrl(language, article.slug))}</loc>${articleImagePaths(article).map((p) =>
+      `<image:image><image:loc>${esc(publicImageUrl(p))}</image:loc></image:image>`).join("")}</url>`));
 await write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${[...staticXml, ...articleXml, ...localizedArticleXml].join("\n")}</urlset>`);
 // RSS pubDate requires a time, which the records do not provide. Dublin Core
 // preserves the exact historical date without inventing midnight or republishing.
@@ -239,7 +242,7 @@ await write("rss.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.
 <title>Makamin News</title><link>${newsUrl()}</link><description>${esc(index.description)}</description><language>en</language>
 <atom:link href="${NEWS_BASE}/rss.xml" rel="self" type="application/rss+xml"/>
 ${news.map((n) => {
-  const url = n.slug === BOARD_RESOLUTION_NEWS_SLUG ? localizedNewsUrl("en", n.slug) : newsUrl(n.slug);
+  const url = isBilingualNewsArticle(n.slug) ? localizedNewsUrl("en", n.slug) : newsUrl(n.slug);
   return `<item><title>${esc(n.title)}</title><link>${esc(url)}</link><guid isPermaLink="true">${esc(url)}</guid>${n.dateIsEventEndSortOnly ? "" : `<dc:date>${n.date}</dc:date>`}<description>${esc(n.excerpt || n.title)}</description></item>`;
 }).join("\n")}
 </channel></rss>`);
