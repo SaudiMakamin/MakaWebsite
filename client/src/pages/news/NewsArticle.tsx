@@ -10,21 +10,35 @@ import { useLanguageContext } from "@/components/language-provider";
 import { useToast } from "@/hooks/use-toast";
 import { getNewsBySlug, allNews } from "./newsData";
 import { Link, useParams } from "wouter";
-import { articleMetadata, newsImageDetails } from "./newsSeo";
+import {
+  articleMetadata,
+  BOARD_RESOLUTION_NEWS_SLUG,
+  localizedArticleMetadata,
+  localizedNewsUrl,
+  newsImageDetails,
+  newsUrl,
+  type NewsLanguage,
+} from "./newsSeo";
 import { useNewsMetadata } from "./useNewsMetadata";
 
-export default function NewsArticlePage() {
-  const { language } = useLanguageContext();
+export default function NewsArticlePage({ languageOverride }: { languageOverride?: NewsLanguage } = {}) {
+  const { language: contextLanguage } = useLanguageContext();
   const params = useParams<{ slug: string }>();
   const article = getNewsBySlug(params.slug || "");
+  const bilingualArticle = article?.slug === BOARD_RESOLUTION_NEWS_SLUG;
+  const language = languageOverride || (bilingualArticle ? "en" : contextLanguage);
   const { toast } = useToast();
   const [manualShareFallback, setManualShareFallback] = useState<{ slug: string; url: string } | null>(null);
 
   useNewsMetadata(
-    article ? articleMetadata(article, language) : {
-      title: `${language === "ar" ? "المقال غير موجود" : "Article Not Found"} | Makamin News`,
-      description: language === "ar" ? "عذراً، لم يتم العثور على المقال المطلوب." : "Sorry, the requested article could not be found.",
-    },
+    article
+      ? bilingualArticle
+        ? localizedArticleMetadata(article, language)
+        : articleMetadata(article, language)
+      : {
+          title: `${language === "ar" ? "المقال غير موجود" : "Article Not Found"} | Makamin News`,
+          description: language === "ar" ? "عذراً، لم يتم العثور على المقال المطلوب." : "Sorry, the requested article could not be found.",
+        },
     language, !!article, !article,
   );
 
@@ -85,7 +99,9 @@ export default function NewsArticlePage() {
   const displayDate = article.dateIsEventEndSortOnly
     ? language === "ar" ? article.dateLabelAr : article.dateLabel
     : formatDate(article.date);
-  const canonicalArticleUrl = `https://www.makamin.com.sa/news/${encodeURIComponent(article.slug)}`;
+  const canonicalArticleUrl = bilingualArticle
+    ? localizedNewsUrl(language, article.slug)
+    : newsUrl(article.slug);
   const photos = article.gallery || [];
   const heroPhoto = photos.find((photo) => photo.id === "photo-group");
   const galleryPhotos = photos.filter((photo) => photo.id !== "photo-group");
@@ -103,8 +119,7 @@ export default function NewsArticlePage() {
   const handleShareArticle = async () => {
     const title = language === "ar" ? article.titleAr || article.title : article.title;
     const url = new URL(
-      `/news/${encodeURIComponent(article.slug)}`,
-      "https://www.makamin.com.sa",
+      canonicalArticleUrl,
     ).href;
 
     setManualShareFallback(null);
@@ -205,8 +220,8 @@ export default function NewsArticlePage() {
                     src={article.image}
                     alt={
                       language === "ar"
-                        ? heroPhoto?.altAr || article.titleAr || article.title
-                        : heroPhoto?.alt || article.title
+                        ? heroPhoto?.altAr || article.imageAltAr || article.titleAr || article.title
+                        : heroPhoto?.alt || article.imageAlt || article.title
                     }
                     width={newsImageDetails[article.image]?.width}
                     height={newsImageDetails[article.image]?.height}

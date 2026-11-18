@@ -8,7 +8,7 @@ import { useLanguageContext } from "@/components/language-provider";
 import { allNews } from "./newsData";
 import { Link } from "wouter";
 import { useState } from "react";
-import { indexMetadata, newsImageDetails } from "./newsSeo";
+import { BOARD_RESOLUTION_NEWS_SLUG, indexMetadata, localizedNewsUrl, newsImageDetails } from "./newsSeo";
 import { useNewsMetadata } from "./useNewsMetadata";
 
 export default function NewsIndex() {
@@ -98,7 +98,9 @@ export default function NewsIndex() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link
-                    href={`/news/${item.slug}`}
+                    href={item.slug === BOARD_RESOLUTION_NEWS_SLUG
+                      ? localizedNewsUrl(language, item.slug)
+                      : `/news/${item.slug}`}
                     className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a66e] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                   >
                     <Card className="bg-slate-800/50 border-slate-700 hover:border-[#c5a66e]/50 transition-colors duration-300 cursor-pointer group flex h-full !flex-col overflow-hidden rounded-xl">
@@ -106,7 +108,9 @@ export default function NewsIndex() {
                         {item.image ? (
                           <img
                             src={item.image}
-                            alt={language === "ar" ? item.titleAr || item.title : item.title}
+                            alt={language === "ar"
+                              ? item.imageAltAr || item.titleAr || item.title
+                              : item.imageAlt || item.title}
                             width={newsImageDetails[item.image]?.width}
                             height={newsImageDetails[item.image]?.height}
                             className="h-full w-full object-contain"

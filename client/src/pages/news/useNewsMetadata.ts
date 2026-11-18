@@ -7,6 +7,7 @@ type NewsMetadata = {
   url?: string;
   image?: string;
   imageAlt?: string;
+  alternates?: { language: "en" | "ar"; url: string }[];
   schema?: object;
 };
 
@@ -44,6 +45,13 @@ export function useNewsMetadata(metadata: NewsMetadata, language: "en" | "ar", a
     if (data.url) {
       upsertLinkTag('link[rel="canonical"]', { rel: "canonical", href: data.url });
       meta("og:url", data.url, true);
+    }
+    for (const alternate of data.alternates || []) {
+      upsertLinkTag(`link[rel="alternate"][hreflang="${alternate.language}"]`, {
+        rel: "alternate",
+        hreflang: alternate.language,
+        href: alternate.url,
+      });
     }
     meta("og:type", article ? "article" : "website", true);
     meta("og:title", data.title, true);

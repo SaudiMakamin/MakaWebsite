@@ -3,6 +3,10 @@ import type { NewsItem } from "./newsData";
 export const NEWS_BASE = "https://www.makamin.com.sa";
 export const newsUrl = (slug?: string) =>
   `${NEWS_BASE}/news${slug ? `/${encodeURIComponent(slug)}` : ""}`;
+export type NewsLanguage = "en" | "ar";
+export const BOARD_RESOLUTION_NEWS_SLUG = "makamin-board-resolution-management-rights-2025-04-08";
+export const localizedNewsUrl = (language: NewsLanguage, slug: string) =>
+  `${NEWS_BASE}/${language}/news/${encodeURIComponent(slug)}`;
 export const publicImageUrl = (path: string) => new URL(path, NEWS_BASE).href;
 
 // Verified intrinsic dimensions and file formats; no image transformations.
@@ -22,6 +26,7 @@ export const newsImageDetails: Record<string, { width: number; height: number; t
   "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-02.png": { width: 960, height: 540, type: "image/png" },
   "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-03.png": { width: 960, height: 540, type: "image/png" },
   "/images/news/makamin-tuwaiq-employment-program-2026-11-internal-04.png": { width: 960, height: 540, type: "image/png" },
+  "/images/news/makamin-adel-alnoob-board-resolution-2025-04-08.png": { width: 960, height: 540, type: "image/png" },
 };
 
 export function articleImagePaths(article: NewsItem) {
@@ -31,10 +36,15 @@ export function articleImagePaths(article: NewsItem) {
   return Array.from(new Set([article.image, ...(article.gallery || []).map((p) => p.src), ...embedded].filter((p): p is string => !!p)));
 }
 
-export function articleMetadata(article: NewsItem, language: "en" | "ar" = "en") {
+export function articleMetadata(
+  article: NewsItem,
+  language: NewsLanguage = "en",
+  canonicalUrl = newsUrl(article.slug),
+  alternates?: { language: NewsLanguage; url: string }[],
+) {
   const headline = language === "ar" ? article.titleAr || article.title : article.title;
   const description = (language === "ar" ? article.excerptAr || article.excerpt : article.excerpt) || headline;
-  const url = newsUrl(article.slug);
+  const url = canonicalUrl;
   const hero = article.gallery?.find((p) => p.src === article.image);
   return {
     title: `${headline} | Makamin News`,
@@ -42,7 +52,10 @@ export function articleMetadata(article: NewsItem, language: "en" | "ar" = "en")
     description,
     url,
     image: article.image ? publicImageUrl(article.image) : undefined,
-    imageAlt: language === "ar" ? hero?.altAr || headline : hero?.alt || headline,
+    imageAlt: language === "ar"
+      ? hero?.altAr || article.imageAltAr || headline
+      : hero?.alt || article.imageAlt || headline,
+    alternates,
     schema: {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
@@ -60,6 +73,18 @@ export function articleMetadata(article: NewsItem, language: "en" | "ar" = "en")
       image: articleImagePaths(article).map(publicImageUrl),
     },
   };
+}
+
+export function localizedArticleMetadata(article: NewsItem, language: NewsLanguage) {
+  return articleMetadata(
+    article,
+    language,
+    localizedNewsUrl(language, article.slug),
+    (["ar", "en"] as NewsLanguage[]).map((alternateLanguage) => ({
+      language: alternateLanguage,
+      url: localizedNewsUrl(alternateLanguage, article.slug),
+    })),
+  );
 }
 
 export function indexMetadata(language: "en" | "ar" = "en", featuredArticle?: NewsItem) {

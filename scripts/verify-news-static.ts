@@ -3,7 +3,15 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import http from "node:http";
 import { createHash } from "node:crypto";
-import { articleImagePaths, articleMetadata, NEWS_BASE, newsUrl } from "../client/src/pages/news/newsSeo";
+import {
+  articleImagePaths,
+  articleMetadata,
+  BOARD_RESOLUTION_NEWS_SLUG,
+  localizedArticleMetadata,
+  localizedNewsUrl,
+  NEWS_BASE,
+  newsUrl,
+} from "../client/src/pages/news/newsSeo";
 import type { NewsItem } from "../client/src/pages/news/newsData";
 import { assertNewsRouteContract } from "./news-static-contract";
 
@@ -22,11 +30,12 @@ assertNewsRouteContract(news, config);
 const documentHashes = new Set<string>();
 for (const n of news) {
   const html = await fs.readFile(path.join(output, `news/${n.slug}/index.html`), "utf8");
-  const meta = articleMetadata(n);
+  const isLocalizedArticle = n.slug === BOARD_RESOLUTION_NEWS_SLUG;
+  const meta = isLocalizedArticle ? localizedArticleMetadata(n, "en") : articleMetadata(n);
   assert(html.includes(`<title>${esc(meta.title)}</title>`), n.slug);
   assert(html.includes(`content="${esc(meta.description)}"`));
   assert.equal((html.match(/rel="canonical"/g) || []).length, 1);
-  assert(html.includes(`rel="canonical" href="${newsUrl(n.slug)}"`));
+  assert(html.includes(`rel="canonical" href="${meta.url}"`));
   if (n.dateIsEventEndSortOnly) {
     assert(!("datePublished" in meta.schema!));
     assert(html.includes(n.dateLabel || ""));
@@ -35,7 +44,13 @@ for (const n of news) {
     assert(html.includes(`<time datetime="${n.date}">`));
     assert.equal((meta.schema as { datePublished?: string }).datePublished, n.date);
   }
-  assert(!html.includes("hreflang"));
+  if (isLocalizedArticle) {
+    for (const language of ["ar", "en"] as const) {
+      assert(html.includes(`hreflang="${language}" href="${localizedNewsUrl(language, n.slug)}"`));
+    }
+  } else {
+    assert(!html.includes("hreflang"));
+  }
   const schemaTags = Array.from(html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g));
   assert.equal(schemaTags.length, 1);
   const schema = JSON.parse(schemaTags[0][1]);
@@ -43,7 +58,7 @@ for (const n of news) {
   assert.equal(schema.headline, n.title);
   if (n.dateIsEventEndSortOnly) assert(!("datePublished" in schema));
   else assert.equal(schema.datePublished, n.date);
-  assert.equal(schema.url, newsUrl(n.slug));
+  assert.equal(schema.url, meta.url);
   assert(!("dateModified" in schema));
   assert(!("author" in schema));
   const normalizedBody = (n.contentHtml || "").replace(/\bsrc=(["'])(\/[^"']+)\1/g,
@@ -73,6 +88,36 @@ for (const n of news) {
   documentHashes.add(hash(Buffer.from(html)));
   console.log(`PASS initial HTML + canonical + social + schema + entire body + exact images: ${n.slug}`);
 }
+const localizedArticle = news.find((article) => article.slug === BOARD_RESOLUTION_NEWS_SLUG);
+assert(localizedArticle, "The approved bilingual Board resolution article must exist.");
+for (const language of ["ar", "en"] as const) {
+  const html = await fs.readFile(
+    path.join(output, `${language}/news/${localizedArticle.slug}/index.html`),
+    "utf8",
+  );
+  const metadata = localizedArticleMetadata(localizedArticle, language);
+  const expectedBody = language === "ar" ? localizedArticle.contentHtmlAr : localizedArticle.contentHtml;
+  const expectedTitle = language === "ar" ? localizedArticle.titleAr : localizedArticle.title;
+  assert(html.includes(`<html lang="${language}" dir="${language === "ar" ? "rtl" : "ltr"}">`));
+  assert(html.includes(`<title>${esc(metadata.title)}</title>`));
+  assert(html.includes(`rel="canonical" href="${localizedNewsUrl(language, localizedArticle.slug)}"`));
+  for (const alternateLanguage of ["ar", "en"] as const) {
+    assert(html.includes(`hreflang="${alternateLanguage}" href="${localizedNewsUrl(alternateLanguage, localizedArticle.slug)}"`));
+  }
+  assert(html.includes(esc(expectedTitle || "")));
+  assert(expectedBody && html.includes(expectedBody), `Complete ${language} approved article body missing.`);
+  const schemaTag = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
+  assert(schemaTag, `Missing ${language} NewsArticle JSON-LD.`);
+  const schema = JSON.parse(schemaTag[1]);
+  assert.equal(schema["@type"], "NewsArticle");
+  assert.equal(schema.headline, expectedTitle);
+  assert.equal(schema.inLanguage, language);
+  assert.equal(schema.datePublished, "2025-04-08");
+  assert.equal(schema.url, localizedNewsUrl(language, localizedArticle.slug));
+  assert.equal(schema.mainEntityOfPage, localizedNewsUrl(language, localizedArticle.slug));
+  assert(html.includes(`alt="${esc(language === "ar" ? localizedArticle.imageAltAr! : localizedArticle.imageAlt!)}"`));
+  console.log(`PASS ${language} localized static page, canonical, reciprocal hreflang, NewsArticle schema, date, body and image alt`);
+}
 assert.equal(documentHashes.size, news.length, "Every source article must have a unique generated document");
 const generatedArticleSlugs = (await fs.readdir(path.join(output, "news"), { withFileTypes: true }))
   .filter((entry) => entry.isDirectory())
@@ -81,12 +126,15 @@ const generatedArticleSlugs = (await fs.readdir(path.join(output, "news"), { wit
 assert.deepEqual(generatedArticleSlugs, news.map((article) => article.slug).sort(), "Generated article pages must match source data exactly");
 const index = await fs.readFile(path.join(output, "news/index.html"), "utf8");
 for (const n of news) {
-  assert(index.includes(`href="/news/${n.slug}"`));
+  const cardUrl = n.slug === BOARD_RESOLUTION_NEWS_SLUG
+    ? localizedNewsUrl("en", n.slug).replace(NEWS_BASE, "")
+    : `/news/${n.slug}`;
+  assert(index.includes(`href="${cardUrl}"`));
   assert(index.includes(esc(n.title)));
   assert(index.includes(esc(n.excerpt || n.title)));
   if (n.dateIsEventEndSortOnly) assert(index.includes(esc(n.dateLabel || "")));
 }
-assert.equal((index.match(/href="\/news\/[a-z0-9-]+"/g) || []).length, news.length);
+assert.equal((index.match(/href="\/news\/[a-z0-9-]+"/g) || []).length, news.length - 1);
 for (const file of await fs.readdir("client/public", { recursive: true })) {
   const name = String(file);
   if ((await fs.stat(path.join("client/public", name))).isFile()) {
@@ -98,18 +146,36 @@ const rss = await fs.readFile(path.join(output, "rss.xml"), "utf8");
 assert(sitemap.startsWith('<?xml version="1.0"'));
 assert(rss.startsWith('<?xml version="1.0"'));
 assert.equal((rss.match(/<item>/g) || []).length, news.length);
-assert.equal((sitemap.match(/<loc>https:\/\/www\.makamin\.com\.sa\/news\/[^<]+<\/loc>/g) || []).length, news.length);
+assert.equal((sitemap.match(/<loc>https:\/\/www\.makamin\.com\.sa\/news\/[^<]+<\/loc>/g) || []).length, news.length - 1);
 assert(!rss.includes("<pubDate>"), "Do not invent publication times");
 for (const n of news) {
-  assert(sitemap.includes(`<loc>${newsUrl(n.slug)}</loc>`));
+  if (n.slug !== BOARD_RESOLUTION_NEWS_SLUG) assert(sitemap.includes(`<loc>${newsUrl(n.slug)}</loc>`));
   if (n.dateIsEventEndSortOnly) assert(!rss.includes(`<dc:date>${n.date}</dc:date>`));
   else assert(rss.includes(`<dc:date>${n.date}</dc:date>`));
 }
+for (const language of ["ar", "en"] as const) {
+  assert(sitemap.includes(`<loc>${localizedNewsUrl(language, localizedArticle.slug)}</loc>`));
+}
+assert(rss.includes(`<link>${localizedNewsUrl("en", localizedArticle.slug)}</link>`));
 console.log(`PASS index has ${news.length} crawlable links; sitemap/RSS coverage; all public assets preserved`);
 
 const types: Record<string, string> = { ".html": "text/html; charset=utf-8", ".xml": "application/xml", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".txt": "text/plain" };
+async function staticDestination(url: string): Promise<string | undefined> {
+  const decoded = decodeURIComponent(url);
+  const candidate = path.resolve(output, `.${decoded}`);
+  if (!candidate.startsWith(output + path.sep)) return undefined;
+  try {
+    if ((await fs.stat(candidate)).isFile()) return decoded;
+  } catch {}
+  try {
+    if ((await fs.stat(path.join(candidate, "index.html"))).isFile()) {
+      return `${decoded.replace(/\/$/, "")}/index.html`;
+    }
+  } catch {}
+  return undefined;
+}
 async function fileExists(url: string) {
-  try { return (await fs.stat(path.join(output, decodeURIComponent(url)))).isFile(); } catch { return false; }
+  return (await staticDestination(url)) !== undefined;
 }
 const server = http.createServer(async (req, res) => {
   try {
@@ -118,7 +184,8 @@ const server = http.createServer(async (req, res) => {
     let status = 200;
     for (const rule of config.routes) {
       if (rule.handle === "filesystem") {
-        if (await fileExists(pathname)) { destination = pathname; break; }
+        destination = await staticDestination(pathname);
+        if (destination) break;
         continue;
       }
       const re = new RegExp(rule.src);
@@ -171,6 +238,14 @@ try {
       const b = Buffer.from(await r.arrayBuffer());
       assert(b[0] === 137 || b[0] === 255, src);
     }
+  }
+  for (const language of ["ar", "en"] as const) {
+    const url = localizedNewsUrl(language, localizedArticle.slug).replace(NEWS_BASE, "");
+    const r = await fetch(base + url);
+    assert.equal(r.status, 200);
+    const html = await r.text();
+    assert(html.includes(`lang="${language}"`));
+    assert(html.includes(esc(language === "ar" ? localizedArticle.titleAr! : localizedArticle.title)));
   }
   for (const url of ["/news/missing-routing-probe", "/news/first-board-meeting-2026-02-12/extra"]) {
     const r = await fetch(base + url);

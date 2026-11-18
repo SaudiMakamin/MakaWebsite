@@ -9,7 +9,14 @@ import { storage } from "./storage";
 import { insertContactMessageSchema } from "@shared/schema";
 import { domainRedirectMiddleware, domainHealthCheck } from "./domain-middleware";
 import { relaySubmitToGas, relayTrackToGas } from "./gas-relay";
-import { articleImagePaths, NEWS_BASE, newsUrl, publicImageUrl } from "../client/src/pages/news/newsSeo";
+import {
+  articleImagePaths,
+  BOARD_RESOLUTION_NEWS_SLUG,
+  localizedNewsUrl,
+  NEWS_BASE,
+  newsUrl,
+  publicImageUrl,
+} from "../client/src/pages/news/newsSeo";
 
 // Memory-only storage — files are buffered in RAM, converted to base64, then relayed to GAS.
 // No local disk writes for production submissions.
@@ -559,12 +566,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     ];
 
     const staticXml = staticPages.map((url) => `<url><loc>${escXml(url)}</loc></url>`).join("\n");
-    const newsXml = news.map((article: any) => {
+    const newsXml = news.flatMap((article: any) => {
       const lastmod = article.dateIsEventEndSortOnly ? "" : `<lastmod>${escXml(article.date)}</lastmod>`;
       const images = articleImagePaths(article)
         .map((image) => `<image:image><image:loc>${escXml(publicImageUrl(image))}</image:loc></image:image>`)
         .join("");
-      return `<url><loc>${escXml(newsUrl(article.slug))}</loc>${lastmod}${images}</url>`;
+      const urls = article.slug === BOARD_RESOLUTION_NEWS_SLUG
+        ? (["ar", "en"] as const).map((language) => localizedNewsUrl(language, article.slug))
+        : [newsUrl(article.slug)];
+      return urls.map((url) => `<url><loc>${escXml(url)}</loc>${lastmod}${images}</url>`);
     }).join("\n");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -583,7 +593,9 @@ ${newsXml}
     const sorted = [...news].sort((a: any, b: any) => b.date.localeCompare(a.date));
 
     const items = sorted.map((article: any) => {
-      const url = newsUrl(article.slug);
+      const url = article.slug === BOARD_RESOLUTION_NEWS_SLUG
+        ? localizedNewsUrl("en", article.slug)
+        : newsUrl(article.slug);
       const date = article.dateIsEventEndSortOnly ? "" : `<dc:date>${escXml(article.date)}</dc:date>`;
       return `<item><title>${escXml(article.title)}</title><link>${escXml(url)}</link><guid isPermaLink="true">${escXml(url)}</guid>${date}<description>${escXml(article.excerpt || article.title)}</description></item>`;
     }).join("\n");

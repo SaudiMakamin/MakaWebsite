@@ -55,6 +55,18 @@ const Headquarters = lazy(() => import('@/pages/headquarters'));
 
 import { SocialShareOptimizer } from '@/lib/social-share-optimizer';
 
+function ArabicBoardResolutionArticle() {
+  return <NewsArticlePage languageOverride="ar" />;
+}
+
+function EnglishBoardResolutionArticle() {
+  return <NewsArticlePage languageOverride="en" />;
+}
+
+function SharedNewsArticle() {
+  return <NewsArticlePage />;
+}
+
 function Router() {
   return (
     <Switch>
@@ -68,8 +80,10 @@ function Router() {
       <Route path="/projects/zencus" component={ZencusProjectsPage} />
       <Route path="/projects" component={Projects} />
       <Route path="/certifications" component={Certifications} />
+      <Route path="/ar/news/:slug" component={ArabicBoardResolutionArticle} />
+      <Route path="/en/news/:slug" component={EnglishBoardResolutionArticle} />
       <Route path="/news" component={NewsIndex} />
-      <Route path="/news/:slug" component={NewsArticlePage} />
+      <Route path="/news/:slug" component={SharedNewsArticle} />
       <Route path="/update-shareholder" component={UpdateShareholder} />
       <Route path="/shareholder/submit" component={ShareholderSubmit} />
       <Route path="/shareholder/track" component={ShareholderTrack} />
@@ -101,7 +115,7 @@ function Router() {
 
 function GlobalSEOOutsideNews() {
   const [location] = useLocation();
-  if (location === "/news" || location.startsWith("/news/")) return null;
+  if (/^\/(?:news(?:\/|$)|(?:ar|en)\/news(?:\/|$))/.test(location)) return null;
   return <><SEOHeadTags /><SEOHead /><AdvancedSEO /></>;
 }
 

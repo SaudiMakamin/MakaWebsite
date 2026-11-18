@@ -13,6 +13,8 @@ export type NewsItem = {
   excerpt?: string;
   excerptAr?: string;
   image?: string;
+  imageAlt?: string;
+  imageAltAr?: string;
   galleryTitle?: string;
   galleryTitleAr?: string;
   gallery?: NewsPhoto[];
