@@ -28,10 +28,10 @@ class GoogleWorkspaceService {
 
   private async initializeAPIs() {
     try {
-      const authClient = await this.auth.getClient();
-      this.sheets = google.sheets({ version: 'v4', auth: authClient });
-      this.drive = google.drive({ version: 'v3', auth: authClient });
-      this.gmail = google.gmail({ version: 'v1', auth: authClient });
+      await this.auth.getClient();
+      this.sheets = google.sheets({ version: 'v4', auth: this.auth });
+      this.drive = google.drive({ version: 'v3', auth: this.auth });
+      this.gmail = google.gmail({ version: 'v1', auth: this.auth });
     } catch (error) {
       console.error('Error initializing Google APIs:', error);
     }
